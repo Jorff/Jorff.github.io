@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Git - 滴尔</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+		<link rel="stylesheet" href="../css/github.min.css" />
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="../js/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">滴尔</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">主页</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">地区冲突</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="dropdown-item">中东局势</a>
+</li>
+                                    
+<li>
+    <a href="../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="dropdown-item">俄乌战争</a>
+</li>
+                                    
+<li>
+    <a href="../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="dropdown-item">朝鲜半岛</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">经济和货币政策</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="dropdown-item">经济政策</a>
+</li>
+                                    
+<li>
+    <a href="../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="dropdown-item">货币政策</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../level31/invest/" class="nav-link">投资指南</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../level41/Listed_company/" class="nav-link">上市公司</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<p><strong>*</strong>* git使用指南</p>
+<ul>
+<li>
+<ol>
+<li>Git 的使用 
+    Git 的进阶学习资源《Pro Git（中文版）》:</li>
+</ol>
+<p>https://gitee.com/progit/index.html</p>
+<p>https://git-scm.com/book/zh/v2 </p>
+<p>请结合 2.5.1 节的解释和示意图来理解和使用以下常用命令。 </p>
+<p>1.1 本地仓库操作 </p>
+<p>$git help <cmd> </p>
+<p>查看帮助信息，更具体的帮助信息可以通过参数指定。 </p>
+<p>$git config </p>
+<p>Git 的工作参数配置，可以根据个人喜好来定制 git 的默认工作参数。 </p>
+<p>如 2.5.2 节，在获取 OpenHarmony 代码前需要配置用户名和邮箱地址等。 </p>
+<p>$git config --global alias.st status *设置 status 命令的短命令别名为 st 
+$git init <repo_dir> </p>
+<p>可以在指定⽬ 录下创建⼀ 个空的 Git 仓库（即生成.git/文件夹），不带 repo_dir 参数则在当前⽬ 录下创 
+建空的代码仓库。 </p>
+<p>$git clone <src_repo_path> <dest_repo_dir> </p>
+<p>可以将 src_repo_path 指定的仓库，完整地复制一份到 dest_repo_dir，并默认将工作区恢复到 HEAD 指 
+向的那次提交的快照。 </p>
+<p>src_repo_path 可以是本地仓库路径，也可以是远程仓库路径；dest_repo_dir 是复制下来的仓库在本地 
+的存储路径，不指定的话则默认复制到当前目录下。如： </p>
+<ul>
+<li>将~/Ohos/Gn_Projs 仓库 clone 到./GnProjs 路径下 </li>
+</ul>
+<p>$git clone ~/Ohos/Gn_Projs ./GnProjs </p>
+<ul>
+<li>使用 https 协议，将远程的 https://gitee.com/liangkzgitee/GnProjs.git 仓库 clone 到./GnProjs 路径下 </li>
+</ul>
+<p>$git clone https://gitee.com/liangkzgitee/GnProjs.git ./GnProjs </p>
+<ul>
+<li>使用 SSH 协议，将远程的 git@gitee.com:liangkzgitee/GnProjs.git 仓库 clone 到./GnProjs 路径下 </li>
+</ul>
+<p>$git clone git@gitee.com:liangkzgitee/GnProjs.git ./GnProjs </p>
+<p>$git status </p>
+<p>查看当前工作区和暂存区的状态，可以知道修改、新增、暂存了哪些文件。 </p>
+<p>$git diff </p>
+<p>查看任意“两棵树”的差异，这“两棵树”可以是两个文件（列表）、工作区与暂存区、两次提交、两个分支 </p>
+<p>等，通过参数来指定，如： </p>
+<p>$git diff </p>
+<ul>
+<li>不带参数，默认比较工作区与暂存区的所有差异 </li>
+</ul>
+<p>$git diff --staged </p>
+<ul>
+<li>比较暂存区与当前分支最后一次提交的所有差异 </li>
+</ul>
+<p>$git diff --staged branch </p>
+<ul>
+<li>比较暂存区与指定的 branch 分支最后一次提交的所有差异 </li>
+</ul>
+<p>$git diff file1[ file2 ...] </p>
+<ul>
+<li>比较工作区的 file1[ file2 ...]与暂存区的 file1[ file2 ...]的差异 </li>
+</ul>
+<p>$git diff commitID1 commitID2 * 比较两次提交产生的所有差异 </p>
+<p>$git diff branch1 branch2 </p>
+<ul>
+<li>比较两个分支的所有差异 </li>
+</ul>
+<p>$git add <dir/file> </p>
+<p>将参数指定的目录或文件从工作区添加到暂存区 </p>
+<ul>
+<li>将工作区中所有修改和新增的目录、文件一次性添加到暂存区 </li>
+</ul>
+<p>$git add .《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】 </p>
+<p>《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【“鸿蒙系统学习笔记”技术专栏：https://ost.51cto.com/column/46】 
+503 
+* 将工作区中指定的 dir1[ dir2 ...] file1[ file2 ...]列表一次性添加到暂存区 </p>
+<p>$git add dir1[ dir2 ...] file1[ file2 ...] </p>
+<p>$git commit -m “message” </p>
+<p>将暂存区的所有修改内容提交到本地仓库内，使⽤ 指定的<message>作为提交信息。commit 前，必须先设置 </p>
+<p>提交者的用户信息，包括用户名和邮箱。 </p>
+<ul>
+<li>将暂存区中指定的 dir1[ dir2 ...] file1[ file2 ...]一部分列表，提交到本地仓库 </li>
+</ul>
+<p>$git commit dir1[ dir2 ...] file1[ file2 ...] -m “message” </p>
+<ul>
+<li>
+<p>将当前暂存区的修改，合并到最近的⼀ 次 commit 中，并丢弃上一次的 commit， </p>
+</li>
+<li>
+<p>重新提交一次新的 commit 来替换，也就是重写上一次提交的历史，这样可以减少 commitID 的数量。 </p>
+</li>
+</ul>
+<p>$git commit -m “new_message” --amend </p>
+<p>$git stash </p>
+<p>用于将工作区的修改、新增文件临时保存起来，然后将工作区恢复到最后一次 commit 后的干净状态。不带参 </p>
+<p>数默认不会对新增（untracked）的文件临时保存起来，增加--all 参数才会对新增（untracked）文件也一并 </p>
+<p>临时保存起来。 </p>
+<p>$git stash --all </p>
+<ul>
+<li>暂存所有文件，包括没有被 git 追踪(untracked)的文件 </li>
+</ul>
+<p>$git stash list </p>
+<ul>
+<li>查看 stash 列表 </li>
+</ul>
+<p>$git stash apply </p>
+<ul>
+<li>取出最近一次的 stash </li>
+</ul>
+<p>$git stash apply num * 输入 list 里对应的数字，取出对应的 stash </p>
+<p>$git reset [--soft | --mixed | --hard] [commitID] </p>
+<p>注意： </p>
+<p>慎用此命令！一定要理解和确认清楚命令的参数都会干些什么事情，再去执行此命令！！！ </p>
+<p>万一误用此命令，可通过 reflog 找回之前的操作记录，再 reset 一次来恢复到指定的 commitID 版本，但是： </p>
+<p>已加入暂存区但未 commit 的内容将会丢失，需要使用一些技巧才有可能恢复出来； </p>
+<p>工作区已修改但未加入暂存区的内容将彻底丢失，无法恢复； </p>
+<p>工作区里未受 Git 管理的新增文件（untracked）不受影响。 </p>
+<p>reset 命令用于将暂存区（和/或工作区）回退到某一次提交的版本，或单独回退某些文件，参数决定是否会影 
+响工作区的修改。 </p>
+<p>--soft 参数用于将版本库回退到某个 commitID 版本，保留工作区和暂存区中的内容不变，并把 commitI 
+D 后面所带来的新的差异合并进暂存区，版本库丢弃 commitID 之后所有的 commit。 </p>
+<p>--mixed 为默认，可不带该参数，用于将版本库回退到某个 commitID 版本，保留工作区的内容不变，重置 
+暂存区到 commitID 版本，版本库丢弃 commitID 之后所有的 commit。 </p>
+<p>--hard 参数用于将版本库回退到某个 commitID 版本，并撤销工作区和暂存区的所有的修改(工作区 untr 
+acked 的新增文件不受影响)，全部回退到指定的 commitID 版本，版本库丢弃 commitID 之后所有的 commit。 </p>
+<p>commitID 参数用于指定回退到哪个版本，commitID 可以用 HEAD/HEAD~0、HEAD^/HEAD~1、HEAD^^/ </p>
+<p>HEAD^2/HEAD~2 等形式来分别表示当前版本、上一个版本、上上个版本等，也可以直接写具体的 commitID。 </p>
+<p>$git rm <file> </p>
+<p>根据参数删除工作区和/或暂存区中的文件。 </p>
+<p>$git rm file </p>
+<p>*删除工作区中 untracked 的文件 </p>
+<p>$git rm -f file * 删除已经 add 到暂存区中的文件，同时工作区中的该文件也会被删除 </p>
+<p>$git rm --cached file </p>
+<ul>
+<li>删除已经 add 到暂存区中的文件，保留工作区中的该文件，状态变为 untracked </li>
+</ul>
+<p>$git restore <file> </p>
+<p>根据参数撤销工作区或暂存区文件的修改，如： </p>
+<ul>
+<li>撤销工作区指定文件的修改，保持与暂存区中的同步，暂存区中的该文件可能还未 commit 到本地仓库 </li>
+</ul>
+<p>$git restore <file> </p>
+<ul>
+<li>撤销暂存区指定文件的修改，保持与最后一次提交同步，该文件在工作区的修改需要重新 add 进暂存区 </li>
+</ul>
+<p>$git restore --staged <file> </p>
+<p>$git tag《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】 
+《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【“鸿蒙系统学习笔记”技术专栏：https://ost.51cto.com/column/46】 
+504 </p>
+<p>用于给仓库的某个提交打上标签以作标记，如标记发布版本。</p>
+<p>$git tag -a “tagName” </p>
+<ul>
+<li>在当前提交上打名为“tagName”的标签 </li>
+</ul>
+<p>$git tag -a “tagName” -m “tag message” * 在当前提交上打名为“tagName”的标签，并写上备注信息 </p>
+<p>$git tag -a “tagName” </p>
+<ul>
+<li>删除名为“tagName”的标签 </li>
+</ul>
+<p>$git log </p>
+<p>用于查看提交记录。 </p>
+<p>这是一个非常有用命令，可以通过复杂的参数组合来对提交记录进行过滤和显示，下面仅举几个简单的例子， 
+更多高级用法，可以通过 help 命令或者网络搜索来进行学习。 </p>
+<p>$git log </p>
+<ul>
+<li>以缺省格式显示全部提交历史 </li>
+</ul>
+<p>$git log --oneline * 以一行的简洁形式查看全部提交历史 </p>
+<p>$git log --graph </p>
+<ul>
+<li>
+<p>以拓扑图的形式查看全部提交历史 </p>
+</li>
+<li>
+<p>指定日期：--since 和--before，也可以用--until 和--after </p>
+</li>
+</ul>
+<p>$git log --oneline --before={3.days.ago} --after={2021-09-30} </p>
+<p>$git reflog 
+以栈列表的形式查看每一次 git 命令的执行记录。这个对不小心使用了 reset --hard 命令“误删除”了提 
+交的时候，可以找回 reset 前的 commitID，并再次“恢复”reset 前的提交状态。 </p>
+<p>$git reflog --oneline </p>
+<p>...... </p>
+<p>2ad14e2 (dev) HEAD@{9}: reset: moving to 2ad14e2 </p>
+<p>aea5fbe HEAD@{10}: reset: moving to aea5fbe3754cfeb814ee4458800d3eabff3600a0 </p>
+<p>2ad14e2 (dev) HEAD@{11}: commit: file2 </p>
+<p>...... </p>
+<p>aea5fbe HEAD@{28}: commit (initial): commit file1 </p>
+<p>如上面的操作，@{10}将工作区和暂存区恢复到仓库的 initial 的状态，工作区和暂存区已修改的内容全部 </p>
+<p>丢失；通过 git reflog 查看这个操作记录，可以看到 reset 前的操作记录和 commitID，@{9}再次 reset 到 </p>
+<p>@{10}之前的最新状态，工作区和暂存区恢复到@{11}的状态。 </p>
+<p>1、找到commit_id</p>
+<p>hezaizai@ubuntu: ~/code_test $ git reflog</p>
+<p>1ab8e23 HEAD@{0}: reset: moving to HEAD^</p>
+<p>f8e01df HEAD@{1}: commit: 最新节点</p>
+<p>1ab8e23 HEAD@{2}: commit: commit the new f</p>
+<p>66759e4 HEAD@{4}: commit: forword</p>
+<p>9cb749d HEAD@{6}: commit: twice commit</p>
+<p>eb593f8 HEAD@{8}: commit: first commit gitreset”</p>
+<p>这里记录了你所有的操作记录</p>
+<p>这里f8e01df 就是你回退的HEAD^，也就是那个commit_id。</p>
+<p>2、恢复删除记录</p>
+<p>推荐： git reset --hard commit_id</p>
+<p>好了，世界又恢复了平静。</p>
+<p>1.2 分支操作 
+    $git branch <newbranch> </p>
+<pre><code>在当前分支的当前状态下创建一个新的名为 newbranch 的分支，但不切换分支；
+
+不带参数则直接显示当前所有分支列表，*标记当前所在分支。
+
+$git branch
+
+* 查看当前仓库的所有分支，当前处于*标记的分支上
+
+*dev
+
+master
+
+$git branch -r
+
+* -r 查看远程仓库的分支
+
+m/master -&gt; origin/master
+
+origin/OpenHarmony-3.0-LTS
+
+origin/OpenHarmony_1.0.1_release
+
+origin/master
+
+$git switch -c newbranch
+
+在当前分支的当前状态下创建一个新的名为 newbranch 的分支，并立即切换到 newbranch 分支；
+
+不带-c 参数则不创建新分支，而是直接切换到 newbranch 分支上，newbranch 分支必须是已经存在的分支；
+
+$git checkout -b newbranch
+
+作用与 switch 基本一致，但推荐用 switch 命令，更易理解。
+
+$git merge
+
+该命令用于合并分支。如本地仓库有 master、dev、issue 等若干个分支，
+
+$git switch master * 切换当前分支到 master 分支《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【
+
+在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】
+
+《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【“鸿蒙系统学习笔记”技术专栏：https://ost.51cto.com/column/46】 
+505
+
+$git merge dev
+
+* 将 dev 分支合并到当前 master 分支上
+
+可参考 2.5.1 节的分支示意图进行理解。
+
+自动合并分支可能会因为修改有冲突导致合并失败，需要我们根据提示去解决掉冲突，然后手动 add 和 comm 
+it 去完成分支的合并。
+
+$git rebase &lt;base&gt;
+
+基于参数 base，对当前分支进行变基（rebase），参数 base 可以是 commitID、分⽀ 名称、tag 等能标记 
+位置的信息。
+
+从当前分支与 base 所在分支的分叉点开始，到当前分支的最后一次 commit 之间的每一个 commit 单独提取 
+成 patch，在 base 位置按顺序一个个打 patch，打 patch 如果有冲突，则会暂停，需要手动解决掉冲突，操作 
+add，不需要 commit，只需要执行 git rebase --continue，修改提交信息，继续完成这个 patch（在当前 
+分支会有一个新的 commitID），然后继续下一个 patch，无冲突不知道会不会有新的 commitID，还有冲突就 
+继续解决冲突，add 和 continue，获得新的 commitID，直到 rebase 完成，这样分叉点就更新到了 base 所在 
+的位置，而当前分支则获得一组新的 commitID。 
+rebase 出现了冲突，可以用 rebase --skip 参数将引起冲突的 commit 抛弃，这个要慎用！ 
+rebase 阶段执行 rebase --abort 可以终止和撤销 rebase，恢复到 rebase 命令前的状态。
+</code></pre>
+<p>一、前言
+rebase 使用方法</p>
+<p>git rebase [基节点] 
+git rebase [基节点] [待变基节点]</p>
+<p>rebase后面的参数可以是两个，也可以是一个，当rebase为一个参数的时候其实是省略了第二个参数，第二个参数为HEAD指针当前指向的那个节点。</p>
+<p>二、rebase 图解
+首先通过简单的提交节点图解感受一下rebase作用。</p>
+<p>两个分支master和feature，其中feature是在提交点B处从master上拉出的分支。</p>
+<p>master上有一个新提交M，feature上有两个新提交C和D。</p>
+<p>此时切换到feature分支上，执行如下命令，相当于是想要把master分支合并到feature分支（这一步的场景就可以类比为我们在自己的分支
+feature上开发了一段时间了，准备从主干master上拉一下最新改动）</p>
+<p>git checkout feature
+git rebase master</p>
+<p>//这两条命令等价于git rebase master feature
+下图为变基后的提交节点图，解释一下其工作原理：</p>
+<p>feature：待变基分支、当前分支;
+master：基分支、目标分支;
+官方解释:
+当执行rebase操作时，git会从两个分支的共同祖先开始提取待变基分支上的修改，然后将待变基分支指向基分支的最新提交，最后将刚才提取
+的修改应用到基分支的最新提交的后面。</p>
+<p>结合例子解释：当在feature分支上执行git rebase master时，git会从master和featuer的共同祖先B开始提取feature分支上的修改，也
+就是C和D两个提交，先提取到。然后将feature分支指向master分支的最新提交上，也就是M。最后把提取的C和D接到M后面，但这个过程是删除
+原来的C和D，生成新的C’和D’，他们的提交内容一样，
+但commit id不同。feature自然最后也是指向D’。</p>
+<p>通俗解释：rebase，变基，可以直接理解为改变基底。feature分支是基于master分支的B拉出来的分支，feature的基底是B。而master在B之
+后有新的提交，就相当于此时要用master上新的提交来作为feature分支的新基底。实际操作为把B之后feature的提交存下来，然后删掉原来
+这些提交，再找到master的最新提交位置，把存下来的提交
+再接上去（新节点新commit id），如此feature分支的基底就相当于变成了M而不是原来的B了。（注意，如果master上在B以后没有新提交，
+那么就还是用原来的B作为基，rebase操作相当于无效，此时
+和git merge就基本没区别了，差异只在于git merge会多一条记录Merge操作的提交记录。）</p>
+<p>上面的例子可抽象为如下实际工作场景：张三从B拉了代码进行开发，目前提交了两次，开发到D了；李四也从B拉出来开发了并且开发完毕，
+他提交到了M，然后合到主干上了。此时张三想拉下最新代码，于是他在feature分支上执行了git rebase master，即把master分支给rebase
+过来，由于李四更早开发完并合了主干，如此就相当于张三
+是基于李四的最新提交M进行的开发了。</p>
+<p>三、应用示例
+按照上面的图解构造了提交记录，如下图所示：（ABM是master分支线，ABCD是feature分支线。这里画成了master变色分叉出来，
+这不影响理解，知道是表示两个分支两条线即可！）</p>
+<p>此时，在feature分支上执行git rebase master</p>
+<p>变基完成以后，ABCD是原来的feature分支线，ABMC’D’是新的feature分支线，ABM是master分支线（没有变化）</p>
+<p>四、重建提交历史
+使用场景
+gitbase 的另一个功能主要用来重建提交历史，什么意思呢？你在本地commit过程中有时候可能刚提交完，然后发现有个很小的地方需要
+修正一下，而当你修正完之后又得提交，但是这两次提交完成的任务可能一模一样，因为第二次修改的地方实在是微不足道，或者开发一个
+新功能的时候分多次提交，每次的变更都很小，这个时候就可以使用
+git rebase的另一个功能：重建提交历史。
+2.使用方法</p>
+<p>git rebase -i [地址引用]
+1
+交互式 rebase 指的是使用带参数 --interactive 的 rebase 命令, 简写为 -i。如果你在命令后增加了这个选项, Git 会打开一个 UI 
+界面并列出将要被复制到目标分支的备选提交记录，它还会显示每个提交记录的哈希值和提交说明，提交说明有助于理解这个提交进行了哪些更改。
+在实际使用时，所谓的 UI 窗口一般会在文本编辑器 
+—— 如 Vim —— 中打开一个文件。</p>
+<p>当 rebase UI界面打开时, 你能做3件事:</p>
+<p>调整提交记录的顺序;
+删除不想要的提交;
+合并提交。
+简而言之，它允许你把多个提交记录合并成一个。
+例如：</p>
+<p>C2-C5的提交都是为了完成一个功能，现在我想合并这些提交：</p>
+<p>git rebase -i HEAD~4
+1
+这样HEAD指针就会直线后退4个节点到C1，然后列出这个节点之后你想操作的节点，C2，C3，C4，C5，之后你就可以编辑操作这些节点：变更
+提交顺序，删除部分提交历史等，最后得到结果：</p>
+<p>三、推荐使用场景
+不同公司，不同情况有不同使用场景，不过大部分情况推荐如下：</p>
+<p>单人开发的时候，拉公共分支最新代码的时候使用rebase，也就是git pull -r或git pull –rebase。这样的好处很明显，提交记录会比较
+简洁。但有个缺点就是rebase以后我就不知道我的当前分支最早是从哪个分支拉出来的了，因为基底变了嘛，所以看个人需求了。</p>
+<p>多人开发，往公共分支上合代码的时候，使用merge。如果使用rebase，那么其他开发人员想看主分支的历史，就不是原来的历史了，历史已经
+被你篡改了。举个例子解释下，比如张三和李四从共同的节点拉出来开发，张三先开发完提交了两次然后merge上去了，李四后来开发完如果
+rebase上去（注意李四需要切换到自己本地的主分支，假设先
+pull了张三的最新改动下来，然后执行<git rebase 李四的开发分支>，然后再git push到远端），则李四的新提交变成了张三的新提交的新
+基底，本来李四的提交是最新的，结果最新的提交显示反而是
+张三的，就乱套了。</p>
+<p>正因如此，大部分公司其实会禁用rebase，不管是拉代码还是push代码统一都使用merge，虽然会多出无意义的一条提交记录“Merge … to …”，
+但至少能清楚地知道主线上谁合了的代码以及他们合代码的时间先后顺序。</p>
+<p>五、rebase VS merge
+首先二者都具备整合分支间变更的能力，但二者的实现手段却大不相同。git merge总是在推进提交历史，并不会影响提交的原始状态，
+而git rebase整合变更的方式则是对提交历史进行重写，但从结果上看，最后git rebase形成的节点与git merge`形成的节点完全相同。</p>
+<p>rebase 优缺点
+优点：</p>
+<p>rebase不产生新节点，当然也不会产生新的commit日志，但是merge过程中会产生一条几乎“无用”的Merge日志。使用rebase操作的最大好处
+在于可以让项目提交历史变得非常干净整洁。首先，它消除了git merge操作所需创建的没有必要的合并提交。其次，rebase会造就一个线性
+的项目提交历史——也就是说，可以从feature分支的顶部开始
+向下查找到分支的起始点，而不会碰到任何历史分叉。</p>
+<p>rebase产生冲突并合并冲突发生在操作git rebase时，而合并冲突这个操作是开发者自己进行的；但是提交合并申请的时候一般情况下会有
+评审，由评审者解决冲突，开发者人多的情况下工作量可想而知。</p>
+<p>缺点：
+rebase操作产生冲突需要依次逐个进行解决，重写提交历史可能引起混乱，对新手使用也不是很友好。</p>
+<p>在日常的小规模项目开发中，这种差异几乎可以忽略。但是在复杂的多人协作开发场景下，随着项目迭代的不断推进和工程复杂度的不断提高，
+rebase往往能助力生成相对清爽的提交历史，进而方便追溯工程的演进历史和缺陷排查。</p>
+<p>不过为了获得这种便于理解的提交历史，却需要付出两种代价：安全性和可追溯性。如果不能遵循rebase的黄金法则，重写项目提交历史会为协作
+工作流程带来潜在的灾难性后果。再次，rebase操作丢失了合并提交能够提供的上下文信息——所以开发者就无法知道功能分支是什么时候应用了
+上游分支的变更。</p>
+<p>merge 合并历史如下：</p>
+<p>如果使用rebase进行合并，就会呈现出比较清爽的提交日志，也不会有那么多线，而是一条直线。</p>
+<p>六、拓展阅读
+《Git进阶（十二）：git merge 用法详解》</p>
+<p>1.3 远程仓库操作 
+Git 的大部分命令都是对本地仓库进行操作的，只有少量的几个访问网络的命令对远程仓库进行操作。 </p>
+<p>$git clone <src_repo_path> <dest_repo_dir> </p>
+<p>见本地仓库操作中对此命令的说明，该命令也可操作克隆远程仓库到本地。 </p>
+<p>$git fetch <src_repo_path> <remote_branch>:<local_branch> </p>
+<p>从 src_repo_path 指定的远程仓库抓取 remote_branch 指定的分支到本地仓库，并重新命名为 local_branch。 </p>
+<ul>
+<li>从 remote 远程仓库抓取它的 master 分支到本地仓库，并以 newbr 命名抓取回来的该分支 </li>
+</ul>
+<p>$git fetch remote master:newbr </p>
+<ul>
+<li>
+<p>不带 local_branch 参数，则从 remote 远程仓库抓取 master 分支到本地仓库，</p>
+</li>
+<li>
+<p>并默认以 FETCH_HEAD 指向抓取回本地的匿名分支，以备 merge 命令使用 </p>
+</li>
+</ul>
+<p>$git fetch remote master </p>
+<ul>
+<li>
+<p>branch  master -&gt; FETCH_HEAD </p>
+</li>
+<li>
+<p>将从远程抓取的 FETCH_HEAD 指向的匿名分支，合并到本地仓库当前分支上 </p>
+</li>
+</ul>
+<p>$git merge FETCH_HEAD </p>
+<p>$git pull <src_repo_path> <remote_branch>:<local_branch> </p>
+<p>从 src_repo_path 指定的远程仓库抓取 remote_branch 指定的分支到本地仓库，然后马上尝试将其合并 到本地仓库的 local_branch 上。
+如未指定 local_branch，则默认尝试合并到本地仓库的当前分支上。 </p>
+<p>在合并过程中如果出现冲突，则会在冲突位置做标记，需要我们手动解决冲突后，自己去 add 和 commit。 </p>
+<p>pull 命令基本上就是 fetch 和 merge 两个命令的组合，但实际上它们还是有一些实现上的差别的，建议还 </p>
+<p>是尽量用 fetch 和 merge 进行操作，这样过程比较清晰和受控。 </p>
+<p>$git push <dest_repo_dir> <local_branch>:<remote_branch> </p>
+<p>将本地仓库的 local_branch 的修改，推送到 dest_repo_path 指定的远程仓库的 remote_branch 上。 </p>
+<p>如果远程仓库不存在这个 remote_branch，则会自动在远程创建此 remote_branch。 </p>
+<p>如果不带 remote_branch 参数，则会默认推送到远程仓库上与 local_branch 同名的分支上。 </p>
+<ul>
+<li>push 本地仓库的 localbr 分支到 remote 远程仓库的 remotebr 分支 </li>
+</ul>
+<p>$git push remote localbr:remotebr </p>
+<ul>
+<li>push 本地仓库的 master 分支到 remote 远程仓库的 master 分支 </li>
+</ul>
+<p>$git push remote master《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】 </p>
+<p>《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【“鸿蒙系统学习笔记”技术专栏：https://ost.51cto.com/column/46】 
+506 </p>
+<ol>
+<li>repo 的使用 </li>
+</ol>
+<p>$repo help [options] </p>
+<p>查看帮助信息，更具体的帮助信息可以通过参数指定。 </p>
+<p>$repo init [options] </p>
+<p>$repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify </p>
+<p>-u URL：指定远程的 manifest 仓库的地址，也就是整个项目的清单仓库。 </p>
+<p>-b branch：指定 manifest.xml 文件分支，可以是分支名称，也可以是引用标签名字。 </p>
+<p>$repo sync [<project>...] </p>
+<p>将参数指定的远程仓库的代码同步到本地。 </p>
+<p>不带参数默认同步 manifest.xml 中记录的所有仓库；带参数则只同步参数指定的仓库列表。 </p>
+<p>$repo start <newbranchname> [--all | <project>...] </p>
+<p>在参数指定的仓库上，切换到<newbranchname>分支（该分支不存在则创建它），可以使用--all 参数对所 </p>
+<p>有的仓库都执行分支切换操作。该命令是对 git branch 和 git switch 命令的封装，当第一次 sync 完代码后， </p>
+<p>可以通过 start 命令将所有仓库切换到开发分支，避免在匿名分支上工作容易导致丢失工作内容。 </p>
+<p>$repo status [<project>...] </p>
+<p>status 用于查看多个仓库的状态，不带参数默认显示所有仓库的状态。</p>
+<p>这个命令非常有用，它是 git status 的封装，可以一次性查看多个仓库的状态，清楚地显示出哪些仓库的 
+哪些文件相对上一次提交有了变化。 </p>
+<p>$repo upload [--re --cc] [<project>]... </p>
+<p>用于将多个本地仓库的提交一次性上传到远程仓库。 </p>
+<p>upload 命令会首先找出本地分支从上一次同步（sync）操作以来发生的改动，将它们做成 patch 文件，上 
+传至远程服务器。 </p>
+<p>$repo download {[project] change[/patchset]}... </p>
+<p>upload 是把改动内容提交到远程服务器，download 则是从远程服务器下载改动的 patch。</p>
+<p>$repo forall [<project>...] -c <command> [<arg>...] </p>
+<p>这个命令可以对参数指定的仓库列表（不指定则对所有仓库），依次执行-c 参数指定的命令，如：</p>
+<ul>
+<li>对两个仓库 repoA 和 repoB 依次执行 git 命令，分别生成各自的 dev 分支并切换到 dev 分支上 </li>
+</ul>
+<p>$repo forall repoA repoB -c “git switch -c dev” </p>
+<ul>
+<li>对所有仓库依次执行 git 命令，切换到 master 分支 </li>
+</ul>
+<p>$repo forall -c “git switch master” </p>
+<p>$repo prune [<project>...] </p>
+<p>删除参数指定仓库中（不指定则对所有仓库），已经合并的分支，如开发分支上的代码合并到主干分支后，使 
+用该命令就可以删除这个开发分支。</p>
+</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Invest on the road <a href="https://www.gurufocus.cn/dashboard" target="_blank">gurufocus</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
