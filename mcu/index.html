@@ -1,191 +1,821 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recording economic and finacial news.">
+      
+      
         <meta name="author" content="Diperluer">
+      
+      
         <link rel="canonical" href="https://www.diperluer.cn/mcu/">
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>[Protected] Mcu - 滴尔</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../css/brands.min.css" rel="stylesheet">
-        <link href="../css/solid.min.css" rel="stylesheet">
-        <link href="../css/v4-font-face.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-		<link rel="stylesheet" href="../css/github.min.css" />
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="../js/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
+      
+      
+      
+      
+      <link rel="icon" href="../assets/32x_code_computer.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title><font face="黑体" color=#FF4500 size=7>MCU development</font> - 滴尔</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
 
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="..">滴尔</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href=".." class="nav-link">主页</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">地区冲突</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="dropdown-item">中东局势</a>
-</li>
-                                    
-<li>
-    <a href="../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="dropdown-item">俄乌战争</a>
-</li>
-                                    
-<li>
-    <a href="../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="dropdown-item">朝鲜半岛</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">经济和货币政策</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="dropdown-item">经济政策</a>
-</li>
-                                    
-<li>
-    <a href="../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="dropdown-item">货币政策</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../level31/invest/" class="nav-link">投资指南</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../level41/Listed_company/" class="nav-link">上市公司</a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ms-md-auto">
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
-            
-            
-            
-            
-            
-            
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
-
-<div id="mkdocs-encrypted-content" style="display:none">It7k8eBSJI6BQN9bpWBZig==;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</div>
-<div id="mkdocs-decrypted-content">
-    <form id="mkdocs-decrypt-form">
-        <h1>This content is protected with AES encryption. </h1>
-        <p>Contact your administrator for access to this page.</p>
-        <input type="password" id="mkdocs-content-password" placeholder="Password">
+    
+      
+    
+    
+      
         
-        <p id="mkdocs-decrypt-msg"></p>
-    </form>
-</div>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
-<script type="text/javascript">
-var encryptcontent_id = "encryptcontent_1";
-var encryptcontent_path = "mcu/";
-var decryption_failure_message = "Invalid password.";
-var encryptcontent_keystore = ["DPSDYQB6wYNN2ddgxPU8nw==;dHpvn4TYaIUh8FVCWhkDeqML6k1N04bPNeQgeAhm0k3jvQfEnlKJ4Q5bT2o+zo8SsN1xAw+XiBAzVFDx+isGgkBbUOjCdU4CBNUPl1WW142e4t+vYTTntyVFXTZKnWVg;/DxJ3PFEg9akW8cvQ14OxQ=="];
-var encryptcontent_obfuscate = 0;
-
-</script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
-<script type="text/javascript" src="../assets/javascripts/decrypt-contents.js" defer></script></div>
-            </div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-                <p>Copyright @ 2024 Diperluer, All rights reserved.</p>
-            <p>Invest on the road <a href="https://www.gurufocus.cn/dashboard" target="_blank">gurufocus</a>.</p>
-        </footer>
-        <script src="../js/bootstrap.bundle.min.js"></script>
-        <script>
-            var base_url = "..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../js/base.js"></script>
-
-        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arm" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
-</div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
 
-    </body>
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="滴尔" class="md-header__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../assets/code_computer.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            滴尔
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              <font face="黑体" color=#FF4500 size=7>MCU development</font>
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>主页</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../blog/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>博客</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../blog/archive/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>归档</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>地区冲突</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>经济和货币政策</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../level31/invest/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>投资指南</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../level41/Listed_company/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>上市公司</font>
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../assets/code_computer.png" alt="logo">
+
+    </a>
+    滴尔
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>主页</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>博客</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>归档</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>地区冲突</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>地区冲突</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>中东局势</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>俄乌战争</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>朝鲜半岛</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>经济和货币政策</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>经济和货币政策</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>经济政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>货币政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level31/invest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>投资指南</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level41/Listed_company/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>上市公司</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1><font face="黑体" color=#FF4500 size=7>MCU development</font></h1>
+
+<hr />
+<h3 id="arm"><center><table><tr><td bgcolor=#FF4500>arm</td></tr></table></center><a class="headerlink" href="#arm" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/124503971" target="_blank">ARM学习（4） 分散加载启动</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/121795096" target="_blank">ARM学习（1） 寄存器的理解 ===》FP、SP、LR寄存器</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/122079652" target="_blank">ARM学习（2） 寄存器的理解 ===》通用寄存器及状态寄存器</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/124503833" target="_blank">ARM学习（3） 异常模式学习（CortexR5）</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/125350589" target="_blank">ARM学习（7） symbol 符号表以及调试</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/125820046" target="_blank">ARM学习（8） axf 文件解析</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/125903384" target="_blank">ARM学习（10） 运行占据内存统计</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/126512534" target="_blank">ARM学习（11）数据总线/地址总线访问数据过程理解</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/127036986" target="_blank">ARM学习（12）基于arm架构的嵌入式操作系统理解</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/127340684" target="_blank">ARM学习（13）MPU了解与学习</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/128063073" target="_blank">ARM学习（15）Makefile编译以及CortexM4命令行STLINK 烧录</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/128063114" target="_blank">ARM学习（16）CortexM4外设地址了解以及SPI异常问题分析</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/128592358" target="_blank">ARM学习（17）ARM函数调用规则</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/130027839" target="_blank">ARM学习（20）自旋锁的理解与实现</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/130938436" target="_blank">ARM学习（22）断点认识以及调试</a></li>
+<li><a href="https://bbs.huaweicloud.com/blogs/382407" target="_blank">ARM汇编</a></li>
+<li><a href="https://bbs.huaweicloud.com/blogs/382408" target="_blank">ARM裸机</a></li>
+<li><a href="https://bbs.huaweicloud.com/blogs/382409" target="_blank">ARM裸机二</a></li>
+<li><a href="https://github.com/ARM-software/CMSIS_6/tree/main" target="_blank">ARM_CMSIS_6</a></li>
+<li><a href="https://arm-software.github.io/CMSIS_6/latest/Core/index.html" target="_blank">CMSIS-Core (Cortex-M)</a></li>
+<li><a href="https://infineon.github.io/mtb-pdl-cat1/pdl_api_reference_manual/html/modules.html" target="_blank">MTB CAT1 Peripheral driver library
+</a></li>
+</ul>
+<hr />
+<h3 id="arm-cortex-m"><center><table><tr><td bgcolor=#FF4500>ARM Cortex-M开发实战指南(基础篇)</td></tr></table></center><a class="headerlink" href="#arm-cortex-m" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.bruceou.cn/2022/04/1-first-acquaintance-with-gpio-running-water-light/1205/" target="_blank">第1章 初识GPIO流水灯</a></li>
+<li><a href="https://blog.bruceou.cn/2022/04/2-the-past-and-present-of-gpio-running-water-lamp/1210/" target="_blank">第2章 GPIO流水灯的前世今生</a></li>
+<li><a href="https://blog.bruceou.cn/2022/04/3-detailed-explanation-of-cortex-m-startup-process-keil-version/1215/" target="_blank">第3章 Cortex-M启动流程详解(Keil版)</a></li>
+<li><a href="https://blog.bruceou.cn/2022/11/3-detailed-explanation-of-cortex-m-startup-process-gcc-version/1889/" target="_blank">第3章 Cortex-M启动流程详解(GCC版)</a></li>
+<li><a href="https://blog.bruceou.cn/2022/04/4-beating-heart-systick/1220/" target="_blank">第4章 跳动的心脏-Systick</a></li>
+<li><a href="https://blog.bruceou.cn/2022/04/5-button/1224/" target="_blank">第5章 按键</a></li>
+<li><a href="https://blog.bruceou.cn/2022/04/6-cortex-m-interrupt-details/1226/" target="_blank">第6章 Cortex-M中断详解</a></li>
+<li><a href="https://blog.bruceou.cn/2022/05/7-timer-2/1602/" target="_blank">第7章 定时器</a></li>
+<li><a href="https://blog.bruceou.cn/2022/05/8-pwm-output-2/1675/" target="_blank">第8章 PWM输出</a></li>
+<li><a href="https://blog.bruceou.cn/2022/05/9-breathing-light/1680/" target="_blank">第9章 呼吸灯</a></li>
+<li><a href="https://blog.bruceou.cn/2022/06/10-serial-communication-2/1698/" target="_blank">第10章 串口通信</a></li>
+<li><a href="https://blog.bruceou.cn/2022/09/11-high-level-agent-for-cpu-dma-2/1803/" target="_blank">第11章 CPU的高级代理-DMA</a></li>
+<li><a href="https://blog.bruceou.cn/2022/10/14-internal-temperature-sensor-2/1821/" target="_blank">第14章 内部温度传感器</a></li>
+<li><a href="https://blog.bruceou.cn/2022/10/15-low-power/1823/" target="_blank">第15章 低功耗</a></li>
+<li><a href="https://blog.bruceou.cn/2022/10/16-rtc-2/1854/" target="_blank">第16章 RTC</a></li>
+<li><a href="https://blog.bruceou.cn/2022/10/17-watchdog/1857/" target="_blank">第17章 看门狗</a></li>
+<li><a href="https://blog.bruceou.cn/2022/10/18-crc-2/1862/" target="_blank">第18章 CRC</a></li>
+<li><a href="https://blog.bruceou.cn/2022/10/19-program-encryption-2/1866/" target="_blank">第19章 程序加密</a></li>
+<li><a href="https://blog.bruceou.cn/2022/11/20-storage-structure-of-cortex-m/1870/" target="_blank">第20章 Cortex-M的存储结构</a></li>
+<li><a href="https://blog.bruceou.cn/2023/04/21-i2c-2/1921/" target="_blank">第21章 I2C</a></li>
+<li><a href="https://blog.bruceou.cn/2023/04/22-spi-2/1926/" target="_blank">第22章 SPI</a></li>
+</ul>
+<hr />
+<h3 id="arm-cortex-m_1"><center><table><tr><td bgcolor=#FF4500>ARM Cortex-M 开发实战指南(入门篇)</td></tr></table></center><a class="headerlink" href="#arm-cortex-m_1" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.bruceou.cn/2022/03/1-introduction-2/1152/" target="_blank">第1章 前言</a></li>
+<li><a href="https://blog.bruceou.cn/2022/03/2-hardware-design-and-development/1154/" target="_blank">第2章 硬件设计开发</a></li>
+<li><a href="https://blog.bruceou.cn/2022/03/3-build-a-development-environment/1156/" target="_blank">第3章 搭建开发环境</a></li>
+<li><a href="https://blog.bruceou.cn/2022/04/4-cortex-m-new-project-and-configuration-standard-edition/1174/" target="_blank">第4章 Cortex-M新建工程及配置(标准版)</a></li>
+<li><a href="https://blog.bruceou.cn/2022/04/5-stm32cubemx-software-installation-and-use/1180/" target="_blank">第5章 STM32CubeMX软件安装与使用</a></li>
+<li><a href="https://blog.bruceou.cn/2022/04/6-cortex-m-download-program-and-debugging/1184/" target="_blank">第6章 Cortex-M下载程序及调试</a></li>
+<li><a href="https://blog.bruceou.cn/2022/04/7-stm32-firmware-library-and-stm32cube-product-introduction/1187/" target="_blank">第7章 STM32固件库与STM32Cube产品介绍</a></li>
+<li><a href="https://blog.bruceou.cn/2022/04/8-introduction-to-library-development/1203/" target="_blank">第8章 库开发简介</a></li>
+<li><a href="https://microdynamics.github.io/1.%20Breeze%20Mini%E5%9B%9B%E8%BD%B4%E9%A3%9E%E8%A1%8C%E5%99%A8/1.1%20%E6%80%BB%E7%BA%B2/" target="_blank">MCU_STM32_dev_guide</a></li>
+<li><a href="https://blog.51cto.com/topic/8e2ce3a4ae4b565.html" target="_blank">MCU外设驱动分层软件架构图</a></li>
+</ul>
+<hr />
+<h3 id="mcu-bootloader"><center><table><tr><td bgcolor=#FF4500>MCU bootloader</td></tr></table></center><a class="headerlink" href="#mcu-bootloader" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/134627531" target="_blank">Bootloader学习理解学习--加强版</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/134654803" target="_blank">Bootloader学习理解----跳转优化异常</a></li>
+</ul>
+<hr />
+<h3 id="stm32"><center><table><tr><td bgcolor=#FF4500>STM32</td></tr></table></center><a class="headerlink" href="#stm32" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://wiki.st.com/stm32mcu/wiki/Category:Getting_started_with_STM32_system_peripherals" target="_blank">Getting started with STM32 system peripherals</a></li>
+<li><a href="https://wiki.st.com/stm32mcu/wiki/Introduction_to_STM32Cube_Expansion_Packages" target="_blank">Introduction to STM32Cube Expansion</a></li>
+<li><a href="https://www.st.com.cn/content/st_com/zh/stm32-mcu-developer-zone/developer-resources.html" target="_blank">STM32 MCU开发者资源</a></li>
+<li><a href="https://www.st.com/content/st_com/en.html" target="_blank">stm.com</a></li>
+<li><a href="https://doc.embedfire.com/mcu/stm32/f407batianhu/std/zh/latest/README.html" target="_blank">_野火_玩转STM32</a></li>
+</ul>
+<hr />
+<h3 id="mcu-debug"><center><table><tr><td bgcolor=#FF4500>MCU debug</td></tr></table></center><a class="headerlink" href="#mcu-debug" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://github.com/cpq/bare-metal-programming-guide/blob/main/README_zh-CN.md" target="_blank">裸机编程指南</a></li>
+<li><a href="https://www.cnblogs.com/happybirthdaytoyou/p/14965555.html" target="_blank">关于注重加强MCU下调试能力的意识</a></li>
+<li><a href="https://blog.csdn.net/apythonlearner/article/details/130085220?ops_request_misc=&request_id=&biz_id=102&utm_term=%E6%9F%A5%E7%9C%8BNVIC%20keil&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduweb~default-0-130085220.142^v100^pc_search_result_base1&spm=1018.2226.3001.4187" target="_blank">【Keil】调试中查看当前中断信息</a></li>
+<li><a href="https://mcu.eetrend.com/blog/2022/100564846.html" target="_blank">单片机软件延时时间控制</a></li>
+<li><a href="https://mcu.eetrend.com/blog/2022/100564791.html" target="_blank">单片机的内存分配(变量的存储位置)详解</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/123760754" target="_blank">2021 乐鑫笔试题目</a></li>
+<li><a href="https://blog.csdn.net/qq_34430371/article/details/120812304" target="_blank">bin、hex、elf、axf文件的认识</a></li>
+<li><a href="https://mcu.eetrend.com/blog/2023/100572581.html" target="_blank">STM32嵌入式面试知识点总结</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright @ 2024 Diperluer, All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.indexes", "toc.integrate", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
 </html>

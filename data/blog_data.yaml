@@ -1,0 +1,30 @@
+blog_categories: {}
+blog_posts:
+  '2025':
+  - &id001
+    categories: []
+    date: '2025-03-22'
+    excerpt: '# Happy new years eve!...'
+    reading_time: 1
+    tags:
+    - 生活
+    - 艺术
+    title: 我的第一篇博客
+    url: ../posts/2025-03-22-myfirstblog.md
+  - &id002
+    categories: []
+    date: '2025-03-22'
+    excerpt: '# Blog test!...'
+    reading_time: 1
+    tags:
+    - 生活
+    - 艺术
+    title: 我的第二篇博客
+    url: ../posts/2025-03-22-Secondblog.md
+blog_tags:
+  生活:
+  - *id001
+  - *id002
+  艺术:
+  - *id001
+  - *id002

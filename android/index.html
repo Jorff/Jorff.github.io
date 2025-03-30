@@ -1,195 +1,944 @@
-<!DOCTYPE html>
-<html lang="en" data-bs-theme="light">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recording economic and finacial news.">
+      
+      
         <meta name="author" content="Diperluer">
+      
+      
         <link rel="canonical" href="https://www.diperluer.cn/android/">
-        <link rel="shortcut icon" href="../img/favicon.ico">
-        <title>[Protected] Android - 滴尔</title>
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
-        <link href="../css/fontawesome.min.css" rel="stylesheet">
-        <link href="../css/brands.min.css" rel="stylesheet">
-        <link href="../css/solid.min.css" rel="stylesheet">
-        <link href="../css/v4-font-face.min.css" rel="stylesheet">
-        <link href="../css/base.css" rel="stylesheet">
-		<link rel="stylesheet" href="../css/github.min.css" />
-        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
-        <script src="../js/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script> 
-    </head>
+      
+      
+      
+      
+      <link rel="icon" href="../assets/32x_code_computer.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title><font face="黑体" color=#FF4500 size=7>Android development</font> - 滴尔</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
 
-    <body>
-        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-            <div class="container">
-                <a class="navbar-brand" href="..">滴尔</a>
-                <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Expanded navigation -->
-                <div id="navbar-collapse" class="navbar-collapse collapse">
-                        <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="nav-item">
-                                <a href=".." class="nav-link">主页</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">地区冲突</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="dropdown-item">中东局势</a>
-</li>
-                                    
-<li>
-    <a href="../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="dropdown-item">俄乌战争</a>
-</li>
-                                    
-<li>
-    <a href="../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="dropdown-item">朝鲜半岛</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"  aria-expanded="false">经济和货币政策</a>
-                                <ul class="dropdown-menu">
-                                    
-<li>
-    <a href="../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="dropdown-item">经济政策</a>
-</li>
-                                    
-<li>
-    <a href="../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="dropdown-item">货币政策</a>
-</li>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../level31/invest/" class="nav-link">投资指南</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="../level41/Listed_company/" class="nav-link">上市公司</a>
-                            </li>
-                        </ul>
-
-                    <ul class="nav navbar-nav ms-md-auto">
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
-            <span class="fa fa-angle-down"></span>
-        </button>
-    </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
-        <ul class="nav flex-column">
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        </ul>
-    </div>
-</div></div>
-                    <div class="col-md-9" role="main">
-
-<div id="mkdocs-encrypted-content" style="display:none">tTYKVF1pyuCWsUa809aqVw==;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</div>
-<div id="mkdocs-decrypted-content">
-    <form id="mkdocs-decrypt-form">
-        <h1>This content is protected with AES encryption. </h1>
-        <p>Contact your administrator for access to this page.</p>
-        <input type="password" id="mkdocs-content-password" placeholder="Password">
+    
+      
+    
+    
+      
         
-        <p id="mkdocs-decrypt-msg"></p>
-    </form>
-</div>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
-<script type="text/javascript">
-var encryptcontent_id = "encryptcontent_1";
-var encryptcontent_path = "android/";
-var decryption_failure_message = "Invalid password.";
-var encryptcontent_keystore = ["DPSDYQB6wYNN2ddgxPU8nw==;dHpvn4TYaIUh8FVCWhkDeqML6k1N04bPNeQgeAhm0k3jvQfEnlKJ4Q5bT2o+zo8SsN1xAw+XiBAzVFDx+isGgkBbUOjCdU4CBNUPl1WW142e4t+vYTTntyVFXTZKnWVg;/DxJ3PFEg9akW8cvQ14OxQ=="];
-var encryptcontent_obfuscate = 0;
-
-</script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/core.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/enc-base64.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/cipher-core.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/sha256.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/hmac.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/pbkdf2.js"></script>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/aes.js"></script>
-<script type="text/javascript" src="../assets/javascripts/decrypt-contents.js" defer></script></div>
-            </div>
-        </div>
-
-        <footer class="col-md-12">
-            <hr>
-                <p>Copyright @ 2024 Diperluer, All rights reserved.</p>
-            <p>Invest on the road <a href="https://www.gurufocus.cn/dashboard" target="_blank">gurufocus</a>.</p>
-        </footer>
-        <script src="../js/bootstrap.bundle.min.js"></script>
-        <script>
-            var base_url = "..",
-                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
-        </script>
-        <script src="../js/base.js"></script>
-
-        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#android-basic" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
-</div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
 
-    </body>
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="滴尔" class="md-header__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../assets/code_computer.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            滴尔
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              <font face="黑体" color=#FF4500 size=7>Android development</font>
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>主页</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../blog/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>博客</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../blog/archive/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>归档</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>地区冲突</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>经济和货币政策</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../level31/invest/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>投资指南</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../level41/Listed_company/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>上市公司</font>
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../assets/code_computer.png" alt="logo">
+
+    </a>
+    滴尔
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>主页</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>博客</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/archive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>归档</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>地区冲突</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>地区冲突</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>中东局势</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>俄乌战争</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>朝鲜半岛</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>经济和货币政策</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>经济和货币政策</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>经济政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>货币政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level31/invest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>投资指南</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level41/Listed_company/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>上市公司</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1><font face="黑体" color=#FF4500 size=7>Android development</font></h1>
+
+<hr />
+<h3 id="android-basic"><center><table><tr><td bgcolor=#FF4500>Android basic</td></tr></table></center><a class="headerlink" href="#android-basic" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://android.googlesource.com/" target="_blank">Android_googlesource</a></li>
+<li><a href="https://source.android.com/docs/core?hl=zh-cn" target="_blank">Android_文档中心</a></li>
+<li><a href="https://www.w3cschool.cn/android_training_course/" target="_blank">Android官方培训课程中文版</a></li>
+<li><a href="http://aospxref.com/" target="_blank">Android_Source</a></li>
+<li><a href="http://androidxref.com/" target="_blank">androidxref</a></li>
+<li><a href="https://wiki.lineageos.org/devices/" target="_blank">lineageos</a></li>
+<li><a href="https://juejin.cn/post/7169503765433679909" target="_blank">12个顶级的Linux安卓模拟器</a></li>
+</ul>
+<hr />
+<h3 id="android"><center><table><tr><td bgcolor=#FF4500>Android基础及系统框架</td></tr></table></center><a class="headerlink" href="#android" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.csdn.net/qq_53058639/article/details/132352849?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522172319529716800211582041%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=172319529716800211582041&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-6-132352849-null-null.142^v100^pc_search_result_base1&utm_term=android&spm=1018.2226.3001.4187" target="_blank">Android基础入门教程(非常详细)</a></li>
+<li><a href="https://www.jianshu.com/p/755c4b3e2735" target="_blank">Android操作系统知识详解</a></li>
+<li><a href="https://blog.csdn.net/itachi85/article/details/54695046/" target="_blank">Android系统架构与系统源码目录</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=Mzg2NzUzNzk1Mw==&mid=2247493913&idx=1&sn=98de4a39827db4326fb5dc38ed20aa5a&chksm=ceb8ac57f9cf254124d5b40f736d1a2cd55a79fefddc05972b2964eff1d2579ae6f9223f3b42&scene=21#wechat_redirect" target="_blank">Android_adb命令总结</a></li>
+<li><a href="https://blog.csdn.net/u011426115/article/details/129808005" target="_blank">Android系统定制及adb日志调试方法</a></li>
+<li><a href="https://loongembedded.blog.csdn.net/category_5611401_4.html" target="_blank">高通Qualcomm_android</a></li>
+<li><a href="https://blog.csdn.net/u011426115/category_10707683.html" target="_blank">Android系统</a></li>
+<li><a href="https://liuwangshu.cn/system.html" target="_blank">Android最强原创知识体系</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/496231947" target="_blank">Android Framework知识点汇总！</a></li>
+<li><a href="https://youarefree.blog.csdn.net/article/details/140910477" target="_blank">Android系统开发中高级定制专栏导读</a></li>
+<li><a href="https://github.com/Omooo/Android-Notes/tree/master/blogs/Android" target="_blank">Android_docs_github_Omooo</a></li>
+<li><a href="https://www.kancloud.cn/alex_wsc/android_depp/412844" target="_blank">深入理解Android：卷1</a></li>
+<li><a href="https://www.kancloud.cn/alex_wsc/android-deep2/413029" target="_blank">深入理解Android：卷2</a></li>
+<li><a href="https://www.kancloud.cn/alex_wsc/android-deep3/416174" target="_blank">深入理解Android 卷III</a></li>
+<li><a href="https://www.kancloud.cn/alex_wsc/heros" target="_blank">Android 群英传读书笔记</a></li>
+<li><a href="https://www.kancloud.cn/alex_wsc/better/202667" target="_blank">google官网android性能优化</a></li>
+</ul>
+<hr />
+<h3 id="android_1"><center><table><tr><td bgcolor=#FF4500>Android 开机流程</td></tr></table></center><a class="headerlink" href="#android_1" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.csdn.net/a546036242/article/details/136845812?spm=1001.2014.3001.5506" target="_blank">Android 系统如何添加开机自启动 Shell 脚本</a></li>
+<li><a href="https://blog.csdn.net/vviccc/article/details/104194964?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522167902254916800217267271%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=167902254916800217267271&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-23-104194964-null-null.142^v74^insert_down3,201^v4^add_ask,239^v2^insert_chatgpt&utm_term=android%20%E5%BC%80%E6%9C%BA%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90&spm=1018.2226.3001.4187" target="_blank">专题分纲目录_android 开机启动流程分析</a></li>
+<li><a href="https://blog.csdn.net/linliang815/article/details/53406031?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522167902254916800217267271%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=167902254916800217267271&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-4-53406031-null-null.142^v74^insert_down3,201^v4^add_ask,239^v2^insert_chatgpt&utm_term=android%20%E5%BC%80%E6%9C%BA%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90&spm=1018.2226.3001.4187" target="_blank">Android 开机流程分析</a></li>
+<li><a href="https://blog.csdn.net/qq_34512207/article/details/113725772?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522167902254916800217267271%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=167902254916800217267271&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_ecpm_v1~rank_v31_ecpm-19-113725772-null-null.142^v74^insert_down3,201^v4^add_ask,239^v2^insert_chatgpt&utm_term=android%20%E5%BC%80%E6%9C%BA%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90&spm=1018.2226.3001.4187" target="_blank">Android系统开机到Launcher启动流程分析</a></li>
+<li><a href="https://www.androidos.net.cn/doc/2022/12/30/833.html" target="_blank">Android开机全解析</a></li>
+<li><a href="https://juejin.cn/column/6960557358346928164" target="_blank">稀土掘金_深入Android系列</a></li>
+<li><a href="https://juejin.cn/post/6887456044760039438" target="_blank">Android_第一个用户进程-Init进程</a></li>
+</ul>
+<hr />
+<h3 id="android_2"><center><table><tr><td bgcolor=#FF4500>Android 图形架构</td></tr></table></center><a class="headerlink" href="#android_2" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://cloud.tencent.com/developer/article/2122042" target="_blank">Android 图形架构</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/2127018" target="_blank">深入理解Android图形系统</a></li>
+<li><a href="https://juejin.cn/post/6898525503960186887" target="_blank">Android图形系统综述(干货篇)</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1427930" target="_blank">深入浅出Android BufferQueue-上</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1427931" target="_blank">深入浅出Android BufferQueue-下</a></li>
+<li><a href="https://blog.csdn.net/a740169405/article/details/70548443" target="_blank">Android图形显示系统（一）</a></li>
+<li><a href="https://www.androidos.net.cn/doc/2022/10/9/303.html" target="_blank">Android 图形显示框架</a></li>
+<li><a href="https://www.androidos.net.cn/doc/2022/3/18/641.html" target="_blank">Android 画面显示流程分析 (1)</a></li>
+<li><a href="https://www.androidos.net.cn/doc/2022/3/18/1022.html" target="_blank">Android 画面显示流程分析 (2)</a></li>
+<li><a href="https://www.androidos.net.cn/doc/2022/3/18/494.html" target="_blank">Android 画面显示流程分析 (3)</a></li>
+<li><a href="https://www.androidos.net.cn/doc/2022/3/18/1024.html" target="_blank">Android 画面显示流程分析 (4)</a></li>
+<li><a href="https://www.androidos.net.cn/doc/2022/3/18/258.html" target="_blank">Android 画面显示流程分析 (5)</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/140825238?spm=1001.2014.3001.5502" target="_blank">Android AV World 序</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/140825926?spm=1001.2014.3001.5502" target="_blank">整体框架介绍一</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/140826083?spm=1001.2014.3001.5502" target="_blank">整体框架介绍二</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/140826175?spm=1001.2014.3001.5502" target="_blank">从Activity看surface的创建(1)</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/140826252?spm=1001.2014.3001.5502" target="_blank">从Activity看surface的创建(2)</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/140826360?spm=1001.2014.3001.5502" target="_blank">User APP的绘制与WMS</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/140826401?spm=1001.2014.3001.5502" target="_blank">BufferQueue与Grallo</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/140826592?spm=1001.2014.3001.5502" target="_blank">实践小例子</a></li>
+</ul>
+<hr />
+<h3 id="android-gnss"><center><table><tr><td bgcolor=#FF4500>Android gnss</td></tr></table></center><a class="headerlink" href="#android-gnss" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.csdn.net/qq_41076734/article/details/125996427?spm=1001.2014.3001.5506" target="_blank">高通8155 GPS HAL层代码移植</a></li>
+<li><a href="https://blog.csdn.net/q1183345443/article/details/83311070?spm=1001.2014.3001.5506" target="_blank">Android O u-blox gps移植</a></li>
+<li><a href="https://blog.csdn.net/ba_wang_mao/article/details/127570658?spm=1001.2014.3001.5506" target="_blank">UBLOX配置/GPS配置设置/u-center使用</a></li>
+</ul>
+<hr />
+<h3 id="android-wifi"><center><table><tr><td bgcolor=#FF4500>Android WiFi</td></tr></table></center><a class="headerlink" href="#android-wifi" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://www.kancloud.cn/alex_wsc/android-wifi-nfc-gps/413031" target="_blank">深入理解Android：Wi-Fi、NFC和GPS卷（完整版）</a></li>
+<li><a href="https://blog.csdn.net/u010386121/article/details/139964518?spm=1001.2014.3001.5506" target="_blank">Androi15 WiFi 框架</a></li>
+<li><a href="https://blog.csdn.net/wenzhi20102321/article/details/135139360?spm=1001.2014.3001.5506" target="_blank">Android13 Wifi启动流程分析</a></li>
+<li><a href="https://blog.csdn.net/IAYLBL/article/details/142338628?spm=1001.2014.3001.5506" target="_blank">Android14 Qcom 从Framework到Driver带你打开WIFI（一）</a></li>
+<li><a href="https://www.codetd.com/article/5344713#google_vignette" target="_blank">Android WiFi/WLAN分析</a></li>
+<li><a href="https://blog.csdn.net/weixin_40588186/article/details/132837372" target="_blank">Android WiFi 开启流程(基于Android S)</a></li>
+<li><a href="https://blog.csdn.net/weixin_43278325/article/details/130457201" target="_blank">Android S Wi-Fi 打开流程（二）</a></li>
+<li><a href="https://source.android.com/docs/core/connect/wifi-hal?hl=zh-cn" target="_blank">Wi-Fi HAL</a></li>
+<li><a href="https://blog.csdn.net/qq_30624591/article/details/95937502?spm=1001.2014.3001.5506" target="_blank">Android的Wifi系统框架分析第一篇</a></li>
+<li><a href="https://blog.csdn.net/sdkdlwk/article/details/134795541?spm=1001.2014.3001.5506" target="_blank">Android wifi 框架以及Enable流程</a></li>
+<li><a href="https://blog.csdn.net/myvest/article/details/75666241?spm=1001.2014.3001.5506" target="_blank">Android wpa_cli 调试方法</a></li>
+<li><a href="https://blog.csdn.net/weixin_34269583/article/details/93415758?spm=1001.2014.3001.5506" target="_blank">Android Wifi BT的工作流程和porting(精)</a></li>
+<li><a href="https://blog.csdn.net/joeyaung_1983/article/details/7221630?spm=1001.2014.3001.5506" target="_blank">Android wifi调试过程</a></li>
+<li><a href="https://blog.csdn.net/krokodil98/article/details/109743792?spm=1001.2014.3001.5506" target="_blank">android移植wifi驱动流程porting</a></li>
+<li><a href="https://blog.csdn.net/joeyaung_1983/article/details/7221629?spm=1001.2014.3001.5506" target="_blank">Android wifi相关添加流程</a></li>
+<li><a href="https://blog.csdn.net/weixin_40588186/article/details/132837372?spm=1001.2014.3001.5506" target="_blank">Android WiFi 开启流程(基于Android S)</a></li>
+<li><a href="https://blog.csdn.net/lbmygf/article/details/6599511?spm=1001.2014.3001.5506" target="_blank">android中wifi原理及流程分析(很经典)</a></li>
+<li><a href="https://blog.csdn.net/chenmi123321/article/details/119248132?spm=1001.2014.3001.5506" target="_blank">Android中的Wifi框架知识点</a></li>
+<li><a href="https://blog.csdn.net/changcheng00/article/details/134111819?spm=1001.2014.3001.5506" target="_blank">android wifi的整体架构以及架构下的模块细分</a></li>
+<li><a href="https://blog.csdn.net/sdkdlwk/article/details/134796013?spm=1001.2014.3001.5506" target="_blank">Android wifi连接和获取IP分析</a></li>
+<li><a href="https://blog.csdn.net/Beihai_Van/article/details/145772085" target="_blank">RK Android11 WiFi模组 AIC8800 驱动移植调试记录</a></li>
+</ul>
+<hr />
+<h3 id="android-bt"><center><table><tr><td bgcolor=#FF4500>Android BT</td></tr></table></center><a class="headerlink" href="#android-bt" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.csdn.net/crazycat_dzw/article/details/109196618?spm=1001.2014.3001.5506" target="_blank">android7蓝牙笔记</a></li>
+<li><a href="https://blog.csdn.net/wenzhi20102321/article/details/139703045?spm=1001.2014.3001.5506" target="_blank">Android13 蓝牙协议属性配置详解</a></li>
+<li><a href="https://blog.csdn.net/weixin_47456647/article/details/139493190?spm=1001.2014.3001.5506" target="_blank">Android 蓝牙profile的配置</a></li>
+<li><a href="https://blog.csdn.net/XiaoXiaoPengBo/article/details/127542945?spm=1001.2014.3001.5506" target="_blank">Android博通BCM libbt-vendor.so 分析蓝牙初始化流程</a></li>
+<li><a href="https://blog.csdn.net/u010203716/article/details/80998256?spm=1001.2014.3001.5506" target="_blank">蓝牙学习笔记三（Android Debug）</a></li>
+<li><a href="https://blog.csdn.net/sdkdlwk/article/details/134710292" target="_blank">Android BT HCI分析简介</a></li>
+<li><a href="https://blog.csdn.net/sdkdlwk/article/details/134755649" target="_blank">Android HCI日志分析案例1</a></li>
+<li><a href="https://blog.csdn.net/sdkdlwk/article/details/134759492" target="_blank">Android HCI日志分析案例2</a></li>
+<li><a href="https://blog.csdn.net/sdkdlwk/article/details/134852029" target="_blank">Android HCI日志分析案例3</a></li>
+</ul>
+<hr />
+<h3 id="android-audio"><center><table><tr><td bgcolor=#FF4500>Android audio</td></tr></table></center><a class="headerlink" href="#android-audio" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.csdn.net/weixin_43013761/article/details/89742187?spm=1001.2014.3001.5506" target="_blank">08.音频系统:第006课_音频系统HAL分析:第002节_AudioFlinger层调节音量流程</a></li>
+<li><a href="https://blog.csdn.net/weixin_43013761/article/details/89277664?spm=1001.2014.3001.5506" target="_blank">08.音频系统:第002节_Android音频系统框架简述</a></li>
+<li><a href="https://blog.csdn.net/weixin_39993623/article/details/111542548?spm=1001.2014.3001.5506" target="_blank">java 双声道音频_一种多声道录音的实现方法(语音识别功能)</a></li>
+<li><a href="https://blog.csdn.net/u011426115/article/details/112122190?spm=1001.2014.3001.5506" target="_blank">Android Audio音频系统之深入浅出</a></li>
+<li><a href="https://blog.csdn.net/qq_27494201/article/details/110123594?spm=1001.2014.3001.5506" target="_blank">《Android音视频开发》— Android 书籍</a></li>
+<li><a href="https://blog.csdn.net/ssllkkyyaa/article/details/109723699?spm=1001.2014.3001.5506" target="_blank">android 音频的采集</a></li>
+<li><a href="https://blog.csdn.net/I_do_can/article/details/53870417?spm=1001.2014.3001.5506" target="_blank">Android音频开发之使用OpenSL ES API</a></li>
+<li><a href="https://blog.csdn.net/I_do_can/article/details/53976287?spm=1001.2014.3001.5506" target="_blank">Android音频开发之视频音频视频分离与合成</a></li>
+<li><a href="https://blog.csdn.net/haima1998/article/details/52164509?spm=1001.2014.3001.5506" target="_blank">Android音频开发（1）：基础知识和demo</a></li>
+<li><a href="https://blog.csdn.net/coding_man_xie/article/details/104864320?spm=1001.2014.3001.5506" target="_blank">Android音视频开发-音频篇-音频的原理</a></li>
+<li><a href="https://blog.csdn.net/I_do_can/article/details/53869659?spm=1001.2014.3001.5506" target="_blank">Android音频开发之使用MediaRecorder录制</a></li>
+<li><a href="https://blog.csdn.net/qq_38411623/article/details/125608406?spm=1001.2014.3001.5506" target="_blank">Android音频系统学习三： AudioPolicyService服务的启动过程（上）</a></li>
+<li><a href="https://blog.csdn.net/qq_38411623/article/details/125691970?spm=1001.2014.3001.5506" target="_blank">Android音频系统学习三：AudioPolicyService服务的启动过程（下）</a></li>
+<li><a href="https://blog.csdn.net/qq_38411623/article/details/120835503?spm=1001.2014.3001.5506" target="_blank">Android音频系统学习一：基本概念</a></li>
+<li><a href="https://blog.csdn.net/qq_38411623/article/details/120933808?spm=1001.2014.3001.5506" target="_blank">Android音频系统学习二：Android音频框架</a></li>
+<li><a href="https://blog.csdn.net/lipengshiwo/article/details/52334948?spm=1001.2014.3001.5506" target="_blank">Android音频开发：音频数据的编解码</a></li>
+<li><a href="https://blog.csdn.net/u012426327/article/details/77837073?spm=1001.2014.3001.5506" target="_blank">Android音频开发之AudioRecord录音实现</a></li>
+<li><a href="https://blog.csdn.net/u010880786/article/details/51524139?spm=1001.2014.3001.5506" target="_blank">Android音频开发（4）：如何存储和解析wav文件</a></li>
+<li><a href="https://blog.csdn.net/u010880786/article/details/51523586?spm=1001.2014.3001.5506" target="_blank">Android音频开发（2）：如何采集一帧音频</a></li>
+<li><a href="https://blog.csdn.net/wh2526422/article/details/124033275?spm=1001.2014.3001.5506" target="_blank">Android 音频(Audio)架构</a></li>
+<li><a href="https://blog.csdn.net/u010880786/article/details/51524000?spm=1001.2014.3001.5506" target="_blank">Android音频开发（3）：如何播放一帧音频</a></li>
+<li><a href="https://blog.csdn.net/m0_66155191/article/details/122410572?spm=1001.2014.3001.5506" target="_blank">Android音视频开发之——音频非压缩编码和压缩编码，神级Android进阶笔记</a></li>
+<li><a href="https://blog.csdn.net/fdhgjp/article/details/89415664?spm=1001.2014.3001.5506" target="_blank">Android音频开发（7）：音乐可视化-FFT频谱图</a></li>
+<li><a href="https://blog.csdn.net/ljx1400052550/article/details/114532136?spm=1001.2014.3001.5506" target="_blank">Android音频开发（五）如何存储和解析最简单的音频wav文件</a></li>
+<li><a href="https://blog.csdn.net/ljx1400052550/article/details/114578269?spm=1001.2014.3001.5506" target="_blank">Android音频开发（六）音频编解码之初识MediaCodec上</a></li>
+<li><a href="https://blog.csdn.net/ljx1400052550/article/details/114186501?spm=1001.2014.3001.5506" target="_blank">Android 音频开发（二） 采集一帧音频数据</a></li>
+<li><a href="https://blog.csdn.net/u010880786/article/details/51524150?spm=1001.2014.3001.5506" target="_blank">Android音频开发（5）：音频数据的编解码</a></li>
+<li><a href="https://blog.csdn.net/u012440207/article/details/121726009?spm=1001.2014.3001.5506" target="_blank">Android音频开发(五)：感应(息屏/亮屏)管理</a></li>
+<li><a href="https://blog.csdn.net/u012440207/article/details/121725566?spm=1001.2014.3001.5506" target="_blank">Android音频开发(四)：音频播放模式</a></li>
+<li><a href="https://blog.csdn.net/u012440207/article/details/121722809?spm=1001.2014.3001.5506" target="_blank">Android音频开发(三)：使用ExoPlayer播放音频</a></li>
+<li><a href="https://blog.csdn.net/u012440207/article/details/121719075?spm=1001.2014.3001.5506" target="_blank">Android音频开发(二)：录制音频(WAV及MP3格式)</a></li>
+<li><a href="https://blog.csdn.net/u012440207/article/details/121717746?spm=1001.2014.3001.5506" target="_blank">Android音频开发(一)：音频基础知识</a></li>
+</ul>
+<hr />
+<h3 id="android-camera"><center><table><tr><td bgcolor=#FF4500>Android camera开发</td></tr></table></center><a class="headerlink" href="#android-camera" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.csdn.net/zhangbijun1230/category_6500605.html?spm=1001.2014.3001.5482" target="_blank">android camera开发</a></li>
+<li><a href="https://www.jianshu.com/p/5f538820e370" target="_blank">MTK Camera 从底层到应用层一网打尽</a></li>
+<li><a href="https://www.cnblogs.com/reality-soul/p/4668532.html" target="_blank">MTK Camera 开机启动流程</a></li>
+<li><a href="https://zolad.github.io/2019/05/07/android_driver/camera_driver_config_experience/" target="_blank">Android_Camera_Driver平台(展讯、MTK)移植适配经验</a></li>
+</ul>
+<hr />
+<h3 id="android-mtk"><center><table><tr><td bgcolor=#FF4500>Android MTK</td></tr></table></center><a class="headerlink" href="#android-mtk" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.csdn.net/yangchao315/article/details/111093350?spm=1001.2014.3001.5506" target="_blank">MT2712 Boot Flow Introduction</a></li>
+<li><a href="https://blog.csdn.net/wangyongh/article/details/125172478?spm=1001.2014.3001.5506" target="_blank">mtk启动流程分析</a></li>
+<li><a href="https://blog.csdn.net/u010783226/article/details/114934387?spm=1001.2014.3001.5506" target="_blank">MTK启动流程-MT6761</a></li>
+<li><a href="https://blog.csdn.net/Android_2016/article/details/98855455?spm=1001.2014.3001.5506" target="_blank">MTK Recovery image的OTA升级过程</a></li>
+<li><a href="https://blog.csdn.net/weixin_39481144/article/details/115480805?spm=1001.2014.3001.5506" target="_blank">mtk OTA升级开放perloader与lk升级</a></li>
+<li><a href="https://blog.csdn.net/liaochaoyun/article/details/107353150?spm=1001.2014.3001.5506" target="_blank">MTK平台Android项目开发框架搭建</a></li>
+<li><a href="https://blog.csdn.net/frank_zyp/article/details/86537459?spm=1001.2014.3001.5506" target="_blank">[Kernel_exception4] mtk HWT debug</a></li>
+<li><a href="https://blog.csdn.net/ffmxnjm/article/details/71679262?spm=1001.2014.3001.5506" target="_blank">ARM 看门狗机制 [包括MTK] 【1】</a></li>
+<li><a href="https://blog.csdn.net/dongxianfei/article/details/122452351?spm=1001.2014.3001.5506" target="_blank">MTK平台如何获取所有异常的AEE db文件</a></li>
+<li><a href="https://blog.csdn.net/hanmengaidudu/article/details/51831933?spm=1001.2014.3001.5506" target="_blank">MTK平台系统稳定性分析</a></li>
+<li><a href="https://blog.csdn.net/hfreeman2008/article/details/60323825?spm=1001.2014.3001.5506" target="_blank">android核心技术之ANR分析（MTK）</a></li>
+<li><a href="https://blog.csdn.net/qq_43482161/article/details/131392892?spm=1001.2014.3001.5506" target="_blank">MTK Android 11 摄像头移植</a></li>
+<li><a href="https://blog.csdn.net/pan0755/article/details/111910014?spm=1001.2014.3001.5506" target="_blank">MTK OTA (一)</a></li>
+<li><a href="https://blog.csdn.net/dongxianfei/article/details/127750363?spm=1001.2014.3001.5506" target="_blank">MTK平台的SWT异常的简单总结（2）——SWT原理和分析</a></li>
+<li><a href="https://blog.csdn.net/u012932409/article/details/120306037?spm=1001.2014.3001.5506" target="_blank">Android11.0(R) MTK平台添加新分区</a></li>
+<li><a href="https://download.csdn.net/download/zhexingsunba/12863376?spm=1001.2014.3001.5506" target="_blank">DRM_LCM_Porting_Guide_DSI_V1.0</a></li>
+<li><a href="https://blog.csdn.net/jxx1823862645/article/details/124677495?spm=1001.2014.3001.5506" target="_blank">MTK 平台sensor arch 介绍-scp</a></li>
+<li><a href="https://blog.csdn.net/wh2526422/article/details/120786350?spm=1001.2014.3001.5506" target="_blank">MTK Sensor框架 及信息传递详解</a></li>
+<li><a href="https://blog.csdn.net/xjh24778451/article/details/124826954?spm=1001.2014.3001.5506" target="_blank">【MTK Sensor2.0】SCP与AP数据流分析</a></li>
+<li><a href="https://blog.csdn.net/weixin_42911907/article/details/134894673?spm=1001.2014.3001.5506" target="_blank">MTK PQ调试之Gamma和色温调试</a></li>
+<li><a href="https://www.jianshu.com/p/91eadfcc3fde" target="_blank">mtk display 各种场景流程 --显示异常问题处理指导手册</a></li>
+<li><a href="https://www.cnblogs.com/lexuele/p/5029724.html" target="_blank">MTK平台如何定位显示花屏和界面错乱等绘制异常的问题？</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/141753232" target="_blank">Android显示异常问题处理指导手册4-Debugging Tools</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/141550228?spm=1001.2014.3001.5502" target="_blank">Android显示异常问题处理指导手册I基本思路</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/141752720?spm=1001.2014.3001.5502" target="_blank">Android显示异常问题处理指导手册I-(Multimedia数据流)</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/141753152?spm=1001.2014.3001.5502" target="_blank">显示异常问题处理指导手册3-Debugging Guide</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/141753232?spm=1001.2014.3001.5502" target="_blank">显示异常问题处理指导手册4-Debugging Tools</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/141755386?spm=1001.2014.3001.5502" target="_blank">合成类型问题详解</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/142182966?spm=1001.2014.3001.5502" target="_blank">Display性能问题分析指导手册I</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/142210292?spm=1001.2014.3001.5502" target="_blank">Display性能问题教战手册2</a></li>
+<li><a href="https://blog.csdn.net/oDwyane03/article/details/142395234?spm=1001.2014.3001.5502" target="_blank">Display性能问题教战手册3</a></li>
+</ul>
+<hr />
+<h3 id="android_3"><center><table><tr><td bgcolor=#FF4500>Android专题</td></tr></table></center><a class="headerlink" href="#android_3" title="Permanent link">&para;</a></h3>
+<hr />
+<ul>
+<li><a href="https://blog.csdn.net/oDwyane03?type=blog" target="_blank">Dwyane03 CSDN blog</a></li>
+<li><a href="https://blog.csdn.net/sdkdlwk/category_12506918.html" target="_blank">Android驱动相关</a></li>
+<li><a href="https://blog.csdn.net/sdkdlwk/category_12506505.html" target="_blank">Android BT</a></li>
+<li><a href="https://blog.csdn.net/sdkdlwk/category_12506504.html" target="_blank">Android wifi</a></li>
+<li><a href="https://blog.csdn.net/sdkdlwk/category_12506509.html" target="_blank">Android audio</a></li>
+</ul>
+<hr />
+<h3 id="display"><center><table><tr><td bgcolor=#FF4500>display 抓图分析工具</td></tr></table></center><a class="headerlink" href="#display" title="Permanent link">&para;</a></h3>
+<hr />
+<blockquote>
+<ul>
+<li>MGD</li>
+<li>Gapid</li>
+<li>Pvrtrace
+</li>
+</ul>
+</blockquote>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright @ 2024 Diperluer, All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.indexes", "toc.integrate", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
 </html>

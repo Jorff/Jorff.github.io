@@ -1,0 +1,4 @@
+{% extends "base.html" %}
+{% block content %}
+<pre>{{ blog_posts|tojson(indent=2) }}</pre>
+{% endblock %}

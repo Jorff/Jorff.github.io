@@ -247,11 +247,7 @@ function decryptor_reaction(key_or_keys, password_input, decrypted_content, fall
             }
         }
         // any post processing on the decrypted content should be done here
-        
-        
-        decrypted_content.querySelectorAll('pre code').forEach((block) => {
-            hljs.highlightElement(block);
-        });
+        document$.next(document);
         
         if (typeof theme_run_after_decryption !== 'undefined') {
             theme_run_after_decryption();
@@ -306,6 +302,9 @@ function init_decryptor() {
             decryptor_reaction(content_decrypted, password_input, decrypted_content);
         }
     });
+}
+if (typeof base_url === 'undefined') {
+    var base_url = JSON.parse(document.getElementById('__config').textContent).base;
 }
 if (document.readyState === "loading") {
   // Loading hasn't finished yet
