@@ -1,6 +1,15 @@
 blog_categories: {}
 blog_posts:
   '2025':
+  - &id002
+    categories: []
+    date: '2025-04-13'
+    excerpt: '# 美国对全球多个国家加增关税! ...'
+    reading_time: 1
+    tags:
+    - 财经
+    title: 美国对全球多个国家加增关税
+    url: ../posts/2025-04-13-AmericanTariffs.md
   - &id001
     categories: []
     date: '2025-03-22'
@@ -8,23 +17,10 @@ blog_posts:
     reading_time: 1
     tags:
     - 生活
-    - 艺术
     title: 我的第一篇博客
     url: ../posts/2025-03-22-myfirstblog.md
-  - &id002
-    categories: []
-    date: '2025-03-22'
-    excerpt: '# Blog test!...'
-    reading_time: 1
-    tags:
-    - 生活
-    - 艺术
-    title: 我的第二篇博客
-    url: ../posts/2025-03-22-Secondblog.md
 blog_tags:
   生活:
   - *id001
-  - *id002
-  艺术:
-  - *id001
+  财经:
   - *id002
