@@ -48,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -670,8 +672,60 @@
 <li><a href="https://www.jianshu.com/p/0b257de21eb5" target="_blank">Markdown进阶语法整理</a></li>
 <li><a href="https://www.itqaq.com/index/516.html" target="_blank">Markdown 语法详解</a></li>
 <li><a href="https://open.larksuite.com/document/common-capabilities/message-card/message-cards-content/using-markdown-tags?lang=zh-CN" target="_blank">Markdown</a></li>
-<li><a href="https://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown: Syntax</a></li>
+<li>
+<p><a href="https://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown: Syntax</a></p>
+</li>
+<li>
+<p>传统 <font size> 与 CSS 的对应关系
+HTML 的 <font size> 属性使用相对大小（1-7），对应以下固定像素值：</p>
+</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th><font size></th>
+<th>等效  CSS font-size</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size="1"</td>
+<td>10px</td>
+<td>最小字号</td>
+</tr>
+<tr>
+<td>size="2"</td>
+<td>13px</td>
+<td>比默认正文稍小</td>
+</tr>
+<tr>
+<td>size="3"</td>
+<td>16px (默认)</td>
+<td>标准浏览器默认正文大小</td>
+</tr>
+<tr>
+<td>size="4"</td>
+<td>18px</td>
+<td></td>
+</tr>
+<tr>
+<td>size="5"</td>
+<td>24px</td>
+<td></td>
+</tr>
+<tr>
+<td>size="6"</td>
+<td>32px</td>
+<td></td>
+</tr>
+<tr>
+<td>size="7"</td>
+<td>48px</td>
+<td>最大字号</td>
+</tr>
+</tbody>
+</table>
 <table>
 <thead>
 <tr>
@@ -923,6 +977,32 @@ possible <span class="critic comment">and comments can be added inline</span>.</
 <p>Formatting can also be applied to blocks by putting the opening and closing
 tags on separate lines and adding new lines between the tags and the content.</p>
 </mark>
+<h1 id="text">行内文本样式 text<a class="headerlink" href="#text" title="Permanent link">#</a></h1>
+<p>带 <u>下划线</u> 的文本</p>
+<p>带 <mark>着重号</mark> 的文本</p>
+<p>带 <span style="text-decoration: underline wavy;">波浪线</span> 的文本</p>
+<p>带 <del>删除线</del> 的文本<br />
+带 <s>删除线</s> 的文本</p>
+<p>按 <kbd>Ctrl</kbd> + <kbd>C</kbd> 复制</p>
+<p>密码：<input type="password" value="这里没有验证码" readonly style="border: none; background: transparent; font-family: inherit;"></p>
+<h1 id="p">段落文本 p<a class="headerlink" href="#p" title="Permanent link">#</a></h1>
+<p>一、彩色文字方案 <br />
+<span style="color:red">红色</span>、
+<span style="color:yellow">黄色</span>、
+<span style="color:green">绿色</span>、
+<span style="color:cyan">青色</span>、
+<span style="color:blue">蓝色</span>、
+<span style="color:gray">灰色</span></p>
+<p>二、超大号文字方案   </p>
+<h1 style="font-size: 3em; text-align: center;">Volantis</h1>
+<p style="text-align: center; font-size: 0.8em;">A Wonderful Theme for Hexo</p>
+
+<h1 id="3">3. 常用蓝色色值参考<a class="headerlink" href="#3" title="Permanent link">#</a></h1>
+<p>色值  颜色名称    示例</p>
+<h1 id="0000ff">0000FF 纯蓝  <span style="color: #0000FF">文本</span><a class="headerlink" href="#0000ff" title="Permanent link">#</a></h1>
+<h1 id="1e90ff">1E90FF 道奇蓝 <span style="color: #1E90FF">文本</span><a class="headerlink" href="#1e90ff" title="Permanent link">#</a></h1>
+<h1 id="007bff_bootstrap">007BFF Bootstrap 主蓝    <span style="color: #007BFF">文本</span><a class="headerlink" href="#007bff_bootstrap" title="Permanent link">#</a></h1>
+<h1 id="4169e1">4169E1 皇室蓝 <span style="color: #4169E1">文本</span><a class="headerlink" href="#4169e1" title="Permanent link">#</a></h1>
 
 
 

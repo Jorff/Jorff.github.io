@@ -1,0 +1,15 @@
+/* 设置正文字体和大小 */
+.md-typeset {
+    font-family: -apple-system, BlinkMacSystemFont, 
+                 "Segoe UI", "PingFang SC", 
+                 "Microsoft YaHei", sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  
+  /* 代码块单独设置 */
+  /* .md-typeset code, 
+  .md-typeset pre {
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+  } */

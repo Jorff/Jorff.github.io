@@ -1,6 +1,15 @@
 blog_categories: {}
 blog_posts:
   '2025':
+  - &id003
+    categories: []
+    date: '2025-04-26'
+    excerpt: '#   搭建你的第一个量化交易环境：开启Python量化投资之旅...'
+    reading_time: 1
+    tags:
+    - 量化交易
+    title: 搭建你的第一个量化交易环境
+    url: ../posts/2025-04-26-搭建量化交易平台.md
   - &id002
     categories: []
     date: '2025-04-13'
@@ -24,3 +33,5 @@ blog_tags:
   - *id001
   财经:
   - *id002
+  量化交易:
+  - *id003
