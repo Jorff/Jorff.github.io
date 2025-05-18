@@ -75,6 +75,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -625,115 +630,113 @@
 
 
 
-  <h1>Git</h1>
+<h2 id="_1"><a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<h3 id="git"><center><table><tr><td bgcolor=#FF4500>Git 的使用</td></tr></table></center><a class="headerlink" href="#git" title="Permanent link">#</a></h3>
+<hr />
+<h1 id="_2">拉取远程更改并变基你的提交<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<div class="highlight"><pre><span></span><code>git pull --rebase origin feature/ais
+</code></pre></div>
+<h1 id="1_git">1. Git 的使用<a class="headerlink" href="#1_git" title="Permanent link">#</a></h1>
+<p>Git 的进阶学习资源《Pro Git（中文版）》:</p>
+<div class="highlight"><pre><span></span><code>https://gitee.com/progit/index.html
 
-<p><strong>*</strong>* git使用指南</p>
-<ul>
-<li>
-<ol>
-<li>Git 的使用 
-    Git 的进阶学习资源《Pro Git（中文版）》:</li>
-</ol>
-<p>https://gitee.com/progit/index.html</p>
-<p>https://git-scm.com/book/zh/v2 </p>
+https://git-scm.com/book/zh/v2
+</code></pre></div>
 <p>请结合 2.5.1 节的解释和示意图来理解和使用以下常用命令。 </p>
 <p>1.1 本地仓库操作 </p>
-<p>$git help <cmd> </p>
+<div class="highlight"><pre><span></span><code>$git help &lt;cmd&gt;
+</code></pre></div>
 <p>查看帮助信息，更具体的帮助信息可以通过参数指定。 </p>
-<p>$git config </p>
+<div class="highlight"><pre><span></span><code>$git config
+</code></pre></div>
 <p>Git 的工作参数配置，可以根据个人喜好来定制 git 的默认工作参数。 </p>
 <p>如 2.5.2 节，在获取 OpenHarmony 代码前需要配置用户名和邮箱地址等。 </p>
-<p>$git config --global alias.st status *设置 status 命令的短命令别名为 st 
-$git init <repo_dir> </p>
+<div class="highlight"><pre><span></span><code>$git config --global alias.st status
+</code></pre></div>
+<p>设置 status 命令的短命令别名为 st 
+    $git init <repo_dir> </p>
 <p>可以在指定⽬ 录下创建⼀ 个空的 Git 仓库（即生成.git/文件夹），不带 repo_dir 参数则在当前⽬ 录下创 
 建空的代码仓库。 </p>
-<p>$git clone <src_repo_path> <dest_repo_dir> </p>
+<div class="highlight"><pre><span></span><code>$git clone &lt;src_repo_path&gt; &lt;dest_repo_dir&gt;
+</code></pre></div>
 <p>可以将 src_repo_path 指定的仓库，完整地复制一份到 dest_repo_dir，并默认将工作区恢复到 HEAD 指 
 向的那次提交的快照。 </p>
 <p>src_repo_path 可以是本地仓库路径，也可以是远程仓库路径；dest_repo_dir 是复制下来的仓库在本地 
 的存储路径，不指定的话则默认复制到当前目录下。如： </p>
-<ul>
-<li>将~/Ohos/Gn_Projs 仓库 clone 到./GnProjs 路径下 </li>
-</ul>
-<p>$git clone ~/Ohos/Gn_Projs ./GnProjs </p>
-<ul>
-<li>使用 https 协议，将远程的 https://gitee.com/liangkzgitee/GnProjs.git 仓库 clone 到./GnProjs 路径下 </li>
-</ul>
-<p>$git clone https://gitee.com/liangkzgitee/GnProjs.git ./GnProjs </p>
-<ul>
-<li>使用 SSH 协议，将远程的 git@gitee.com:liangkzgitee/GnProjs.git 仓库 clone 到./GnProjs 路径下 </li>
-</ul>
-<p>$git clone git@gitee.com:liangkzgitee/GnProjs.git ./GnProjs </p>
-<p>$git status </p>
+<p>将~/Ohos/Gn_Projs 仓库 clone 到./GnProjs 路径下 </p>
+<div class="highlight"><pre><span></span><code>$git clone ~/Ohos/Gn_Projs ./GnProjs
+</code></pre></div>
+<p>使用 https 协议，将远程的 https://gitee.com/liangkzgitee/GnProjs.git 仓库 clone 到./GnProjs 路径下 </p>
+<div class="highlight"><pre><span></span><code>$git clone https://gitee.com/liangkzgitee/GnProjs.git ./GnProjs
+</code></pre></div>
+<p>使用 SSH 协议，将远程的 git@gitee.com:liangkzgitee/GnProjs.git 仓库 clone 到./GnProjs 路径下 </p>
+<div class="highlight"><pre><span></span><code>$git clone git@gitee.com:liangkzgitee/GnProjs.git ./GnProjs
+
+$git status
+</code></pre></div>
 <p>查看当前工作区和暂存区的状态，可以知道修改、新增、暂存了哪些文件。 </p>
-<p>$git diff </p>
+<div class="highlight"><pre><span></span><code>$git diff
+</code></pre></div>
 <p>查看任意“两棵树”的差异，这“两棵树”可以是两个文件（列表）、工作区与暂存区、两次提交、两个分支 </p>
 <p>等，通过参数来指定，如： </p>
-<p>$git diff </p>
-<ul>
-<li>不带参数，默认比较工作区与暂存区的所有差异 </li>
-</ul>
-<p>$git diff --staged </p>
-<ul>
-<li>比较暂存区与当前分支最后一次提交的所有差异 </li>
-</ul>
-<p>$git diff --staged branch </p>
-<ul>
-<li>比较暂存区与指定的 branch 分支最后一次提交的所有差异 </li>
-</ul>
-<p>$git diff file1[ file2 ...] </p>
-<ul>
-<li>比较工作区的 file1[ file2 ...]与暂存区的 file1[ file2 ...]的差异 </li>
-</ul>
-<p>$git diff commitID1 commitID2 * 比较两次提交产生的所有差异 </p>
-<p>$git diff branch1 branch2 </p>
-<ul>
-<li>比较两个分支的所有差异 </li>
-</ul>
-<p>$git add <dir/file> </p>
+<div class="highlight"><pre><span></span><code>$git diff
+</code></pre></div>
+<p>不带参数，默认比较工作区与暂存区的所有差异 </p>
+<div class="highlight"><pre><span></span><code>$git diff --staged
+</code></pre></div>
+<p>比较暂存区与当前分支最后一次提交的所有差异 </p>
+<div class="highlight"><pre><span></span><code>$git diff --staged branch
+</code></pre></div>
+<p>比较暂存区与指定的 branch 分支最后一次提交的所有差异 </p>
+<div class="highlight"><pre><span></span><code>$git diff file1[ file2 ...]
+</code></pre></div>
+<p>比较工作区的 file1[ file2 ...]与暂存区的 file1[ file2 ...]的差异 </p>
+<div class="highlight"><pre><span></span><code>$git diff commitID1 commitID2 比较两次提交产生的所有差异
+
+$git diff branch1 branch2
+</code></pre></div>
+<p>比较两个分支的所有差异 </p>
+<div class="highlight"><pre><span></span><code>$git add &lt;dir/file&gt;
+</code></pre></div>
 <p>将参数指定的目录或文件从工作区添加到暂存区 </p>
-<ul>
-<li>将工作区中所有修改和新增的目录、文件一次性添加到暂存区 </li>
-</ul>
-<p>$git add .《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】 </p>
+<p>将工作区中所有修改和新增的目录、文件一次性添加到暂存区 </p>
+<div class="highlight"><pre><span></span><code>$git add .
+</code></pre></div>
+<p>《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】 </p>
 <p>《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【“鸿蒙系统学习笔记”技术专栏：https://ost.51cto.com/column/46】 
-503 
-* 将工作区中指定的 dir1[ dir2 ...] file1[ file2 ...]列表一次性添加到暂存区 </p>
-<p>$git add dir1[ dir2 ...] file1[ file2 ...] </p>
-<p>$git commit -m “message” </p>
+503 </p>
+<p>将工作区中指定的 dir1[ dir2 ...] file1[ file2 ...]列表一次性添加到暂存区 </p>
+<div class="highlight"><pre><span></span><code>$git add dir1[ dir2 ...] file1[ file2 ...]
+
+$git commit -m “message”
+</code></pre></div>
 <p>将暂存区的所有修改内容提交到本地仓库内，使⽤ 指定的<message>作为提交信息。commit 前，必须先设置 </p>
 <p>提交者的用户信息，包括用户名和邮箱。 </p>
-<ul>
-<li>将暂存区中指定的 dir1[ dir2 ...] file1[ file2 ...]一部分列表，提交到本地仓库 </li>
-</ul>
-<p>$git commit dir1[ dir2 ...] file1[ file2 ...] -m “message” </p>
-<ul>
-<li>
+<p>将暂存区中指定的 dir1[ dir2 ...] file1[ file2 ...]一部分列表，提交到本地仓库 </p>
+<div class="highlight"><pre><span></span><code>$git commit dir1[ dir2 ...] file1[ file2 ...] -m “message”
+</code></pre></div>
 <p>将当前暂存区的修改，合并到最近的⼀ 次 commit 中，并丢弃上一次的 commit， </p>
-</li>
-<li>
 <p>重新提交一次新的 commit 来替换，也就是重写上一次提交的历史，这样可以减少 commitID 的数量。 </p>
-</li>
-</ul>
-<p>$git commit -m “new_message” --amend </p>
-<p>$git stash </p>
+<div class="highlight"><pre><span></span><code>$git commit -m “new_message” --amend
+
+$git stash
+</code></pre></div>
 <p>用于将工作区的修改、新增文件临时保存起来，然后将工作区恢复到最后一次 commit 后的干净状态。不带参 </p>
 <p>数默认不会对新增（untracked）的文件临时保存起来，增加--all 参数才会对新增（untracked）文件也一并 </p>
 <p>临时保存起来。 </p>
-<p>$git stash --all </p>
-<ul>
-<li>暂存所有文件，包括没有被 git 追踪(untracked)的文件 </li>
-</ul>
-<p>$git stash list </p>
-<ul>
-<li>查看 stash 列表 </li>
-</ul>
-<p>$git stash apply </p>
-<ul>
-<li>取出最近一次的 stash </li>
-</ul>
-<p>$git stash apply num * 输入 list 里对应的数字，取出对应的 stash </p>
-<p>$git reset [--soft | --mixed | --hard] [commitID] </p>
+<div class="highlight"><pre><span></span><code>$git stash --all
+</code></pre></div>
+<p>暂存所有文件，包括没有被 git 追踪(untracked)的文件 </p>
+<div class="highlight"><pre><span></span><code>$git stash list
+</code></pre></div>
+<p>查看 stash 列表 </p>
+<div class="highlight"><pre><span></span><code>$git stash apply
+</code></pre></div>
+<p>取出最近一次的 stash </p>
+<div class="highlight"><pre><span></span><code>$git stash apply num 输入 list 里对应的数字，取出对应的 stash
+
+$git reset [--soft | --mixed | --hard] [commitID]
+</code></pre></div>
 <p>注意： </p>
 <p>慎用此命令！一定要理解和确认清楚命令的参数都会干些什么事情，再去执行此命令！！！ </p>
 <p>万一误用此命令，可通过 reflog 找回之前的操作记录，再 reset 一次来恢复到指定的 commitID 版本，但是： </p>
@@ -750,61 +753,62 @@ D 后面所带来的新的差异合并进暂存区，版本库丢弃 commitID �
 acked 的新增文件不受影响)，全部回退到指定的 commitID 版本，版本库丢弃 commitID 之后所有的 commit。 </p>
 <p>commitID 参数用于指定回退到哪个版本，commitID 可以用 HEAD/HEAD~0、HEAD<sup>/HEAD~1、HEAD</sup>^/ </p>
 <p>HEAD^2/HEAD~2 等形式来分别表示当前版本、上一个版本、上上个版本等，也可以直接写具体的 commitID。 </p>
-<p>$git rm <file> </p>
+<div class="highlight"><pre><span></span><code>$git rm &lt;file&gt;
+</code></pre></div>
 <p>根据参数删除工作区和/或暂存区中的文件。 </p>
-<p>$git rm file </p>
+<div class="highlight"><pre><span></span><code>$git rm file
+</code></pre></div>
 <p>*删除工作区中 untracked 的文件 </p>
-<p>$git rm -f file * 删除已经 add 到暂存区中的文件，同时工作区中的该文件也会被删除 </p>
-<p>$git rm --cached file </p>
-<ul>
-<li>删除已经 add 到暂存区中的文件，保留工作区中的该文件，状态变为 untracked </li>
-</ul>
-<p>$git restore <file> </p>
+<div class="highlight"><pre><span></span><code>$git rm -f file 删除已经 add 到暂存区中的文件，同时工作区中的该文件也会被删除
+
+$git rm --cached file
+</code></pre></div>
+<p>删除已经 add 到暂存区中的文件，保留工作区中的该文件，状态变为 untracked </p>
+<div class="highlight"><pre><span></span><code>$git restore &lt;file&gt;
+</code></pre></div>
 <p>根据参数撤销工作区或暂存区文件的修改，如： </p>
-<ul>
-<li>撤销工作区指定文件的修改，保持与暂存区中的同步，暂存区中的该文件可能还未 commit 到本地仓库 </li>
-</ul>
-<p>$git restore <file> </p>
-<ul>
-<li>撤销暂存区指定文件的修改，保持与最后一次提交同步，该文件在工作区的修改需要重新 add 进暂存区 </li>
-</ul>
-<p>$git restore --staged <file> </p>
-<p>$git tag《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】 
+<p>撤销工作区指定文件的修改，保持与暂存区中的同步，暂存区中的该文件可能还未 commit 到本地仓库 </p>
+<div class="highlight"><pre><span></span><code>$git restore &lt;file&gt;
+</code></pre></div>
+<p>撤销暂存区指定文件的修改，保持与最后一次提交同步，该文件在工作区的修改需要重新 add 进暂存区 </p>
+<div class="highlight"><pre><span></span><code>$git restore --staged &lt;file&gt;
+
+$git tag
+</code></pre></div>
+<p>《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】 
 《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【“鸿蒙系统学习笔记”技术专栏：https://ost.51cto.com/column/46】 
 504 </p>
 <p>用于给仓库的某个提交打上标签以作标记，如标记发布版本。</p>
-<p>$git tag -a “tagName” </p>
-<ul>
-<li>在当前提交上打名为“tagName”的标签 </li>
-</ul>
-<p>$git tag -a “tagName” -m “tag message” * 在当前提交上打名为“tagName”的标签，并写上备注信息 </p>
-<p>$git tag -a “tagName” </p>
-<ul>
-<li>删除名为“tagName”的标签 </li>
-</ul>
-<p>$git log </p>
+<div class="highlight"><pre><span></span><code>$git tag -a “tagName”
+</code></pre></div>
+<p>在当前提交上打名为“tagName”的标签 </p>
+<div class="highlight"><pre><span></span><code>$git tag -a “tagName” -m “tag message” 在当前提交上打名为“tagName”的标签，并写上备注信息
+
+$git tag -a “tagName”
+</code></pre></div>
+<p>删除名为“tagName”的标签 </p>
+<div class="highlight"><pre><span></span><code>$git log
+</code></pre></div>
 <p>用于查看提交记录。 </p>
 <p>这是一个非常有用命令，可以通过复杂的参数组合来对提交记录进行过滤和显示，下面仅举几个简单的例子， 
 更多高级用法，可以通过 help 命令或者网络搜索来进行学习。 </p>
-<p>$git log </p>
-<ul>
-<li>以缺省格式显示全部提交历史 </li>
-</ul>
-<p>$git log --oneline * 以一行的简洁形式查看全部提交历史 </p>
-<p>$git log --graph </p>
-<ul>
-<li>
+<div class="highlight"><pre><span></span><code>$git log
+</code></pre></div>
+<p>以缺省格式显示全部提交历史 </p>
+<div class="highlight"><pre><span></span><code>$git log --oneline 以一行的简洁形式查看全部提交历史
+
+$git log --graph
+</code></pre></div>
 <p>以拓扑图的形式查看全部提交历史 </p>
-</li>
-<li>
 <p>指定日期：--since 和--before，也可以用--until 和--after </p>
-</li>
-</ul>
-<p>$git log --oneline --before={3.days.ago} --after={2021-09-30} </p>
-<p>$git reflog 
-以栈列表的形式查看每一次 git 命令的执行记录。这个对不小心使用了 reset --hard 命令“误删除”了提 
+<div class="highlight"><pre><span></span><code>$git log --oneline --before={3.days.ago} --after={2021-09-30}
+
+$git reflog
+</code></pre></div>
+<p>以栈列表的形式查看每一次 git 命令的执行记录。这个对不小心使用了 reset --hard 命令“误删除”了提 
 交的时候，可以找回 reset 前的 commitID，并再次“恢复”reset 前的提交状态。 </p>
-<p>$git reflog --oneline </p>
+<div class="highlight"><pre><span></span><code>$git reflog --oneline
+</code></pre></div>
 <p>...... </p>
 <p>2ad14e2 (dev) HEAD@{9}: reset: moving to 2ad14e2 </p>
 <p>aea5fbe HEAD@{10}: reset: moving to aea5fbe3754cfeb814ee4458800d3eabff3600a0 </p>
@@ -824,28 +828,26 @@ acked 的新增文件不受影响)，全部回退到指定的 commitID 版本，
 <p>eb593f8 HEAD@{8}: commit: first commit gitreset”</p>
 <p>这里记录了你所有的操作记录</p>
 <p>这里f8e01df 就是你回退的HEAD^，也就是那个commit_id。</p>
-<p>2、恢复删除记录</p>
-<p>推荐： git reset --hard commit_id</p>
+<hr />
+<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>恢复删除记录</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<hr />
+<h1 id="2">2、恢复删除记录<a class="headerlink" href="#2" title="Permanent link">#</a></h1>
+<p>推荐： 
+    git reset --hard commit_id</p>
 <p>好了，世界又恢复了平静。</p>
 <p>1.2 分支操作 
     $git branch <newbranch> </p>
-<div class="highlight"><pre><span></span><code>在当前分支的当前状态下创建一个新的名为 newbranch 的分支，但不切换分支；
-
-不带参数则直接显示当前所有分支列表，*标记当前所在分支。
-
-$git branch
-
-* 查看当前仓库的所有分支，当前处于*标记的分支上
-
-*dev
-
-master
-
-$git branch -r
-
-* -r 查看远程仓库的分支
-
-m/master -&gt; origin/master
+<p>在当前分支的当前状态下创建一个新的名为 newbranch 的分支，但不切换分支； </p>
+<p>不带参数则直接显示当前所有分支列表，*标记当前所在分支。 </p>
+<div class="highlight"><pre><span></span><code>$git branch
+</code></pre></div>
+<p>查看当前仓库的所有分支，当前处于*标记的分支上 </p>
+<p>*dev </p>
+<p>master </p>
+<div class="highlight"><pre><span></span><code>$git branch -r
+</code></pre></div>
+<p>-r 查看远程仓库的分支 </p>
+<div class="highlight"><pre><span></span><code>m/master -&gt; origin/master
 
 origin/OpenHarmony-3.0-LTS
 
@@ -853,63 +855,62 @@ origin/OpenHarmony_1.0.1_release
 
 origin/master
 
+
 $git switch -c newbranch
-
-在当前分支的当前状态下创建一个新的名为 newbranch 的分支，并立即切换到 newbranch 分支；
-
-不带-c 参数则不创建新分支，而是直接切换到 newbranch 分支上，newbranch 分支必须是已经存在的分支；
-
-$git checkout -b newbranch
-
-作用与 switch 基本一致，但推荐用 switch 命令，更易理解。
-
-$git merge
-
-该命令用于合并分支。如本地仓库有 master、dev、issue 等若干个分支，
-
-$git switch master * 切换当前分支到 master 分支《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【
-
-在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】
-
-《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【“鸿蒙系统学习笔记”技术专栏：https://ost.51cto.com/column/46】 
-505
-
-$git merge dev
-
-* 将 dev 分支合并到当前 master 分支上
-
-可参考 2.5.1 节的分支示意图进行理解。
-
-自动合并分支可能会因为修改有冲突导致合并失败，需要我们根据提示去解决掉冲突，然后手动 add 和 comm 
-it 去完成分支的合并。
-
-$git rebase &lt;base&gt;
-
-基于参数 base，对当前分支进行变基（rebase），参数 base 可以是 commitID、分⽀ 名称、tag 等能标记 
-位置的信息。
-
-从当前分支与 base 所在分支的分叉点开始，到当前分支的最后一次 commit 之间的每一个 commit 单独提取 
+</code></pre></div>
+<p>在当前分支的当前状态下创建一个新的名为 newbranch 的分支，并立即切换到 newbranch 分支；</p>
+<p>不带-c 参数则不创建新分支，而是直接切换到 newbranch 分支上，newbranch 分支必须是已经存在的分支； </p>
+<div class="highlight"><pre><span></span><code>$git checkout -b newbranch
+</code></pre></div>
+<p>作用与 switch 基本一致，但推荐用 switch 命令，更易理解。 </p>
+<div class="highlight"><pre><span></span><code>$git merge
+</code></pre></div>
+<p>该命令用于合并分支。如本地仓库有 master、dev、issue 等若干个分支，</p>
+<div class="highlight"><pre><span></span><code>$git switch master
+</code></pre></div>
+<p>切换当前分支到 master 分支</p>
+<div class="highlight"><pre><span></span><code>$git merge dev
+</code></pre></div>
+<p>将 dev 分支合并到当前 master 分支上 </p>
+<p>《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【</p>
+<p>在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】 </p>
+<p>《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【“鸿蒙系统学习笔记”技术专栏：https://ost.51cto.com/column/46】 
+505 </p>
+<p>可参考 2.5.1 节的分支示意图进行理解。 </p>
+<p>自动合并分支可能会因为修改有冲突导致合并失败，需要我们根据提示去解决掉冲突，然后手动 add 和 comm 
+it 去完成分支的合并。 </p>
+<div class="highlight"><pre><span></span><code>$git rebase &lt;base&gt;
+</code></pre></div>
+<p>基于参数 base，对当前分支进行变基（rebase），参数 base 可以是 commitID、分⽀ 名称、tag 等能标记 
+位置的信息。 </p>
+<p>从当前分支与 base 所在分支的分叉点开始，到当前分支的最后一次 commit 之间的每一个 commit 单独提取 
 成 patch，在 base 位置按顺序一个个打 patch，打 patch 如果有冲突，则会暂停，需要手动解决掉冲突，操作 
 add，不需要 commit，只需要执行 git rebase --continue，修改提交信息，继续完成这个 patch（在当前 
 分支会有一个新的 commitID），然后继续下一个 patch，无冲突不知道会不会有新的 commitID，还有冲突就 
 继续解决冲突，add 和 continue，获得新的 commitID，直到 rebase 完成，这样分叉点就更新到了 base 所在 
 的位置，而当前分支则获得一组新的 commitID。 
 rebase 出现了冲突，可以用 rebase --skip 参数将引起冲突的 commit 抛弃，这个要慎用！ 
-rebase 阶段执行 rebase --abort 可以终止和撤销 rebase，恢复到 rebase 命令前的状态。
+rebase 阶段执行 rebase --abort 可以终止和撤销 rebase，恢复到 rebase 命令前的状态。 </p>
+<hr />
+<h3 id="git_grebase"><center><table><tr><td bgcolor=#FF4500>git grebase</td></tr></table></center><a class="headerlink" href="#git_grebase" title="Permanent link">#</a></h3>
+<hr />
+<h1 id="_4">一、前言<a class="headerlink" href="#_4" title="Permanent link">#</a></h1>
+<div class="highlight"><pre><span></span><code>rebase 使用方法
+
+git rebase [基节点] 
+git rebase [基节点] [待变基节点]
+
+rebase后面的参数可以是两个，也可以是一个，当rebase为一个参数的时候其实是省略了第二个参数，第二个参数为HEAD指针当前指向的那个节点。
 </code></pre></div>
-<p>一、前言
-rebase 使用方法</p>
-<p>git rebase [基节点] 
-git rebase [基节点] [待变基节点]</p>
-<p>rebase后面的参数可以是两个，也可以是一个，当rebase为一个参数的时候其实是省略了第二个参数，第二个参数为HEAD指针当前指向的那个节点。</p>
-<p>二、rebase 图解
-首先通过简单的提交节点图解感受一下rebase作用。</p>
+<h1 id="rebase">二、rebase 图解<a class="headerlink" href="#rebase" title="Permanent link">#</a></h1>
+<p>首先通过简单的提交节点图解感受一下rebase作用。</p>
 <p>两个分支master和feature，其中feature是在提交点B处从master上拉出的分支。</p>
 <p>master上有一个新提交M，feature上有两个新提交C和D。</p>
 <p>此时切换到feature分支上，执行如下命令，相当于是想要把master分支合并到feature分支（这一步的场景就可以类比为我们在自己的分支
 feature上开发了一段时间了，准备从主干master上拉一下最新改动）</p>
-<p>git checkout feature
-git rebase master</p>
+<div class="highlight"><pre><span></span><code>git checkout feature
+git rebase master
+</code></pre></div>
 <p>//这两条命令等价于git rebase master feature
 下图为变基后的提交节点图，解释一下其工作原理：</p>
 <p>feature：待变基分支、当前分支;
@@ -931,20 +932,24 @@ master：基分支、目标分支;
 他提交到了M，然后合到主干上了。此时张三想拉下最新代码，于是他在feature分支上执行了git rebase master，即把master分支给rebase
 过来，由于李四更早开发完并合了主干，如此就相当于张三
 是基于李四的最新提交M进行的开发了。</p>
-<p>三、应用示例
-按照上面的图解构造了提交记录，如下图所示：（ABM是master分支线，ABCD是feature分支线。这里画成了master变色分叉出来，
+<h1 id="_5">三、应用示例<a class="headerlink" href="#_5" title="Permanent link">#</a></h1>
+<p>按照上面的图解构造了提交记录，如下图所示：（ABM是master分支线，ABCD是feature分支线。这里画成了master变色分叉出来，
 这不影响理解，知道是表示两个分支两条线即可！）</p>
 <p>此时，在feature分支上执行git rebase master</p>
 <p>变基完成以后，ABCD是原来的feature分支线，ABMC’D’是新的feature分支线，ABM是master分支线（没有变化）</p>
-<p>四、重建提交历史
-使用场景
+<hr />
+<h3 id="_6"><center><table><tr><td bgcolor=#FF4500>重建提交历史</td></tr></table></center><a class="headerlink" href="#_6" title="Permanent link">#</a></h3>
+<hr />
+<h1 id="_7">四、重建提交历史<a class="headerlink" href="#_7" title="Permanent link">#</a></h1>
+<p>使用场景
 gitbase 的另一个功能主要用来重建提交历史，什么意思呢？你在本地commit过程中有时候可能刚提交完，然后发现有个很小的地方需要
 修正一下，而当你修正完之后又得提交，但是这两次提交完成的任务可能一模一样，因为第二次修改的地方实在是微不足道，或者开发一个
 新功能的时候分多次提交，每次的变更都很小，这个时候就可以使用
 git rebase的另一个功能：重建提交历史。
 2.使用方法</p>
-<p>git rebase -i [地址引用]
-1
+<div class="highlight"><pre><span></span><code>git rebase -i [地址引用]
+</code></pre></div>
+<p>1
 交互式 rebase 指的是使用带参数 --interactive 的 rebase 命令, 简写为 -i。如果你在命令后增加了这个选项, Git 会打开一个 UI 
 界面并列出将要被复制到目标分支的备选提交记录，它还会显示每个提交记录的哈希值和提交说明，提交说明有助于理解这个提交进行了哪些更改。
 在实际使用时，所谓的 UI 窗口一般会在文本编辑器 
@@ -956,8 +961,9 @@ git rebase的另一个功能：重建提交历史。
 简而言之，它允许你把多个提交记录合并成一个。
 例如：</p>
 <p>C2-C5的提交都是为了完成一个功能，现在我想合并这些提交：</p>
-<p>git rebase -i HEAD~4
-1
+<div class="highlight"><pre><span></span><code>git rebase -i HEAD~4
+</code></pre></div>
+<p>1
 这样HEAD指针就会直线后退4个节点到C1，然后列出这个节点之后你想操作的节点，C2，C3，C4，C5，之后你就可以编辑操作这些节点：变更
 提交顺序，删除部分提交历史等，最后得到结果：</p>
 <p>三、推荐使用场景
@@ -972,8 +978,11 @@ pull了张三的最新改动下来，然后执行<git rebase 李四的开发分�
 张三的，就乱套了。</p>
 <p>正因如此，大部分公司其实会禁用rebase，不管是拉代码还是push代码统一都使用merge，虽然会多出无意义的一条提交记录“Merge … to …”，
 但至少能清楚地知道主线上谁合了的代码以及他们合代码的时间先后顺序。</p>
-<p>五、rebase VS merge
-首先二者都具备整合分支间变更的能力，但二者的实现手段却大不相同。git merge总是在推进提交历史，并不会影响提交的原始状态，
+<hr />
+<h3 id="rebase_vs_merge"><center><table><tr><td bgcolor=#FF4500>rebase VS merge</td></tr></table></center><a class="headerlink" href="#rebase_vs_merge" title="Permanent link">#</a></h3>
+<hr />
+<h1 id="rebase_vs_merge_1">五、rebase VS merge<a class="headerlink" href="#rebase_vs_merge_1" title="Permanent link">#</a></h1>
+<p>首先二者都具备整合分支间变更的能力，但二者的实现手段却大不相同。git merge总是在推进提交历史，并不会影响提交的原始状态，
 而git rebase整合变更的方式则是对提交历史进行重写，但从结果上看，最后git rebase形成的节点与git merge`形成的节点完全相同。</p>
 <p>rebase 优缺点
 优点：</p>
@@ -992,54 +1001,49 @@ rebase往往能助力生成相对清爽的提交历史，进而方便追溯工�
 上游分支的变更。</p>
 <p>merge 合并历史如下：</p>
 <p>如果使用rebase进行合并，就会呈现出比较清爽的提交日志，也不会有那么多线，而是一条直线。</p>
-<p>六、拓展阅读
-《Git进阶（十二）：git merge 用法详解》</p>
+<hr />
+<h3 id="_8"><center><table><tr><td bgcolor=#FF4500>拓展阅读</td></tr></table></center><a class="headerlink" href="#_8" title="Permanent link">#</a></h3>
+<hr />
+<h1 id="_9">六、拓展阅读<a class="headerlink" href="#_9" title="Permanent link">#</a></h1>
+<p>《Git进阶（十二）：git merge 用法详解》</p>
 <p>1.3 远程仓库操作 
 Git 的大部分命令都是对本地仓库进行操作的，只有少量的几个访问网络的命令对远程仓库进行操作。 </p>
-<p>$git clone <src_repo_path> <dest_repo_dir> </p>
+<div class="highlight"><pre><span></span><code>$git clone &lt;src_repo_path&gt; &lt;dest_repo_dir&gt;
+</code></pre></div>
 <p>见本地仓库操作中对此命令的说明，该命令也可操作克隆远程仓库到本地。 </p>
-<p>$git fetch <src_repo_path> <remote_branch>:<local_branch> </p>
+<div class="highlight"><pre><span></span><code>$git fetch &lt;src_repo_path&gt; &lt;remote_branch&gt;:&lt;local_branch&gt;
+</code></pre></div>
 <p>从 src_repo_path 指定的远程仓库抓取 remote_branch 指定的分支到本地仓库，并重新命名为 local_branch。 </p>
-<ul>
-<li>从 remote 远程仓库抓取它的 master 分支到本地仓库，并以 newbr 命名抓取回来的该分支 </li>
-</ul>
-<p>$git fetch remote master:newbr </p>
-<ul>
-<li>
+<p>从 remote 远程仓库抓取它的 master 分支到本地仓库，并以 newbr 命名抓取回来的该分支 </p>
+<div class="highlight"><pre><span></span><code>$git fetch remote master:newbr
+</code></pre></div>
 <p>不带 local_branch 参数，则从 remote 远程仓库抓取 master 分支到本地仓库，</p>
-</li>
-<li>
 <p>并默认以 FETCH_HEAD 指向抓取回本地的匿名分支，以备 merge 命令使用 </p>
-</li>
-</ul>
-<p>$git fetch remote master </p>
-<ul>
-<li>
+<div class="highlight"><pre><span></span><code>$git fetch remote master
+</code></pre></div>
 <p>branch  master -&gt; FETCH_HEAD </p>
-</li>
-<li>
 <p>将从远程抓取的 FETCH_HEAD 指向的匿名分支，合并到本地仓库当前分支上 </p>
-</li>
-</ul>
-<p>$git merge FETCH_HEAD </p>
-<p>$git pull <src_repo_path> <remote_branch>:<local_branch> </p>
+<div class="highlight"><pre><span></span><code>$git merge FETCH_HEAD
+
+$git pull &lt;src_repo_path&gt; &lt;remote_branch&gt;:&lt;local_branch&gt;
+</code></pre></div>
 <p>从 src_repo_path 指定的远程仓库抓取 remote_branch 指定的分支到本地仓库，然后马上尝试将其合并 到本地仓库的 local_branch 上。
 如未指定 local_branch，则默认尝试合并到本地仓库的当前分支上。 </p>
 <p>在合并过程中如果出现冲突，则会在冲突位置做标记，需要我们手动解决冲突后，自己去 add 和 commit。 </p>
 <p>pull 命令基本上就是 fetch 和 merge 两个命令的组合，但实际上它们还是有一些实现上的差别的，建议还 </p>
 <p>是尽量用 fetch 和 merge 进行操作，这样过程比较清晰和受控。 </p>
-<p>$git push <dest_repo_dir> <local_branch>:<remote_branch> </p>
+<div class="highlight"><pre><span></span><code>$git push &lt;dest_repo_dir&gt; &lt;local_branch&gt;:&lt;remote_branch&gt;
+</code></pre></div>
 <p>将本地仓库的 local_branch 的修改，推送到 dest_repo_path 指定的远程仓库的 remote_branch 上。 </p>
 <p>如果远程仓库不存在这个 remote_branch，则会自动在远程创建此 remote_branch。 </p>
 <p>如果不带 remote_branch 参数，则会默认推送到远程仓库上与 local_branch 同名的分支上。 </p>
-<ul>
-<li>push 本地仓库的 localbr 分支到 remote 远程仓库的 remotebr 分支 </li>
-</ul>
-<p>$git push remote localbr:remotebr </p>
-<ul>
-<li>push 本地仓库的 master 分支到 remote 远程仓库的 master 分支 </li>
-</ul>
-<p>$git push remote master《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】 </p>
+<p>push 本地仓库的 localbr 分支到 remote 远程仓库的 remotebr 分支 </p>
+<div class="highlight"><pre><span></span><code>$git push remote localbr:remotebr
+</code></pre></div>
+<p>push 本地仓库的 master 分支到 remote 远程仓库的 master 分支 </p>
+<div class="highlight"><pre><span></span><code>$git push remote master
+</code></pre></div>
+<p>《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【在线资源仓库：https://gitee.com/liangkzgitee/ohos_study_note】 </p>
 <p>《沉浸式剖析 OpenHarmony 源代码 梁开祝著》【“鸿蒙系统学习笔记”技术专栏：https://ost.51cto.com/column/46】 
 506 </p>
 <ol>
@@ -1047,42 +1051,47 @@ Git 的大部分命令都是对本地仓库进行操作的，只有少量的几�
 </ol>
 <p>$repo help [options] </p>
 <p>查看帮助信息，更具体的帮助信息可以通过参数指定。 </p>
-<p>$repo init [options] </p>
-<p>$repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify </p>
+<div class="highlight"><pre><span></span><code>$repo init [options]
+
+$repo init -u https://gitee.com/openharmony/manifest.git -b master --no-repo-verify
+</code></pre></div>
 <p>-u URL：指定远程的 manifest 仓库的地址，也就是整个项目的清单仓库。 </p>
 <p>-b branch：指定 manifest.xml 文件分支，可以是分支名称，也可以是引用标签名字。 </p>
-<p>$repo sync [<project>...] </p>
+<div class="highlight"><pre><span></span><code>$repo sync [&lt;project&gt;...]
+</code></pre></div>
 <p>将参数指定的远程仓库的代码同步到本地。 </p>
 <p>不带参数默认同步 manifest.xml 中记录的所有仓库；带参数则只同步参数指定的仓库列表。 </p>
-<p>$repo start <newbranchname> [--all | <project>...] </p>
+<div class="highlight"><pre><span></span><code>$repo start &lt;newbranchname&gt; [--all | &lt;project&gt;...]
+</code></pre></div>
 <p>在参数指定的仓库上，切换到<newbranchname>分支（该分支不存在则创建它），可以使用--all 参数对所 </p>
 <p>有的仓库都执行分支切换操作。该命令是对 git branch 和 git switch 命令的封装，当第一次 sync 完代码后， </p>
 <p>可以通过 start 命令将所有仓库切换到开发分支，避免在匿名分支上工作容易导致丢失工作内容。 </p>
-<p>$repo status [<project>...] </p>
+<div class="highlight"><pre><span></span><code>$repo status [&lt;project&gt;...]
+</code></pre></div>
 <p>status 用于查看多个仓库的状态，不带参数默认显示所有仓库的状态。</p>
 <p>这个命令非常有用，它是 git status 的封装，可以一次性查看多个仓库的状态，清楚地显示出哪些仓库的 
 哪些文件相对上一次提交有了变化。 </p>
-<p>$repo upload [--re --cc] [<project>]... </p>
+<div class="highlight"><pre><span></span><code>$repo upload [--re --cc] [&lt;project&gt;]...
+</code></pre></div>
 <p>用于将多个本地仓库的提交一次性上传到远程仓库。 </p>
 <p>upload 命令会首先找出本地分支从上一次同步（sync）操作以来发生的改动，将它们做成 patch 文件，上 
 传至远程服务器。 </p>
-<p>$repo download {[project] change[/patchset]}... </p>
+<div class="highlight"><pre><span></span><code>$repo download {[project] change[/patchset]}...
+</code></pre></div>
 <p>upload 是把改动内容提交到远程服务器，download 则是从远程服务器下载改动的 patch。</p>
-<p>$repo forall [<project>...] -c <command> [<arg>...] </p>
+<div class="highlight"><pre><span></span><code>$repo forall [&lt;project&gt;...] -c &lt;command&gt; [&lt;arg&gt;...]
+</code></pre></div>
 <p>这个命令可以对参数指定的仓库列表（不指定则对所有仓库），依次执行-c 参数指定的命令，如：</p>
-<ul>
-<li>对两个仓库 repoA 和 repoB 依次执行 git 命令，分别生成各自的 dev 分支并切换到 dev 分支上 </li>
-</ul>
-<p>$repo forall repoA repoB -c “git switch -c dev” </p>
-<ul>
-<li>对所有仓库依次执行 git 命令，切换到 master 分支 </li>
-</ul>
-<p>$repo forall -c “git switch master” </p>
-<p>$repo prune [<project>...] </p>
+<p>对两个仓库 repoA 和 repoB 依次执行 git 命令，分别生成各自的 dev 分支并切换到 dev 分支上 </p>
+<div class="highlight"><pre><span></span><code>$repo forall repoA repoB -c “git switch -c dev”
+</code></pre></div>
+<p>对所有仓库依次执行 git 命令，切换到 master 分支 </p>
+<div class="highlight"><pre><span></span><code>$repo forall -c “git switch master”
+
+$repo prune [&lt;project&gt;...]
+</code></pre></div>
 <p>删除参数指定仓库中（不指定则对所有仓库），已经合并的分支，如开发分支上的代码合并到主干分支后，使 
 用该命令就可以删除这个开发分支。</p>
-</li>
-</ul>
 
 
 

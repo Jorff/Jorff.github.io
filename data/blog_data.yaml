@@ -3,6 +3,24 @@ blog_posts:
   '2025':
   - &id003
     categories: []
+    date: '2025-05-14'
+    excerpt: 中华人民共和国政府（“中国”）和美利坚合众国政府（“美国”），...
+    reading_time: 1
+    tags:
+    - 经济
+    title: 中美日内瓦经贸会谈联合声明
+    url: ../posts/2025-05-14-中美贸易谈判.md
+  - &id001
+    categories: []
+    date: '2025-05-07'
+    excerpt: 2025年5月7日，巴基斯坦军方宣布在一场空战中击落了5架印度战机，其中包括3架“阵风”战斗机。...
+    reading_time: 1
+    tags:
+    - 军事
+    title: 巴印空战，巴基斯坦J-10C战斗机击落了5架印度空军战斗机
+    url: ../posts/2025-05-07-印巴空战.md
+  - &id005
+    categories: []
     date: '2025-04-26'
     excerpt: '#   搭建你的第一个量化交易环境：开启Python量化投资之旅...'
     reading_time: 1
@@ -10,7 +28,7 @@ blog_posts:
     - 量化交易
     title: 搭建你的第一个量化交易环境
     url: ../posts/2025-04-26-搭建量化交易平台.md
-  - &id002
+  - &id004
     categories: []
     date: '2025-04-13'
     excerpt: '# 美国对全球多个国家加增关税! ...'
@@ -19,7 +37,7 @@ blog_posts:
     - 财经
     title: 美国对全球多个国家加增关税
     url: ../posts/2025-04-13-AmericanTariffs.md
-  - &id001
+  - &id002
     categories: []
     date: '2025-03-22'
     excerpt: '# Happy new years eve!...'
@@ -29,9 +47,13 @@ blog_posts:
     title: 我的第一篇博客
     url: ../posts/2025-03-22-myfirstblog.md
 blog_tags:
-  生活:
+  军事:
   - *id001
-  财经:
+  生活:
   - *id002
-  量化交易:
+  经济:
   - *id003
+  财经:
+  - *id004
+  量化交易:
+  - *id005
