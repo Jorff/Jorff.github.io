@@ -1,13 +1,31 @@
 blog_categories: {}
 blog_posts:
   '2025':
-  - &id003
+  - &id004
     categories: []
-    date: '2025-05-14'
-    excerpt: 中华人民共和国政府（“中国”）和美利坚合众国政府（“美国”），...
+    date: '2025-05-22'
+    excerpt: 小米发布玄戒O1芯片，采用3nm制程。...
     reading_time: 1
     tags:
-    - 经济
+    - 科技
+    title: 小米发布玄戒O1芯片
+    url: ../posts/2025-05-22-小米发布玄戒芯片.md
+  - &id003
+    categories: []
+    date: '2025-05-19'
+    excerpt: 鸿蒙电脑正式发布...
+    reading_time: 1
+    tags:
+    - 科技
+    title: 鸿蒙电脑正式发布
+    url: ../posts/2025-05-19-鸿蒙电脑.md
+  - &id006
+    categories: []
+    date: '2025-05-14'
+    excerpt: '# 中华人民共和国政府（“中国”）和美利坚合众国政府（“美国”），...'
+    reading_time: 1
+    tags:
+    - 财经
     title: 中美日内瓦经贸会谈联合声明
     url: ../posts/2025-05-14-中美贸易谈判.md
   - &id001
@@ -19,7 +37,7 @@ blog_posts:
     - 军事
     title: 巴印空战，巴基斯坦J-10C战斗机击落了5架印度空军战斗机
     url: ../posts/2025-05-07-印巴空战.md
-  - &id005
+  - &id007
     categories: []
     date: '2025-04-26'
     excerpt: '#   搭建你的第一个量化交易环境：开启Python量化投资之旅...'
@@ -28,7 +46,7 @@ blog_posts:
     - 量化交易
     title: 搭建你的第一个量化交易环境
     url: ../posts/2025-04-26-搭建量化交易平台.md
-  - &id004
+  - &id005
     categories: []
     date: '2025-04-13'
     excerpt: '# 美国对全球多个国家加增关税! ...'
@@ -51,9 +69,11 @@ blog_tags:
   - *id001
   生活:
   - *id002
-  经济:
+  科技:
   - *id003
-  财经:
   - *id004
-  量化交易:
+  财经:
   - *id005
+  - *id006
+  量化交易:
+  - *id007
