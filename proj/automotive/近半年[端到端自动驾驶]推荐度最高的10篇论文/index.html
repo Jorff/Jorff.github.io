@@ -1,0 +1,864 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recording economic and finacial news.">
+      
+      
+        <meta name="author" content="Diperluer">
+      
+      
+        <link rel="canonical" href="https://www.diperluer.cn/proj/automotive/%E8%BF%91%E5%8D%8A%E5%B9%B4%5B%E7%AB%AF%E5%88%B0%E7%AB%AF%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%5D%E6%8E%A8%E8%8D%90%E5%BA%A6%E6%9C%80%E9%AB%98%E7%9A%8410%E7%AF%87%E8%AE%BA%E6%96%87/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/32x_code_computer.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>近半年「端到端自动驾驶」推荐度最高的10篇论文 - 滴尔</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#10" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="滴尔" class="md-header__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            滴尔
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              近半年「端到端自动驾驶」推荐度最高的10篇论文
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>主页</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/archive/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>归档</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/tag/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>标签</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>地区冲突</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>经济和货币政策</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../level31/invest/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>投资指南</font>
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    滴尔
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>主页</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>归档</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/tag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>标签</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>地区冲突</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>地区冲突</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>中东局势</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>俄乌战争</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>朝鲜半岛</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>经济和货币政策</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>经济和货币政策</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>经济政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>货币政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level31/invest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>投资指南</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="10"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">近半年「端到端自动驾驶」推荐度最高的10篇论文</span><a class="headerlink" href="#10" title="Permanent link">#</a></h1>
+<hr />
+<h3 id="10_1"><center><table><tr><td bgcolor=#FF4500>近半年端到端自动驾驶领域推荐阅读的10篇论文</td></tr></table></center><a class="headerlink" href="#10_1" title="Permanent link">#</a></h3>
+<hr />
+<h1 id="rad_training_an_end-to-end_driving_policy_via_large-scale_3dgs-based_reinforcement_learning"><font face="黑体" color=#FF4500 size="4">RAD: Training an End-to-End Driving Policy via Large-Scale 3DGS-based Reinforcement Learning</font><a class="headerlink" href="#rad_training_an_end-to-end_driving_policy_via_large-scale_3dgs-based_reinforcement_learning" title="Permanent link">#</a></h1>
+<p>机构：华中科技大学、地平线</p>
+<p>推荐理由：首个基于3DGS的RL框架，用于训练端到端AD策略；也是一种基于强化学习的端到端方案。</p>
+<p>论文内容：</p>
+<p>作者建立了一个基于3DGS的闭环强化学习（RL）训练范式。通过利用3DGS技术，可以构建真实物理世界的真实仿真结果，使AD策略能够广泛探索状态空间，并通过大规模试错学习处理分布外场景。</p>
+<p>作者引入了一个由多样且以前未见过的3DGS环境组成的闭环评估基准。与基于IL的方法相比，RAD在大多数闭环指标中表现更强，尤其是碰撞率降低了3倍。</p>
+<p>项目主页：https://arxiv.org/pdf/2502.13144</p>
+<h1 id="vlm-ad_end-to-end_driving_through_vision-language_model_supervision"><font face="黑体" color=#FF4500 size="4">VLM-AD: End-to-End Driving through Vision-Language Model Supervision</font><a class="headerlink" href="#vlm-ad_end-to-end_driving_through_vision-language_model_supervision" title="Permanent link">#</a></h1>
+<!-- ![alt text](./adpic/adpic_20250614-1-a.png) -->
+
+<p><a href="/proj/automotive/adpic/adpic_20250614-1-a.png" target="_blank">
+  <img src="/proj/automotive/adpic/adpic_20250614-1-a.png" alt="xx" width="500"/>
+</a></p>
+<p>机构：Cruise LLC 、美国东北大学</p>
+<p>推荐理由：利用VLM作为教师模型方法，且在推理过程中不需要VLM，适合实时部署。</p>
+<p>论文内容：</p>
+<p>作者提出了VLM-AD，通过基于推理的行为文本注释的高质量数据集，从VLMs中提炼出驾驶推理知识进入端到端AD管道。</p>
+<p>设计了两种即插即用的辅助任务，通过非结构化的自由文本和结构化动作标签对现有的端到端AD管道进行监督。这些任务实现了VLM知识的有效提炼，引导模型学习更丰富的特征表示以提升规划性能，而无需VLM微调或推理时使用。</p>
+<p>在nuScenes数据集上的广泛实验验证了本文提出方法的有效性，UniAD和VAD的碰撞率分别降低了38.7%和57.4%。</p>
+<p>论文地址：https://arxiv.org/pdf/2412.14446   </p>
+<h1 id="emma_end-to-end_multimodal_model_for_autonomous_driving"><font face="黑体" color=#FF4500 size="4">EMMA: End-to-End Multimodal Model for Autonomous Driving</font><a class="headerlink" href="#emma_end-to-end_multimodal_model_for_autonomous_driving" title="Permanent link">#</a></h1>
+<!-- ![alt text](image.png) -->
+
+<p><a href="/proj/automotive/adpic/adpic_20250614-2-a.png" target="_blank">
+  <img src="/proj/automotive/adpic/adpic_20250614-2-a.png" alt="xx" width="500"/>
+</a></p>
+<p>机构：Waymo LLC</p>
+<p>推荐理由：全局式端到端的代表，直接输入视频，没有骨干网，核心就是多模态大模型。</p>
+<p>论文内容：</p>
+<p>作者提出了一种自动驾驶中的端到端多模态模型；EMMA在端到端运动规划方面展现出强大的性能，在开源基准nuScenes上实现了最先进的性能并且在Waymo Open Motion Dataset（WOMD）上取得了具有竞争力的结果。</p>
+<p>该工作证明了EMMA可以作为自动驾驶领域中的通用模型，为多项驾驶相关的任务联合生成输出结果。特别是，当EMMA与运动规划、目标检测和道路图任务联合训练时，它的性能与单独训练的模型相当甚至有所超越。</p>
+<p>论文地址：https://arxiv.org/pdf/2410.23262</p>
+<h1 id="drivetransformer_unified_transformer_for_scalable_end-to-end_autonomous_driving"><font face="黑体" color=#FF4500 size="4">DriveTransformer: Unified Transformer for Scalable End-to-End Autonomous Driving</font><a class="headerlink" href="#drivetransformer_unified_transformer_for_scalable_end-to-end_autonomous_driving" title="Permanent link">#</a></h1>
+<!-- ![alt text](image.png) -->
+
+<p><a href="/proj/automotive/adpic/adpic_20250614-3-a.png" target="_blank">
+  <img src="/proj/automotive/adpic/adpic_20250614-3-a.png" alt="xx" width="500"/>
+</a></p>
+<p>机构：上海交通大学</p>
+<p>推荐理由：DriveTransformer为端到端自动驾驶提供了一种无需BEV的统一、并行和协同的方法，便于训练和扩展。</p>
+<p>论文内容：</p>
+<p>DriveTransformer具有三个关键属性：</p>
+<p>任务并行：所有任务查询在每个模块中直接相互交互，促进跨任务知识转移，同时在没有明确层次结构的情况下保持系统稳定。</p>
+<p>稀疏表示：任务查询直接与原始传感器特征交互，提供了一种高效直接的信息提取方式，符合端到端优化范式。</p>
+<p>流处理：时序融合通过先进先出队列实现，该队列存储历史任务查询，并通过时序交叉注意力进行融合，确保效率和特征重用。</p>
+<p>论文地址：https://arxiv.org/pdf/2503.07656</p>
+<p>项目主页：https://github.com/Thinklab-SJTU/DriveTransformer/</p>
+<p>论文一作直播分享完整回放：https://www.shenlanxueyuan.com/open/course/266</p>
+<h1 id="transdiffuser_end-to-end_trajectory_generation_with_decorrelated_multi-modal_representation_for_autonomous_driving"><font face="黑体" color=#FF4500 size="4">TransDiffuser: End-to-end Trajectory Generation with Decorrelated Multi-modal Representation for Autonomous Driving</font><a class="headerlink" href="#transdiffuser_end-to-end_trajectory_generation_with_decorrelated_multi-modal_representation_for_autonomous_driving" title="Permanent link">#</a></h1>
+<!-- ![alt text](image.png) -->
+
+<p><a href="/proj/automotive/adpic/adpic_20250614-4-a.png" target="_blank">
+  <img src="/proj/automotive/adpic/adpic_20250614-4-a.png" alt="xx" width="500"/>
+</a></p>
+<p>机构：理想、中科院计算所、清华大学</p>
+<p>推荐理由：NAVSIM的新SOTA！自动驾驶中基于解耦多模态表示的端到端轨迹生成</p>
+<p>论文内容：</p>
+<p>作者提出了一种编码器-解码器生成轨迹模型TransDiffuser。它首先编码场景感知和自车的运动，然后利用编码信息作为去噪解码器的条件输入来解码多模态多样化的可行轨迹。</p>
+<p>本文模型在NAVSIM基准上实现了最新的PDM得分94.85，而没有任何显式的引导，例如基于锚的轨迹或者预定义的词表。</p>
+<p>论文地址：https://www.arxiv.org/pdf/2505.09315</p>
+<h1 id="distilling_multi-modal_large_language_models_for_autonomous_driving"><font face="黑体" color=#FF4500 size="4">Distilling Multi-modal Large Language Models for Autonomous Driving</font><a class="headerlink" href="#distilling_multi-modal_large_language_models_for_autonomous_driving" title="Permanent link">#</a></h1>
+<!-- ![alt text](image.png) -->
+
+<p><a href="/proj/automotive/adpic/adpic_20250614-5-a.png" target="_blank">
+  <img src="/proj/automotive/adpic/adpic_20250614-5-a.png" alt="xx" width="500"/>
+</a></p>
+<p>机构：上海人工智能实验室、商汤科技、斯坦福大学等</p>
+<p>推荐理由：通过知识蒸馏将多模态大语言模型（MLLM）的知识转移到基于视觉的E2E规划器中，有助于提升模型在复杂和长尾场景下（如极端天气、罕见障碍物）的泛化能力。</p>
+<p>论文内容：</p>
+<p>作者通过设计多模态LLM（MLLM）与轻量化视觉规划器的联合训练策略，将LLM的世界知识（如交通规则、场景语义）蒸馏到端到端规划器中，使后者无需实时调用LLM即可继承其推理能力，推理延迟降低至传统方法的1/3。</p>
+<p>引入时空对齐损失函数，强制规划器学习LLM对连续帧的语义理解（如“左侧车道流量减少”），并提前触发变道决策，在nuScenes数据集上实现37%的轨迹误差下降和80%的碰撞率减少。</p>
+<p>解耦式架构设计采用双路径蒸馏，同时支持动态调整语义权重以适应复杂场景。</p>
+<p>论文地址：https://arxiv.org/pdf/2501.09757</p>
+<h1 id="diffusiondrive_truncated_diffusion_model_for_end-to-end_autonomous_driving"><font face="黑体" color=#FF4500 size="4">DiffusionDrive: Truncated Diffusion Model for End-to-End Autonomous Driving</font><a class="headerlink" href="#diffusiondrive_truncated_diffusion_model_for_end-to-end_autonomous_driving" title="Permanent link">#</a></h1>
+<!-- ![alt text](image.png) -->
+
+<p><a href="/proj/automotive/adpic/adpic_20250614-6-a.png" target="_blank">
+  <img src="/proj/automotive/adpic/adpic_20250614-6-a.png" alt="xx" width="500"/>
+</a></p>
+<p>机构：华中科技大学、地平线</p>
+<p>推荐理由：首次在端到端自动驾驶中引入扩散模型，有效解决了扩散模型在动态开放场景中的模式坍缩（Mode Collapse）和高计算成本问题，为构建高效、鲁棒的多模态自动驾驶规划提供了新思路。</p>
+<p>论文内容：</p>
+<p>作者提出了一种截断扩散策略 DiffusionDrive，该策略结合了先前的多模式锚点并截断扩散调度，使模型能够学习从锚定高斯分布到多模式驾驶动作分布的去噪过程。此外，设计一个高效的级联扩散解码器，增强与条件场景上下文的交互。</p>
+<p>与普通扩散策略相比，该模型 DiffusionDrive 将去噪步减少 10 倍，仅需 2 步即可提供卓越的多样性和质量。在面向规划的 NAVSIM 数据集上，借助对齐的 ResNet- 34 主干，DiffusionDrive 无需花哨考虑即可实现 88.1 PDMS，同时在 NVIDIA 4090 上以 45 FPS 的实时速度运行。</p>
+<p>论文地址：https://arxiv.org/abs/2411.15139</p>
+<p>项目主页：https://github.com/hustvl/DiffusionDrive</p>
+<h1 id="hip-ad_hierarchical_and_multi-granularity_planning_with_deformable_attention_for_autonomous_driving_in_a_single_decoder"><font face="黑体" color=#FF4500 size="4">HiP-AD: Hierarchical and Multi-Granularity Planning with Deformable Attention for Autonomous Driving in a Single Decoder</font><a class="headerlink" href="#hip-ad_hierarchical_and_multi-granularity_planning_with_deformable_attention_for_autonomous_driving_in_a_single_decoder" title="Permanent link">#</a></h1>
+<!-- ![alt text](image.png) -->
+
+<p><a href="/proj/automotive/adpic/adpic_20250614-7-a.png" target="_blank">
+  <img src="/proj/automotive/adpic/adpic_20250614-7-a.png" alt="xx" width="500"/>
+</a></p>
+<p>机构：Nullmax</p>
+<p>推荐理由：旨在提升端到端自动驾驶系统在闭环评估中成功率低的问题，特别是在规划模块的查询设计与交互方面，HiP-AD在nuScenes数据集上闭环碰撞率降低至0.7%，且支持车载芯片实时部署。</p>
+<p>论文内容：</p>
+<p>作者引入了一种多粒度的规划查询表示方法，整合了空间、时间和驾驶风格等多种采样模式下的异构路标点（heterogeneous waypoints）。这种表示为轨迹预测提供了额外的监督，增强了自车的精确闭环控制能力。</p>
+<p>利用规划轨迹的几何特性，HiP-AD 结合可变形注意力机制，实现了基于物理位置的图像特征有效检索。这种机制允许模型动态地从透视视图中提取相关的图像特征，提高了感知的准确性。</p>
+<p>同时，HiP-AD 在一个统一的解码器中同时执行感知、预测和规划任务。通过在鸟瞰图（BEV）空间中，规划查询与感知查询的迭代交互，实现了全面的任务融合。</p>
+<p>论文地址：https://arxiv.org/pdf/2503.08612</p>
+<p>项目主页：https://github.com/nullmax-vision/HiP-AD</p>
+<h1 id="generative_planning_with_3d-vision_language_pre-training_for_end-to-end_autonomous_driving"><font face="黑体" color=#FF4500 size="4">Generative Planning with 3D-vision Language Pre-training for End-to-End Autonomous Driving</font><a class="headerlink" href="#generative_planning_with_3d-vision_language_pre-training_for_end-to-end_autonomous_driving" title="Permanent link">#</a></h1>
+<!-- ![alt text](image.png) -->
+
+<p><a href="/proj/automotive/adpic/adpic_20250614-8-a.png" target="_blank">
+  <img src="/proj/automotive/adpic/adpic_20250614-8-a.png" alt="xx" width="500"/>
+</a></p>
+<p>机构：同济大学</p>
+<p>推荐理由：该框架验证了视觉语言模型（VLM）与生成式规划结合的可能性；通过语言指令引导增强无地图场景泛化能力，为高鲁棒性自动驾驶规划提供了新范式。</p>
+<p>论文内容：</p>
+<p>作者通过鸟瞰图（BEV）特征提取与矢量化变换器，将多视角图像编码为结构化语义信息，并引入语言模态的常识知识（如交通规则、导航指令），弥合视觉与语言模态的语义鸿沟。</p>
+<p>跨模态语言模型与自回归生成设计基于Transformer的生成模型，以自回归方式联合输出驾驶决策（如变道、避障）和细粒度轨迹。</p>
+<p>并采用轻量化预训练架构（模型参数量仅0.4B），推理速度达188ms/帧，支持实时部署；通过语言指令引导（如“左转优先”），在无地图场景中泛化性能超越纯视觉方法15%。</p>
+<p>论文地址：https://arxiv.org/pdf/2501.08861</p>
+<p>项目主页：https://github.com/ltp1995/GPVL</p>
+<h1 id="end-to-end_autonomous_driving_through_v2x_cooperation"><font face="黑体" color=#FF4500 size="4">End-to-End Autonomous Driving through V2X Cooperation</font><a class="headerlink" href="#end-to-end_autonomous_driving_through_v2x_cooperation" title="Permanent link">#</a></h1>
+<!-- ![alt text](image.png) -->
+
+<p><a href="/proj/automotive/adpic/adpic_20250614-9-a.png" target="_blank">
+  <img src="/proj/automotive/adpic/adpic_20250614-9-a.png" alt="xx" width="500"/>
+</a></p>
+<p>机构：香港大学、清华大学</p>
+<p>推荐理由：首个端到端车路协同自动驾驶框架。</p>
+<p>论文内容：</p>
+<p>UniV2X整体借鉴了UniAD的transformer架构，能够输出检测、跟踪、在线建图、预测、栅格占据等中间结果，实现可解释的端到端方案。在传输过程中，UniV2X采用了混合传输融合架构，即query和概率图（probability map）的混合传输。</p>
+<p>作者通过对路端和他车数据进行时间和空间同步，然后进行跨视角的数据特征融合，最终实现协同端到端。</p>
+<p>论文地址：https://arxiv.org/pdf/2404.00717</p>
+<p>项目主页：https://github.com/AIR-THU/UniV2X</p>
+<hr />
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>端到端自动驾驶领域的经典代表作</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<hr />
+<h1 id="planning-oriented_autonomous_driving"><font face="黑体" color=#FF4500 size="4">Planning-oriented Autonomous Driving</font><a class="headerlink" href="#planning-oriented_autonomous_driving" title="Permanent link">#</a></h1>
+<p>机构：上海人工智能实验室、武汉大学及商汤科技联合发表</p>
+<p>奖项：CVPR 2023最佳论文，也是近十年来中国学术机构首次获此殊荣</p>
+<p>推荐理由：作为CVPR 2023最佳论文，UniAD首次将感知（目标检测、车道线识别）、预测（轨迹预测、占据栅格）与规划任务整合到统一的端到端框架中，通过共享特征和显式任务交互提升规划性能，成为后续研究的基准。</p>
+<p>论文内容：作者将感知、预测和规划等任务整合到一个网络中。该框架通过统一的查询接口进行任务间通信与协调，以规划为核心目标，联合优化目标检测、跟踪、制图、运动预测、占用预测和路径规划等任务。</p>
+<p>论文地址：https://arxiv.org/abs/2212.10156</p>
+<p>项目主页：https://github.com/OpenDriveLab/UniAD</p>
+<h1 id="vad_vectorized_scene_representation_for_efficient_autonomous_driving"><font face="黑体" color=#FF4500 size="4">VAD: Vectorized Scene Representation for Efficient Autonomous Driving</font><a class="headerlink" href="#vad_vectorized_scene_representation_for_efficient_autonomous_driving" title="Permanent link">#</a></h1>
+<p>机构：华中科技大学、地平线</p>
+<p>奖项： ICCV 2023 </p>
+<p>推荐理由：该论文提出了一种全新的端到端矢量化自动驾驶范式，通过矢量化场景表示显著提升了规划的安全性和效率，同时大幅降低了计算开销，对于自动驾驶系统的实际部署具有重要意义。</p>
+<p>论文内容：论文提出了一种名为 VAD（Vectorized Autonomous Driving）的端到端矢量化自动驾驶范式，将驾驶场景建模为完全矢量化的表示。该方法利用矢量化的代理运动和地图元素作为明确的实例级规划约束，有效提升了规划的安全性。</p>
+<p>论文地址：https://arxiv.org/pdf/2303.12077</p>
+<p>项目主页：https://github.com/hustvl/VAD</p>
+<h1 id="end-to-end_autonomous_driving_challenges_and_frontiers"><font face="黑体" color=#FF4500 size="4">End-to-end Autonomous Driving: Challenges and Frontiers</font><a class="headerlink" href="#end-to-end_autonomous_driving_challenges_and_frontiers" title="Permanent link">#</a></h1>
+<p>机构：上海人工智能实验室、香港大学、德国图宾根大学等机构发表。</p>
+<p>奖项： IEEE PAMI 2024</p>
+<p>推荐理由：这篇论文系统梳理端到端自动驾驶的挑战，融合多技术并提出新方法，在多个数据集上验证并提升关键指标，是端到端自动驾驶领域的重要参考。</p>
+<p>论文内容：在本论文中，作者对250多篇论文进行了全面分析，涵盖了端到端自动驾驶的动机、路线图、方法、挑战和未来趋势。作者深入探讨了几个关键挑战,包括多模态、可解释性、因果混淆、鲁棒性和世界模型等。此外，还讨论了基础模型和视觉预训练的当前进展，以及如何在端到端驾驶框架内部署这些技术。</p>
+<p>论文地址：https://arxiv.org/pdf/2303.12077</p>
+<p>项目主页：https://github.com/hustvl/VAD</p>
+<div class="admonition note">
+<p class="admonition-title">本文转发链接如下：</p>
+</div>
+<p><a href="https://mp.weixin.qq.com/s/1WqOUlyZ-1mDW4_yPWzxEQ" target="_blank">近半年「端到端自动驾驶」推荐度最高的10篇论文！</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright @ 2024 Diperluer, All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
