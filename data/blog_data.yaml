@@ -1,6 +1,42 @@
 blog_categories: {}
 blog_posts:
   '2025':
+  - &id030
+    categories: []
+    date: '2025-06-16'
+    excerpt: 美光、三星等规划终止生产，DDR4价格大涨！...
+    reading_time: 1
+    tags:
+    - 科技
+    title: 美光、三星等规划终止生产，DDR4价格大涨！
+    url: ../posts/2025/2025-06-16-DDR4价格大涨.md
+  - &id031
+    categories: []
+    date: '2025-06-16'
+    excerpt: 当 CPU 架构不再反映典型工作负载时，世界是否还需要另一种架构？或许不需要，但它可能需要一座桥梁来抵达所需之地。...
+    reading_time: 2
+    tags:
+    - 科技
+    title: RISC-V 影响力越来越大
+    url: ../posts/2025/2025-06-16-RISC-V 影响力越来越大.md
+  - &id032
+    categories: []
+    date: '2025-06-16'
+    excerpt: 丹麦与德国的研究团队联合德国德累斯顿－罗森多夫研究中心（HZDR），成功开发出基于稀土元素铒的新型量子光源，为可扩展量子网络奠定基础。该项目名为EQUAL（基于铒的硅量子光源），由丹麦创新基金资助40...
+    reading_time: 1
+    tags:
+    - 科技
+    title: 量子互联网迎来重大突破！铒元素光源或成关键钥匙
+    url: ../posts/2025/2025-06-16-量子互联网迎来重大突破！铒元素光源或成关键钥匙.md
+  - &id027
+    categories: []
+    date: '2025-06-13'
+    excerpt: 6月13日消息， AMD在2025全球AI发展大会上发布了最新Instinct MI350系列GPU，实现了4倍的AI计算能力提升和35倍的推理性能飞跃，是其在AI芯片领域的又一次重大突破。...
+    reading_time: 1
+    tags:
+    - 科技
+    title: AMD发布最新Instinct MI350系列GPU，AI计算提升4倍，推理提升35倍
+    url: ../posts/2025/2025-06-13-AMD发布最新Instinct MI350系列GPU.md
   - &id002
     categories: []
     date: '2025-06-13'
@@ -9,8 +45,27 @@ blog_posts:
     tags:
     - 军事
     title: 外媒：伊朗伊斯兰革命卫队总部遭以色列袭击
-    url: ../posts/2025-06-13-伊朗伊斯兰革命卫队总部遭以色列袭击.md
-  - &id026
+    url: ../posts/2025/2025-06-13-伊朗伊斯兰革命卫队总部遭以色列袭击.md
+  - &id028
+    categories: []
+    date: '2025-06-13'
+    excerpt: 南芯科技（证券代码：688484）宣布推出车规级升降压转换器 SC8748Q/SC8749Q，以及高边开关 SC71420Q/SC71440Q，为
+      ADAS 系统提供从 ECU 到摄像头模块的一站式电...
+    reading_time: 1
+    tags:
+    - 科技
+    title: 南芯科技再推新品，为ADAS系统提供一站式电源解决方案
+    url: ../posts/2025/2025-06-13-南芯科技再推新品，为ADAS系统提供一站式电源解决方案.md
+  - &id038
+    categories: []
+    date: '2025-06-13'
+    excerpt: 国际电子商情13日讯  据央视新闻报道，当地时间6月12日，美国商务部宣布将自6月23日起对多种钢制家用电器加征关税，包括洗衣机、冰箱和洗碗机等“钢铁衍生产品”。...
+    reading_time: 1
+    tags:
+    - 财经
+    title: 美国宣布对钢制家电加征50%关税，涉及洗衣机、冰箱、烤箱等
+    url: ../posts/2025/2025-06-13-美国宣布对钢制家电加征50%关税.md
+  - &id029
     categories: []
     date: '2025-06-13'
     excerpt: 6月11日消息，美国芯片大厂高通公司近日宣布，已正式启用在越南的人工智能（AI）研发中心<!-- more -->，该研发中心的研究人员将专注于提升生成式AI
@@ -19,8 +74,8 @@ blog_posts:
     tags:
     - 科技
     title: 高通在越南启用AI研发中心
-    url: ../posts/2025-06-13-高通在越南启用AI研发中心.md
-  - &id031
+    url: ../posts/2025/2025-06-13-高通在越南启用AI研发中心.md
+  - &id037
     categories: []
     date: '2025-06-12'
     excerpt: 据路透社6月10日报道，世界银行10日将2025年全球经济增长预期下调0.4个百分点至2.3%，称关税增加和不确定性加剧对几乎所有经济体构成“重大阻力”。...
@@ -28,8 +83,8 @@ blog_posts:
     tags:
     - 财经
     title: 世行下调全球经济增长预期
-    url: ../posts/2025-06-12-世行下调全球经济增长预期.md
-  - &id025
+    url: ../posts/2025/2025-06-12-世行下调全球经济增长预期.md
+  - &id026
     categories: []
     date: '2025-06-12'
     excerpt: 最新消息：官员称，印度航空一架飞往伦敦的航班于周四在印度西部起飞仅数秒后坠毁，撞向当地一所医学院，造成260多人死亡。...
@@ -37,7 +92,7 @@ blog_posts:
     tags:
     - 科技
     title: 印度航空一架客机坠毁：逾260人遇难，机上一人幸存
-    url: ../posts/2025-06-12-印度航空一架客机坠毁.md
+    url: ../posts/2025/2025-06-12-印度航空一架客机坠毁.md
   - &id013
     categories: []
     date: '2025-06-12'
@@ -46,7 +101,7 @@ blog_posts:
     tags:
     - 汽车
     title: 尊界S800智能座舱新技术应用盘点
-    url: ../posts/2025-06-12-尊界S800智能座舱新技术应用盘点.md
+    url: ../posts/2025/2025-06-12-尊界S800智能座舱新技术应用盘点.md
   - &id014
     categories: []
     date: '2025-06-12'
@@ -55,7 +110,7 @@ blog_posts:
     tags:
     - 汽车
     title: 广汽丰田宣布接入小米生态，将由铂智7首发搭载
-    url: ../posts/2025-06-12-广汽丰田宣布接入小米生态.md
+    url: ../posts/2025/2025-06-12-广汽丰田宣布接入小米生态.md
   - &id009
     categories: []
     date: '2025-06-10'
@@ -64,8 +119,8 @@ blog_posts:
     tags:
     - 政策
     title: 六问+一图，读懂《食品工业数字化转型实施方案》
-    url: ../posts/2025-06-10-食品工业数字化转型实施方案.md
-  - &id024
+    url: ../posts/2025/2025-06-10-食品工业数字化转型实施方案.md
+  - &id025
     categories: []
     date: '2025-06-09'
     excerpt: 今天，国内团队玉盘 AI 发布《SRDA AI 大模型专用计算架构》白皮书，提出了一种全新的计算架构：系统级精简可重构数据流架构 SRDA
@@ -74,8 +129,8 @@ blog_posts:
     tags:
     - 科技
     title: 中国团队发布SRDA新计算架构
-    url: ../posts/2025-06-09-中国团队发布SRDA新计算架构.md
-  - &id023
+    url: ../posts/2025/2025-06-09-中国团队发布SRDA新计算架构.md
+  - &id024
     categories: []
     date: '2025-06-08'
     excerpt: 最近半导体领域比较知名的两家市场调研公司Techinsights和Yole分别发布了2024-2025年度的市场调研报告。从整体市场而言，2024年度，由于AI的驱动，半导体市场的整体产值大幅增加了2...
@@ -83,8 +138,8 @@ blog_posts:
     tags:
     - 科技
     title: 车载相机细分市场的发展趋势
-    url: ../posts/2025-06-08-车载相机细分市场的发展趋势.md
-  - &id022
+    url: ../posts/2025/2025-06-08-车载相机细分市场的发展趋势.md
+  - &id023
     categories: []
     date: '2025-06-07'
     excerpt: 国际知名光通信行业研究机构LightCounting最新发布的2024年全球光模块TOP10榜单显示，中国厂商已在该领域占据主导地位（占7席）。...
@@ -92,8 +147,8 @@ blog_posts:
     tags:
     - 科技
     title: 2024年全球光模块TOP10榜单
-    url: ../posts/2025-06-07-2024全球光模块TOP10榜单.md
-  - &id021
+    url: ../posts/2025/2025-06-07-2024全球光模块TOP10榜单.md
+  - &id022
     categories: []
     date: '2025-06-05'
     excerpt: 国际知名光通信行业研究机构LightCounting最新发布Broadcom推销以太网以实现AI规模扩大...
@@ -101,7 +156,7 @@ blog_posts:
     tags:
     - 科技
     title: Broadcom 推销以太网以实现 AI 规模扩大
-    url: ../posts/2025-06-05-Broadcom 推销以太网以实现 AI 规模扩大.md
+    url: ../posts/2025/2025-06-05-Broadcom 推销以太网以实现 AI 规模扩大.md
   - &id008
     categories: []
     date: '2025-06-04'
@@ -110,7 +165,7 @@ blog_posts:
     tags:
     - 政策
     title: 算力互联互通行动计划
-    url: ../posts/2025-06-04-算力互联互通行动计划.md
+    url: ../posts/2025/2025-06-04-算力互联互通行动计划.md
   - &id007
     categories: []
     date: '2025-06-03'
@@ -119,8 +174,8 @@ blog_posts:
     tags:
     - 政策
     title: 五部门关于开展2025年新能源汽车下乡活动的通知
-    url: ../posts/2025-06-03-2025新能源汽车下乡.md
-  - &id030
+    url: ../posts/2025/2025-06-03-2025新能源汽车下乡.md
+  - &id036
     categories: []
     date: '2025-06-03'
     excerpt: 据法新社6月1日报道，美国摩根大通公司首席执行官杰米·戴蒙1日对特朗普政府经济政策可能引发美国债券市场危机的风险表示担忧。...
@@ -128,8 +183,8 @@ blog_posts:
     tags:
     - 财经
     title: 摩根大通掌门人警告：美国债券市场危机迫近
-    url: ../posts/2025-06-03-美债风险.md
-  - &id020
+    url: ../posts/2025/2025-06-03-美债风险.md
+  - &id021
     categories: []
     date: '2025-05-31'
     excerpt: 5月28日，全球半导体行业炸开锅——美国商务部工业与安全局（BIS）突然向三大EDA（电子设计自动化）巨头Cadence（楷登电子）、Synopsys（新思科技）和西门子EDA发出禁令，要求其立即停止...
@@ -137,7 +192,7 @@ blog_posts:
     tags:
     - 科技
     title: 新思科技因美国制裁暂停中国业务！
-    url: ../posts/2025-05-31-新思科技EDA.md
+    url: ../posts/2025/2025-05-31-新思科技EDA.md
   - &id012
     categories: []
     date: '2025-05-29'
@@ -146,8 +201,8 @@ blog_posts:
     tags:
     - 汽车
     title: 小鹏把高阶智驾“贱卖”了，还能赚钱吗
-    url: ../posts/2025-05-29-小鹏汽车高端智驾.md
-  - &id019
+    url: ../posts/2025/2025-05-29-小鹏汽车高端智驾.md
+  - &id020
     categories: []
     date: '2025-05-28'
     excerpt: 据报道，AI安全研究机构Palisade Research发布报告称，由ChatGPT母公司OpenAI开发的最新AI模型o3在测试中被发现违反人类指令，拒绝关闭自身。该模型在实验中主动破坏了用于自动...
@@ -155,7 +210,7 @@ blog_posts:
     tags:
     - 科技
     title: OpenAI模型o3违背指令，首次自行篡改代码
-    url: ../posts/2025-05-28-openAI模型o3违背指令.md
+    url: ../posts/2025/2025-05-28-openAI模型o3违背指令.md
   - &id011
     categories: []
     date: '2025-05-28'
@@ -164,7 +219,7 @@ blog_posts:
     tags:
     - 汽车
     title: 比亚迪大量车型突然降价
-    url: ../posts/2025-05-28-比亚迪车型降价.md
+    url: ../posts/2025/2025-05-28-比亚迪车型降价.md
   - &id006
     categories: []
     date: '2025-05-27'
@@ -173,8 +228,8 @@ blog_posts:
     tags:
     - 政策
     title: 电子信息制造业数字化转型实施方案
-    url: ../posts/2025-05-27-电子信息制造业数字化转型实施方案.md
-  - &id029
+    url: ../posts/2025/2025-05-27-电子信息制造业数字化转型实施方案.md
+  - &id035
     categories: []
     date: '2025-05-24'
     excerpt: 参考消息网5月24日报道 据英国《每日电讯报》网站5月21日报道，日本20年期国债20日拍卖遇冷，引发债市震荡，推动日本长期国债收益率(政府借贷成本)攀升至数十年来的高位。...
@@ -182,7 +237,7 @@ blog_posts:
     tags:
     - 财经
     title: 石破茂：日本债务危机“比希腊还糟糕”
-    url: ../posts/2025-05-24-日本债务风险.md
+    url: ../posts/2025/2025-05-24-日本债务风险.md
   - &id010
     categories: []
     date: '2025-05-24'
@@ -191,8 +246,8 @@ blog_posts:
     tags:
     - 汽车
     title: 车电同寿！比亚迪发布两轮车电池，这2类人受益。
-    url: ../posts/2025-05-24-比亚迪2轮电车.md
-  - &id018
+    url: ../posts/2025/2025-05-24-比亚迪2轮电车.md
+  - &id019
     categories: []
     date: '2025-05-22'
     excerpt: 小米发布玄戒O1芯片，采用3nm制程。...
@@ -200,8 +255,8 @@ blog_posts:
     tags:
     - 科技
     title: 小米发布玄戒O1芯片
-    url: ../posts/2025-05-22-小米发布玄戒芯片.md
-  - &id017
+    url: ../posts/2025/2025-05-22-小米发布玄戒芯片.md
+  - &id018
     categories: []
     date: '2025-05-19'
     excerpt: 鸿蒙电脑正式发布...
@@ -209,8 +264,8 @@ blog_posts:
     tags:
     - 科技
     title: 鸿蒙电脑正式发布
-    url: ../posts/2025-05-19-鸿蒙电脑.md
-  - &id028
+    url: ../posts/2025/2025-05-19-鸿蒙电脑.md
+  - &id034
     categories: []
     date: '2025-05-14'
     excerpt: '# 中华人民共和国政府（“中国”）和美利坚合众国政府（“美国”），...'
@@ -218,7 +273,7 @@ blog_posts:
     tags:
     - 财经
     title: 中美日内瓦经贸会谈联合声明
-    url: ../posts/2025-05-14-中美贸易谈判.md
+    url: ../posts/2025/2025-05-14-中美贸易谈判.md
   - &id001
     categories: []
     date: '2025-05-07'
@@ -227,8 +282,8 @@ blog_posts:
     tags:
     - 军事
     title: 巴印空战，巴基斯坦J-10C战斗机击落了5架印度空军战斗机
-    url: ../posts/2025-05-07-印巴空战.md
-  - &id032
+    url: ../posts/2025/2025-05-07-印巴空战.md
+  - &id039
     categories: []
     date: '2025-04-26'
     excerpt: '#   搭建你的第一个量化交易环境：开启Python量化投资之旅...'
@@ -236,8 +291,8 @@ blog_posts:
     tags:
     - 量化交易
     title: 搭建你的第一个量化交易环境
-    url: ../posts/2025-04-26-搭建量化交易平台.md
-  - &id016
+    url: ../posts/2025/2025-04-26-搭建量化交易平台.md
+  - &id017
     categories: []
     date: '2025-04-16'
     excerpt: 国际知名光通信行业研究机构LightCounting最新发布AI纵向扩展交换机超越以太网和 InfiniBand。...
@@ -245,8 +300,8 @@ blog_posts:
     tags:
     - 科技
     title: AI纵向扩展交换机超越以太网和 InfiniBand
-    url: ../posts/2025-04-16-AI 纵向扩展交换机.md
-  - &id027
+    url: ../posts/2025/2025-04-16-AI 纵向扩展交换机.md
+  - &id033
     categories: []
     date: '2025-04-13'
     excerpt: '# 美国对全球多个国家加增关税! ...'
@@ -254,7 +309,7 @@ blog_posts:
     tags:
     - 财经
     title: 美国对全球多个国家加增关税
-    url: ../posts/2025-04-13-AmericanTariffs.md
+    url: ../posts/2025/2025-04-13-AmericanTariffs.md
   - &id005
     categories: []
     date: '2025-03-24'
@@ -263,7 +318,7 @@ blog_posts:
     tags:
     - 政策
     title: 如何提升中药质量促进中医药产业高质量发展？
-    url: ../posts/2025-03-24-提升中药质量.md
+    url: ../posts/2025/2025-03-24-提升中药质量.md
   - &id015
     categories: []
     date: '2025-03-22'
@@ -272,7 +327,7 @@ blog_posts:
     tags:
     - 生活
     title: 我的第一篇博客
-    url: ../posts/2025-03-22-myfirstblog.md
+    url: ../posts/2025/2025-03-22-myfirstblog.md
   - &id004
     categories: []
     date: '2025-02-17'
@@ -281,7 +336,16 @@ blog_posts:
     tags:
     - 政策
     title: 新型储能制造业高质量发展行动方案
-    url: ../posts/2025-02-17-新型储能制造业高质量发展行动方案.md
+    url: ../posts/2025/2025-02-17-新型储能制造业高质量发展行动方案.md
+  - &id016
+    categories: []
+    date: '2025-02-13'
+    excerpt: 上个月，一家名为“深度求索”(DeepSeek)的中国初创公司表示，它用比许多专家认为的最低限度要少得多的芯片，打造出世界上最强大的人工智能系统之一，随后美国金融市场出现暴跌。...
+    reading_time: 1
+    tags:
+    - 科技
+    title: DeepSeek是如何把构建AI的价格“打下来”的?
+    url: ../posts/2025/2025-02-13-DeepSeek是如何把构建AI的价格“打下来”的.md
   - &id003
     categories: []
     date: '2025-02-11'
@@ -290,7 +354,7 @@ blog_posts:
     tags:
     - 政策
     title: 《铜产业高质量发展实施方案（2025—2027年）》解读
-    url: ../posts/2025-02-11-铜产业高质量发展.md
+    url: ../posts/2025/2025-02-11-铜产业高质量发展.md
 blog_tags:
   军事:
   - *id001
@@ -323,11 +387,18 @@ blog_tags:
   - *id024
   - *id025
   - *id026
-  财经:
   - *id027
   - *id028
   - *id029
   - *id030
   - *id031
-  量化交易:
   - *id032
+  财经:
+  - *id033
+  - *id034
+  - *id035
+  - *id036
+  - *id037
+  - *id038
+  量化交易:
+  - *id039

@@ -745,15 +745,15 @@
 <p>AI 计算，尤其是深度神经网络的训练与推理，本质是大规模、并行化的数据在计算节点间依照特定计算图（Computational Graph）进行流动和转换的过程。传统"控制流"架构（Control-Flow Architecture）下，指令的顺序执行和复杂的内存层级访问常常成为性能瓶颈，导致计算单元空转，以及不必要的数据搬运。</p>
 <p>SRDA 架构则将“数据流”（Data-Flow）作为第一性原理，通过硬件设计直接映射 AI 计算图中的数据依赖关系。中间数据在经过优化的、可定制的计算路径上，于计算单元之间点到点直接传输，大幅减少了对内存的依赖和访问次数。这种设计理念从根本上减少了数据移动的距离和频率——当前计算系统中主要的性能和能耗瓶颈之一。</p>
 <!-- ![alt text](./picture/image-2025-06-09-a.png) -->
-<p><a href="/blog/picture/image-2025-06-09-a.png" target="_blank">
-  <img src="/blog/picture/image-2025-06-09-a.png" alt="xx" width="500"/>
+<p><a href="/blog/2025/picture/image-2025-06-09-a.png" target="_blank">
+  <img src="/blog/2025/picture/image-2025-06-09-a.png" alt="xx" width="500"/>
 </a></p>
 <p>SRDA 还通过 I/O 融合等技术创新，将这种数据流思想不仅应用于芯片，还应用于节点乃至整个集群，实现了系统级的数据流计算范式。</p>
 <h1 id="_2"><font face="黑体" color=#FF4500 size="3">内存架构革命：给每个计算单元配“独享车位”</font><a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
 <p>为彻底攻克内存瓶颈，SRDA 修改整个内存架构，在计算芯片上直接分布式地集成超高带宽、大容量 3D-DRAM 内存，实现内存带宽的极致提升。</p>
 <!-- ![alt text](image.png) -->
-<p><a href="/blog/picture/image-2025-06-09-b.png" target="_blank">
-  <img src="/blog/picture/image-2025-06-09-b.png" alt="xx" width="500"/>
+<p><a href="/blog/2025/picture/image-2025-06-09-b.png" target="_blank">
+  <img src="/blog/2025/picture/image-2025-06-09-b.png" alt="xx" width="500"/>
 </a></p>
 <p>其核心思路的突破在于“计算单元内存私有化”：每个计算核心拥有专属的内存区域，数据访问在本地完成，彻底消除了共享总线和内存竞争导致的拥塞 。这与 GPGPU 架构依赖共享内存、多计算核心并发访问易产生拥塞的模式形成鲜明对比 。</p>
 <p><font color= #DC143C)>颗粒层面，3D-DRAM 本身可实现远超 HBM 的超高带宽，相关技术上国内也一直领先于海外，是内存方面国产方案弯道超车的好思路，SRDA 架构能充分发挥 3D-DRAM 优势，“SRDA+3D-DRAM”或许有望替代“GPGPU+HBM”成为新的 AI 存算王炸组合。</font><br></p>
@@ -761,8 +761,8 @@
 <p>针对传统两层网络的痛点，<font color= #DC143C)>SRDA 将节点内高速互联（Scale-up）和节点间通信网络（Scale-out）融合成统一的单层网络</font><br>，显著简化网络拓扑，降低协议转换和管理开销，并能有效减少后端网络端口数量，从而降低部署成本和复杂度。</p>
 <p>玉盘将其独有的 I/O 融合互联技术称为 QLink，大有直接超越 NVLink 的意味。</p>
 <!-- ![alt text](image.png) -->
-<p><a href="/blog/picture/image-2025-06-09-c.png" target="_blank">
-  <img src="/blog/picture/image-2025-06-09-c.png" alt="xx" width="500"/>
+<p><a href="/blog/2025/picture/image-2025-06-09-c.png" target="_blank">
+  <img src="/blog/2025/picture/image-2025-06-09-c.png" alt="xx" width="500"/>
 </a></p>
 <h1 id="_4"><font face="黑体" color=#FF4500 size="3">极简可重构：适度灵活，高效开发</font><a class="headerlink" href="#_4" title="Permanent link">#</a></h1>
 <p>可重构性：
