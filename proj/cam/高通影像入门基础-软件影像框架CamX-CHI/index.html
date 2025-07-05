@@ -1,0 +1,877 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recording economic and finacial news.">
+      
+      
+        <meta name="author" content="Diperluer">
+      
+      
+        <link rel="canonical" href="https://www.diperluer.cn/proj/cam/%E9%AB%98%E9%80%9A%E5%BD%B1%E5%83%8F%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80-%E8%BD%AF%E4%BB%B6%E5%BD%B1%E5%83%8F%E6%A1%86%E6%9E%B6CamX-CHI/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/32x_code_computer.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>高通影像入门基础-软件影像框架CamX-CHI - 滴尔</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-camx-chi" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="滴尔" class="md-header__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            滴尔
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              高通影像入门基础-软件影像框架CamX-CHI
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>主页</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/archive/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>归档</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/tag/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>标签</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>地区冲突</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>经济和货币政策</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../level31/invest/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>投资指南</font>
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    滴尔
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>主页</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>归档</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/tag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>标签</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>地区冲突</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>地区冲突</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>中东局势</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>俄乌战争</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>朝鲜半岛</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>经济和货币政策</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>经济和货币政策</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>经济政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>货币政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level31/invest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>投资指南</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="-camx-chi"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">高通影像入门基础-软件影像框架CamX-CHI</span><a class="headerlink" href="#-camx-chi" title="Permanent link">#</a></h1>
+<h1 id="_1">一、综述<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<p>虽然安卓影像厂商千千万，但是影像都对底层的芯片平台有强依赖。</p>
+<p>根据市场占比三方SOC可以大概分为三个阵营，高通、MTK和其他，其他包括了部分自研SOC厂商、ISP厂商等。</p>
+<p>假设你准备进入高通影像开发，你需要掌握哪些基本的影像软件系统知识，本文已经帮你整理好了。</p>
+<h1 id="_2">二、高通影像核心概念<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<p>虽然影像的基础是相同的，但是不同平台都有自己的单元模块，熟悉这些模块的概念和术语有助于理解不同平台的工作逻辑。</p>
+<p>Camx架构中高通开发的相机HAL框架，所以软件的核心概念都是在camX架构内的概念。</p>
+<h2 id="21_usercase">2.1 usercase<a class="headerlink" href="#21_usercase" title="Permanent link">#</a></h2>
+<p>Usecase指的是一个功能需求或应用场景，定义了camera需要完成的具体任务或提供的特定功能。</p>
+<p>举例来说比如拍照、录像、人脸识别等都是不同的usecase。</p>
+<p>usecase是顶层的概念，下层可能包含多个pipeline、feature、ISP模块和node。</p>
+<h2 id="22_feature2">2.2 Feature2<a class="headerlink" href="#22_feature2" title="Permanent link">#</a></h2>
+<p>feature2代表相机功能的高级抽象。Feature2更侧重于功能的组合和调度。</p>
+<p>Feature2的作用是负责接收来自相机APP的请求，Feature2的作用是实现更复杂的相机功能比如HDR、夜景等，具体实现是将多个Node组合成一个单元。</p>
+<h2 id="23_session">2.3 session<a class="headerlink" href="#23_session" title="Permanent link">#</a></h2>
+<p>session是管理相机使用周期的核心容器，协调多个Pipeline的协同工作，包括处理不同Pipeline间的硬件资源冲突以及同步等问题。</p>
+<p>sension应用的典型场景就是同时支持预览+拍照，从而实现在预览下拍</p>
+<h2 id="24_pipeline">2.4 pipeline<a class="headerlink" href="#24_pipeline" title="Permanent link">#</a></h2>
+<p>Pipeline在影像系统中一直是核心概念，代表完整的图像处理流程链，</p>
+<p>字面意思是数据流在camera系统中流通的管道的意思，它定义了图像数据从输入到输出的处理流程。</p>
+<p>Pipeline由一系列节点node组成，每个节点负责执行特定的处理任务，如图像捕获、预处理、编码等。</p>
+<p>pipeline支持实时(RealTime)和离线(Offline)两种执行模式，离线模块较为常应用于客制化。</p>
+<p>高通预定义了几种Pipeline模板，如:Realtime Pipeline低延迟预览，Offline Pipeline后处理任务，和Video Pipeline视频录制。</p>
+<h2 id="25_node">2.5 node<a class="headerlink" href="#25_node" title="Permanent link">#</a></h2>
+<p>session是管理相机使用周期的核心容器，协调多个Pipeline的协同工作，包括处理不同Pipeline间的硬件资源冲突以及同步等问题。</p>
+<p>sension应用的典型场景就是同时支持预览+拍照，从而实现在预览下拍</p>
+<h2 id="26_session">2.6 session<a class="headerlink" href="#26_session" title="Permanent link">#</a></h2>
+<p>Node代表相机管道中的一个独立处理单元，每个Node完成特定的图像处理任务，这个任务可能是一个硬件模块JPEG编码器，也可能是一个软件处理单元awb算法。</p>
+<p>node特点特性：</p>
+<p>（1）Camx架构允许用户自定义node。</p>
+<p>（2）通过Input/Output Port进行数据连接</p>
+<p>（3）支持动态bypass机制</p>
+<p>关键方法</p>
+<p>ProcessRequest()在app下发request的时候会跑到这个方法里面，在这个方法里可以根据自己的实际业务需求添加处理逻辑。</p>
+<p>关键硬件组件Node</p>
+<!-- ![alt text](./campic/campic_20250705_1_1.png) -->
+<p><a href="/proj/cam/campic/campic_20250705_1_1.png" target="_blank">
+  <img src="/proj/cam/campic/campic_20250705_1_1.png" alt="xx" width="500"/>
+</a></p>
+<h2 id="27_imagebuffer">2.7 Imagebuffer<a class="headerlink" href="#27_imagebuffer" title="Permanent link">#</a></h2>
+<p>ImageBuffer用于存储和处理图像数据，是相机管道中数据流动的核心部分。</p>
+<p>ImageBuffer提供了一块内存区域，用于存储从传感器读取的原始图像数据或经过Node处理后的图像数据。</p>
+<p>不同的Node通过ImageBuffer交换数据</p>
+<h2 id="28_drq">2.8 DRQ<a class="headerlink" href="#28_drq" title="Permanent link">#</a></h2>
+<p>DRQ（Direct Request Queue）负责管理和调度相机管道中的请求，可以存储和排序APP发送到相机硬件的请求。</p>
+<p>DRQ可以帮助提高相机系统的整体性能和响应速度。</p>
+<h2 id="29_log">2.9 日志log<a class="headerlink" href="#29_log" title="Permanent link">#</a></h2>
+<p>通过高通日志系统Logging确认详细日志</p>
+<p>在日志中如何如何找到目标usecase和pipeline。</p>
+<p>当前usecase:  logcat |grep “usecase selected”</p>
+<p>当前pipeline:  logcat |grep “Selected sensor Mode”</p>
+<p>当前选择的sensormode:  logcat |grep “FindBestSensorMode”</p>
+<p>当前配流情况：  logcat |grep “configure_s 可以查看当前app是申请了2路流，分别是 一路的拍照流和 一路预览流。</p>
+<h1 id="camx">三、影像框架camX<a class="headerlink" href="#camx" title="Permanent link">#</a></h1>
+<p>影像系统的实现是Google、Qcom和手机厂商共同协同完成，</p>
+<p>Google定义了HAL3接口，平台厂商Qcom实现自己的Camera HAL3架构camX，而手机厂商则在camX上进行客制化修改。</p>
+<p>高通和MTK这样的平台厂商，都需要和其合作的企业才可以获取内部详细，使用芯片的手机公司的客制化也是各自的机密。</p>
+<p>我们可以通过学习通用的框架设计和标准接口可以一窥究竟。</p>
+<p>本章结合我开放资料以及自己理解，主要包含框架构成和框架内分层接口两部分构成。</p>
+<h2 id="31_camx-chi">3.1 CamX-CHI<a class="headerlink" href="#31_camx-chi" title="Permanent link">#</a></h2>
+<p>一个request来业务流程交给camx处理，但会经过chi-cdk进行request定制化重新打包，再交给camx实际去执行或和kernel driver层进行交互，camx部分代码即核心流程管控的代码，而chi-cdk正是手机厂商想要实现自己定制化功能的代码地方。</p>
+<p>Camx的架构入口为Camx包中的camxhal3entry.cpp,</p>
+<p>Camx架构的核心跳转及处理业务的代码目录在vendor/qcom/proprietary/camx/下,编译结果是camera.qcom.so</p>
+<p>Camx通过chxentensionInterface调用到chi-cdk（手机厂商定制），代码目录在vendor/qcom/proprietary/chi-cdk/,编译结果是com.qti.chi.override.so</p>
+<p>CamX全称Camera eXternal是高通相机HAL框架，CamX从骁龙855平台开始引入，用于取代传统的QCamera HAL框架。</p>
+<p>Camx中Framework层包括CameraService、CameraProvider等组件，负责与Android Camera API交互</p>
+<p>CamX核心层，隔离CamX核心框架与厂商定制实现，包括：</p>
+<p>Override Module：厂商功能扩展入口</p>
+<p>Vendor Tag：厂商自定义元数据</p>
+<p>Tuning Interface：图像质量调优接口</p>
+<p>CHI(Common Hardware Interface): 硬件抽象接口</p>
+<p>Node: 处理图像数据的处理单元(如ISP、JPEG编码等)</p>
+<p>Pipeline: 由多个Node组成的处理流水线</p>
+<p>Session: 管理相机会话的生命周期</p>
+<p>驱动程序层包括传感器驱动、ISP驱动等，负责与硬件交互的底层驱动</p>
+<p>CHI(Common Hardware Interface)提供了硬件无关的接口定义以及供应商扩展接口等</p>
+<h2 id="32_aidlhidl">3.2 AIDL/HIDL<a class="headerlink" href="#32_aidlhidl" title="Permanent link">#</a></h2>
+<p>在嵌入式Android多媒体框架中，IDL以一种标准化的方式定义硬件服务接口，这些接口可以在不同的系统组件之间被共享和重用。</p>
+<p>HIDL（Hal Interface Definition Language）在 Android 8.0引入，基于Binder的，自定义了序列化器来将HAL方法调用和参数转换为Parcel对象，从而便于binder传输，反序列则相反。</p>
+<p>HIDL代理类在客户端进程中运行，它封装了与Binder通信的细节，使得客户端可以像调用本地方法一样调用远程HAL服务的方法。存根类则在服务端进程中运行，它实现了代理类调用的接口，并将调用转发给实际的HAL实现。</p>
+<p>AIDL(Android Interface Definition Languag)是使用 Binder 内核驱动程序进行调用，实现了自动序列化，解决跨进程通信问题。</p>
+<p>高通CamX框架在Android系统中的接口层次如下：</p>
+<!-- ![alt text](image-1.png) -->
+<p><a href="/proj/cam/campic/campic_20250705_1_2.png" target="_blank">
+  <img src="/proj/cam/campic/campic_20250705_1_2.png" alt="xx" width="500"/>
+</a></p>
+<h2 id="33_hidl_aidl">3.3 HIDL → AIDL迁移<a class="headerlink" href="#33_hidl_aidl" title="Permanent link">#</a></h2>
+<p>Android 12开始逐步从HIDL迁移到AIDL</p>
+<!-- ![alt text](image-2.png) -->
+<p><a href="/proj/cam/campic/campic_20250705_1_3.png" target="_blank">
+  <img src="/proj/cam/campic/campic_20250705_1_3.png" alt="xx" width="500"/>
+</a></p>
+<p>AIDL 取代 HIDL 的核心原因</p>
+<p>（1）统一接口生态，把AIDL的使用范围扩展到全栈通用（App→Framework→HAL）</p>
+<p>（2）PC 效率对比带来性能提升，HIDL需要两次序列化/反序列化，而AIDL直接通过 Binder 通信，降低了延迟。</p>
+<p>（3）对我们开发者降低了难度。</p>
+<p>使用AIDL精简之后的层次：</p>
+<p>App → AIDL Interface → Vendor Impl（厂商实现）</p>
+<h1 id="_3">四、关键软件接口举例<a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
+<p>关键架构层级接口分为三类：首先是Google定义，然后是高通扩展，最后是厂商的实现。</p>
+<h2 id="41_googleaidl">4.1 google核心AIDL接口<a class="headerlink" href="#41_googleaidl" title="Permanent link">#</a></h2>
+<p>a. ICameraService.aidl</p>
+<p>位于frameworks/av/camera/aidl/android/hardware</p>
+<p>关键方法：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">ICameraDeviceUser</span><span class="w"> </span><span class="nf">connectDevice</span><span class="p">(</span><span class="n">ICameraDeviceCallbacks</span><span class="w"> </span><span class="n">callbacks</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">cameraId</span><span class="p">);</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">ICameraInjectionSession</span><span class="w"> </span><span class="nf">injectCamera</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">packageName</span><span class="p">,</span><span class="w"> </span><span class="n">ICameraInjectionCallback</span><span class="w"> </span><span class="n">callback</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>b. ICameraDeviceUser.aidl</p>
+<p>处理具体相机操作的方法：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">submitRequest</span><span class="p">(</span><span class="n">CaptureRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">boolean</span><span class="w"> </span><span class="n">streaming</span><span class="p">);</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kt">long</span><span class="w"> </span><span class="nf">capture</span><span class="p">(</span><span class="n">ICameraDeviceCallbacks</span><span class="w"> </span><span class="n">callback</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="42_aidl">4.2 高通扩展AIDL<a class="headerlink" href="#42_aidl" title="Permanent link">#</a></h2>
+<p>高通扩展的aidl目录：</p>
+<p>vendor/qcom/proprietary/camera/extension/aidl</p>
+<h2 id="43_hidl">4.3 标准HIDL接口<a class="headerlink" href="#43_hidl" title="Permanent link">#</a></h2>
+<p>a. ICameraProvider@2.4</p>
+<p>关键方法：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">getCameraIdList</span><span class="p">(</span><span class="n">getCameraIdList_cb</span><span class="w"> </span><span class="n">_hidl_cb</span><span class="p">);</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">isSetTorchModeSupported</span><span class="p">(</span><span class="n">isSetTorchModeSupported_cb</span><span class="w"> </span><span class="n">_hidl_cb</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>b. ICameraDevice@3.2</p>
+<p>处理具体相机核心操作接口：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">open</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sp</span><span class="o">&lt;</span><span class="n">ICameraDeviceCallback</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">callback</span><span class="p">,</span><span class="w"> </span><span class="n">open_cb</span><span class="w"> </span><span class="n">_hidl_cb</span><span class="p">);</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">configureStreams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">StreamConfiguration</span><span class="o">&amp;</span><span class="w"> </span><span class="n">requestedConfiguration</span><span class="p">,</span><span class="w"> </span><span class="n">configureStreams_cb</span><span class="w"> </span><span class="n">_hidl_cb</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="44_camxhidl">4.4 高通CamX特有HIDL<a class="headerlink" href="#44_camxhidl" title="Permanent link">#</a></h2>
+<p>a. IQCameraProvider@4.x</p>
+<p>关键方法：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">getExtensionPack</span><span class="p">(</span><span class="n">getExtensionPack_cb</span><span class="w"> </span><span class="n">_hidl_cb</span><span class="p">);</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">setTuningInterface</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sp</span><span class="o">&lt;</span><span class="n">ITuningInterface</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">interface</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>b. IQTuningInterface@1.0</p>
+<p>用于相机tuning的方法：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">submitTuningData</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">TuningData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="45_camx-chi">4.5 CamX-CHI厂商接口<a class="headerlink" href="#45_camx-chi" title="Permanent link">#</a></h2>
+<p>头文件：camx/src/core/hal/chi.h</p>
+<p>核心结构体：
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">CHIHALInterfaces</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="w">  </span><span class="n">CHIPFN_GET_CAMERA_INFO</span><span class="w">       </span><span class="n">pGetCameraInfo</span><span class="p">;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">  </span><span class="n">CHIPFN_GET_CAPABILITIES</span><span class="w">      </span><span class="n">pGetCapabilities</span><span class="p">;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">  </span><span class="n">CHIPFN_CREATE</span><span class="w">                </span><span class="n">pCreate</span><span class="p">;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="p">}</span><span class="w"> </span><span class="n">CHIHALInterfaces</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div></p>
+<p>Node间通信Port接口：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">ISessionCallback</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">public</span><span class="o">:</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">  </span><span class="k">virtual</span><span class="w"> </span><span class="n">CamxResult</span><span class="w"> </span><span class="n">CreateInputOutputPorts</span><span class="p">(</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">      </span><span class="n">UINT32</span><span class="w"> </span><span class="n">numInputPorts</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">      </span><span class="n">UINT32</span><span class="w"> </span><span class="n">numOutputPorts</span><span class="p">);</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="p">};</span>
+</code></pre></div></td></tr></table></div>
+<div class="admonition note">
+<p class="admonition-title">本文转发链接如下：</p>
+</div>
+<p><a href="https://mp.weixin.qq.com/s/c2ZfGI4qYw8-72gTs4MvUg" target="_blank">高通影像入门基础-软件影像框架CamX-CHI</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright @ 2024 Diperluer, All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

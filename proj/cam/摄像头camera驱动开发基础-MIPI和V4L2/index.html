@@ -1,0 +1,889 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recording economic and finacial news.">
+      
+      
+        <meta name="author" content="Diperluer">
+      
+      
+        <link rel="canonical" href="https://www.diperluer.cn/proj/cam/%E6%91%84%E5%83%8F%E5%A4%B4camera%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80-MIPI%E5%92%8CV4L2/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/32x_code_computer.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>摄像头camera驱动开发基础-MIPI和V4L2 - 滴尔</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#camera-mipiv4l2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="滴尔" class="md-header__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            滴尔
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              摄像头camera驱动开发基础-MIPI和V4L2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>主页</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/archive/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>归档</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/tag/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>标签</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>地区冲突</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>经济和货币政策</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../level31/invest/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>投资指南</font>
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    滴尔
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>主页</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>归档</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/tag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>标签</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>地区冲突</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>地区冲突</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>中东局势</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>俄乌战争</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>朝鲜半岛</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>经济和货币政策</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>经济和货币政策</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>经济政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>货币政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level31/invest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>投资指南</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="camera-mipiv4l2"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">摄像头camera驱动开发基础-MIPI和V4L2</span><a class="headerlink" href="#camera-mipiv4l2" title="Permanent link">#</a></h1>
+<p>如果要从事摄像头类驱动软件，需要准备哪些基础信息，一篇文章总结完。</p>
+<p>从独立件来看，包括传感器模组和核心板两部分；所以驱动软件的核心就是保证两者之间的连接，硬件接口常见两种MIPI和USB，MIPI接口调试中重点关注PHY层；软件驱动框架常见的V4L2和UVC。</p>
+<p>内容太多，本章总结关于MIPI camera， USB camera再补一篇。</p>
+<p>摄像头传感器（sensor）模组作为影像输入，提供数据来源；</p>
+<p>核心板接收并处理模组的输入进行处理以及显示；</p>
+<p>硬件接口提供物理连接方式，摄像头驱动软件就是驱动这两者的软连接，一般借助于一些成熟的软件驱动框架实现。</p>
+<h1 id="00">00 常见基础概念<a class="headerlink" href="#00" title="Permanent link">#</a></h1>
+<p>视频输入技术，是指通过光电技术将拍摄到的真实图像，通过摄像机转存到存储介质上的技术。</p>
+<p>摄像头模组，作为视频输入设备，物理上捕捉图像的设备，广泛应用于实时监控、车载、录像拍照等多个领域。</p>
+<p>本地摄像头，指本文使用的本地集成的camera。</p>
+<p>网络摄像头，可以直连网络；通过使用视频编解码器连接到便携网络设备上，然后通过网络将图像回传到人机交互终端上。</p>
+<p>MIPI，（移动产业处理器接口）定义了一系列移动设备内部的接口标准，MIPI接口同时定义4对差分信号用于传输图像数据，又定义了一对差分时钟信号，最初是为了减少LCD与主控芯片之间连线的数量（代替并行接口）而制定，最终支持了高清显示器以及摄像头。</p>
+<p>以RK3399芯片平台为例，内部集成了三个MIPI接口：DPHY0（TX0）、DPHY1（TX1RX1）、DPHY2（RX0）,其中TX只能发送数据，RX只能接收数据到ISP0。有两个 PHY，每个PHY同时支持1lane、2lane或者4lane，最大可支持13M pixel raw sensor。</p>
+<h1 id="01_sensor">01 传感器sensor接口<a class="headerlink" href="#01_sensor" title="Permanent link">#</a></h1>
+<p>摄像头传感器驱动接口有两方面构成：</p>
+<p>（1）通过IIC接口实现控制命令和配置参数的发送与接收，实现初始化传感器、配置其参数（如分辨率、帧率、曝光等）；</p>
+<p>（2）通过MIPI接口实现图像数据的正确传输和解析。</p>
+<p>IIC总线：两根信号线（SCL时钟线和SDA数据线），摄像头传感器通常作为从设备，由主设备（如处理器）通过IIC接口完成针对从设备的配置和控制。</p>
+<p>IIC功能：通过IIC接口，主设备可以向摄像头传感器发送控制命令和配置参数，如设置图像分辨率、曝光时间、白平衡等。</p>
+<p>MIPI接口：用差分信号传输技术，可以有效减少信号干扰和功耗，是一种高性能、低功耗的串行通信接口。</p>
+<p>MIPI功能：支持多种数据编码格式（如YUV、RGB、RAW等）和不同的数据位宽（如8位、10位、12位等）的摄像头传感器的图像数据传输。另外一些高级功能比如相位对焦、HDR也需要通过MIPI接口实现。</p>
+<p>其他供电以及时钟类接口，按照硬件连接即可。</p>
+<h1 id="02_mipi">02 MIPI接口参数<a class="headerlink" href="#02_mipi" title="Permanent link">#</a></h1>
+<p>以下是一些常用MIPI参数的示例规格（仅供参考，不同的硬件平台和标准会有所不同）：</p>
+<table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>示例规格</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据速率</td>
+<td>1.5 Gbps / 3 Gbps / 6 Gbps</td>
+<td>支持的数据传输速率范围，具体取决于硬件平台和标准</td>
+</tr>
+<tr>
+<td>通道数</td>
+<td>2 Lane / 4 Lane</td>
+<td>支持的MIPI通道数量，增加通道数可提高数据传输速率</td>
+</tr>
+<tr>
+<td>时钟频率</td>
+<td>100 MHz / 200 MHz</td>
+<td>驱动MIPI接口的时钟信号频率，影响数据传输速率和稳定性</td>
+</tr>
+<tr>
+<td>上升时间/下降时间</td>
+<td>&lt; 100 ps</td>
+<td>MIPI信号的上升和下降时间，影响信号完整性</td>
+</tr>
+<tr>
+<td>眼图张开度</td>
+<td>&gt; 80% @ 1 Gbps</td>
+<td>评估信号完整性的关键指标，影响数据传输的可靠性和稳定性</td>
+</tr>
+</tbody>
+</table>
+<p>参数说明：</p>
+<h2 id="1data_ratemipigbps">（1）数据速率（Data Rate）指通过MIPI接口传输数据的速度，以Gbps（吉比特每秒）为单位。<a class="headerlink" href="#1data_ratemipigbps" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>不同的MIPI标准和硬件平台支持的数据速率范围不同。提高MIPI速率可以加快数据传输速度，使得相同时间内可以传输更多的图像数据，从而增加码流。而低功耗或低成本的解决方案则可能支持较低的数据速率。
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>在调试过程中，需要根据系统要求和摄像头性能选择合适的数据速率，并通过驱动配置进行设置。利用调试工具（如示波器、逻辑分析仪）监测MIPI信号的波形和时序，确保调整后的速率在硬件支持的范围内，并且信号质量良好。
+</code></pre></div>
+<h2 id="2lane_countmipi">（2）通道数（Lane Count）指用于数据传输的MIPI通道数量。每个通道都可以独立传输数据，因此增加通道数可以提高总的数据传输速率。<a class="headerlink" href="#2lane_countmipi" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>常见的通道数有1、2、4等。不同的摄像头和处理器支持的最大通道数可能不同。在调试过程中，需要根据系统的数据带宽需求和硬件支持情况选择合适的通道数
+</code></pre></div>
+<h2 id="3clock_frequencymipi">（3）时钟频率（Clock Frequency）指用于驱动MIPI接口的时钟信号的频率。时钟频率直接影响数据传输的速率和稳定性。<a class="headerlink" href="#3clock_frequencymipi" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>时钟频率的规格取决于所使用的MIPI标准和硬件设计。工程师需要根据系统要求和硬件规格来设置合适的时钟频率。
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>在调试过程中，需要确保时钟信号的稳定性和准确性，以避免数据传输错误或延迟。
+</code></pre></div>
+<h2 id="4mipi">（4）信号完整性参数，包括信号的上升时间、下降时间、眼图张开度等，这些参数直接影响MIPI信号的传输质量和稳定性。<a class="headerlink" href="#4mipi" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>信号完整性参数的规格通常根据所使用的传输线质量、信号驱动器和接收器的性能以及系统的电气特性来确定。
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>在调试过程中，需要使用示波器、逻辑分析仪等工具来监测和分析MIPI信号的波形和时序，以确保信号完整性满足要求。
+</code></pre></div>
+<h2 id="5mipi_sensorsensor_setting">（5）总结。当MIPI参数修改后，需要根据响应修改，重新向 sensor厂商申请一份相应规格的sensor setting，以确保摄像头能够正常工作并输出符合要求的图像数据。<a class="headerlink" href="#5mipi_sensorsensor_setting" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>时钟频率的规格取决于所使用的MIPI标准和硬件设计。工程师需要根据系统要求和硬件规格来设置合适的时钟频率。
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>比如调整MIPI速率实际上是在调整数据传输的时钟频率。因此，需要调整sensor内部的时钟分频器，从而确保sensor的时钟配置与新的速率相匹配。
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>修改通道数后，因为在多通道传输中，需要确保各个通道之间的数据同步。因此需要使用共同的时钟信号、同步信号，这可能需要调整sensor的同步机制。
+</code></pre></div>
+<h1 id="03_mipi_-csi">03 MIPI -CSI 硬件接口<a class="headerlink" href="#03_mipi_-csi" title="Permanent link">#</a></h1>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>摄像头模组是以V13850模组为例，硬件使用的是MIPI CSI接口，软件在Android平台把OV13850模组的驱动和配置都在硬件抽象层完成。
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>摄像头控制的使用的是MIPI-CSI模式，除了MIPI接口还包括三电源供电、i2c、mclk和GPIO等引脚。
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>使用的三个电源包括VDDIO（IO电源与MIPI信号线的电压保持一致）、AVDD（模拟电源2.8V或3.3V）和DVDD（数字电源1.5V或者更高）。
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>GPIO主要包括有电源使能管脚、PowerDown引脚、复位引脚等。原理图如下：
+</code></pre></div>
+<!-- ![alt text](./campic/campic_20250705_2_1.png) -->
+<p><a href="/proj/cam/campic/campic_20250705_2_1.png" target="_blank">
+  <img src="/proj/cam/campic/campic_20250705_2_1.png" alt="xx" width="500"/>
+</a></p>
+<h1 id="04_mipi_phy">04 MIPI PHY物理层<a class="headerlink" href="#04_mipi_phy" title="Permanent link">#</a></h1>
+<h2 id="01_mipi">01 MIPI协议架构<a class="headerlink" href="#01_mipi" title="Permanent link">#</a></h2>
+<p>MIPI接口的整体架构包括物理层、协议层和应用层。</p>
+<p>应用层向协议层提供数据，并指定数据的传输需求和规则；</p>
+<p>协议层则根据这些需求和规则，将数据封装成适合传输的格式，为物理层提供数据传输的框架和规则；</p>
+<p>物理层PHY（Physical Layer）则负责将协议层封装好的数据通过物理介质发送出去，PHY层直接与物理介质相连，负责物理信号与数字信号的转换，是确保数据能够正确、高效地通过物理介质的关键。</p>
+<h2 id="02mipi_phy">02MIPI PHY<a class="headerlink" href="#02mipi_phy" title="Permanent link">#</a></h2>
+<p>MIPI接口调试中重点关注PHY的原因：</p>
+<p>（1）PHY层是数据传输的基础，直接涉及物理连接，从而直接影响传输质量。</p>
+<p>（2）PHY层具备复杂性，MIPI标准定义了多种PHY层规范适用各种场景，PHY层涉及的技术细节非常丰富，包括差分信号传输、时钟恢复、数据编解码等。</p>
+<p>（3）PHY层具有调试的便捷性和快速定位问题的优势，PHY层可以使用示波器、逻辑分析仪等工具直接观察和测量信号的波形、时序和电平等信息。</p>
+<h2 id="03mipi_phy">03MIPI PHY的类型<a class="headerlink" href="#03mipi_phy" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>通道</th>
+<th>工作模式和特点</th>
+<th>主要应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C-PHY</td>
+<td>每条lane包含彼此差分的三条数据线</td>
+<td>有极高的传输速率</td>
+<td>图像采集设备</td>
+</tr>
+<tr>
+<td>D-PHY</td>
+<td>每条lane通常是一对差分线对</td>
+<td>支持高速（High-Speed）和低功耗（Low-Power）两种</td>
+<td>显示设备</td>
+</tr>
+<tr>
+<td>Combo-PHY</td>
+<td>结合了C-PHY和D-PHY的特点</td>
+<td>Combo-PHY可以在C-PHY和D-PHY模式之间进行切换，从而实现灵活的数据传输。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="05_v4l2">05 软件驱动架构V4L2<a class="headerlink" href="#05_v4l2" title="Permanent link">#</a></h1>
+<h2 id="01">01 驱动软件代码<a class="headerlink" href="#01" title="Permanent link">#</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>V4L2（Video4Linux2)是Linux内核中用于视频设备的通用API，它支持视频捕捉、流媒体播放、视频输出等。
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>V4L2可支持三类设备：视频输入输出设备、VBI设备和radio设备，其中V4L2最广泛使用的视频输入设备就是摄像头输入设备。
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>V4L2核心源码目录是/kernel/drivers/media/v4l2-core/。
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>V4L2的驱动核心v4l2_dev.c，包含主要结构体 video_device 的注册，在/dev目录下创建设备节点video等。
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>V4L2中的关键结构体v4l2_device、v4l2_subdev、video_device等。
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>V4L2中ioctl常用命令VIDIOC_QUERYCAP、VIDIOC_S_FMT等。
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>驱动代码核心流程：
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>（1）初始化V4L2设备，注册设备节点（如/dev/video0）。
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>（2）注册camera子设备，如ISP sensor设备。
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>（3）通过VIDIOC_QUERYCAP查询设备支持的功能；
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>（4）使用VIDIOC_S_FMT设置图像的分辨率、像素格式等；
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a>（5）通过VIDIOC_REQBUFS请求缓冲区，并使用mmap将缓冲区映射到用户空间；
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>（6）使用VIDIOC_STREAMON和VIDIOC_STREAMOFF控制视频流的开始和停止。
+</code></pre></div>
+<h2 id="02_v4l2">02 V4L2架构的框架<a class="headerlink" href="#02_v4l2" title="Permanent link">#</a></h2>
+<!-- ![alt text](image-1.png) -->
+<p><a href="/proj/cam/campic/campic_20250705_2_2.png" target="_blank">
+  <img src="/proj/cam/campic/campic_20250705_2_2.png" alt="xx" width="500"/>
+</a></p>
+<p>V4L2核心驱动框架：V4L2框架的核心部分主要负责构建内核中标准的视频设备驱动框架，并提供统一的接口函数。它包括了视频设备的注册、注销、查询等功能，以及与子设备的交互接口。</p>
+<p>V4L2下层接口驱动框架：负责将具体的视频设备（如摄像头sensor）挂接到V4L2框架上。它包括了与硬件相关的接口实现，如I2C、SPI等通信协议的实现，以及与sensor等子设备的交互逻辑。</p>
+<p>子设备具体驱动：子设备驱动（如sensor驱动、ISP驱动等）通过V4L2提供的接口与主设备交互。它们实现了具体的硬件控制逻辑，如sensor的初始化、图像数据的采集等。</p>
+<p>字符设备接口：在Linux中，所有的外设都被当做文件来处理。V4L2框架通过字符设备接口（如/dev/videoX）向用户空间提供视频设备的访问能力。用户空间的应用程序可以通过标准的文件操作接口（如open、read、write、ioctl等）来访问视频设备。</p>
+<p>视频缓冲区管理：V4L2框架提供了视频缓冲区的管理机制，用于在内核空间和用户空间之间高效地传输视频数据。这通常通过videobuf2等模块来实现。</p>
+<div class="admonition note">
+<p class="admonition-title">本文转发链接如下：</p>
+</div>
+<p><a href="https://mp.weixin.qq.com/s/puaNQrfn1KFNe0uSN9SmKQ" target="_blank">摄像头camera驱动开发基础-MIPI和V4L2</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright @ 2024 Diperluer, All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

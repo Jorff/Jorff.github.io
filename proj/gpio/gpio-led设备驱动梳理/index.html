@@ -777,6 +777,10 @@ structled_classdev   cdev;  //作为一个类设备嵌入的实例，具体的�
   <img src="/proj/gpio/gpiopic/gpiopic_20250629_1_34.png" alt="xx" width="600"/>
 </a></p>
 <p>当然还存在其他的属性,比如触发方式,比如delay_on等等,所以无论是传统的基于/dev文件节点的操作方式 还是基于/sys/class的操作方式,这些任务都是通过内嵌的数据结构由内核来完成的,比如字符设备通过内嵌cdev来实现设备号路由到具体驱动方法, /sys/class 则是通过内嵌某一设备类比如class_led 来实现/sys/class/led 下属性文件到具体的驱动方法,这些都是由内核实现,如果感兴趣,可以去看一下某一类的从用户空间操作到具体的驱动实现链路;其实只要理解相应的分离思想就可以,因为不同的设备类的实现是有差异的,过多的理解这种细节反而不利于对于整个设备驱动模型思维的把控;最后就是驱动一般移植就ok;如果说对平台设备对象的抽象 比较感兴趣,也可以深入了解一下 从设备树 如何抽象成平台设备的,或者其他总线设备,这里其实都应用了c++中的class的抽象方式;</p>
+<div class="admonition note">
+<p class="admonition-title">本文转发链接如下：</p>
+</div>
+<p><a href="https://mp.weixin.qq.com/s/4IPIh2f0KqAPLMMde1twhQ" target="_blank">gpio-led设备驱动梳理</a></p>
 
 
 
