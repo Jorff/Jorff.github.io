@@ -1,0 +1,917 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recording economic and finacial news.">
+      
+      
+        <meta name="author" content="Diperluer">
+      
+      
+        <link rel="canonical" href="https://www.diperluer.cn/proj/display/%E5%A6%82%E4%BD%95%E8%B0%83%E8%AF%95SurfaceFlinger/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/32x_code_computer.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>如何调试 SurfaceFlinger - 滴尔</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#surfaceflinger" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="滴尔" class="md-header__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            滴尔
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              如何调试 SurfaceFlinger
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>主页</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/archive/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>归档</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/tag/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>标签</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>地区冲突</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>经济和货币政策</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../level31/invest/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>投资指南</font>
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    滴尔
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>主页</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>归档</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/tag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>标签</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>地区冲突</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>地区冲突</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>中东局势</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>俄乌战争</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>朝鲜半岛</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>经济和货币政策</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>经济和货币政策</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>经济政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>货币政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level31/invest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>投资指南</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="surfaceflinger"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">如何调试 SurfaceFlinger</span><a class="headerlink" href="#surfaceflinger" title="Permanent link">#</a></h1>
+<p>工欲善其事，必先利其！SurfaceFlinger 常用的调试手段主要有：<br>
+日志调试<br>
+单步调试<br>
+Perfetto<br>
+dumpsys SurfaceFlinger<br>
+本文主要讲解前两点，第三点在源码分析过程中穿插讲解，第四点在完成 SurfaceFlinger 核心流程与功能梳理后讲解。<br></p>
+<h1 id="1">1. 准备工作<a class="headerlink" href="#1" title="Permanent link">#</a></h1>
+<p>首先我们需要一份源码并编译出一个 eng 版本，这里我使用的是 aosp android-15.0.0_r20 源码，硬件上使用 pixel6 手机，其它 pixel 手机或者模拟器都类似。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">source</span><span class="w"> </span>build/envsetup.sh
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>lunch<span class="w"> </span>aosp_oriole-bp1a-eng
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>m
+</code></pre></div>
+<p>接着把镜像刷入手机:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>adb<span class="w"> </span>reboot<span class="w"> </span>bootloader
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>fastboot<span class="w"> </span>flashall<span class="w"> </span>-w
+</code></pre></div>
+<p>接着我们需要再 VSCode 中安装好 CodeLLDB 插件</p>
+<!-- ![alt text](image.png) -->
+<p><a href="/proj/display/dispic/image_20250706_2_1.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250706_2_1.png" alt="xx" width="600"/>
+</a></p>
+<h1 id="2">2. 日志调试<a class="headerlink" href="#2" title="Permanent link">#</a></h1>
+<p>这里我们修改 SurfaceFlinger 的主函数 main_surfaceflinger.cpp 来演示打印 Log 和打印调用堆栈：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">// frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1">// 添加头文件和宏</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;log/log.h&quot;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">//直接 define LOG_TAG 会报已定义错误，因为 SurFaceFlinger 模块的 Android.bp 已经定义了 LOG_Tag</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1">//下面这样定义就不会出错了</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="cp">#ifdef LOG_TAG</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="cp">#undef LOG_TAG</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="cp">#define LOG_TAG &quot;ahao-sf&quot;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="cp">#endif</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="c1">//打印堆栈的头文件</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;utils/CallStack.h&gt;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">SurfaceFlinger::commit</span><span class="p">(</span><span class="n">PhysicalDisplayId</span><span class="w"> </span><span class="n">pacesetterId</span><span class="p">,</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">                            </span><span class="k">const</span><span class="w"> </span><span class="n">scheduler</span><span class="o">::</span><span class="n">FrameTargets</span><span class="o">&amp;</span><span class="w"> </span><span class="n">frameTargets</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">scheduler</span><span class="o">::</span><span class="n">FrameTarget</span><span class="o">&amp;</span><span class="w"> </span><span class="n">pacesetterFrameTarget</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">frameTargets</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">pacesetterId</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">();</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">    </span><span class="c1">// 添加日志</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">    </span><span class="n">ALOGD</span><span class="p">(</span><span class="s">&quot;SurfaceFlinger::commit&quot;</span><span class="p">);</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">    </span><span class="c1">// 打印调用栈</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">    </span><span class="n">android</span><span class="o">::</span><span class="n">CallStack</span><span class="w"> </span><span class="n">callStack</span><span class="p">(</span><span class="n">LOG_TAG</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">VsyncId</span><span class="w"> </span><span class="n">vsyncId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pacesetterFrameTarget</span><span class="p">.</span><span class="n">vsyncId</span><span class="p">();</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">    </span><span class="c1">// ......</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>主要三个部分的修改：</p>
+<blockquote>
+<p>添加头文件和宏<br>
+  添加日志<br>
+  添加调用栈<br></p>
+</blockquote>
+<p>修改 /frameworks/native/services/surfaceflinger/Android.bp,添加 CallStack 的库依赖：</p>
+<!-- ![alt text](image-1.png) -->
+<p><a href="/proj/display/dispic/image_20250706_2_2.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250706_2_2.png" alt="xx" width="600"/>
+</a></p>
+<p>接着单编 SurfaceFlinger：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 源码目录下</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">source</span><span class="w"> </span>build/envsetup.sh
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>lunch<span class="w"> </span>aosp_oriole-bp1a-eng
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>make<span class="w"> </span>surfaceflinger
+</code></pre></div>
+<p>接着 push 到手机上：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>adb<span class="w"> </span>push<span class="w"> </span>out/target/product/oriole/system/bin/surfaceflinger<span class="w"> </span>/system/bin<span class="w"> </span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>adb<span class="w"> </span>reboot
+</code></pre></div>
+<p>最后验证查看日志：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>adb<span class="w"> </span>logcat<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;ahao-sf&quot;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.375<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w"> </span>SurfaceFlinger::commit
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.385<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w">   </span><span class="c1">#00 pc 00000000002771a0  /system/bin/surfaceflinger (android::SurfaceFlinger::commit(android::PhysicalDisplayId, android::ftl::SmallMap&lt;android::PhysicalDisplayId, android::scheduler::FrameTarget const*, 3ul, std::__1::equal_to&lt;android::PhysicalDisplayId&gt;&gt; const&amp;)+176) (BuildId: 5e135e484b98796bac0be1710386a2f2)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.385<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w">   </span><span class="c1">#01 pc 000000000024dc10  /system/bin/surfaceflinger (android::scheduler::Scheduler::onFrameSignal(android::ICompositor&amp;, android::VsyncId, android::TimePoint)+544) (BuildId: 5e135e484b98796bac0be1710386a2f2)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.385<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w">   </span><span class="c1">#02 pc 0000000000011b50  /system/lib64/libutils.so (android::Looper::pollInner(int)+368) (BuildId: 100fa690ab318d6e1873d66d1c3f4c8e)</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.385<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w">   </span><span class="c1">#03 pc 000000000001197c  /system/lib64/libutils.so (android::Looper::pollOnce(int, int*, int*, void**)+124) (BuildId: 100fa690ab318d6e1873d66d1c3f4c8e)</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.385<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w">   </span><span class="c1">#04 pc 000000000023a854  /system/bin/surfaceflinger (android::impl::MessageQueue::waitMessage()+84) (BuildId: 5e135e484b98796bac0be1710386a2f2)</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.385<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w">   </span><span class="c1">#05 pc 000000000024d9dc  /system/bin/surfaceflinger (android::scheduler::Scheduler::run()+28) (BuildId: 5e135e484b98796bac0be1710386a2f2)</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.385<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w">   </span><span class="c1">#06 pc 00000000002c6688  /system/bin/surfaceflinger (main+1272) (BuildId: 5e135e484b98796bac0be1710386a2f2)</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.385<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w">   </span><span class="c1">#07 pc 0000000000057854  /apex/com.android.runtime/lib64/bionic/libc.so (__libc_init+116) (BuildId: f0cc3fe16b52af6fc8d4e5b18105de09)</span>
+</code></pre></div>
+<h1 id="3_vscode">3. VSCode 图形化调试<a class="headerlink" href="#3_vscode" title="Permanent link">#</a></h1>
+<p>新开一个终端进入系统源码根目录，执行下面的命令：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">source</span><span class="w"> </span>build/envsetup.sh
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>lunch<span class="w"> </span>aosp_oriole-bp1a-eng
+</code></pre></div>
+<p>手机打开 USB 调试并通过 USB 与手机相连，接着找到要调试的进程（surfaceflinger）对应的 pid</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>adb<span class="w"> </span>shell<span class="w"> </span>ps<span class="w"> </span>-elf<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>surfaceflinger
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>system<span class="w">       </span><span class="m">14330</span><span class="w">     </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">20</span>:20:06<span class="w"> </span>?<span class="w">     </span><span class="m">00</span>:04:27<span class="w"> </span>surfaceflinger
+</code></pre></div>
+<p>可以看出，surfaceflinger 进程的 pid 为 14330.</p>
+<p>接着开启 lldb 服务端</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>lldbclient.py<span class="w"> </span>-p<span class="w"> </span><span class="m">14330</span><span class="w"> </span>--setup-forwarding<span class="w"> </span>vscode-lldb
+</code></pre></div>
+<p>该命令会打印一段 json，记录下来（你的可能和我不一样）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="o">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;(lldbclient.py) Attach surfaceflinger (port: 5039)&quot;</span>,
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;lldb&quot;</span>,
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="s2">&quot;request&quot;</span>:<span class="w"> </span><span class="s2">&quot;custom&quot;</span>,
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="s2">&quot;relativePathBase&quot;</span>:<span class="w"> </span><span class="s2">&quot;/home/zzh0838/Project/aosp/android-15.0.0_r20&quot;</span>,
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="s2">&quot;sourceMap&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">        </span><span class="s2">&quot;/b/f/w&quot;</span>:<span class="w"> </span><span class="s2">&quot;/home/zzh0838/Project/aosp/android-15.0.0_r20&quot;</span>,
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">        </span><span class="s2">&quot;&quot;</span>:<span class="w"> </span><span class="s2">&quot;/home/zzh0838/Project/aosp/android-15.0.0_r20&quot;</span>,
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">        </span><span class="s2">&quot;.&quot;</span>:<span class="w"> </span><span class="s2">&quot;/home/zzh0838/Project/aosp/android-15.0.0_r20&quot;</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="s2">&quot;initCommands&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">        </span><span class="s2">&quot;settings append target.exec-search-paths /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/ /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/hw /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/ssl/engines /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/drm /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/egl /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/soundfx /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/vendor/lib64/ /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/vendor/lib64/hw /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/vendor/lib64/egl /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/apex/com.android.runtime/bin&quot;</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">    </span><span class="o">]</span>,
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="s2">&quot;targetCreateCommands&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">        </span><span class="s2">&quot;target create /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/bin/surfaceflinger&quot;</span>,
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">        </span><span class="s2">&quot;target modules search-paths add / /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/&quot;</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">    </span><span class="o">]</span>,
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">    </span><span class="s2">&quot;processCreateCommands&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">        </span><span class="s2">&quot;gdb-remote 5039&quot;</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">    </span><span class="o">]</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="o">}</span>
+</code></pre></div>
+<p>接下来使用 VSCode 打开 Android 源码的根目录。</p>
+<p>接着点击菜单栏的 run -&gt; Add Configuration：</p>
+<!-- ![alt text](image-2.png) -->
+<p><a href="/proj/display/dispic/image_20250706_2_3.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250706_2_3.png" alt="xx" width="700"/>
+</a></p>
+<p>选择 LLDB：</p>
+<!-- ![alt text](image-3.png) -->
+<p><a href="/proj/display/dispic/image_20250706_2_4.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250706_2_4.png" alt="xx" width="700"/>
+</a></p>
+<p>接着就会在根目录下生成一个 .vscode 文件夹，其中有一个 launch.json 文件。</p>
+<!-- ![alt text](image-4.png) -->
+<p><a href="/proj/display/dispic/image_20250706_2_5.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250706_2_5.png" alt="xx" width="600"/>
+</a></p>
+<p>接着把 .vscode/launch.json 文件中 configurations 节点的内容都删掉，换成上面记录的 json：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="o">{</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="s2">&quot;configurations&quot;</span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="o">{</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="s2">&quot;name&quot;</span>:<span class="w"> </span><span class="s2">&quot;(lldbclient.py) Attach surfaceflinger (port: 5039)&quot;</span>,
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="s2">&quot;type&quot;</span>:<span class="w"> </span><span class="s2">&quot;lldb&quot;</span>,
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="s2">&quot;request&quot;</span>:<span class="w"> </span><span class="s2">&quot;custom&quot;</span>,
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="s2">&quot;relativePathBase&quot;</span>:<span class="w"> </span><span class="s2">&quot;/home/zzh0838/Project/aosp/android-15.0.0_r20&quot;</span>,
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="s2">&quot;sourceMap&quot;</span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">        </span><span class="s2">&quot;/b/f/w&quot;</span>:<span class="w"> </span><span class="s2">&quot;/home/zzh0838/Project/aosp/android-15.0.0_r20&quot;</span>,
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">        </span><span class="s2">&quot;&quot;</span>:<span class="w"> </span><span class="s2">&quot;/home/zzh0838/Project/aosp/android-15.0.0_r20&quot;</span>,
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">        </span><span class="s2">&quot;.&quot;</span>:<span class="w"> </span><span class="s2">&quot;/home/zzh0838/Project/aosp/android-15.0.0_r20&quot;</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">    </span><span class="s2">&quot;initCommands&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">        </span><span class="s2">&quot;settings append target.exec-search-paths /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/ /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/hw /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/ssl/engines /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/drm /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/egl /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/lib64/soundfx /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/vendor/lib64/ /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/vendor/lib64/hw /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/vendor/lib64/egl /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/apex/com.android.runtime/bin&quot;</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">    </span><span class="o">]</span>,
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">    </span><span class="s2">&quot;targetCreateCommands&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">        </span><span class="s2">&quot;target create /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/system/bin/surfaceflinger&quot;</span>,
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">        </span><span class="s2">&quot;target modules search-paths add / /home/zzh0838/Project/aosp/android-15.0.0_r20/out/target/product/oriole/symbols/&quot;</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">    </span><span class="o">]</span>,
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">    </span><span class="s2">&quot;processCreateCommands&quot;</span>:<span class="w"> </span><span class="o">[</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">        </span><span class="s2">&quot;gdb-remote 5039&quot;</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">    </span><span class="o">]</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="o">}</span><span class="w"> </span>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">    </span><span class="o">]</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="o">}</span>
+</code></pre></div>
+<p>接着在 frameworks/native/services/surfaceflinger/SurfaceFlinger.cpp 文件中打好断点：</p>
+<!-- ![alt text](image-5.png) -->
+<p><a href="/proj/display/dispic/image_20250706_2_6.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250706_2_6.png" alt="xx" width="700"/>
+</a></p>
+<p>然后点击菜单栏 run -&gt; Start Debugging 开始调试：</p>
+<!-- ![alt text](image-6.png) -->
+<p><a href="/proj/display/dispic/image_20250706_2_7.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250706_2_7.png" alt="xx" width="700"/>
+</a></p>
+<p>此时，进入到调试模式。</p>
+<p>接着操作手机，点击一个 App 图标，VSCode 就会进入到断点处：</p>
+<!-- ![alt text](image-7.png) -->
+<p><a href="/proj/display/dispic/image_20250706_2_8.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250706_2_8.png" alt="xx" width="700"/>
+</a></p>
+<h1 id="_1">总结<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<p>写码十分钟，调试一整天！</p>
+<h1 id="_2">参考资料<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<p>Use debuggers</p>
+<div class="admonition note">
+<p class="admonition-title">本文转发链接如下：</p>
+</div>
+<p><a href="https://mp.weixin.qq.com/s/ODdJjPb2LQDkLhGaFij3Xw" target="_blank">如何调试 SurfaceFlinger</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright @ 2024 Diperluer, All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,899 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recording economic and finacial news.">
+      
+      
+        <meta name="author" content="Diperluer">
+      
+      
+        <link rel="canonical" href="https://www.diperluer.cn/proj/wifi/WIFI7%28802.11be%29%E4%B9%8BMLO/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/32x_code_computer.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>WIFI7(802.11be)之MLO(Multi-Link Operation) - 滴尔</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#wifi780211bemlomulti-link_operation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="滴尔" class="md-header__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            滴尔
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              WIFI7(802.11be)之MLO(Multi-Link Operation)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>主页</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/archive/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>归档</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/tag/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>标签</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>地区冲突</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>经济和货币政策</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../level31/invest/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>投资指南</font>
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    滴尔
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>主页</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>归档</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/tag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>标签</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>地区冲突</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>地区冲突</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>中东局势</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>俄乌战争</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>朝鲜半岛</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>经济和货币政策</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>经济和货币政策</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>经济政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>货币政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level31/invest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>投资指南</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="wifi780211bemlomulti-link_operation"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">WIFI7(802.11be)之MLO(Multi-Link Operation)</span><a class="headerlink" href="#wifi780211bemlomulti-link_operation" title="Permanent link">#</a></h1>
+<h1 id="mlomulti-link_operation">什么是MLO(Multi-Link Operation)<a class="headerlink" href="#mlomulti-link_operation" title="Permanent link">#</a></h1>
+<p>MLO（Multi-Link Operation，多链路操作） 是 Wi-Fi 7（802.11be）核心特性之一，旨在通过同时利用多个频段（如2.4GHz、5GHz和6GHz）提升网络性能，显著降低延迟并增强连接稳定性。</p>
+<p>Wi-Fi 6 及之前标准，虽然 AP 和 STA 的设备本身都支持多个射频，但是同一时间 AP 和 STA 之间只能利用一个射频建立一个链路，如图所示。</p>
+<p>同一时间只能使用一个频段的一条信道进行通信，就会导致：</p>
+<p>1.资源利用率低：多频段能力无法同时发挥。<br>
+2.切换延迟高：频段切换时产生20-50ms延迟（如从5GHz切到6GHz）。<br>
+3.抗干扰差：单一信道易受阻塞。<br>
+4.吞吐量瓶颈：单信道物理速率受限（如Wi-Fi 6E的160MHz信道理论峰值约9.6Gbps）。<br></p>
+<p>MLO通过聚合多个物理链路，实现“多车道并行通信”，彻底改变Wi-Fi的工作模式。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>多链路操作顾名思义，就是 AP 和 STA 之间同时建立多个链路进行数据通信。在 Wi-Fi 7 标准中，将支持多链路操作的设备定义为多链路设备 MLD(Multi-Link Device)。多链路设备包含了多个独立的 PHY，增加了一个能协同管理各个独立 PHY 的 MAC，用于解决多链路操作(MLO)的多链路聚合、信道接入和数据传输等问题。
+</code></pre></div>
+<h1 id="mlo">MLO 的三种工作模式<a class="headerlink" href="#mlo" title="Permanent link">#</a></h1>
+<p>根据设备能力，MLO支持三种运行模式：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>技术原理</th>
+<th>优势</th>
+<th>硬件要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>STR（同步收发）</td>
+<td>不同链路上同时收发数据（如链路A发送时，链路B接收）</td>
+<td>最大化吞吐量，显著降低延迟</td>
+<td>需独立射频电路，避免自干扰</td>
+</tr>
+<tr>
+<td>NSTR（非同步收发）</td>
+<td>多条链路可同时激活，但同一设备不能同时收发（避免自干扰）</td>
+<td>降低硬件成本，兼容性更好</td>
+<td>共享射频前端</td>
+</tr>
+<tr>
+<td>AFR（交替灵活收发）</td>
+<td>动态分配链路角色（一条用于关键帧，另一条传大数据）</td>
+<td>灵活性高，适应复杂场景</td>
+<td>软件定义调度</td>
+</tr>
+</tbody>
+</table>
+<p>STR是性能天花板，但需高端设备支持；NSTR是主流方案，平衡成本与性能。</p>
+<h1 id="mlo_1">MLO 的关键技术<a class="headerlink" href="#mlo_1" title="Permanent link">#</a></h1>
+<p>1.统一控制层</p>
+<blockquote>
+<p>多链路设备（MLD）：AP和终端在逻辑上被视为一个设备，但拥有多个物理射频接口（如AP-MLD支持3条链路）。<br>
+  单MAC层管理：多个物理层（PHY）共享一个MAC地址，上层应用无需感知多链路存在。<br></p>
+</blockquote>
+<p>2.链路聚合方式</p>
+<blockquote>
+<p>带宽叠加：聚合两条160MHz链路实现320MHz有效带宽（理论速率翻倍）。<br>
+  多频段并发：MLO允许设备同时连接多个频段，例：同时使用6GHz（低干扰）+ 5GHz（覆盖广）+ 2.4GHz（穿墙强）。<br>
+  动态负载均衡：视频流走6GHz（高吞吐），游戏指令走5GHz（低延迟），IoT数据走2.4GHz。<br></p>
+</blockquote>
+<p>3.增强调度机制</p>
+<blockquote>
+<p>联合信道探测：AP同时监听所有链路质量，选择最优路径。<br>
+  块确认（Block Ack）跨链路聚合：多个链路上的数据帧通过一个联合ACK确认，减少协议开销。<br>
+  链路快速切换：当某链路受干扰时，数据在&lt;5ms内切换到其他链路（传统切换需20ms+）。<br></p>
+</blockquote>
+<h1 id="mlo_2">MLO 的性能提升<a class="headerlink" href="#mlo_2" title="Permanent link">#</a></h1>
+<h2 id="1">1.更高吞吐量<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<p>利用多条链路进行负载分担，提升单用户峰值吞吐量，3链路MLO比单链路提升80%~200%（取决于模式及信道条件）。</p>
+<!-- ![alt text](./wpic/image_20250706_2_1.png) -->
+<p><a href="/proj/wifi/wpic/image_20250706_2_1.png" target="_blank">
+  <img src="/proj/wifi/wpic/image_20250706_2_1.png" alt="xx" width="500"/>
+</a></p>
+<h2 id="2">2.更低延迟<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<blockquote>
+<p>游戏/VR延迟：从Wi-Fi 6的20ms降至<strong>&lt;5ms</strong>（STR模式）。<br>
+  关键帧优先：控制帧固定走低延迟链路（如6GHz），避免数据拥塞影响。<br></p>
+</blockquote>
+<h2 id="3">3.更高可靠性<a class="headerlink" href="#3" title="Permanent link">#</a></h2>
+<blockquote>
+<p>利用多条链路进行多发选收，冗余传输，同一数据包通过两条链路发送，提高链路可靠性。<br>
+  智能避障，链接动态切换，若6GHz受雷达干扰，流量自动迁移至5GHz链路（用户无感切换）。<br></p>
+</blockquote>
+<!-- ![alt text](image-1.png) -->
+<p><a href="/proj/wifi/wpic/image_20250706_2_2.png" target="_blank">
+  <img src="/proj/wifi/wpic/image_20250706_2_2.png" alt="xx" width="500"/>
+</a></p>
+<h1 id="mlo_3">MLO的应用场景<a class="headerlink" href="#mlo_3" title="Permanent link">#</a></h1>
+<h2 id="_1">高密度环境<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<blockquote>
+<p>在多人高密度接入场景中，MLO通过负载均衡为每个用户分配独立链路组合，减少单链路拥塞，避免信道争用，提升整体网络效率。</p>
+</blockquote>
+<h2 id="_2">低延迟需求场景<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<blockquote>
+<p>VR/AR、云游戏、实时工业控制等应用可通过MLO的多路径传输降低端到端延迟，提升体验流畅度。甚至可以关键指令（专用低延迟链路） + 大数据（大带宽链路）分链路传输。</p>
+</blockquote>
+<h2 id="_3">大文件无线传输<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<blockquote>
+<p>备份或4K/8K视频传输时，MLO的带宽叠加能力可显著缩短传输时间。</p>
+</blockquote>
+<h2 id="mlo_4">MLO与其他技术的对比<a class="headerlink" href="#mlo_4" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>MLO（Wi-Fi 7）</th>
+<th>BSS Coloring（Wi-Fi 6）</th>
+<th>OFDMA（Wi-Fi 6/7）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心功能</td>
+<td>多链路并行传输</td>
+<td>同频干扰协调</td>
+<td>单链路资源细分</td>
+</tr>
+<tr>
+<td>目标</td>
+<td>提升带宽、降低延迟</td>
+<td>减少干扰</td>
+<td>提高频谱效率</td>
+</tr>
+<tr>
+<td>频段利用</td>
+<td>多频段协同</td>
+<td>单频段优化</td>
+<td>单频段优化</td>
+</tr>
+</tbody>
+</table>
+<h1 id="mlo_vs_wifi">MLO vs. 双WiFi加速(双频聚合)<a class="headerlink" href="#mlo_vs_wifi" title="Permanent link">#</a></h1>
+<p>乍一看，MLO跟双WIFI加速很像，但它们之间有本质上的区别。</p>
+<h2 id="wi-fi">双Wi-Fi加速：<a class="headerlink" href="#wi-fi" title="Permanent link">#</a></h2>
+<blockquote>
+<p>双网卡双wlan节点双IP地址；<br>
+  需要TCP层次的客制化修改以分配和聚合不同网卡的TCP连接；<br>
+  可以支持任意2.4G+5G的热点混搭；<br>
+  只对使用多TCP connections的app有好处；<br>
+  UI层次，需要用户主动去连接两个Wi-Fi热点。<br></p>
+</blockquote>
+<h2 id="wi-fi_7_mlo">Wi-Fi 7 MLO：<a class="headerlink" href="#wi-fi_7_mlo" title="Permanent link">#</a></h2>
+<blockquote>
+<p>单网卡单wlan节点单IP地址；<br>
+  无需TCP层次的修改，用户空间感知不到有任何变化；<br>
+  数据聚合发生在MAC层<br>
+  对上层app的TCP connections没有任何要求；<br>
+  需要路由器也支持WiFi MLO才能支持多链路操作；<br>
+  UI层次，用户只要主动连一个热点，另外一个自动连接。<br></p>
+</blockquote>
+<!-- ![alt text](image-2.png) -->
+<p><a href="/proj/wifi/wpic/image_20250706_2_3.png" target="_blank">
+  <img src="/proj/wifi/wpic/image_20250706_2_3.png" alt="xx" width="600"/>
+</a></p>
+<!-- ![alt text](image-3.png) -->
+<p><a href="/proj/wifi/wpic/image_20250706_2_4.png" target="_blank">
+  <img src="/proj/wifi/wpic/image_20250706_2_4.png" alt="xx" width="600"/>
+</a></p>
+<h2 id="dual_wifi">dual_wifi<a class="headerlink" href="#dual_wifi" title="Permanent link">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>MLO (Wi-Fi 7)</th>
+<th>双频聚合 (如华为SuperHub)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工作层级</td>
+<td>MAC/PHY层（协议栈原生支持</td>
+<td>应用层或驱动层（厂商私有方案）</td>
+</tr>
+<tr>
+<td>延迟控制</td>
+<td>微秒级调度（&lt;1ms切换）</td>
+<td>毫秒级切换（依赖操作系统响应）</td>
+</tr>
+<tr>
+<td>频谱利用</td>
+<td>可聚合3条链路（含6GHz）</td>
+<td>仅支持2.4GHz+5GHz双频</td>
+</tr>
+<tr>
+<td>标准化</td>
+<td>IEEE 802.11be全球统一标准</td>
+<td>厂商私有协议，跨品牌不兼容</td>
+</tr>
+</tbody>
+</table>
+<p>结论：MLO是首次在MAC层实现的多链路聚合，彻底打破私有方案的碎片化困境。</p>
+<h1 id="_4">总结<a class="headerlink" href="#_4" title="Permanent link">#</a></h1>
+<p>MLO通过多链路协同彻底改变了Wi-Fi的连接方式，解决了传统单链路的带宽瓶颈、可靠性和延迟痛点。尽管面临兼容性和成本挑战，但其对高带宽、低延迟场景（元宇宙、工业4.0、实时协作等）的支持使其成为Wi-Fi 7的核心竞争力，随着6GHz频谱全球开放和芯片成本下降，预计将在未来3-5年内推动新一轮网络升级。</p>
+<div class="admonition note">
+<p class="admonition-title">本文转发链接如下：</p>
+</div>
+<p><a href="https://mp.weixin.qq.com/s/ImCVj-9OWd7wtHkd3SeBMg" target="_blank">WIFI7(802.11be)之MLO(Multi-Link Operation)</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright @ 2024 Diperluer, All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
