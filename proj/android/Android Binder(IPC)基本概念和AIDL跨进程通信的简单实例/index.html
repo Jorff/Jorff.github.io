@@ -1,0 +1,975 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recording economic and finacial news.">
+      
+      
+        <meta name="author" content="Diperluer">
+      
+      
+        <link rel="canonical" href="https://www.diperluer.cn/proj/android/Android%20Binder%28IPC%29%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8CAIDL%E8%B7%A8%E8%BF%9B%E7%A8%8B%E9%80%9A%E4%BF%A1%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E4%BE%8B/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/32x_code_computer.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>循序渐进 Android Binder（一）：IPC 基本概念和 AIDL 跨进程通信的简单实例 - 滴尔</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#android_binderipc_aidl" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="滴尔" class="md-header__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            滴尔
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              循序渐进 Android Binder（一）：IPC 基本概念和 AIDL 跨进程通信的简单实例
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>主页</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/archive/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>归档</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/tag/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>标签</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>地区冲突</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>经济和货币政策</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../level31/invest/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>投资指南</font>
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    滴尔
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>主页</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>归档</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/tag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>标签</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>地区冲突</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>地区冲突</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>中东局势</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>俄乌战争</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>朝鲜半岛</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>经济和货币政策</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>经济和货币政策</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>经济政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>货币政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level31/invest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>投资指南</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="android_binderipc_aidl"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">循序渐进 Android Binder（一）：IPC 基本概念和 AIDL 跨进程通信的简单实例</span><a class="headerlink" href="#android_binderipc_aidl" title="Permanent link">#</a></h1>
+<p>Binder  给人的第一印象是”捆绑者“，即将两个需要建立关系的事物用某些工具束缚在一起。在 Android 中，Binder  是一种高效的跨进程通信（IPC）机制，它将可以将运行在不同进程中的组件进行绑定，以实现彼此通信和数据共享。Binder 机制在 Android  系统中扮演这至关重要的角色，特别是在管理应用程序和系统服务之间的交互方面。</p>
+<p>在  Android 系统中，Binder 占有举足轻重的地位。而 Binder 机制涉及的东西即多且复杂，对于学习者来说，想要全面理解  Binder  仅靠一两篇文章就融会贯通是不可能的。越复杂的东西，越需要循序渐进，逐步理解，以免迷失了方向。因此，我将通过一系列文章，逐步带领大家进入  Binder 的内容，最终实现对于 Binder 的理解和运用。</p>
+<p>我们知道 Binder 是一个 IPC 工具，那什么是 IPC 呢？我们为什么需要这玩意呢？接下来，我们就从此问题开始，逐步进入 Binder 的世界。</p>
+<hr />
+<h3 id="ipc"><center><table><tr><td bgcolor=#FF4500>什么是 IPC？为什么我们需要它？</td></tr></table></center><a class="headerlink" href="#ipc" title="Permanent link">#</a></h3>
+<hr />
+<p>在操作系统中，每个进程都是在一个独立的沙箱环境中的，它拥有自己的内存空间、权限边界、资源管理。为了保证系统稳定性和安全性，进程之间是无法直接访问彼此的数据或代码的。</p>
+<p>但是在实际开发中，我们经常需要不同进程之间进行协作。例如：</p>
+<ul>
+<li>APP 通过 DisplayManager 获取屏幕的物理像素；</li>
+<li>从一个 Activity 跳转到另一个 Activity；</li>
+</ul>
+<p>这些场景都离不开一个关键词：IPC（Inter-Process Communication），进程间通信。这是一种技术或方法，用于在至少两个进程或线程之间传输数据或信号。</p>
+<p>这时候，有人会问了，为什么操作系统要将应用程序放到独立的沙箱环境中运行呢？都放到系统空间中，效率岂不是更高，而且避免了进程间通信的这些麻烦事。</p>
+<p>这是个好问题，也确实有些系统不强制应用程序运行在独立空间中，而允许其直接运行在内核态。例如，在早期的 DOS 系统中，没有用户态/内核态之分，程序可以直接操作硬件；而现在的很拖 RTOS 也是不区分用户态、内核态的，其目的就是为了极致的性能表现。</p>
+<p>但这些操作系统基本都是面向特定领域，不做应用程序隔离的设计使其无法成为面向大众的通用操作系统。毕竟，谁都不喜欢一个 BUG 就蓝屏的系统吧。</p>
+<p>因此，现代主流通用操作系统（Linux、Windows、macOS、Android、iOS）都强制将应用运行在用户态中。这里我们解释下用户态和内核态这两个概念：</p>
+<ul>
+<li>用户态（User Mode）：应用程序运行的环境，不能直接访问硬件和内核资源，必须通过系统调用来请求服务。</li>
+<li>内核态（Kernel Mode）：操作系统内核拥有最高权限，负责调度、资源管理、设备控制等。</li>
+</ul>
+<p>这么设计的核心原因是：安全性 + 稳定性 + 可控性。如果允许一个普通程序在内核态运行，那么它一旦崩溃，就可能导致整个系统内核崩溃，影响所有进程。所以这是一种“以安全和控制为核心”的设计哲学。</p>
+<hr />
+<h3 id="android_ipc"><center><table><tr><td bgcolor=#FF4500>Android 系统中支持的 IPC 机制</td></tr></table></center><a class="headerlink" href="#android_ipc" title="Permanent link">#</a></h3>
+<hr />
+<p>上面已经介绍了 IPC 的基本概念，那 Android 系统支持哪些 IPC 机制呢？</p>
+<p>首先，Android 基于 Linux 内核，因此天然继承了 Linux 提供的各种经典 IPC 机制，这这些机制主要包括：</p>
+<ul>
+<li>管道（Pipe）：单向通信、半双工，只适用于亲缘进程间通信（如父子进程）</li>
+<li>命名管道（FIFO）：不支持双向通信，只适用于简单的数据流</li>
+<li>消息队列（Message Queue）：内核对象生命周期管理复杂，数据大小有限，不适合大数据结构</li>
+<li>共享内存（Shared Memory）：高效但非常依赖开发者手动控制同步，容易出错</li>
+<li>信号量（Semaphore）：仅限控制用途，无法传递数据</li>
+<li>套接字（Socket）：支持远程通信但性能较低，安全性不够强，需要开发者自己维护协议等</li>
+</ul>
+<p>Android  虽然基于 Linux，但并没有直接采用传统的 Linux IPC  机制来构建系统服务框架。原因很简单：这些机制（如管道、消息队列、信号）要么功能太弱，要么难以管理、缺乏安全保障。为了构建一个高性能、可控、安全的跨进程通信模型，Google  选择在内核层扩展了一套独特的机制 —— Binder。</p>
+<hr />
+<h3 id="binder"><center><table><tr><td bgcolor=#FF4500>Binder 的优势</td></tr></table></center><a class="headerlink" href="#binder" title="Permanent link">#</a></h3>
+<hr />
+<p>Binder 是 Android 独有的一套进程通信机制，底层由内核模块 binder 实现，用户态通过 Binder 驱动访问。使用它能够像调用本地方法一样，调用另一个进程中的方法。 </p>
+<ul>
+<li>
+<p>高性能：基于内核实现，采用零拷贝（zero-copy）技术，远高于 Socket 传输效率</p>
+</li>
+<li>
+<p>统一接口调用语义：支持同步、异步、回调，封装成面向对象接口，通过 Stub/Proxy 自动生成代码</p>
+</li>
+<li>
+<p>安全性强：每个 Binder 调用都带有 UID/PID，可用于权限验证和访问控制</p>
+</li>
+<li>
+<p>支持大数据传输：配合 Ashmem 可高效传输图像、音频等大对象</p>
+</li>
+<li>
+<p>服务注册/发现机制：由 centralized 的 ServiceManager 管理所有系统服务</p>
+</li>
+<li>
+<p>内存安全/生命周期管理：每个 Binder 对象都有引用计数，不会悬空引用</p>
+</li>
+</ul>
+<p>Binder  的出现，是 Android 构建自身 IPC 世界的重要基石。它不仅替代了 Linux 的传统 IPC  机制，还通过提供高效、安全、可扩展的通信模型，成功支撑起整个 Android 系统服务架构 ——  从最底层的启动服务到最顶层的应用组件通信，Binder 是 Android 系统的“神经网络”。</p>
+<p>上面我们介绍了 IPC 和 Binder 的一些基本概念，接下来，我们就用一个 AIDL 的简单实例，来演示一下 Binder 的基本调用。</p>
+<hr />
+<h3 id="aidl"><center><table><tr><td bgcolor=#FF4500>基于 AIDL 的跨进程通信的简单实例</td></tr></table></center><a class="headerlink" href="#aidl" title="Permanent link">#</a></h3>
+<hr />
+<p>Binder   通信采用客户端-服务器（Client/Server）模型，因此即使是一个简单的跨进程通信实例，我们也要写服务端和客户端两个进程代码。在继续写代码之前，我们需要接受一个新的词：AIDL（Android  Interface Definition Language）。</p>
+<h2 id="aidl_1">什么是 AIDL？<a class="headerlink" href="#aidl_1" title="Permanent link">#</a></h2>
+<p>虽然  Android Binder  提供了强大的进程通信机制，但直接使用它代价极高，开发者需要手动处理方法编号、参数序列化等细节，既麻烦又容易出错。因此 Android 引入了  AIDL 接口描述语言，其目的就是自动生成一套可靠的、类型安全的、跨进程可用的接口通信代码。</p>
+<p>其实，使用 Binder 调用并不是必须要使用 AIDL，但是，当你需要进行 IPC，调用时，AIDL 是最清晰、高效、安全的解决方案。</p>
+<p>一个简单的 AIDL 接口定义就如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kd">interface</span> <span class="nc">IComputer</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>当你将其添加到项目并编译后，Android Studio 会自动生成一整套 Java 类，其主要包括：</p>
+<ul>
+<li>IComputer.Stub：服务端实现</li>
+<li>IComputer.Sutb.Proxy：客户端调用</li>
+</ul>
+<p>你只需要在服务端继承 Stub，并在客户端调用 Proxy，就可以像调用本地方法一样进行 IPC 调用。 下面我们就以这个 AIDL 为例，来完成一个简单的 IPC 实例。</p>
+<h2 id="_1">服务端<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<p>首先我们创建一个包名为 lic.swift.binder.server 的程序用于服务端。</p>
+<p>然后添加上面的 IComputer.aidl 接口到代码中，先编译下，以便生成对应的 Java 文件。</p>
+<p>接着创建一个全类名 lic.swift.binder.server.ComputeService 的 Service 作为服务端实现，如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ComputeService</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Service</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">IComputer</span><span class="p">.</span><span class="na">Stub</span><span class="w"> </span><span class="n">computer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">IComputer</span><span class="p">.</span><span class="na">Stub</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">        </span><span class="nd">@Override</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">        </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">            </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="s">&quot;avril&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;server, stub, add(a = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, b = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;), &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getProcessLog</span><span class="p">());</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="p">};</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="nd">@Override</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">IBinder</span><span class="w"> </span><span class="nf">onBind</span><span class="p">(</span><span class="n">Intent</span><span class="w"> </span><span class="n">intent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="s">&quot;avril&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;onBind(intent = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">intent</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;), return &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">computer</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getProcessLog</span><span class="p">());</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">computer</span><span class="p">;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这个 ComputerService 里面实现了一个 IComputer.Stub 这个就是作为服务端代码的实现，也就是真正执行 add(int, int) 的地方。在 onBind 中返回这个实例对象。</p>
+<p>同时我们需要在 AndroidManifest.xml 中配置一下这个 ComputerService：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nt">&lt;manifest</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="nt">&lt;permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;lic.swift.binder.server.CALL_SERVER&quot;</span><span class="w"> </span><span class="na">android:protectionLevel=</span><span class="s">&quot;normal&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="nt">&lt;application</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">        </span><span class="na">android:icon=</span><span class="s">&quot;@mipmap/ic_launcher&quot;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">        </span><span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">        </span><span class="na">android:roundIcon=</span><span class="s">&quot;@mipmap/ic_launcher_round&quot;</span><span class="w"> </span><span class="nt">&gt;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">        </span><span class="nt">&lt;service</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;.ComputeService&quot;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">            </span><span class="na">android:permission=</span><span class="s">&quot;lic.swift.binder.server.CALL_SERVER&quot;</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">            </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">&gt;</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">            </span><span class="nt">&lt;intent-filter&gt;</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">                </span><span class="nt">&lt;action</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;lic.swift.binder.server.ComputeService&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">                </span><span class="nt">&lt;category</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.intent.category.DEFAULT&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">            </span><span class="nt">&lt;/intent-filter&gt;</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">        </span><span class="nt">&lt;/service&gt;</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">    </span><span class="nt">&lt;/application&gt;</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="nt">&lt;/manifest&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>为了能够让其他进程的应用访问到这个  Service，需要将其 exported 设置为 true。另外在 XML 中还为这个 Service 配置了 permission。其实在  Android 中，Service  本身并不强制要求声明访问权限，但如果你希望控制哪些应用可以访问你的服务，特别是涉及跨进程调用或敏感功能的服务，那么通过 android:permission 是一种标准且推荐的方式。</p>
+<h2 id="_2">客户端<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<p>上面说的 IComputer.aidl 文件，它类似于 HTTP 协议，这个协议在服务端有一个，在客户端当然也需要有一个。因此在客户端的项目中，我们需要先把这个文件复制过来，注意，这里复制时必须要保证 .aidl 文件的包名、类名都相同。</p>
+<p>接下来我们在 Activity 中添加一个按钮，每次点击这个按钮，就调用服务端的 add 方法计算一次加法并返回。</p>
+<p>但为了能够进行远程调用，我们首先要连接到远程服务，以下是在 Activity 中用于连接到远程服务的代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="kd">private</span><span class="w"> </span><span class="n">IComputer</span><span class="w"> </span><span class="n">computer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ServiceConnection</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ServiceConnection</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="nd">@Override</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onServiceConnected</span><span class="p">(</span><span class="n">ComponentName</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">IBinder</span><span class="w"> </span><span class="n">service</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="s">&quot;avril&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;client onServiceConnected(name = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, service = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;) &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getProcessLog</span><span class="p">());</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">        </span><span class="n">computer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IComputer</span><span class="p">.</span><span class="na">Stub</span><span class="p">.</span><span class="na">asInterface</span><span class="p">(</span><span class="n">service</span><span class="p">);</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">    </span><span class="nd">@Override</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onServiceDisconnected</span><span class="p">(</span><span class="n">ComponentName</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="s">&quot;avril&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;client onServiceConnected(name = &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;) &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getProcessLog</span><span class="p">());</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">        </span><span class="n">computer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="p">};</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="kd">final</span><span class="w"> </span><span class="n">Intent</span><span class="w"> </span><span class="n">intent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Intent</span><span class="p">();</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="n">intent</span><span class="p">.</span><span class="na">setComponent</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ComponentName</span><span class="p">(</span><span class="s">&quot;lic.swift.binder.server&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lic.swift.binder.server.ComputeService&quot;</span><span class="p">));</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="kt">boolean</span><span class="w"> </span><span class="n">bindResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bindService</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span><span class="w"> </span><span class="n">connection</span><span class="p">,</span><span class="w"> </span><span class="n">Context</span><span class="p">.</span><span class="na">BIND_AUTO_CREATE</span><span class="p">);</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="s">&quot;avril&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;client bindService 返回 &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">bindResult</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>为了连接到远程服务器，需要在清单文件中配置远程服务器需要的权限：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;lic.swift.binder.server.CALL_SERVER&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nt">&lt;queries&gt;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="nt">&lt;package</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;lic.swift.binder.server&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="nt">&lt;/queries&gt;</span>
+</code></pre></div></td></tr></table></div>
+<p>在能够连接到远程服务器之后，我们就可以设置一个点击事件用于 IPC 调用了：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">button_1</span><span class="p">).</span><span class="na">setOnClickListener</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">computer</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">().</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Random</span><span class="p">().</span><span class="na">nextInt</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="s">&quot;avril&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;client 远程调用 computer.add(&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;)，等待返回...&quot;</span><span class="p">);</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SystemClock</span><span class="p">.</span><span class="na">uptimeMillis</span><span class="p">();</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">computer</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">p0</span><span class="p">,</span><span class="w"> </span><span class="n">p1</span><span class="p">);</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="s">&quot;avril&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;client 远程调用返回结果：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;. 耗时：&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">SystemClock</span><span class="p">.</span><span class="na">uptimeMillis</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">time</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;ms. &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">getProcessLog</span><span class="p">());</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">RemoteException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="s">&quot;avril&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;client 远程调用发生异常 RemoteException:\n&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getLocalizedMessage</span><span class="p">());</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="p">});</span>
+</code></pre></div></td></tr></table></div>
+<p>这就是一个很简单的 AIDL 实例了。服务端和客户端的代码结构如下：</p>
+<!-- ![alt text](./andpic/andpic_20250727_1_1.png) -->
+<p><a href="/proj/android/andpic/andpic_20250727_1_1.png" target="_blank">
+  <img src="/proj/android/andpic/andpic_20250727_1_1.png" alt="xx" width="400"/>
+</a></p>
+<p>在运行客户端程序并点击按钮后，我们能得到如下的 log 信息：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>lic.swift.binder.client<span class="w">  </span>D<span class="w">  </span>client<span class="w"> </span>bindService<span class="w"> </span>返回<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>lic.swift.binder.server<span class="w">  </span>D<span class="w">  </span>onBind<span class="o">(</span><span class="nv">intent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>Intent<span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="nv">cmp</span><span class="o">=</span>lic.swift.binder.server/.ComputeService<span class="w"> </span><span class="o">})</span>,<span class="w"> </span><span class="k">return</span><span class="w"> </span>lic.swift.binder.server.ComputeService<span class="nv">$1</span>@a97ebb8,<span class="w"> </span>Process.myPid<span class="o">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2139</span>,<span class="w"> </span>Process.myUid<span class="o">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10149</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>lic.swift.binder.client<span class="w">  </span>D<span class="w">  </span>client<span class="w"> </span>onServiceConnected<span class="o">(</span><span class="nv">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>ComponentInfo<span class="o">{</span>lic.swift.binder.server/lic.swift.binder.server.ComputeService<span class="o">}</span>,<span class="w"> </span><span class="nv">service</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>android.os.BinderProxy@7c18e1b<span class="o">)</span><span class="w"> </span>Process.myPid<span class="o">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2219</span>,<span class="w"> </span>Process.myUid<span class="o">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10150</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>lic.swift.binder.client<span class="w">  </span>D<span class="w">  </span>client<span class="w"> </span>远程调用<span class="w"> </span>computer.add<span class="o">(</span><span class="m">136</span>,<span class="w"> </span><span class="m">333</span><span class="o">)</span>，等待返回...
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>lic.swift.binder.server<span class="w">  </span>D<span class="w">  </span>server,<span class="w"> </span>stub,<span class="w"> </span>add<span class="o">(</span><span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">136</span>,<span class="w"> </span><span class="nv">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">333</span><span class="o">)</span>,<span class="w"> </span>Process.myPid<span class="o">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2139</span>,<span class="w"> </span>Process.myUid<span class="o">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10149</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>lic.swift.binder.client<span class="w">  </span>D<span class="w">  </span>client<span class="w"> </span>远程调用返回结果：469.<span class="w"> </span>耗时：26ms.<span class="w"> </span>Process.myPid<span class="o">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2219</span>,<span class="w"> </span>Process.myUid<span class="o">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10150</span>
+</code></pre></div>
+<p>可以看到，代码已经完成了远程调用，服务端进程号为2139，而客户端是2219，虽然这个耗时有点高，但正确性是没问题的。</p>
+<p>到此为止，这个基于 AIDL 的跨进程通信的简单实例就算是介绍完了。后续我们将逐步深入到 Binder 的更深层的内容当中。</p>
+<div class="admonition note">
+<p class="admonition-title">本文转发链接如下：</p>
+</div>
+<p><a href="https://mp.weixin.qq.com/s/6d6dd82j07u2eDDc9Xp-Wg" target="_blank">循序渐进 Android Binder（一）：IPC 基本概念和 AIDL 跨进程通信的简单实例</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright @ 2024 Diperluer, All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
