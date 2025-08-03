@@ -1,0 +1,1065 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Recording economic and finacial news.">
+      
+      
+        <meta name="author" content="Diperluer">
+      
+      
+        <link rel="canonical" href="https://www.diperluer.cn/proj/display/%E8%A7%A3%E7%A0%8160FPS%E6%B5%81%E7%95%85%E6%B8%B2%E6%9F%93_Android%E5%9B%BE%E5%BD%A2%E5%AD%90%E7%B3%BB%E7%BB%9F%E6%A0%B8%E5%BF%83%E6%9C%BA%E5%88%B6%E5%85%A8%E9%93%BE%E8%B7%AF%E5%89%96%E6%9E%90/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/32x_code_computer.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>Android图形子系统核心机制全链路剖析 - 滴尔</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#android" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="滴尔" class="md-header__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            滴尔
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Android图形子系统核心机制全链路剖析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="deep-purple"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-orange"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>主页</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/archive/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>归档</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../blog/tag/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>标签</font>
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>地区冲突</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-tabs__link">
+          
+  
+    
+  
+  <font size=5>经济和货币政策</font>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../level31/invest/" class="md-tabs__link">
+        
+  
+    
+  
+  <font size=5>投资指南</font>
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
+      
+  <img src="../../../assets/code_computer.png" alt="logo">
+
+    </a>
+    滴尔
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>主页</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/archive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>归档</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../blog/tag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>标签</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>地区冲突</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>地区冲突</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%B8%AD%E4%B8%9C%E5%B1%80%E5%8A%BF/Middle_East/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>中东局势</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/Russia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>俄乌战争</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level11/%E6%9C%9D%E9%B2%9C%E5%8D%8A%E5%B2%9B/North_Korea/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>朝鲜半岛</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    <font size=5>经济和货币政策</font>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            <font size=5>经济和货币政策</font>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E7%BB%8F%E6%B5%8E%E6%94%BF%E7%AD%96/economic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>经济政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level21/%E8%B4%A7%E5%B8%81%E6%94%BF%E7%AD%96/currency/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font face="黑体" color=#FF4500>货币政策</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../level31/invest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    <font size=5>投资指南</font>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="android"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android图形子系统核心机制全链路剖析</span><a class="headerlink" href="#android" title="Permanent link">#</a></h1>
+<h1 id="1">①主要的类<a class="headerlink" href="#1" title="Permanent link">#</a></h1>
+<p>DecorView、ViewRootImpl、Window、WMS、Surface、SurfaceFlinger、BufferQueue、FrameBuffer</p>
+<h2 id="1_decorview">1. DecorView<a class="headerlink" href="#1_decorview" title="Permanent link">#</a></h2>
+<p>是 Android 视图系统里的关键组件，在 Activity 界面显示与布局管理方面扮演着重要角色。下面详细介绍其主要作用：</p>
+<h3 id="11">1.1 作为视图树的根节点<a class="headerlink" href="#11" title="Permanent link">#</a></h3>
+<p>DecorView 是每个 Activity 视图树的顶级视图，继承自 FrameLayout。当 Activity 启动时，系统会创建一个 Window 对象（通常是 PhoneWindow），并为其关联一个 DecorView。所有添加到 Activity 中的视图，最终都会被添加到 DecorView 之下，形成一个完整的视图树。示例如下：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>DecorView
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├─ 状态栏区域
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├─ 标题栏区域（可选）
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>└─ ContentParent（id 为 android.R.id.content）
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>   └─ 用户自定义布局
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>      ├─ 子视图 1
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>      ├─ 子视图 2
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      └─ ...
+</code></pre></div>
+<h3 id="12">1.2 承载系统界面元素<a class="headerlink" href="#12" title="Permanent link">#</a></h3>
+<p>DcorView 会包含一些系统级的界面元素，像状态栏、标题栏（在启用的情况下）。这些元素由系统统一管理，且通常位于用户自定义布局的上方。借助 DecorView，系统能够统一管理这些公共界面元素的显示与交互。</p>
+<h3 id="13_window">1.3 关联 Window 和视图树<a class="headerlink" href="#13_window" title="Permanent link">#</a></h3>
+<p>DecorView是Window和视图树之间的桥梁。Window代表屏幕上的一个显示区域，而DecorView则是这个区域内视图的容器。Window的属性（如背景、透明度等）会影响DecorView的显示效果，DecorView也会将用户的交互事件传递给Window进行处理。</p>
+<h3 id="14">1.4 处理输入事件分发<a class="headerlink" href="#14" title="Permanent link">#</a></h3>
+<p>DecorView是输入事件进入视图树的入口。当用户触摸屏幕、按下按键等操作发生时，系统会将事件传递给DecorView，然后由DecorView将事件分发给其下的子视图。在事件分发过程中，DecorView会根据视图的层级和位置，决定哪个子视图应该接收和处理该事件。</p>
+<h3 id="15_viewrootimpl">1.5 配合 ViewRootImpl 工作<a class="headerlink" href="#15_viewrootimpl" title="Permanent link">#</a></h3>
+<p>DecorView 与 ViewRootImpl 紧密协作。ViewRootImpl 负责管理视图的测量、布局和绘制过程，而 DecorView 作为视图树的根节点，会接收 ViewRootImpl 发起的这些操作请求，并将其递归传递给子视图。例如，ViewRootImpl 调用 DecorView 的 measure 方法，DecorView 会依次调用子视图的 measure 方法，从而完成整个视图树的测量。</p>
+<h3 id="_1">小结<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<p>DecorView 作为 Activity 视图树的根节点，不仅承载系统界面元素，还关联 Window 和视图树，负责输入事件分发，并且与 ViewRootImpl 配合完成视图的测量、布局和绘制工作，在 Android 界面显示和交互中起着关键作用。</p>
+<h2 id="2_viewrootimpl">2. ViewRootImpl<a class="headerlink" href="#2_viewrootimpl" title="Permanent link">#</a></h2>
+<p>是 Android 视图系统里的核心类，在视图的渲染、事件处理和窗口管理等方面起着关键作用。下面详细介绍其主要作用：</p>
+<h3 id="21">2.1 连接视图树和窗口系统<a class="headerlink" href="#21" title="Permanent link">#</a></h3>
+<p>ViewRootImpl 是视图树和 WindowManagerService（WMS）之间的桥梁。每个 Activity 里的视图树都有一个对应的 ViewRootImpl 实例，它负责与 WMS 进行通信，将视图的状态和请求传递给系统窗口管理服务。</p>
+<h3 id="22">2.2 视图的测量、布局和绘制<a class="headerlink" href="#22" title="Permanent link">#</a></h3>
+<p>测量（Measure）：ViewRootImpl 会触发视图树的测量过程，调用 View 的 measure 方法，确定每个 View 的尺寸。通过递归调用子 View 的 measure 方法，最终确定整个视图树的大小。</p>
+<p>布局（Layout）：在测量完成后，ViewRootImpl 会调用 View 的 layout 方法，为每个 View 分配在父容器中的位置。同样通过递归调用子 View 的 layout 方法，完成整个视图树的布局。</p>
+<p>绘制（Draw）：布局完成后，ViewRootImpl 会触发视图树的绘制过程，调用 View 的 draw 方法，将视图绘制到 Surface 上。</p>
+<h3 id="23">2.3 处理输入事件<a class="headerlink" href="#23" title="Permanent link">#</a></h3>
+<p>ViewRootImpl 负责接收来自系统的输入事件（如触摸、按键等），并将这些事件分发给视图树中的相应 View。它会根据事件的坐标和视图的位置，确定哪个 View 应该处理该事件，然后调用相应 View 的事件处理方法。</p>
+<h3 id="24">2.4 管理视图的生命周期<a class="headerlink" href="#24" title="Permanent link">#</a></h3>
+<p>ViewRootImpl 会监听窗口的状态变化，如窗口的显示、隐藏、大小改变等，并根据这些变化触发视图树的重新测量、布局和绘制。例如，当窗口大小改变时，ViewRootImpl 会重新测量和布局视图树，以适应新的窗口尺寸。</p>
+<h3 id="25_ui">2.5 同步 UI 线程和渲染线程<a class="headerlink" href="#25_ui" title="Permanent link">#</a></h3>
+<p>ViewRootImpl 会确保 UI 线程的操作与渲染线程的同步。在 Android 中，UI 操作必须在主线程进行，而渲染操作可能在单独的线程中进行。ViewRootImpl 会协调这两个线程的操作，避免出现渲染冲突和界面闪烁的问题。</p>
+<p>ViewRootImpl 是 Android 视图系统的核心组件，负责连接视图树和窗口系统，处理视图的测量、布局、绘制和输入事件，管理视图的生命周期，以及同步 UI 线程和渲染线程。它确保了视图能够正确显示和响应用户操作。</p>
+<h2 id="3_window">3. Window<a class="headerlink" href="#3_window" title="Permanent link">#</a></h2>
+<p>指的是PhoneWindow，每一个ViewRootImpl都对应了一个Window，ViewRootImpl其实就是负责处理视图本身的一些逻辑事务（绘制，事件等管理）。而Window的作用主要是处理不同层级window之间的关系，便于WMS进行层级管理的一个抽象概念。Window主要有几大类：</p>
+<ul>
+<li>应用窗口：Activity</li>
+<li>子窗口：Dialog</li>
+<li>系统窗口：状态栏/导航栏/悬浮窗/Toast</li>
+</ul>
+<h2 id="4_wms">4. WMS<a class="headerlink" href="#4_wms" title="Permanent link">#</a></h2>
+<p>是SystemServer进程的一个服务，主要负责管理各层级Window的关系，以及分配Surface用于绘制画面。</p>
+<h2 id="5_surface">5. Surface<a class="headerlink" href="#5_surface" title="Permanent link">#</a></h2>
+<p>提供画图的API以及画布进行渲染，一个Window对应一个Surface，除了SurfaceView有自己独立的Surface。根据是否开启硬件加速，调用GPU或者CPU进行渲染，将View树转换成一帧画面GraphicBuffer入到BufferQueue当中：</p>
+<p>a.提供绘图接口<br>
+    Canvas API：通过 lockCanvas() 获取 Canvas 对象，支持 2D 图形绘制（如线条、文字）。<br>
+    OpenGL ES：通过 EGLSurface 支持 3D 渲染，适用于游戏、视频等高性能场景。<br></p>
+<p>b.缓冲机制（双缓冲/三缓冲）<br>
+    Surface 内部维护多个 GraphicBuffer（通常为 2-3 个），通过交替使用避免绘制过程中的画面撕裂。<br>
+    Front Buffer：当前显示在屏幕的缓冲区。<br>
+    Back Buffer：供应用绘制的缓冲区，完成后通过 unlockCanvasAndPost() 提交，替换为新的 Front Buffer。<br></p>
+<p>c.生产者-消费者模型<br>
+    生产者：应用通过 Surface 绘制内容（填充缓冲区）。<br>
+    消费者：SurfaceFlinger 消费缓冲区数据，合成最终帧并送<br></p>
+<h2 id="6_surfaceflinger">6. SurfaceFlinger<a class="headerlink" href="#6_surfaceflinger" title="Permanent link">#</a></h2>
+<p>主要是当vsync-sf信号到来时，获取BufferQueue中的GraphicBuffer与各层中的画面根据z-order /大小/位置/透明度等信息进行合并操作</p>
+<h2 id="7_bufferqueue">7. BufferQueue<a class="headerlink" href="#7_bufferqueue" title="Permanent link">#</a></h2>
+<p>用来管理Surface与SurfaceFlingger之间数据GraphicBuffer）的容器，三重缓冲说的就是BufferQueue里面有三个缓冲区对应三个缓冲的帧</p>
+<h2 id="8_framebuffer">8. FrameBuffer<a class="headerlink" href="#8_framebuffer" title="Permanent link">#</a></h2>
+<p>这个是SurfaceFlinger将合成好待显示的帧缓存的地方</p>
+<p>显示系统各类协作流程</p>
+<h3 id="1vsync">1、从启动到监听VSync信号：<a class="headerlink" href="#1vsync" title="Permanent link">#</a></h3>
+<p>ActivityThread执行performLaunchActivity()方法，然后performLaunchActivity方法里调用Activity.attach()方法，attach方法里会调用实例化PhoneWindow对象，然后performLaunchActivity方法里调用Instrumentation类的callActivityOnCreate()方法，callActivityOnCreate会调用Activity类的performCreate()方法，performCreate方法调用Activity的onCreate()方法，onCreate方法中调用setContentView()方法，setContentView方法里调用PhoneWindow的setContentView()方法，PhoneWindow的setContentVIew里面实例化DecorView，PhoneWindow在继续调用LayoutInflator.inflate方法将布局解析到Decorview的视图树中。然后AMS调用ActivityThread的handleResumeActivity()方法，这个方法里面主要做两件事，第一步调用Activity的onResume()方法，然后调用WindowManager.addView(),addView方法最后是调到WindowManagerImpl的addView()再调用到WindowManagerGlobal.addView(),这个方法里面实例化ViewRootImpl并将DecorView通过ViewRootImpl.setView()传递过来，setView方法里面调用自身的requestLayout(),然后方法里调用scheduleTraversals()去Handler里放一个同步屏障，并通过Choreographer去监听VSync信号。</p>
+<!-- ![alt text](./dispic/image_20250801_1_1.png) -->
+<p><a href="/proj/display/dispic/image_20250801_1_1.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250801_1_1.png" alt="xx" width="700"/>
+</a></p>
+<h4 id="11_activity">1.1 创建Activity实例，初始化窗口体系<a class="headerlink" href="#11_activity" title="Permanent link">#</a></h4>
+<!-- ![alt text](image-1.png) -->
+<p><a href="/proj/display/dispic/image_20250801_1_2.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250801_1_2.png" alt="xx" width="700"/>
+</a></p>
+<h4 id="12_1">1.2 视图的创建<a class="headerlink" href="#12_1" title="Permanent link">#</a></h4>
+<!-- ![alt text](image-2.png) -->
+<p><a href="/proj/display/dispic/image_20250801_1_3.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250801_1_3.png" alt="xx" width="700"/>
+</a></p>
+<h4 id="13_activityresume">1.3 Activity的resume阶段<a class="headerlink" href="#13_activityresume" title="Permanent link">#</a></h4>
+<!-- ![alt text](image-3.png) -->
+<p><a href="/proj/display/dispic/image_20250801_1_4.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250801_1_4.png" alt="xx" width="700"/>
+</a></p>
+<h4 id="14_vsync">1.4 注册VSync信号<a class="headerlink" href="#14_vsync" title="Permanent link">#</a></h4>
+<!-- ![alt text](image-4.png) -->
+<p><a href="/proj/display/dispic/image_20250801_1_5.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250801_1_5.png" alt="xx" width="700"/>
+</a></p>
+<h3 id="2vsync">2、VSync信号驱动画面绘制<a class="headerlink" href="#2vsync" title="Permanent link">#</a></h3>
+<p>当系统发出一个VSync信号时，Choreographer的内部类FrameDisplayReceiver的onVsync收到回调，然后通过Choreographer的内部类FrameHandler切换到注册时所在的线程处理doframe(),通过注册的ViewRooImpl的内部类TraversalRunnable回调其中的run方法，再调用ViewRootImpl中的doTraversal(),再调到performTraversals()，这个方法主要第一先调用relayoutWindow()来向WMS申请Surface，然后继续执行ViewRootImpl中的performMeasure()、performLayout()、performDraw()进行绘制，最终执行View的onMessure()、onLayout()、onDraw()方法（这里就是常说的渲染阶段，如果开启硬件加速，那么渲染就会交给GPU去处理）。</p>
+<!-- ![alt text](image-5.png) -->
+<p><a href="/proj/display/dispic/image_20250801_1_6.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250801_1_6.png" alt="xx" width="700"/>
+</a></p>
+<h3 id="3surfaceflinger">3、SurfaceFlinger执行合并送显操作<a class="headerlink" href="#3surfaceflinger" title="Permanent link">#</a></h3>
+<p>这个部分主要分成两个阶段，第一个阶段当应用APP中有一帧绘制完了之后，SurfaceFlinger如何知道开始进行合成？第二个阶段是当SurfaceFlinger收到合成的指令后，如何执行合成的步骤（合成五部曲）？</p>
+<!-- ![alt text](image-6.png) -->
+<p><a href="/proj/display/dispic/image_20250801_1_7.png" target="_blank">
+  <img src="/proj/display/dispic/image_20250801_1_7.png" alt="xx" width="700"/>
+</a></p>
+<h4 id="31_surfaceflingergraphicbuffer">3.1 如何通知SurfaceFlinger有待合成的GraphicBuffer？<a class="headerlink" href="#31_surfaceflingergraphicbuffer" title="Permanent link">#</a></h4>
+<h5 id="311_buffer">3.1.1 Buffer提交与通知<a class="headerlink" href="#311_buffer" title="Permanent link">#</a></h5>
+<p>queueBuffer:应用绘制完成后，通过IGraphicBufferProducer::queueBuffer将GraphicBuffer放入BufferQueue队列，状态变为QUEUED；<br>
+onFrameAvailable:BufferQueue通过FrameAvailableListener跨进程通知SurfaceFlinger有新帧待合成（Binder调用SurfaceFlinger::onFrameAvailable）</p>
+<h5 id="312">3.1.2 合成准备<a class="headerlink" href="#312" title="Permanent link">#</a></h5>
+<p>handleMessageInvalidate:SF在消息循环中监听INVALIDATE事件，调用latchBuffers()锁定新Buffer<br>
+acquireBuffer:从BufferQueue中获取QUEUED状态的Buffer，标记为ACQUIRED（此时应用不可修改该Buffer）</p>
+<h5 id="313_vsync">3.1.3 VSync同步与触发<a class="headerlink" href="#313_vsync" title="Permanent link">#</a></h5>
+<p>onVSyncReceived:硬件VSync信号通过DisplayEventReceiver触发，调用invalidate()插入刷新消息<br>
+handleMessageRefresh:处理Refresh消息，启动合成管线</p>
+<h4 id="32_5">3.2 执行合成（5部曲）<a class="headerlink" href="#32_5" title="Permanent link">#</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SurfaceFlinger</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="c1">//合成五部曲</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SurfaceFlinger::handleMessageRefresh</span><span class="p">(){</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">        </span><span class="c1">//合成之前的预处理，检查是否有新的图层变化，如果有，执行请求下一次VSync信号</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">        </span><span class="n">preComposition</span><span class="p">();</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">        </span><span class="c1">//若Layer的位置/先后顺序/可见性发生变化，重新计算Layer的目标合成区域和先后顺序</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">        </span><span class="n">rebuildLayerStacks</span><span class="p">();</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="c1">//调用hwc的prepare方法询问每个图层是否支持硬件合成</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="n">setUpHWComposer</span><span class="p">();</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">        </span><span class="c1">//当打开开发者选项中的“显示Surface刷新”时，额外为产生变化的图层绘制闪烁动画</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">        </span><span class="n">doDebugFlashRegions</span><span class="p">();</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">        </span><span class="c1">//如果不支持硬件合成，在该方法中会调用GPU合成，接着提交buffer</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="n">doComposition</span><span class="p">();</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">        </span><span class="c1">//调Layer的onPostComposition方法，主要用于调试，可以忽略</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">        </span><span class="n">postComposition</span><span class="p">(</span><span class="n">refreshStartTime</span><span class="p">);</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="p">}</span><span class="w">    </span>
+</code></pre></div></td></tr></table></div>
+<h5 id="321_precomposition">3.2.1 图层预处理（preComposition）<a class="headerlink" href="#321_precomposition" title="Permanent link">#</a></h5>
+<p>核心任务：标记所有待合成的图层（Layer），通知各图层即将        进入合成阶段。</p>
+<p>关键操作：</p>
+<ul>
+<li>调用各图层的onPreCompisition()方法，更新其状态（如可见性、脏区域标记）</li>
+<li>检查是否有图层内容变化</li>
+<li>技术细节：若图层无新帧（Buffer未更新），则跳过后续合成，减少冗余计算</li>
+</ul>
+<p>代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SurfaceFlinger</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SurfaceFlinger::preComposition</span><span class="p">(){</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">        </span><span class="kt">bool</span><span class="w"> </span><span class="n">needExtraInvalidate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">LayerVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">layers</span><span class="p">(</span><span class="n">mDrawingState</span><span class="p">.</span><span class="n">layersSortedByZ</span><span class="p">);</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">layers</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">count</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">            </span><span class="c1">//因为在调用合成之前已经计算过脏区域，如果有图层在计算以后加入了队列，那么在预处理阶段要再次请求VSync信号</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">layers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">onPreComposition</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">                </span><span class="n">needExtraInvalidate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">        </span><span class="c1">//存在未处理的layer，执行请求下一次VSync信号，避免这段时间内的帧数据丢掉了</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">needExtraInvalidate</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">            </span><span class="n">signalLayerUpdate</span><span class="p">();</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h5 id="322_rebuildlayerstacks">3.2.2 图层堆栈重建（rebuildLayerStacks）<a class="headerlink" href="#322_rebuildlayerstacks" title="Permanent link">#</a></h5>
+<p>核心任务：根据窗口层级（Z-order）和可见区域，重新计算图  层的叠加顺序与裁剪区域。</p>
+<p>关键操作：</p>
+<ul>
+<li>层级排序：按窗口管理器（WindowManager）提供的Z轴顺序排序图层</li>
+<li>可见性计算：动态裁剪重叠区域；是被脏区域，仅更新内容变化的区域</li>
+</ul>
+<p>代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SurfaceFlinger</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SurfaceFlinger::rebuildLayerStacks</span><span class="p">(){</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">        </span><span class="c1">//获取当前应用程序所有按照z-order排列的layer</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">LayerVector</span><span class="o">&amp;</span><span class="w"> </span><span class="n">layers</span><span class="p">(</span><span class="n">mDrawingState</span><span class="p">.</span><span class="n">layersSortedByZ</span><span class="p">);</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">        </span><span class="c1">//遍历每一个显示屏</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">dpy</span><span class="o">=</span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">dpy</span><span class="o">&lt;</span><span class="n">mDisplays</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">dpy</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">            </span><span class="c1">//z-order排列的layer</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="w">            </span><span class="n">hw</span><span class="o">-&gt;</span><span class="n">setVisibleLayersSortedByZ</span><span class="p">(</span><span class="n">layersSortedByZ</span><span class="p">);</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">            </span><span class="c1">//显示屏大小</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="w">            </span><span class="n">hw</span><span class="o">-&gt;</span><span class="n">undefinedRegion</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">bounds</span><span class="p">);</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">            </span><span class="c1">//减去不透明区域</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">            </span><span class="n">hw</span><span class="o">-&gt;</span><span class="n">undefinedRegion</span><span class="p">.</span><span class="n">subtractSelf</span><span class="p">(</span><span class="n">tr</span><span class="p">.</span><span class="n">transform</span><span class="p">(</span><span class="n">opaqueRegion</span><span class="p">));</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="w">            </span><span class="c1">//累加脏区域</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="w">            </span><span class="n">hw</span><span class="o">-&gt;</span><span class="n">dirtyRegion</span><span class="p">.</span><span class="n">orSelf</span><span class="p">(</span><span class="n">dirtyRegion</span><span class="p">);</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="w">    </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h5 id="323_setuphwcomposer">3.2.3 硬件合成器准备（setUpHWComposer）<a class="headerlink" href="#323_setuphwcomposer" title="Permanent link">#</a></h5>
+<p>核心任务：配置硬件合成器（HWC），决策各图层的合成策略 （硬件/GPU合成）。</p>
+<p>关键操作：</p>
+<ul>
+<li>
+<p>HWComposer协商：通过HWC的Prepare方法提交所有的图层信息（格式、位置、透明度）；HWC根据硬件能力（Overlay层数限制）标记可硬件合成的图层（HWC2::Composition::Device），剩余标记为GPU合成（HWC2::Composition::Client）</p>
+</li>
+<li>
+<p>若硬件不支持特定格式（如DRM保护内容），强制回退到GPU合成</p>
+</li>
+</ul>
+<p>性能优化：优先使用HWC合成（如视频播放层），降低GPU负 载</p>
+<p>代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SurfaceFlinger</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SurfaceFlinger::setUpHWComposer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">        </span><span class="c1">//prepareFrame方法中调用了HWComposer::prepare方法</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">          </span><span class="c1">//在HWC的prepare方法中，将会确定每一个图层使用哪种合成方式</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">displayId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">displayId</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">mDisplays</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">displayId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">            </span><span class="k">auto</span><span class="o">&amp;</span><span class="w"> </span><span class="n">displayDevice</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mDisplays</span><span class="p">[</span><span class="n">displayId</span><span class="p">];</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">displayDevice</span><span class="o">-&gt;</span><span class="n">isDisplayOn</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">                </span><span class="k">continue</span><span class="p">;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">            </span><span class="n">status_t</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">displayDevice</span><span class="o">-&gt;</span><span class="n">prepareFrame</span><span class="p">(</span><span class="o">*</span><span class="n">mHwc</span><span class="p">);</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h5 id="324_docomposition">3.2.4 执行合成（doComposition）<a class="headerlink" href="#324_docomposition" title="Permanent link">#</a></h5>
+<p>核心任务：按合成策略执行实际合成操作，生成最终帧。</p>
+<p>关键操作：</p>
+<ul>
+<li>
+<p>GPU合成
+通过RenderEngine（基于OpenGL ES/Vulkan）渲染复杂图层（如旋转、缩放特效）<br>
+将DPU无法合成的图层（如HWC标记为Client的图层）合并到临时缓冲区</p>
+</li>
+<li>
+<p>HWC合成
+直接传递可硬件合成的图层给HWC（避免GPU内存拷贝）<br>
+HWC调用显示处理器（DPU）执行混合计算（如Alpha混合、Overlay叠加）</p>
+</li>
+<li>
+<p>混合输出
+GPU合成的结果与HWC处理的图层最终合并为单一帧（Framebuffer）
+代码：</p>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SurfaceFlinger</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">SurfaceFlinger::doComposition</span><span class="p">(){</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">        </span><span class="c1">//遍历所有的DisplayDevice然后调用doDisplayComposition函数</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">dpy</span><span class="o">=</span><span class="mi">0</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">dpy</span><span class="o">&lt;</span><span class="n">mDisplays</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="n">dpy</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">            </span><span class="k">const</span><span class="w"> </span><span class="n">sp</span><span class="o">&lt;</span><span class="n">DisplayDevice</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">hw</span><span class="p">(</span><span class="n">mDisplays</span><span class="p">[</span><span class="n">dpy</span><span class="p">]);</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hw</span><span class="o">-&gt;</span><span class="n">isDisplayOn</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">                </span><span class="c1">//获得屏幕的脏区域，将脏区转换为该屏幕的座标空间</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">                </span><span class="k">const</span><span class="w"> </span><span class="n">Region</span><span class="w"> </span><span class="n">dirtyRegion</span><span class="p">(</span><span class="n">hw</span><span class="o">-&gt;</span><span class="n">getDirtyRegion</span><span class="p">(</span><span class="n">repaintEverything</span><span class="p">));</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">                </span><span class="c1">//在此方法中将会调用到doComposeSurfaces()方法</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">                </span><span class="c1">//在doComposeSurfaces方法中，将会为被标记为不支持硬件合成的图层调用Layer#draw()方法使用OpenGL ES合成</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="w">                </span><span class="n">doDisplayComposition</span><span class="p">(</span><span class="n">hw</span><span class="p">,</span><span class="w"> </span><span class="n">dirtyRegion</span><span class="p">);</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="w">        </span><span class="n">postFramebuffer</span><span class="p">();</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h5 id="325_postcomposition">3.2.5 合成后处理（postComposition）<a class="headerlink" href="#325_postcomposition" title="Permanent link">#</a></h5>
+<p>核心任务：提交帧到显示设备，释放资源并同步状态</p>
+<p>关键操作：</p>
+<ul>
+<li>帧提交：</li>
+</ul>
+<p>调用Output::present()将最终帧通过Gralloc缓冲区传递到显示控制器（Display Controller）</p>
+<ul>
+<li>缓冲区释放</li>
+</ul>
+<p>通知应用层释放已使用的GraphicBuffer（通过BufferQueue::releaseBuffer）<br>
+检查缓冲区泄漏（如dumpsys SurfaceFlinger | grep "BufferQueue"）</p>
+<ul>
+<li>VSync同步：</li>
+</ul>
+<p>等待下一个VSync信号提交帧，避免撕裂（Tearing）</p>
+<h4 id="4">4、小结<a class="headerlink" href="#4" title="Permanent link">#</a></h4>
+<p>Android 图形子系统涉及较多细节且流程较为复杂。概括来说，其核心流程主要包含以下环节：首先通过 DecorView 创建并容纳布局内容，随后由 ViewRootImpl 统一管理 View 内的事件处理（包括触发的绘制操作）。Window 作为抽象对象，定义了不同图层间的逻辑关系。每个 Window 关联一个 Surface，该 Surface 负责实际绘制画面内容。系统通过 BufferQueue 构建了一个 GraphicBuffer 的生产者-消费者模型，连接 Surface（生产者）与 SurfaceFlinger（消费者）。SurfaceFlinger 则负责协调与管理不同图层的合成工作。最终，合成后的帧图像被输出到显示器进行呈现。</p>
+<div class="admonition note">
+<p class="admonition-title">本文转发链接如下：</p>
+</div>
+<p><a href="https://mp.weixin.qq.com/s/k-X_cM53iqdyt15k-0yTGA" target="_blank">Android图形子系统核心机制全链路剖析</a></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright @ 2024 Diperluer, All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
