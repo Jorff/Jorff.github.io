@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,101 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、内核调试选项
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bug-bug_on" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、使用 BUG() 和 BUG_ON() 宏
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dump_stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、dump_stack()
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kallsyms" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、kallsyms
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#systemmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、system.map
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、system.map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51systemmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1、System.map是怎么产生的
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52systemmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2、System.map内容中各列的意义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,8 +725,8 @@
 
 
 
-<h1 id="linux"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Linux内核驱动高级调试技巧</span><a class="headerlink" href="#linux" title="Permanent link">#</a></h1>
-<h2 id="_1">一、内核调试选项<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<h1 id="linux"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Linux内核驱动高级调试技巧</span><a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
+<h2 id="_1">一、内核调试选项<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>在编译内核的时候，为了方便调试和测试代码，内核提供了许多配置选项， 如</p>
 <ul>
 <li>Page alloc debugging ：CONFIG_DEBUG_PAGEALLOC</li>
@@ -671,7 +764,7 @@
 <li>Event debugging：CONFIG_INPUT_EVBUG</li>
 </ul>
 <p>打开该选项时，会将输入子系统的错误及所有事件都输出到系统日志中。该选项在产生了详细的输入报告的同时，也会导致一定的安全问题。</p>
-<h2 id="bug_bug_on">二、使用 BUG() 和 BUG_ON() 宏<a class="headerlink" href="#bug_bug_on" title="Permanent link">#</a></h2>
+<h2 id="bug-bug_on">二、使用 BUG() 和 BUG_ON() 宏<a class="headerlink" href="#bug-bug_on" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -692,9 +785,9 @@
 <a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="cp">#define BUG_ON(condition) do { if (unlikely(condition)) BUG(); } while(0)</span>
 <a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="cp">#endif</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="dump_stack">三、dump_stack()<a class="headerlink" href="#dump_stack" title="Permanent link">#</a></h2>
+<h2 id="dump_stack">三、dump_stack()<a class="headerlink" href="#dump_stack" title="Permanent link">&para;</a></h2>
 <p>有时候， 你只是需要打印一下内核函数调用流程， 可以使用 dump_stack() 打印调用栈。</p>
-<h2 id="kallsyms">四、kallsyms<a class="headerlink" href="#kallsyms" title="Permanent link">#</a></h2>
+<h2 id="kallsyms">四、kallsyms<a class="headerlink" href="#kallsyms" title="Permanent link">&para;</a></h2>
 <p>Linux 2.5内核引入了kallsyms特性，它可以通过定义CONFIG_KALLSYMS编译选项启用。该选项可以载入内核镜像所对应的内存地址的符号名称（即函数名），所以内核可以打印解码之后的跟踪线索。相应，解码OOPS也不再需要System.map和ksymoops工具了。另外，这样做，会使内核变大些，因为地址对应符号名称必须始终驻留在内核所在内存上。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">#cat /proc/kallsyms</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w"> </span>c0100240<span class="w">   </span>T<span class="w">       </span>_stext
@@ -702,10 +795,10 @@
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w"> </span>c0100240<span class="w">   </span>T<span class="w">      </span>stext
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w"> </span>c0100269<span class="w">   </span>t<span class="w">       </span>init
 </code></pre></div>
-<h2 id="systemmap">五、system.map<a class="headerlink" href="#systemmap" title="Permanent link">#</a></h2>
+<h2 id="systemmap">五、system.map<a class="headerlink" href="#systemmap" title="Permanent link">&para;</a></h2>
 <p>System.map是一个特定内核的符号表，符号表时所有符号和其对应地址的列表，当内核编译出错时， 通过System.map中的符号表解析， 就可以找到出错的地址值找到对应的变量名，或者函数名。</p>
 <p>System.map 是独一无二的，只要内核发生了修改， 再次编译时会产生一个全新的内核符号表。你应该使用正确的符号表， 错误的符号表不仅无助于解决问题， 反而会使问题变得隐蔽。</p>
-<h3 id="51systemmap">5.1、System.map是怎么产生的<a class="headerlink" href="#51systemmap" title="Permanent link">#</a></h3>
+<h3 id="51systemmap">5.1、System.map是怎么产生的<a class="headerlink" href="#51systemmap" title="Permanent link">&para;</a></h3>
 <p>你知道nm命令吗，对编译后的内核（vmlinux）使用它，你会得到所有符号的信息， 例如：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>nm<span class="w"> </span>vmlinux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">&#39;(compiled)|(.o$$)|( [aUw] )|(..ng$$)|(LASH[RL]DI)&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w">  </span>System.map<span class="w">  </span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cp<span class="w"> </span>/usr/src/linux/System.map<span class="w"> </span>/boot/System.map-2.4.7-10
@@ -722,7 +815,7 @@
 <p>/usr/src/linux/System.map</p>
 </li>
 </ul>
-<h3 id="52systemmap">5.2、System.map内容中各列的意义<a class="headerlink" href="#52systemmap" title="Permanent link">#</a></h3>
+<h3 id="52systemmap">5.2、System.map内容中各列的意义<a class="headerlink" href="#52systemmap" title="Permanent link">&para;</a></h3>
 <p>使用sudo cat /boot/System.map显示内核符号表的内容并截取其中一部分：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="m">0000000000013840</span><span class="w"> </span>D<span class="w"> </span>cpu_info
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="m">0000000000013900</span><span class="w"> </span>d<span class="w"> </span>hv_clock
@@ -820,7 +913,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

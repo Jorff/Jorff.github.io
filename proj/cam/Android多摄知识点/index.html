@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,68 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#camera" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、多Camera 概述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、多摄像头举例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、 多摄像头支持列表
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#camera_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、Camera 流配置
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,7 +692,7 @@
 
 
 
-<h1 id="android"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android 多摄知识点</span><a class="headerlink" href="#android" title="Permanent link">#</a></h1>
+<h1 id="android"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android 多摄知识点</span><a class="headerlink" href="#android" title="Permanent link">&para;</a></h1>
 <p>本篇文章主要介绍 Android 开发中的部分知识点，通过阅读本篇文章，您将收获以下内容:</p>
 <p>一、多Camera 概述
 二、多摄像头举例
@@ -640,7 +700,7 @@
 四、Camera 流配置
 五、多摄像头客制化</p>
 <hr />
-<h3 id="camera"><center><table><tr><td bgcolor=#FF4500>一、多Camera 概述</td></tr></table></center><a class="headerlink" href="#camera" title="Permanent link">#</a></h3>
+<h3 id="camera"><center><table><tr><td bgcolor=#FF4500>一、多Camera 概述</td></tr></table></center><a class="headerlink" href="#camera" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Android 9通过一个新的逻辑相机设备引入了对多相机设备的API支持，该逻辑相机设备由指向同一方向的两个或多个物理相机设备组成。逻辑摄像机设备作为单个CameraDevice / CaptureSession公开给应用程序，允许与HAL集成的多摄像机功能进行交互。应用程序可以选择访问和控制基础物理相机流，元数据和控件。</p>
 <!-- ![alt text](./campic/image_20250712_1_1.png) -->
@@ -649,14 +709,14 @@
 </a></p>
 <p>在此图中，不同的摄像机ID用颜色编码。该应用程序可以同时从每个物理相机流式传输原始缓冲区。也可以设置单独的控件并从不同的物理摄像机接收单独的元数据。</p>
 <hr />
-<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>二、多摄像头举例</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>二、多摄像头举例</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>多摄像机设备必须通过 逻辑多摄像机功能发布。</p>
 <p>摄像机客户端可以通过调用来查询组成特定逻辑摄像机的物理设备的摄像机IDgetPhysicalCameraIds()。然后，作为结果一部分返回的ID将通过分别用于控制物理设备setPhysicalCameraId()。可以通过调用从完整结果中查询此类单个请求的结果getPhysicalCameraResults()。</p>
 <p>各个物理摄像机请求可能仅支持有限的参数子集。要接收支持的参数列表，开发人员可以调用getAvailablePhysicalCameraRequestKeys()。</p>
 <p>物理摄像机流仅支持非处理请求，并且仅支持单色和拜耳传感器。</p>
 <hr />
-<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>三、 多摄像头支持列表</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>三、 多摄像头支持列表</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <hr />
 <p>要在HAL端添加逻辑多摄像机设备：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ANDROID_REQUEST_AVAILABLE_CAPABILITIES_LOGICAL_MULTI_CAMERA 为由两个或更多物理相机支持的逻辑相机设备添加 功能，这些相机也向应用程序公开。
@@ -678,7 +738,7 @@
 <p>对于运行Android 9的设备，摄像头设备必须支持用两个物理摄像头的相同大小（不适用于RAW流）和相同格式的物理流替换一个逻辑YUV / RAW流。这不适用于运行Android 10的设备。</p>
 <p>对于运行Android 10且相机HAL设备版本为3.5 或更高版本 的设备，相机设备必须支持isStreamCombinationSupported 应用程序以查询是否支持包含物理流的特定流组合。</p>
 <hr />
-<h3 id="camera_1"><center><table><tr><td bgcolor=#FF4500>四、Camera 流配置</td></tr></table></center><a class="headerlink" href="#camera_1" title="Permanent link">#</a></h3>
+<h3 id="camera_1"><center><table><tr><td bgcolor=#FF4500>四、Camera 流配置</td></tr></table></center><a class="headerlink" href="#camera_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>对于逻辑摄像机，特定硬件级别的摄像机设备的强制流组合与中的要求相同CameraDevice.createCaptureSession。流配置图中的所有流必须是逻辑流。</p>
 <p>对于支持具有不同大小的物理子摄像机的RAW功能的逻辑摄像机设备，如果应用程序配置逻辑RAW流，则该逻辑摄像机设备不得切换到具有不同传感器大小的物理子摄像机。这样可以确保现有的RAW捕获应用程序不会损坏。</p>
@@ -692,7 +752,7 @@
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>使用物理流代替相同大小和格式的逻辑流。当物理流和逻辑流的最小帧持续时间相同时，这一定不能减慢捕获的帧速率。
 </code></pre></div>
-<h1 id="_3">性能和功耗考虑<a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
+<h1 id="_3">性能和功耗考虑<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
 <p>性能：</p>
 <p>由于资源限制，配置和流式传输物理流可能会减慢逻辑摄像机的捕获速率。
 如果将基础相机设置为不同的帧速率，则应用物理相机设置可能会降低捕获速率。
@@ -700,7 +760,7 @@
 <p>在默认情况下，HAL的功率优化将继续起作用。
 配置或请求物理流可能会覆盖HAL的内部电源优化，并导致更多的电源使用。</p>
 <hr />
-<h3 id="_4"><center><table><tr><td bgcolor=#FF4500>五、多摄像头客制化</td></tr></table></center><a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<h3 id="_4"><center><table><tr><td bgcolor=#FF4500>五、多摄像头客制化</td></tr></table></center><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <hr />
 <p>您可以通过以下方式自定义设备实现。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>逻辑摄像机设备的融合输出完全取决于HAL实现。关于如何从物理摄像机中导出融合逻辑流的决定对于应用程序和Android摄像机框架是透明的。
@@ -787,7 +847,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

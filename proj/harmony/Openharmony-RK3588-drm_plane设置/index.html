@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,119 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、代码简要介绍
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drm_devicecpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、drm_device.cpp解析
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-drmdevicecreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 DrmDevice::Create
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-drmdeviceconverttodrmformat" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 DrmDevice::ConvertToDrmFormat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-drmdevicegetproperty" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 DrmDevice::GetProperty
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-drmdeviceinit" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 DrmDevice::Init
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-drmdevicehandlehotplug" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 DrmDevice::HandleHotplug
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-drmdevicediscoverydisplay" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 DrmDevice::DiscoveryDisplay
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.6 DrmDevice::DiscoveryDisplay">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、代码改动
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,10 +743,10 @@
 
 
 
-<h1 id="openharmony-rk3588-drm_plane"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony-RK3588-drm_plane设置</span><a class="headerlink" href="#openharmony-rk3588-drm_plane" title="Permanent link">#</a></h1>
+<h1 id="openharmony-rk3588-drm_plane"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony-RK3588-drm_plane设置</span><a class="headerlink" href="#openharmony-rk3588-drm_plane" title="Permanent link">&para;</a></h1>
 <p>对于openharmony的rk3588代码分支，安装烧录之后发现默认不亮，这里原因是dayu210的提交人员做了一个定制内容修改，我们的代码需要屏蔽掉，从而使得openharmony的hdi能够正确的找到drm的plane。具体如下：</p>
 <hr />
-<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>一、代码简要介绍</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>一、代码简要介绍</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>代码位置：device/soc/rockchip/rk3588/hardware/display/src/display_device/</p>
 <p>这里面存在两个动态库，如下</p>
@@ -728,10 +839,10 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>src/display_device/drm_device.cpp。
 </code></pre></div>
 <hr />
-<h3 id="drm_devicecpp"><center><table><tr><td bgcolor=#FF4500>二、drm_device.cpp解析</td></tr></table></center><a class="headerlink" href="#drm_devicecpp" title="Permanent link">#</a></h3>
+<h3 id="drm_devicecpp"><center><table><tr><td bgcolor=#FF4500>二、drm_device.cpp解析</td></tr></table></center><a class="headerlink" href="#drm_devicecpp" title="Permanent link">&para;</a></h3>
 <hr />
 <p>drm_device.cpp作为drm设备的创建动作，是基于图形的最先操作的，例如打开drm设备，查询crtc，plane，encoder，connector，和property。主要如下：</p>
-<h2 id="21_drmdevicecreate">2.1 DrmDevice::Create<a class="headerlink" href="#21_drmdevicecreate" title="Permanent link">#</a></h2>
+<h2 id="21-drmdevicecreate">2.1 DrmDevice::Create<a class="headerlink" href="#21-drmdevicecreate" title="Permanent link">&para;</a></h2>
 <p>此函数打开card0显卡设备，从而获取drmFd的fd值，后续可作为drmMode函数的参数</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
@@ -769,7 +880,7 @@
 <a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mInstance</span><span class="p">;</span>
 <a id="__codelineno-3-18" name="__codelineno-3-18"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="22_drmdeviceconverttodrmformat">2.2 DrmDevice::ConvertToDrmFormat<a class="headerlink" href="#22_drmdeviceconverttodrmformat" title="Permanent link">#</a></h2>
+<h2 id="22-drmdeviceconverttodrmformat">2.2 DrmDevice::ConvertToDrmFormat<a class="headerlink" href="#22-drmdeviceconverttodrmformat" title="Permanent link">&para;</a></h2>
 <p>此函数作为drm格式的转换函数，因为openharmony上层的graphic_2d会有默认显示格式，而libdrm底层有可支持的显示格式，对于libdrm而言，可以通过drmModeAddFB2函数传入drm支持的图片格式的format值，对于openharmony而言，是当前系统支持的格式，我们可以如下知道openharmony支持如下图像格式：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
@@ -895,7 +1006,7 @@
 <a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fmtOut</span><span class="p">;</span>
 <a id="__codelineno-5-23" name="__codelineno-5-23"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="23_drmdevicegetproperty">2.3 DrmDevice::GetProperty<a class="headerlink" href="#23_drmdevicegetproperty" title="Permanent link">#</a></h2>
+<h2 id="23-drmdevicegetproperty">2.3 DrmDevice::GetProperty<a class="headerlink" href="#23-drmdevicegetproperty" title="Permanent link">&para;</a></h2>
 <p>此函数通过遍历drm的property来将其保存在变量prop中。其调用流程如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>drmModeObjectGetProperties---&gt;drmModeGetProperty---&gt;drmModeFreeProperty-→drmModeFreeObjectProperties
 </code></pre></div>
@@ -1026,7 +1137,7 @@
 <a id="__codelineno-9-40" name="__codelineno-9-40"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">found</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">DISPLAY_SUCCESS</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">DISPLAY_NOT_SUPPORT</span><span class="p">;</span>
 <a id="__codelineno-9-41" name="__codelineno-9-41"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="24_drmdeviceinit">2.4 DrmDevice::Init<a class="headerlink" href="#24_drmdeviceinit" title="Permanent link">#</a></h2>
+<h2 id="24-drmdeviceinit">2.4 DrmDevice::Init<a class="headerlink" href="#24-drmdeviceinit" title="Permanent link">&para;</a></h2>
 <p>此函数初始化drm的设置，主要设置并检查此程序是否为第一个drm的gpu渲染程序（drmSetMaster/drmIsMaster）和设置drm默认使用atomic接口（drmSetClientCap），主要实现如下</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
@@ -1062,7 +1173,7 @@
 <a id="__codelineno-10-16" name="__codelineno-10-16"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">DISPLAY_SUCCESS</span><span class="p">;</span>
 <a id="__codelineno-10-17" name="__codelineno-10-17"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="25_drmdevicehandlehotplug">2.5 DrmDevice::HandleHotplug<a class="headerlink" href="#25_drmdevicehandlehotplug" title="Permanent link">#</a></h2>
+<h2 id="25-drmdevicehandlehotplug">2.5 DrmDevice::HandleHotplug<a class="headerlink" href="#25-drmdevicehandlehotplug" title="Permanent link">&para;</a></h2>
 <p>此函数作为显示器热插拔时候使用drm分配crtc，从而支持插拔connector时可以正常显示。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
@@ -1114,7 +1225,7 @@
 <a id="__codelineno-11-24" name="__codelineno-11-24"></a><span class="w">    </span><span class="n">returnfalse</span><span class="p">;</span>
 <a id="__codelineno-11-25" name="__codelineno-11-25"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="26_drmdevicediscoverydisplay">2.6 DrmDevice::DiscoveryDisplay<a class="headerlink" href="#26_drmdevicediscoverydisplay" title="Permanent link">#</a></h2>
+<h2 id="26-drmdevicediscoverydisplay">2.6 DrmDevice::DiscoveryDisplay<a class="headerlink" href="#26-drmdevicediscoverydisplay" title="Permanent link">&para;</a></h2>
 <p>此函数主要用于发现display的crtc，encoder，connector，plane，并触发DrmDisplay的初始化操作。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
@@ -1207,7 +1318,7 @@
 <a id="__codelineno-12-45" name="__codelineno-12-45"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <hr />
-<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>三、代码改动</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>三、代码改动</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <hr />
 <p>对于dayu210的仓库代码，修改如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>diff<span class="w"> </span>--git<span class="w"> </span>a/rk3588/hardware/display/src/display_device/drm_device.cpp<span class="w"> </span>b/rk3588/hardware/display/src/display_device/drm_device.cpp
@@ -1461,7 +1572,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

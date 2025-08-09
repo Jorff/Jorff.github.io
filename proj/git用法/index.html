@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,41 +648,41 @@
 
 
 
-<h1 id="git"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">git用法</span><a class="headerlink" href="#git" title="Permanent link">#</a></h1>
+<h1 id="git"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">git用法</span><a class="headerlink" href="#git" title="Permanent link">&para;</a></h1>
 <p>Git 是当今最流行的分布式版本控制系统，由 Linux 创始人 Linus Torvalds 开发。以下是 Git 的全面使用指南：</p>
-<h1 id="git_1">一、Git 核心概念<a class="headerlink" href="#git_1" title="Permanent link">#</a></h1>
-<h2 id="1_repository">1. 仓库 (Repository)：<a class="headerlink" href="#1_repository" title="Permanent link">#</a></h2>
+<h1 id="git_1">一、Git 核心概念<a class="headerlink" href="#git_1" title="Permanent link">&para;</a></h1>
+<h2 id="1-repository">1. 仓库 (Repository)：<a class="headerlink" href="#1-repository" title="Permanent link">&para;</a></h2>
 <p>本地仓库：.git 目录（包含所有版本数据）</p>
 <p>远程仓库：托管在服务器上的仓库（GitHub/GitLab等）</p>
-<h2 id="2">2. 三大区域：<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<h2 id="2">2. 三大区域：<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <!-- ![alt text](./picture/git-2025-06-20-1-a.png) -->
 <p><a href="/proj/picture/git-2025-06-20-1-a.png" target="_blank">
   <img src="/proj/picture/git-2025-06-20-1-a.png" alt="xx" width="500"/>
 </a></p>
-<h2 id="3">3. 核心对象：<a class="headerlink" href="#3" title="Permanent link">#</a></h2>
+<h2 id="3">3. 核心对象：<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>Blob：存储文件内容</p>
 <p>Tree：存储目录结构</p>
 <p>Commit：包含提交信息、作者和时间戳</p>
 <p>Tag：重要版本的标记</p>
-<h1 id="_1">单人开发流程<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="_1">单人开发流程<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](image.png) -->
 <p><a href="/proj/picture/git-2025-06-20-1-c.png" target="_blank">
   <img src="/proj/picture/git-2025-06-20-1-c.png" alt="xx" width="500"/>
 </a></p>
-<h1 id="_2">团队协作流程<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<h1 id="_2">团队协作流程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](./picture/git-2025-06-20-1-b.png) -->
 <p><a href="/proj/picture/git-2025-06-20-1-b.png" target="_blank">
   <img src="/proj/picture/git-2025-06-20-1-b.png" alt="xx" width="500"/>
 </a></p>
-<h1 id="git_2">常用 Git 命令详解<a class="headerlink" href="#git_2" title="Permanent link">#</a></h1>
-<h2 id="1">1、配置管理<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<h1 id="git_2">常用 Git 命令详解<a class="headerlink" href="#git_2" title="Permanent link">&para;</a></h1>
+<h2 id="1">1、配置管理<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 全局配置</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;Your Name&quot;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;email@example.com&quot;</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 查看配置</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>git<span class="w"> </span>config<span class="w"> </span>--list
 </code></pre></div>
-<h2 id="2_1">2. 仓库操作<a class="headerlink" href="#2_1" title="Permanent link">#</a></h2>
+<h2 id="2_1">2. 仓库操作<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 初始化新仓库</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git<span class="w"> </span>init
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># 克隆现有仓库</span>
@@ -674,7 +690,7 @@
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># 添加远程仓库</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://github.com/user/repo.git
 </code></pre></div>
-<h2 id="3_1">3. 基础工作流<a class="headerlink" href="#3_1" title="Permanent link">#</a></h2>
+<h2 id="3_1">3. 基础工作流<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 查看状态</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>git<span class="w"> </span>status
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># 添加到暂存区</span>
@@ -687,7 +703,7 @@
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># 拉取远程更新</span>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main
 </code></pre></div>
-<h2 id="4">4. 分支管理<a class="headerlink" href="#4" title="Permanent link">#</a></h2>
+<h2 id="4">4. 分支管理<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 创建分支</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git<span class="w"> </span>branch<span class="w"> </span>feature-x
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># 切换分支</span>
@@ -697,7 +713,7 @@
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>git<span class="w"> </span>merge<span class="w"> </span>feature-x
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># 删除分支git branch -d feature-x</span>
 </code></pre></div>
-<h2 id="5">5. 查看历史<a class="headerlink" href="#5" title="Permanent link">#</a></h2>
+<h2 id="5">5. 查看历史<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 基础日志</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>log
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1"># 图形化日志</span>
@@ -705,7 +721,7 @@
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># 查看文件修改</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>git<span class="w"> </span>blame<span class="w"> </span>file.txt
 </code></pre></div>
-<h2 id="6">6. 撤销操作<a class="headerlink" href="#6" title="Permanent link">#</a></h2>
+<h2 id="6">6. 撤销操作<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 撤销工作区修改</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>--<span class="w"> </span>file.txt
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># 撤销暂存区文件</span>
@@ -717,7 +733,7 @@
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>a1b2c3d<span class="w">  </span><span class="c1"># 回退到特定commit,不保存修改</span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>git<span class="w"> </span>reset<span class="w"> </span>--soft<span class="w"> </span>a1b2c3d<span class="w">  </span><span class="c1"># 回退到特定commit，保存修改</span>
 </code></pre></div>
-<h2 id="7">7. 标签管理<a class="headerlink" href="#7" title="Permanent link">#</a></h2>
+<h2 id="7">7. 标签管理<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 创建标签</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git<span class="w"> </span>tag<span class="w"> </span>v1.0.0
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># 带注释标签</span>
@@ -725,8 +741,8 @@
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># 推送标签</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>--tags
 </code></pre></div>
-<h1 id="_3">高级使用技巧<a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
-<h2 id="1_1">1. 储藏临时修改<a class="headerlink" href="#1_1" title="Permanent link">#</a></h2>
+<h1 id="_3">高级使用技巧<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
+<h2 id="1_1">1. 储藏临时修改<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 储藏当前修改</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>git<span class="w"> </span>stash
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="c1"># 查看储藏列表</span>
@@ -734,7 +750,7 @@
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="c1"># 恢复最近储藏</span>
 <a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>git<span class="w"> </span>stash<span class="w"> </span>pop
 </code></pre></div>
-<h2 id="2_2">2. 交互式变基<a class="headerlink" href="#2_2" title="Permanent link">#</a></h2>
+<h2 id="2_2">2. 交互式变基<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h2>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>HEAD~5
 </code></pre></div>
 操作选项：</p>
@@ -743,29 +759,29 @@
 <p>edit：修改提交内容</p>
 <p>squash：合并到前一个提交</p>
 <p>fixup：合并并丢弃提交信息</p>
-<h2 id="3_2">3. 子模块管理<a class="headerlink" href="#3_2" title="Permanent link">#</a></h2>
+<h2 id="3_2">3. 子模块管理<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 添加子模块</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/user/lib.git
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># 初始化子模块</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>git<span class="w"> </span>submodule<span class="w"> </span>init
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>git<span class="w"> </span>submodule<span class="w"> </span>update
 </code></pre></div>
-<h2 id="4_hooks">4. 钩子脚本 (Hooks)<a class="headerlink" href="#4_hooks" title="Permanent link">#</a></h2>
+<h2 id="4-hooks">4. 钩子脚本 (Hooks)<a class="headerlink" href="#4-hooks" title="Permanent link">&para;</a></h2>
 <p>位置：.git/hooks/</p>
 <p>常用钩子：</p>
 <p>pre-commit：提交前检查代码</p>
 <p>post-receive：服务器接收推送后触发</p>
 <p>pre-push：推送前验证</p>
-<h1 id="_4">常见问题解决方案<a class="headerlink" href="#_4" title="Permanent link">#</a></h1>
-<h2 id="1_2">1. 合并冲突：<a class="headerlink" href="#1_2" title="Permanent link">#</a></h2>
+<h1 id="_4">常见问题解决方案<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
+<h2 id="1_2">1. 合并冲突：<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h2>
 <p>手动编辑冲突文件（搜索 &lt;&lt;&lt;&lt;&lt;&lt;&lt;）</p>
 <p>使用 git merge tool 调用可视化工具</p>
 <p>解决后执行 git add 和 git commit</p>
-<h2 id="2_3">2. 撤销错误合并<a class="headerlink" href="#2_3" title="Permanent link">#</a></h2>
+<h2 id="2_3">2. 撤销错误合并<a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>git<span class="w"> </span>merge<span class="w"> </span>--abort#<span class="w"> </span>合并过程中止
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD~1<span class="w">  </span><span class="c1"># 已提交的合并</span>
 </code></pre></div>
-<h2 id="3_3">3.恢复误删分支：<a class="headerlink" href="#3_3" title="Permanent link">#</a></h2>
+<h2 id="3_3">3.恢复误删分支：<a class="headerlink" href="#3_3" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 查找最近提交</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>git<span class="w"> </span>reflog
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># 恢复分支</span>
@@ -834,7 +850,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>

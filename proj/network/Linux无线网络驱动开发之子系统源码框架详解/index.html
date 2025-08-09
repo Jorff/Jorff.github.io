@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,14 +648,14 @@
 
 
 
-<h1 id="linuxnl80211cfg80211mac80211"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Linux无线网络驱动开发之子系统源码框架详解（nl80211、cfg80211、mac80211）</span><a class="headerlink" href="#linuxnl80211cfg80211mac80211" title="Permanent link">#</a></h1>
-<h1 id="_1">基础框架<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="linuxnl80211cfg80211mac80211"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Linux无线网络驱动开发之子系统源码框架详解（nl80211、cfg80211、mac80211）</span><a class="headerlink" href="#linuxnl80211cfg80211mac80211" title="Permanent link">&para;</a></h1>
+<h1 id="_1">基础框架<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](./netpic/netpic_20250628_1_1.png) -->
 
 <p><a href="/proj/network/netpic/netpic_20250628_1_1.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_1_1.png" alt="xx" width="600"/>
 </a></p>
-<h1 id="_2">基础概念<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<h1 id="_2">基础概念<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>nl80211
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>作用：用户空间与内核空间无线配置的接口（Netlink API）
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>功能：提供基于 netlink 的通信机制，允许用户空间工具配置和管理无线设备
@@ -661,7 +677,7 @@
 <a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>3）支持 AP、STA、Monitor、Mesh 等多种模式
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>代码位置：net/mac80211/
 </code></pre></div>
-<h1 id="_3">理解<a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
+<h1 id="_3">理解<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
 <ul>
 <li>nl80211是介于用户空间与内核空间之间的 API ，可以算是 cfg80211 的前端</li>
 <li>cfg80211 是设备和用户空间之间的桥梁，工作则是跟踪 WLAN 设备所处的实际状态</li>
@@ -669,12 +685,12 @@
 <li>如果某些功能无法由设备硬件实现，那么就可以以纯软的方式实现，其也被称为 “Soft MAC” 模块，与 “Hard MAC” （由设备固件完成所有工作）相对。实际项目中通常是这两种方案混合使用的</li>
 </ul>
 <p>那我们怎么去代码理解这几个组件呢，下面我将用一个管理路径的方式，去分析理解</p>
-<h1 id="iw_dev_wlan1_scanwifi">iw dev wlan1 scan命令是如何调用到wifi驱动的<a class="headerlink" href="#iw_dev_wlan1_scanwifi" title="Permanent link">#</a></h1>
-<h2 id="_4">基本调用框架图<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<h1 id="iw-dev-wlan1-scanwifi">iw dev wlan1 scan命令是如何调用到wifi驱动的<a class="headerlink" href="#iw-dev-wlan1-scanwifi" title="Permanent link">&para;</a></h1>
+<h2 id="_4">基本调用框架图<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p><a href="/proj/network/netpic/netpic_20250628_1_2.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_1_2.png" alt="xx" width="600"/>
 </a></p>
-<h2 id="_5">逻辑图<a class="headerlink" href="#_5" title="Permanent link">#</a></h2>
+<h2 id="_5">逻辑图<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p><a href="/proj/network/netpic/netpic_20250628_1_3.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_1_3.png" alt="xx" width="600"/>
 </a></p>
@@ -771,7 +787,7 @@
 <p>有管理路径针对管理帧，数据路径针对数据帧，所以还有数据路径，数据和管理路径在 mac80211 里面是分开实现的。</p>
 </li>
 </ol>
-<h1 id="_6">数据路径发送<a class="headerlink" href="#_6" title="Permanent link">#</a></h1>
+<h1 id="_6">数据路径发送<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h1>
 <ol>
 <li>
 <p>内核协议栈 → mac80211
@@ -852,7 +868,7 @@
 </a>  </p>
 </li>
 </ol>
-<h1 id="_7">数据路径接收<a class="headerlink" href="#_7" title="Permanent link">#</a></h1>
+<h1 id="_7">数据路径接收<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h1>
 <ol>
 <li>
 <p>硬件中断 → 驱动</p>
@@ -919,15 +935,15 @@ USB 设备：USB 回调函数</p>
     Socket 接收：用户程序通过 recv() 或 read() 读取数据。</p>
 </li>
 </ol>
-<h1 id="mlme">什么是MLME<a class="headerlink" href="#mlme" title="Permanent link">#</a></h1>
+<h1 id="mlme">什么是MLME<a class="headerlink" href="#mlme" title="Permanent link">&para;</a></h1>
 <p>即MAC(Media Access Control ) Layer Management Entity，它管理物理层MAC状态机，负责 认证、关联、扫描、省电模式 等</p>
-<h1 id="mlme_1">如何理解MLME<a class="headerlink" href="#mlme_1" title="Permanent link">#</a></h1>
+<h1 id="mlme_1">如何理解MLME<a class="headerlink" href="#mlme_1" title="Permanent link">&para;</a></h1>
 <ul>
 <li>MLME 功能（扫描、认证、关联、省电模式等）由 mac80211 在软件中实现</li>
 <li>mac80211 不参与管理，仅通过 cfg80211 去操作MLME功能</li>
 <li>简单点理解可以为 cfg80211负责管理，mac80211负责实现MLME功能</li>
 </ul>
-<h1 id="_8">疑问？<a class="headerlink" href="#_8" title="Permanent link">#</a></h1>
+<h1 id="_8">疑问？<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h1>
 <ol>
 <li>
 <p>既然iw工具可以创建socket并连接netlink，为什么要需要调用libnl去发送消息给nl80211?
@@ -1005,7 +1021,7 @@ mlme是管理wifi 状态机的，wifi状态机是 MLME 的具体实现方式</p>
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

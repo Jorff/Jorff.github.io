@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,21 +648,21 @@
 
 
 
-<h1 id="camera-mipiv4l2"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">摄像头camera驱动开发基础-MIPI和V4L2</span><a class="headerlink" href="#camera-mipiv4l2" title="Permanent link">#</a></h1>
+<h1 id="camera-mipiv4l2"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">摄像头camera驱动开发基础-MIPI和V4L2</span><a class="headerlink" href="#camera-mipiv4l2" title="Permanent link">&para;</a></h1>
 <p>如果要从事摄像头类驱动软件，需要准备哪些基础信息，一篇文章总结完。</p>
 <p>从独立件来看，包括传感器模组和核心板两部分；所以驱动软件的核心就是保证两者之间的连接，硬件接口常见两种MIPI和USB，MIPI接口调试中重点关注PHY层；软件驱动框架常见的V4L2和UVC。</p>
 <p>内容太多，本章总结关于MIPI camera， USB camera再补一篇。</p>
 <p>摄像头传感器（sensor）模组作为影像输入，提供数据来源；</p>
 <p>核心板接收并处理模组的输入进行处理以及显示；</p>
 <p>硬件接口提供物理连接方式，摄像头驱动软件就是驱动这两者的软连接，一般借助于一些成熟的软件驱动框架实现。</p>
-<h1 id="00">00 常见基础概念<a class="headerlink" href="#00" title="Permanent link">#</a></h1>
+<h1 id="00">00 常见基础概念<a class="headerlink" href="#00" title="Permanent link">&para;</a></h1>
 <p>视频输入技术，是指通过光电技术将拍摄到的真实图像，通过摄像机转存到存储介质上的技术。</p>
 <p>摄像头模组，作为视频输入设备，物理上捕捉图像的设备，广泛应用于实时监控、车载、录像拍照等多个领域。</p>
 <p>本地摄像头，指本文使用的本地集成的camera。</p>
 <p>网络摄像头，可以直连网络；通过使用视频编解码器连接到便携网络设备上，然后通过网络将图像回传到人机交互终端上。</p>
 <p>MIPI，（移动产业处理器接口）定义了一系列移动设备内部的接口标准，MIPI接口同时定义4对差分信号用于传输图像数据，又定义了一对差分时钟信号，最初是为了减少LCD与主控芯片之间连线的数量（代替并行接口）而制定，最终支持了高清显示器以及摄像头。</p>
 <p>以RK3399芯片平台为例，内部集成了三个MIPI接口：DPHY0（TX0）、DPHY1（TX1RX1）、DPHY2（RX0）,其中TX只能发送数据，RX只能接收数据到ISP0。有两个 PHY，每个PHY同时支持1lane、2lane或者4lane，最大可支持13M pixel raw sensor。</p>
-<h1 id="01_sensor">01 传感器sensor接口<a class="headerlink" href="#01_sensor" title="Permanent link">#</a></h1>
+<h1 id="01-sensor">01 传感器sensor接口<a class="headerlink" href="#01-sensor" title="Permanent link">&para;</a></h1>
 <p>摄像头传感器驱动接口有两方面构成：</p>
 <p>（1）通过IIC接口实现控制命令和配置参数的发送与接收，实现初始化传感器、配置其参数（如分辨率、帧率、曝光等）；</p>
 <p>（2）通过MIPI接口实现图像数据的正确传输和解析。</p>
@@ -655,7 +671,7 @@
 <p>MIPI接口：用差分信号传输技术，可以有效减少信号干扰和功耗，是一种高性能、低功耗的串行通信接口。</p>
 <p>MIPI功能：支持多种数据编码格式（如YUV、RGB、RAW等）和不同的数据位宽（如8位、10位、12位等）的摄像头传感器的图像数据传输。另外一些高级功能比如相位对焦、HDR也需要通过MIPI接口实现。</p>
 <p>其他供电以及时钟类接口，按照硬件连接即可。</p>
-<h1 id="02_mipi">02 MIPI接口参数<a class="headerlink" href="#02_mipi" title="Permanent link">#</a></h1>
+<h1 id="02-mipi">02 MIPI接口参数<a class="headerlink" href="#02-mipi" title="Permanent link">&para;</a></h1>
 <p>以下是一些常用MIPI参数的示例规格（仅供参考，不同的硬件平台和标准会有所不同）：</p>
 <table>
 <thead>
@@ -694,32 +710,32 @@
 </tbody>
 </table>
 <p>参数说明：</p>
-<h2 id="1data_ratemipigbps">（1）数据速率（Data Rate）指通过MIPI接口传输数据的速度，以Gbps（吉比特每秒）为单位。<a class="headerlink" href="#1data_ratemipigbps" title="Permanent link">#</a></h2>
+<h2 id="1data-ratemipigbps">（1）数据速率（Data Rate）指通过MIPI接口传输数据的速度，以Gbps（吉比特每秒）为单位。<a class="headerlink" href="#1data-ratemipigbps" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>不同的MIPI标准和硬件平台支持的数据速率范围不同。提高MIPI速率可以加快数据传输速度，使得相同时间内可以传输更多的图像数据，从而增加码流。而低功耗或低成本的解决方案则可能支持较低的数据速率。
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>在调试过程中，需要根据系统要求和摄像头性能选择合适的数据速率，并通过驱动配置进行设置。利用调试工具（如示波器、逻辑分析仪）监测MIPI信号的波形和时序，确保调整后的速率在硬件支持的范围内，并且信号质量良好。
 </code></pre></div>
-<h2 id="2lane_countmipi">（2）通道数（Lane Count）指用于数据传输的MIPI通道数量。每个通道都可以独立传输数据，因此增加通道数可以提高总的数据传输速率。<a class="headerlink" href="#2lane_countmipi" title="Permanent link">#</a></h2>
+<h2 id="2lane-countmipi">（2）通道数（Lane Count）指用于数据传输的MIPI通道数量。每个通道都可以独立传输数据，因此增加通道数可以提高总的数据传输速率。<a class="headerlink" href="#2lane-countmipi" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>常见的通道数有1、2、4等。不同的摄像头和处理器支持的最大通道数可能不同。在调试过程中，需要根据系统的数据带宽需求和硬件支持情况选择合适的通道数
 </code></pre></div>
-<h2 id="3clock_frequencymipi">（3）时钟频率（Clock Frequency）指用于驱动MIPI接口的时钟信号的频率。时钟频率直接影响数据传输的速率和稳定性。<a class="headerlink" href="#3clock_frequencymipi" title="Permanent link">#</a></h2>
+<h2 id="3clock-frequencymipi">（3）时钟频率（Clock Frequency）指用于驱动MIPI接口的时钟信号的频率。时钟频率直接影响数据传输的速率和稳定性。<a class="headerlink" href="#3clock-frequencymipi" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>时钟频率的规格取决于所使用的MIPI标准和硬件设计。工程师需要根据系统要求和硬件规格来设置合适的时钟频率。
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>在调试过程中，需要确保时钟信号的稳定性和准确性，以避免数据传输错误或延迟。
 </code></pre></div>
-<h2 id="4mipi">（4）信号完整性参数，包括信号的上升时间、下降时间、眼图张开度等，这些参数直接影响MIPI信号的传输质量和稳定性。<a class="headerlink" href="#4mipi" title="Permanent link">#</a></h2>
+<h2 id="4mipi">（4）信号完整性参数，包括信号的上升时间、下降时间、眼图张开度等，这些参数直接影响MIPI信号的传输质量和稳定性。<a class="headerlink" href="#4mipi" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>信号完整性参数的规格通常根据所使用的传输线质量、信号驱动器和接收器的性能以及系统的电气特性来确定。
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>在调试过程中，需要使用示波器、逻辑分析仪等工具来监测和分析MIPI信号的波形和时序，以确保信号完整性满足要求。
 </code></pre></div>
-<h2 id="5mipi_sensorsensor_setting">（5）总结。当MIPI参数修改后，需要根据响应修改，重新向 sensor厂商申请一份相应规格的sensor setting，以确保摄像头能够正常工作并输出符合要求的图像数据。<a class="headerlink" href="#5mipi_sensorsensor_setting" title="Permanent link">#</a></h2>
+<h2 id="5mipi-sensorsensor-setting">（5）总结。当MIPI参数修改后，需要根据响应修改，重新向 sensor厂商申请一份相应规格的sensor setting，以确保摄像头能够正常工作并输出符合要求的图像数据。<a class="headerlink" href="#5mipi-sensorsensor-setting" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>时钟频率的规格取决于所使用的MIPI标准和硬件设计。工程师需要根据系统要求和硬件规格来设置合适的时钟频率。
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>比如调整MIPI速率实际上是在调整数据传输的时钟频率。因此，需要调整sensor内部的时钟分频器，从而确保sensor的时钟配置与新的速率相匹配。
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>修改通道数后，因为在多通道传输中，需要确保各个通道之间的数据同步。因此需要使用共同的时钟信号、同步信号，这可能需要调整sensor的同步机制。
 </code></pre></div>
-<h1 id="03_mipi_-csi">03 MIPI -CSI 硬件接口<a class="headerlink" href="#03_mipi_-csi" title="Permanent link">#</a></h1>
+<h1 id="03-mipi-csi">03 MIPI -CSI 硬件接口<a class="headerlink" href="#03-mipi-csi" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>摄像头模组是以V13850模组为例，硬件使用的是MIPI CSI接口，软件在Android平台把OV13850模组的驱动和配置都在硬件抽象层完成。
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>摄像头控制的使用的是MIPI-CSI模式，除了MIPI接口还包括三电源供电、i2c、mclk和GPIO等引脚。
@@ -732,18 +748,18 @@
 <p><a href="/proj/cam/campic/campic_20250705_2_1.png" target="_blank">
   <img src="/proj/cam/campic/campic_20250705_2_1.png" alt="xx" width="500"/>
 </a></p>
-<h1 id="04_mipi_phy">04 MIPI PHY物理层<a class="headerlink" href="#04_mipi_phy" title="Permanent link">#</a></h1>
-<h2 id="01_mipi">01 MIPI协议架构<a class="headerlink" href="#01_mipi" title="Permanent link">#</a></h2>
+<h1 id="04-mipi-phy">04 MIPI PHY物理层<a class="headerlink" href="#04-mipi-phy" title="Permanent link">&para;</a></h1>
+<h2 id="01-mipi">01 MIPI协议架构<a class="headerlink" href="#01-mipi" title="Permanent link">&para;</a></h2>
 <p>MIPI接口的整体架构包括物理层、协议层和应用层。</p>
 <p>应用层向协议层提供数据，并指定数据的传输需求和规则；</p>
 <p>协议层则根据这些需求和规则，将数据封装成适合传输的格式，为物理层提供数据传输的框架和规则；</p>
 <p>物理层PHY（Physical Layer）则负责将协议层封装好的数据通过物理介质发送出去，PHY层直接与物理介质相连，负责物理信号与数字信号的转换，是确保数据能够正确、高效地通过物理介质的关键。</p>
-<h2 id="02mipi_phy">02MIPI PHY<a class="headerlink" href="#02mipi_phy" title="Permanent link">#</a></h2>
+<h2 id="02mipi-phy">02MIPI PHY<a class="headerlink" href="#02mipi-phy" title="Permanent link">&para;</a></h2>
 <p>MIPI接口调试中重点关注PHY的原因：</p>
 <p>（1）PHY层是数据传输的基础，直接涉及物理连接，从而直接影响传输质量。</p>
 <p>（2）PHY层具备复杂性，MIPI标准定义了多种PHY层规范适用各种场景，PHY层涉及的技术细节非常丰富，包括差分信号传输、时钟恢复、数据编解码等。</p>
 <p>（3）PHY层具有调试的便捷性和快速定位问题的优势，PHY层可以使用示波器、逻辑分析仪等工具直接观察和测量信号的波形、时序和电平等信息。</p>
-<h2 id="03mipi_phy">03MIPI PHY的类型<a class="headerlink" href="#03mipi_phy" title="Permanent link">#</a></h2>
+<h2 id="03mipi-phy">03MIPI PHY的类型<a class="headerlink" href="#03mipi-phy" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -774,8 +790,8 @@
 </tr>
 </tbody>
 </table>
-<h1 id="05_v4l2">05 软件驱动架构V4L2<a class="headerlink" href="#05_v4l2" title="Permanent link">#</a></h1>
-<h2 id="01">01 驱动软件代码<a class="headerlink" href="#01" title="Permanent link">#</a></h2>
+<h1 id="05-v4l2">05 软件驱动架构V4L2<a class="headerlink" href="#05-v4l2" title="Permanent link">&para;</a></h1>
+<h2 id="01">01 驱动软件代码<a class="headerlink" href="#01" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>V4L2（Video4Linux2)是Linux内核中用于视频设备的通用API，它支持视频捕捉、流媒体播放、视频输出等。
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>V4L2可支持三类设备：视频输入输出设备、VBI设备和radio设备，其中V4L2最广泛使用的视频输入设备就是摄像头输入设备。
@@ -802,7 +818,7 @@
 <a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a>
 <a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a>（6）使用VIDIOC_STREAMON和VIDIOC_STREAMOFF控制视频流的开始和停止。
 </code></pre></div>
-<h2 id="02_v4l2">02 V4L2架构的框架<a class="headerlink" href="#02_v4l2" title="Permanent link">#</a></h2>
+<h2 id="02-v4l2">02 V4L2架构的框架<a class="headerlink" href="#02-v4l2" title="Permanent link">&para;</a></h2>
 <!-- ![alt text](image-1.png) -->
 <p><a href="/proj/cam/campic/campic_20250705_2_2.png" target="_blank">
   <img src="/proj/cam/campic/campic_20250705_2_2.png" alt="xx" width="500"/>
@@ -879,7 +895,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

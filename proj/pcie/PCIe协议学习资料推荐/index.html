@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,23 +648,23 @@
 
 
 
-<h1 id="pcie"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">PCIe协议学习资料推荐！</span><a class="headerlink" href="#pcie" title="Permanent link">#</a></h1>
+<h1 id="pcie"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">PCIe协议学习资料推荐！</span><a class="headerlink" href="#pcie" title="Permanent link">&para;</a></h1>
 <p>本文给大家推荐一些学习PCIe协议规范的书籍和资料。</p>
 <p>介绍PCIe体系结构的中文书籍有两本，英文书籍有一本Mindshare 的PCI Express Technology 3.0，但是最权威最准确的还是PCIe spec规范，但是直接读spec读可能比较晦涩，可以先看一些系统性的中文资料介绍等。</p>
 <p>还有就是可以看一些PCIe IP的手册，买一些开发板做一些开发和设计，这样会有一些具体的认识和理解。</p>
-<h1 id="1_pci_express">1. 王齐的PCI Express体系结构导读<a class="headerlink" href="#1_pci_express" title="Permanent link">#</a></h1>
+<h1 id="1-pci-express">1. 王齐的PCI Express体系结构导读<a class="headerlink" href="#1-pci-express" title="Permanent link">&para;</a></h1>
 <p><a href="/proj/pcie/pciepic/pciepic_20250628_1_1.png" target="_blank">
   <img src="/proj/pcie/pciepic/pciepic_20250628_1_1.png" alt="xx" width="600"/>
 </a></p>
 <p>《PCI Express 体系结构导读》讲述了与PCI及PCI Express总线相关的基础的内容，并介绍了一些与PCI/PCIe总线相关的处理器体系结构知识，这也是《PCI Express 体系结构导读》的重点所在。</p>
 <p>深入理解处理器体系结构是理解PCI与PCI Express总线的重要基础。 读者通过对《PCI Express 体系结构导读》的学习，可跨越PCI与PCI Express总线自身的内容，理解在一个通用处理器系统中局部总线的设计思路与实现方法，从而理解其他处理器系统使用的局部总线。</p>
-<h1 id="2_pcipci-xpci_express">2. PCI、PCI-X和PCI Express的原理及体系结构<a class="headerlink" href="#2_pcipci-xpci_express" title="Permanent link">#</a></h1>
+<h1 id="2-pcipci-xpci-express">2. PCI、PCI-X和PCI Express的原理及体系结构<a class="headerlink" href="#2-pcipci-xpci-express" title="Permanent link">&para;</a></h1>
 <p>这本书也是中文书籍，首先对PCI/PCIX总线架构作了全面、简要的介绍；然后在整体描述PCI Express架构的基础上，逐一对PCI Express所采用的新方法、新思路和新技术进行了深入的描述与讨论；然后完整地介绍了与PCI兼容的PCI Express配置机制及配置寄存器。</p>
 <p>读者在了解新一代IO互连结构的过程中获得计算机体系结构方面的理论和知识，提高计算机系统硬件和软件的开发能力。</p>
 <p><a href="/proj/pcie/pciepic/pciepic_20250628_1_2.png" target="_blank">
   <img src="/proj/pcie/pciepic/pciepic_20250628_1_2.png" alt="xx" width="600"/>
 </a></p>
-<h1 id="3_mindshare_pci_express_technology_30">3. Mindshare 的PCI Express Technology 3.0<a class="headerlink" href="#3_mindshare_pci_express_technology_30" title="Permanent link">#</a></h1>
+<h1 id="3-mindshare-pci-express-technology-30">3. Mindshare 的PCI Express Technology 3.0<a class="headerlink" href="#3-mindshare-pci-express-technology-30" title="Permanent link">&para;</a></h1>
 <p>这本书写的也非常非常好，PCIe体系结构总结的很全面准确，网上很多的博客都参考了这本书，非常推荐！</p>
 <p><a href="/proj/pcie/pciepic/pciepic_20250628_1_3.png" target="_blank">
   <img src="/proj/pcie/pciepic/pciepic_20250628_1_3.png" alt="xx" width="600"/>
@@ -661,13 +677,13 @@
 <p>物理层剖析：对物理层进行了深入探讨，涉及电信号处理、电源管理，以及PCIe系统的测试与调试等关键领域。</p>
 <p>配置空间解读：详细介绍了配置空间包含的关于设备、其资源和功能的重要信息。</p>
 <p>高级功能剖析：对PCIe的高级功能进行了深入探讨，如虚拟化技术、错误处理机制以及QoS等。</p>
-<h1 id="4_pcie_spec">4. PCIe spec<a class="headerlink" href="#4_pcie_spec" title="Permanent link">#</a></h1>
+<h1 id="4-pcie-spec">4. PCIe spec<a class="headerlink" href="#4-pcie-spec" title="Permanent link">&para;</a></h1>
 <p>官方文档：PCI Express Base Specification Revision 6.0</p>
 <p><a href="/proj/pcie/pciepic/pciepic_20250628_1_4.png" target="_blank">
   <img src="/proj/pcie/pciepic/pciepic_20250628_1_4.png" alt="xx" width="600"/>
 </a></p>
 <p>介绍PCIe背景和基本概念的文档：PCI_Express_Basics_Background.pdf</p>
-<h1 id="5_pcie_ip">5. PCIe IP手册<a class="headerlink" href="#5_pcie_ip" title="Permanent link">#</a></h1>
+<h1 id="5-pcie-ip">5. PCIe IP手册<a class="headerlink" href="#5-pcie-ip" title="Permanent link">&para;</a></h1>
 <p>可以通过学习一些IP厂商，例如Synopsys、Xilinx、芯耀辉等厂家的PCIe IP databook等手册，进一步了解PCIe的具体实现和原理。</p>
 <p>如果大家还有一些其他的推荐资料，可以帮忙留言补充，互相交流和学习！</p>
 <div class="admonition note">
@@ -737,7 +753,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

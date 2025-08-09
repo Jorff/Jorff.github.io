@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,161 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、问题定位
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、代码梳理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-input_device_manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 input_device_manager
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-input_windows_manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 input_windows_manager
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-pointer_drawing_manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 pointer_drawing_manager
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 pointer_drawing_manager">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、定位问题
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 单独编译模块
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 更新和替换库
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 服务控制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-hilog" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 hilog查看
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-pr" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 参考社区pr
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 参考社区pr">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、代码改动
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,10 +785,10 @@
 
 
 
-<h1 id="openharmony"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony光标不显示问题</span><a class="headerlink" href="#openharmony" title="Permanent link">#</a></h1>
+<h1 id="openharmony"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony光标不显示问题</span><a class="headerlink" href="#openharmony" title="Permanent link">&para;</a></h1>
 <p>Openharmony在使用hdmi显示时，发现接上鼠标之后，光标并不显示，于是开始定位，如下是相关分析解释</p>
 <hr />
-<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>一、问题定位</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>一、问题定位</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Openharmony的rk3588系统上，插上hdmi后显示，鼠标不亮，不方便非触摸屏的设备进行开发使用。</p>
 <p>根据openharmony代码熟悉，根据文章《Openharmony目录树》可以知道其可能涉及子系统代码位置在foundation/multimodalinput/位置</p>
@@ -706,17 +859,17 @@
 实际的光标绘制的代码在pointer_drawing_manager.cpp实现</p>
 <p>foundation/multimodalinput/input/service/window_manager/src/pointer_drawing_manager.cpp</p>
 <hr />
-<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>二、代码梳理</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>二、代码梳理</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <hr />
 <p>相关问题定位清晰后，遂针对此三块代码进行分析和调试。</p>
-<h2 id="21_input_device_manager">2.1 input_device_manager<a class="headerlink" href="#21_input_device_manager" title="Permanent link">#</a></h2>
+<h2 id="21-input_device_manager">2.1 input_device_manager<a class="headerlink" href="#21-input_device_manager" title="Permanent link">&para;</a></h2>
 <p>此文件功能作为输入设备的识别，添加，其关键函数如下，详细代码实现不必列出：</p>
 <p>GetInputDevice    实例化InputDevice，返回InputDevice对象<br>
 FillInputDevice    填充InputDevice对象的数据<br>
 OnInputDeviceAdded    通过libinput库获得设备信息，并分发光标绘制任务<br>
 ScanPointerDevice    遍历InputDevice实例，找到pointer设备<br>
 IsPointerDevice    如果libinput_device_get_tags存在EVDEV_UDEV_TAG_MOUSE，则是pointer设备<br></p>
-<h2 id="22_input_windows_manager">2.2 input_windows_manager<a class="headerlink" href="#22_input_windows_manager" title="Permanent link">#</a></h2>
+<h2 id="22-input_windows_manager">2.2 input_windows_manager<a class="headerlink" href="#22-input_windows_manager" title="Permanent link">&para;</a></h2>
 <p>此文件功能作为输入设备的图层显示设置，窗口信息，光标事件。其关键函数如下</p>
 <p>GetClientFd    根据pointer事件获取client的fd值，用作后续获取session的句柄<br>
 GetDisplayId    根据pointer事件获取displayid<br>
@@ -730,7 +883,7 @@ SelectWindowInfo    根据点击事件获取windowid，从而获得WindowInfo<br
 UpdateMouseTarget    更新鼠标位置和显示<br>
 UpdateTargetPointer    根据pointer的类型选择更新对应事件位置和显示<br>
 UpdateAndAdjustMouseLocation    调整鼠标位置<br></p>
-<h2 id="23_pointer_drawing_manager">2.3 pointer_drawing_manager<a class="headerlink" href="#23_pointer_drawing_manager" title="Permanent link">#</a></h2>
+<h2 id="23-pointer_drawing_manager">2.3 pointer_drawing_manager<a class="headerlink" href="#23-pointer_drawing_manager" title="Permanent link">&para;</a></h2>
 <p>此文件处理真正的光标绘制需求，根据光标的位置和style来执行绘制请求</p>
 <p>DrawPointer    绘制光标<br>
 InitLayer    初始化光标层<br>
@@ -747,19 +900,19 @@ UpdatePointerVisible    更新光标是否可见<br>
 SetPointerStyle    设置光标style<br>
 DrawPointerStyle    绘制光标style<br></p>
 <hr />
-<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>三、定位问题</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>三、定位问题</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <hr />
 <p>在完成上述1.判断问题相关代码，2.熟悉代码流程之后，可以开始进行定位实际问题，主要策略如下</p>
-<h2 id="31">3.1 单独编译模块<a class="headerlink" href="#31" title="Permanent link">#</a></h2>
+<h2 id="31">3.1 单独编译模块<a class="headerlink" href="#31" title="Permanent link">&para;</a></h2>
 <p>根据解析BUILD.gn可以知道，此模块可以单独编译，如下是单独编译命令</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>prebuilts/build-tools/linux-x86/bin/ninja<span class="w"> </span>-w<span class="w"> </span><span class="nv">dupbuild</span><span class="o">=</span>warn<span class="w"> </span>-C<span class="w"> </span>out/rk3588/<span class="w"> </span>libmmi-server
 </code></pre></div>
-<h2 id="32">3.2 更新和替换库<a class="headerlink" href="#32" title="Permanent link">#</a></h2>
+<h2 id="32">3.2 更新和替换库<a class="headerlink" href="#32" title="Permanent link">&para;</a></h2>
 <p>可以将编译成功的库文件，替换到系统内，通过hdc命令，如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>hdc<span class="w"> </span>-t<span class="w"> </span>9b01005932503033320045da20422900<span class="w"> </span>shell<span class="w"> </span>mount<span class="w"> </span>-o<span class="w"> </span>remount,rw<span class="w"> </span>/
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>hdc<span class="w"> </span>-t<span class="w"> </span>9b01005932503033320045da20422900<span class="w"> </span>file<span class="w"> </span>send<span class="w"> </span>/root/tf/rk3588/out/rk3588/multimodalinput/input/libmmi-server.z.so<span class="w"> </span>/system/lib64/
 </code></pre></div>
-<h2 id="33">3.3 服务控制<a class="headerlink" href="#33" title="Permanent link">#</a></h2>
+<h2 id="33">3.3 服务控制<a class="headerlink" href="#33" title="Permanent link">&para;</a></h2>
 <p>根据上述措施，已经成功将libmmi-server推送到系统内部，这时候需要将multimodalinput服务关闭和拉起，方法如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>service_control<span class="w"> </span>stop<span class="w"> </span>multimodalinput
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>service_control<span class="w"> </span>start<span class="w"> </span>multimodalinput
@@ -767,7 +920,7 @@ DrawPointerStyle    绘制光标style<br></p>
 <p>当然，因为openharmony的服务可以自动拉起，所以直接kill也可以，如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">kill</span><span class="w"> </span>-9<span class="w"> </span><span class="sb">`</span>pidof<span class="w"> </span>multimodalinput<span class="sb">`</span>
 </code></pre></div>
-<h2 id="34_hilog">3.4 hilog查看<a class="headerlink" href="#34_hilog" title="Permanent link">#</a></h2>
+<h2 id="34-hilog">3.4 hilog查看<a class="headerlink" href="#34-hilog" title="Permanent link">&para;</a></h2>
 <p>对于调试过程中，主要是通过hilog来进行分析，本例子用到如下</p>
 <p>1、设置hilog为调试</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>hilog<span class="w"> </span>-b<span class="w"> </span>D
@@ -784,7 +937,7 @@ DrawPointerStyle    绘制光标style<br></p>
 <p>5、整体定位mmi服务的日志</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>hilog<span class="w"> </span>-P<span class="w"> </span><span class="sb">`</span>pidof<span class="w"> </span>multimodalinput<span class="sb">`</span>
 </code></pre></div>
-<h2 id="35_pr">3.5 参考社区pr<a class="headerlink" href="#35_pr" title="Permanent link">#</a></h2>
+<h2 id="35-pr">3.5 参考社区pr<a class="headerlink" href="#35-pr" title="Permanent link">&para;</a></h2>
 <p>针对此问题，可以借助社区的pr进行方向性思考，如下pr通过解决多屏同显，多屏异显对multimodalinput做了修改</p>
 <p>https://gitee.com/openharmony/multimodalinput_input/pulls/3103/files<br>
 对于此笔pr，我们可以发现对于绘制光标的surface接口，可以做如下改变：<br></p>
@@ -795,7 +948,7 @@ DrawPointerStyle    绘制光标style<br></p>
 <p>可以发现，对于光标，openharmony默认直接使用surfaceNode对象来attach和detach对于的display id。此方法在3588使用hdmi时，并不生效。</p>
 <p>而通过使用窗管代码的RemoveSurfaceNodeFromDisplay/AddSurfaceNodeToDisplay的接口，可以正常的将光标的surface绑定到对于的display上。此方法有效。</p>
 <hr />
-<h3 id="_4"><center><table><tr><td bgcolor=#FF4500>四、代码改动</td></tr></table></center><a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<h3 id="_4"><center><table><tr><td bgcolor=#FF4500>四、代码改动</td></tr></table></center><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <hr />
 <p>根据上述内容，我们可以清楚的知道光标的实现逻辑以及代码的修改点，如下贴出代码的提交改动</p>
 <p>BUILD.gn改动</p>
@@ -1120,7 +1273,7 @@ DrawPointerStyle    绘制光标style<br></p>
 </code></pre></div></td></tr></table></div>
 <p>代码补丁文件：0001-rk3588-fixed-cursor-is-hidded.patch</p>
 <hr />
-<h3 id="_5"><center><table><tr><td bgcolor=#FF4500>五、总结</td></tr></table></center><a class="headerlink" href="#_5" title="Permanent link">#</a></h3>
+<h3 id="_5"><center><table><tr><td bgcolor=#FF4500>五、总结</td></tr></table></center><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <hr />
 <p>至此，openharmony可正常显示光标，其根本原因是适配时，openharmony的surfaceNode实现的attach接口并不生效，可能和底层相关。但参照pr修改为windows manager的api即正常。此问题应属于鸿蒙系统本身兼容问题</p>
 <div class="admonition note">
@@ -1190,7 +1343,7 @@ DrawPointerStyle    绘制光标style<br></p>
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

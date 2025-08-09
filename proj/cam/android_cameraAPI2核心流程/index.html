@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#android--cameraapi2" class="md-skip">
+        <a href="#android-cameraapi2" class="md-skip">
           Skip to content
         </a>
       
@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,50 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、综述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、影像核心数据
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,12 +674,12 @@
 
 
 
-<h1 id="android--cameraapi2"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android影像基础--cameraAPI2核心流程</span><a class="headerlink" href="#android--cameraapi2" title="Permanent link">#</a></h1>
+<h1 id="android-cameraapi2"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android影像基础--cameraAPI2核心流程</span><a class="headerlink" href="#android-cameraapi2" title="Permanent link">&para;</a></h1>
 <p>作为影像从业者，花几期时间扒一扒高通和MTK影像系统的软件和硬件细节，现在是第二期。</p>
 <p>无论是高通还是MTK主要是在HAL层以下，在安卓系统体系，frwk层及以上都是用的安卓基础框架的内容。</p>
 <p>安卓影像的入门都不得不提的图像的核心数据和关键数据流程open、config、request/result、close。</p>
 <hr />
-<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>一、综述</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>一、综述</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>承接上一期，分享的是高通影像的软件框架的核心概念和camX框架以及分层接口。</p>
 <p>高通影像入门基础-软件影像框架CamX-CHI</p>
@@ -646,48 +688,48 @@
 <p>影像系统中的核心是处理图像数据，底层软件负责驱动，影像软件主要是关心图像数据的流转过程，算法负责其中具体的处理过程，app软件负责把UI交互，屏显负责图形显示，从而构成影像系统的软件完整流程。</p>
 <p>在安卓影像框架中，影像的核心数据不变，谷歌把影像处理和核心流程抽离了出来，即解决了接口统一性问题，又为开发者降低了入门门槛。</p>
 <hr />
-<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>二、影像核心数据</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>二、影像核心数据</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <hr />
 <p>本期我们主要总结影像核心流程，核心数据流程使用影像的数据，无论是什么的影像平台，处理图像，我们都是把数据分为frame和metadata，frame是图像数据本身，metadata是图像属性的元数据。</p>
-<h1 id="01_framestream">01 frame和stream<a class="headerlink" href="#01_framestream" title="Permanent link">#</a></h1>
+<h1 id="01-framestream">01 frame和stream<a class="headerlink" href="#01-framestream" title="Permanent link">&para;</a></h1>
 <p>图像数据在图像处理链路的不同节点的名称可能会有变化。以常见frame和stream为例，</p>
 <p>frame一般是指未压缩的图像数据（RAW/YUV/RGB），用于实时处理或显示，一般常被影像软件工程师的代码中使用；</p>
 <p>stream一般指压缩后的二进制数据（H.265/JPEG），用于存储或传输，一般用于影像和其他模块交互中使用，但是stream有时候也被笼统的理解为图像码流数据。</p>
-<h2 id="_3">数据流转：<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<h2 id="_3">数据流转：<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>图像数据流的流转，指从图像采集到最终输出的完整流水线中的数据流控制方式，这个在影像架构的驱动流程中根据产品特性不同会有所差异，常见的有有Push模式和Pull模式。</p>
 <p>Push模式是指传感器或处理单元主动推送数据，下游模块编码器等被动接收并处理，常用于视频通话或者监控等；pull模式是指下游模块编码器按需请求数据，Sensor 或 ISP 仅在收到请求时才输出，适用于拍照模式等。</p>
 <p>以手机产品为例，一般采用混合模式，根据不同场景动态切换。</p>
-<h1 id="02_metadata">02 metadata<a class="headerlink" href="#02_metadata" title="Permanent link">#</a></h1>
+<h1 id="02-metadata">02 metadata<a class="headerlink" href="#02-metadata" title="Permanent link">&para;</a></h1>
 <p>图像metadata的流转在Android应用框架中的配置、数据的传递与获取，以及在不同组件间的作用。</p>
 <p>metadata是一组名值对name-value pair，用于描述或附加关于应用程序、组件或其他数据的信息，用于信息存储、组件通信等。</p>
 <p>它通常定义在AndroidManifest.xml文件中，为<activity>、<application>、<provider>、<receiver>、<service>等不同组件提供附加数据项。</p>
 <p>例如在图像码流链路中，metadata存储比如3A信息，可以把信息从底层HAL给到上层APP，甚至提供给三方相机app开发。    </p>
 <p>metadata的设计有利于代码的模块化和分层开发，一个服务可以通过读取metadata来获取另一个Service的配置信息。</p>
-<h2 id="_4">数据流转：<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<h2 id="_4">数据流转：<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>metadata在框架内的流转发生在配置和运行两个阶段，</p>
 <p>配置阶段在xml中写入默认的配置信息，在软件的配置流程中读取该信息，在运行阶段通过相应的api可以set和get这些加载到内存中的metadata信息。</p>
 <hr />
-<h3 id="_5"><center><table><tr><td bgcolor=#FF4500>三、关键数据流程</td></tr></table></center><a class="headerlink" href="#_5" title="Permanent link">#</a></h3>
+<h3 id="_5"><center><table><tr><td bgcolor=#FF4500>三、关键数据流程</td></tr></table></center><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <hr />
 <p>在Android Camera2的数据流中，stream流、session会话、request请求和result结果是核心概念，它们在相机数据的核心流程比如捕获、处理和传输过程中都起重要作用。</p>
 <p>以相机HDR拍照流程为例：首先HDR 场景下发 3 帧拍照请求，从而获得3帧拍照请求帧，返回3帧 result callback帧，然后进行HDR 算法处理，之后送去算法编解码处理。</p>
-<h2 id="_6">典型场景的大概流程如下：<a class="headerlink" href="#_6" title="Permanent link">#</a></h2>
+<h2 id="_6">典型场景的大概流程如下：<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <p>预览+拍照：open → config(预览流+拍照流) → setRepeatingRequest(预览) → capture(拍照) → processResult(保存图片) → close。</p>
 <p>视频录制：open → config(录像流) → setRepeatingRequest(录像) → processResult(编码存储) → close。</p>
-<h1 id="1_open">1 open 打开相机<a class="headerlink" href="#1_open" title="Permanent link">#</a></h1>
-<h2 id="_7">抽取打开相机一些关键的流程函数如下：<a class="headerlink" href="#_7" title="Permanent link">#</a></h2>
-<h3 id="1">（1）应用层<a class="headerlink" href="#1" title="Permanent link">#</a></h3>
+<h1 id="1-open">1 open 打开相机<a class="headerlink" href="#1-open" title="Permanent link">&para;</a></h1>
+<h2 id="_7">抽取打开相机一些关键的流程函数如下：<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="1">（1）应用层<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
 <p>应用层调用Android系统的Camera API来初始化相机。</p>
 <p>比如使用Camera.open()或CameraManager的openCamera()方法打开指定的相机设备。</p>
-<h3 id="2jni">（2）框架层调用JNI接口<a class="headerlink" href="#2jni" title="Permanent link">#</a></h3>
+<h3 id="2jni">（2）框架层调用JNI接口<a class="headerlink" href="#2jni" title="Permanent link">&para;</a></h3>
 <p>框架层通过Binder IPC调用至CameraService，Camera服务CameraService.cpp是系统服务的一部分，通过系统调用Camera::connect()方法来建立与相机服务的连接。</p>
 <p>当应用请求打开相机时，Camera服务根据HAL版本会创建对应Camera设备客户端CameraDeviceClient并初始化它，并通过Binder IPC将请求传递至HAL层。</p>
-<h3 id="3hal">（3）HAL层<a class="headerlink" href="#3hal" title="Permanent link">#</a></h3>
+<h3 id="3hal">（3）HAL层<a class="headerlink" href="#3hal" title="Permanent link">&para;</a></h3>
 <p>当Camera服务请求打开相机时，高通CamX架构中，HAL3调用CamX::camxhal3.cpp中的open()方法，初始化相机硬件模块如传感器、ISP等。</p>
 <p>HAL层会向下调用相应的硬件接口函数camera_device_open()，并最终会调用到具体的硬件驱动程序比如msm_open()来打开相机设备。</p>
-<h3 id="4">（4）驱动层<a class="headerlink" href="#4" title="Permanent link">#</a></h3>
+<h3 id="4">（4）驱动层<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
 <p>驱动程序包含控制相机硬件所需的代码和指令。open相机设备文件/dev/video0或/dev/video2，并进行读写操作read()、write()等。</p>
-<h2 id="_8">启动阶段一些关键函数：<a class="headerlink" href="#_8" title="Permanent link">#</a></h2>
+<h2 id="_8">启动阶段一些关键函数：<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>权限检查：</p>
 <p>需动态申请android.permission.CAMERA权限。</p>
 <p>HAL版本兼容：通过</p>
@@ -697,36 +739,36 @@
 <p>性能优化：</p>
 <p>通过CHIUSECASE::AcquirePerfLock()提升CPU频率，确保硬件资源就绪。</p>
 <p>动态库加载：加载OpenCL等计算库libOpenCL.so，为后续图像处理提供加速支持。</p>
-<h1 id="2_config">2 config配置相机<a class="headerlink" href="#2_config" title="Permanent link">#</a></h1>
+<h1 id="2-config">2 config配置相机<a class="headerlink" href="#2-config" title="Permanent link">&para;</a></h1>
 <p>配置阶段，创建CameraCaptureSession并配置输出目标ImageReader，同时定义数据流的分辨率、格式及用途（预览/录像/拍照）等。</p>
 <p>可以同时配置预览流和拍照流，从而实现零延迟预览与高分辨率拍摄。</p>
 <p>使用预定义模板TEMPLATE_PREVIEW、TEMPLATE_STILL_CAPTURE快速配置默认参数。</p>
 <p>CamX架构通过XML文件定义了预览和拍照的Usecase，解析xml可以得到具体参数比如曝光、白平衡等。</p>
-<h1 id="3_request">3 request请求<a class="headerlink" href="#3_request" title="Permanent link">#</a></h1>
+<h1 id="3-request">3 request请求<a class="headerlink" href="#3-request" title="Permanent link">&para;</a></h1>
 <p>整个图像捕获流程一句话总结描述下来，就是应用请求捕获，Framework转发请求到CamX，CamX选择适当的Pipeline，并配置各个Node的参数，然后启动图像传感器和ISP，码流数据通过Pipeline处理后，返回结果给应用。</p>
 <p>Request是Android Camera2 API中用于描述一次相机捕获操作的数据结构，它包含了捕获图像所需的各种参数和配置信息。</p>
 <p>request通过CaptureRequest设置相机参数，包括三种模式，单次模式如拍照仅执行一次；重复模式如预览帧捕获在连续执行；多次模式Burst如HDR连续拍摄多张。</p>
 <p>request通过CaptureRequest.Builder流程，CONTROL_AE_MODE、CONTROL_AF_MODE等标签，设置ISO、快门速度、3A等高级参数</p>
-<h1 id="4_result">4 获取 result<a class="headerlink" href="#4_result" title="Permanent link">#</a></h1>
+<h1 id="4-result">4 获取 result<a class="headerlink" href="#4-result" title="Permanent link">&para;</a></h1>
 <p>Result是Android Camera2 API中相机捕获操作完成后返回的数据结构，它包含了捕获到的图像数据和相机状态以及一些附加信息。</p>
 <p>Result通过</p>
 <p>CameraCaptureSession.CaptureCallback接收捕获结果CaptureResult，结果中包含了图像数据buffer和元数据metadata。</p>
 <p>Result结果实时反馈，比如拍照流通过ImageReader获取JPEG/YUV Buffer，并触发保存逻辑。预览流通过onCaptureCompleted()持续返回帧数据，实时渲染至SurfaceView。通过检测CaptureResult中的错误状态进行重试等策略。</p>
 <p>平台CamX通过ProcessCaptureResult模块可以进行融合降噪等处理硬件加速结果。</p>
-<h1 id="5_close">5 close<a class="headerlink" href="#5_close" title="Permanent link">#</a></h1>
+<h1 id="5-close">5 close<a class="headerlink" href="#5-close" title="Permanent link">&para;</a></h1>
 <p>应用通过调用CameraDevice.close()释放相机资源，包括硬件传感器、缓冲区及会话CameraCaptureSession。</p>
 <p>确保所有请求已停止（abortCaptures()），避免内存泄漏。状态通过CameraDevice.StateCallback确认相机已关闭onClosed()。</p>
 <p>框架层通过camera3_device_t-&gt;common-&gt;close()通知HAL层停止所有操作。</p>
 <p>平台关闭传感器、ISP等模块，释放电源资源，清除缓存队列。</p>
-<h1 id="6">6 显示和播放<a class="headerlink" href="#6" title="Permanent link">#</a></h1>
+<h1 id="6">6 显示和播放<a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <p>解码，解码器选择包括硬件解码器和软件解码器，编码器框架MediaCodec，解码提取视频流。</p>
 <p>MediaPlayer是处理音视频文件解析的核心类。MediaPlayer负责解析视频文件的格式，并从中提取出视频码流和音频码流，并向上层应用提供播放控制接口（播放、暂停、停止等），并向下层编解码器发送解码请求。</p>
 <p>解码后的视频需要被渲染到屏幕上，Surface和TextureView是两个常用的视频显示组件。</p>
 <p>VideoView是Android提供的一个简单视频播放器控件，它内部封装了MediaPlayer和Surface，可以把显示之后视频帧需要播放出来。</p>
 <hr />
-<h3 id="cameraapi"><center><table><tr><td bgcolor=#FF4500>四、高通CameraAPI</td></tr></table></center><a class="headerlink" href="#cameraapi" title="Permanent link">#</a></h3>
+<h3 id="cameraapi"><center><table><tr><td bgcolor=#FF4500>四、高通CameraAPI</td></tr></table></center><a class="headerlink" href="#cameraapi" title="Permanent link">&para;</a></h3>
 <hr />
-<h1 id="1_1">1 相机打开流程<a class="headerlink" href="#1_1" title="Permanent link">#</a></h1>
+<h1 id="1_1">1 相机打开流程<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h1>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -749,7 +791,7 @@
 <a id="__codelineno-0-10" name="__codelineno-0-10"></a>
 <a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="err">→</span><span class="w"> </span><span class="n">CHI</span><span class="w"> </span><span class="n">Override</span><span class="w"> </span><span class="n">initialize</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-<h1 id="2">2 图像捕获流程<a class="headerlink" href="#2" title="Permanent link">#</a></h1>
+<h1 id="2">2 图像捕获流程<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
@@ -784,7 +826,7 @@
 <a id="__codelineno-1-16" name="__codelineno-1-16"></a>
 <a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="err">→</span><span class="w"> </span><span class="n">Node</span><span class="o">::</span><span class="n">ExecuteProcessRequest</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
-<h1 id="3_aidlhidl">3 AIDL/HIDL接口<a class="headerlink" href="#3_aidlhidl" title="Permanent link">#</a></h1>
+<h1 id="3-aidlhidl">3 AIDL/HIDL接口<a class="headerlink" href="#3-aidlhidl" title="Permanent link">&para;</a></h1>
 <p>camera_open函数，用于打开相机并获取相机句柄.</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
@@ -868,7 +910,7 @@
 <a id="__codelineno-2-40" name="__codelineno-2-40"></a>
 <a id="__codelineno-2-41" name="__codelineno-2-41"></a><span class="p">};</span>
 </code></pre></div></td></tr></table></div>
-<h1 id="4_1">4 一些日志过滤<a class="headerlink" href="#4_1" title="Permanent link">#</a></h1>
+<h1 id="4_1">4 一些日志过滤<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>adb<span class="w"> </span>logcat<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;CamX|CHI|HAL|camera&quot;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># 跟踪AIDL调用</span>
@@ -882,7 +924,7 @@
 <a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w"> </span>android.hardware.camera.provider@2.4::ICameraProvider
 </code></pre></div>
 <hr />
-<h3 id="_9"><center><table><tr><td bgcolor=#FF4500>五、总结</td></tr></table></center><a class="headerlink" href="#_9" title="Permanent link">#</a></h3>
+<h3 id="_9"><center><table><tr><td bgcolor=#FF4500>五、总结</td></tr></table></center><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <hr />
 <p>安卓层的软件框架较为稳定，一般在大版本更新时也会尽量维持主要流程不变，目前也就经历从Android camera API1到API2这一次较大的调整。</p>
 <p>同时无论是高通还是MTK平台的影像开发，以上的安卓影像流程都是你入门必不可少需要掌握的。</p>
@@ -956,7 +998,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

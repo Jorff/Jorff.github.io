@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,110 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#hdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、移植hdf驱动
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、声明plane
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、存在问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、思路
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#411-dayu200" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1.1 为什么dayu200的设备是好的
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-rockchip-drm-platform-driver" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 推迟rockchip drm platform driver的加载时间
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-rockchip-drm-platformkthread" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 将rockchip drm platform设计为kthread模式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 将rockchip drm platform设计为kthread模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,18 +734,18 @@
 
 
 
-<h1 id="openharmonyhdf"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony之使用hdf点亮屏幕</span><a class="headerlink" href="#openharmonyhdf" title="Permanent link">#</a></h1>
+<h1 id="openharmonyhdf"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony之使用hdf点亮屏幕</span><a class="headerlink" href="#openharmonyhdf" title="Permanent link">&para;</a></h1>
 <p>在基于rk3568板子上，使用非hdf的方式点亮了板卡之后，这里再提供一种办法，可以使用hdf的方式点亮rk3568的显示</p>
 <hr />
-<h3 id="hdf"><center><table><tr><td bgcolor=#FF4500>一、移植hdf驱动</td></tr></table></center><a class="headerlink" href="#hdf" title="Permanent link">#</a></h3>
+<h3 id="hdf"><center><table><tr><td bgcolor=#FF4500>一、移植hdf驱动</td></tr></table></center><a class="headerlink" href="#hdf" title="Permanent link">&para;</a></h3>
 <hr />
 <p>移植panel_simple_common的hdf驱动可以参考文档《Openharmony-rk3568 移植panel_simple_common》</p>
 <hr />
-<h3 id="plane"><center><table><tr><td bgcolor=#FF4500>二、声明plane</td></tr></table></center><a class="headerlink" href="#plane" title="Permanent link">#</a></h3>
+<h3 id="plane"><center><table><tr><td bgcolor=#FF4500>二、声明plane</td></tr></table></center><a class="headerlink" href="#plane" title="Permanent link">&para;</a></h3>
 <hr />
 <p>声明plane的方式可以参考文档《Openharmony RK3568图层设置》</p>
 <hr />
-<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>三、存在问题</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>三、存在问题</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>我们在做完上述的操作之后，根据panel代码逻辑的分析，应该是可以成功的，关于分析panel代码的参考文档《Openharmony之rk3568内核显示panel代码梳理》</p>
 <p>但是发现内核一直死循环，无法继续往下走，日志如下：</p>
@@ -716,7 +818,7 @@
 <p>从上述代码可以知道， component_master_add_with_match会接收component的返回值，这里ret应该返回-EPROBE_DEFER。而rockchip_drm_platform_probe接收到-EPROBE_DEFER后会延迟探测，这就导致rockchip_drm_platform_probe会被重入。</p>
 <p>另一个方面我们知道，linux的device driver的probe是在一个线程中完成的，如果rockchip display subsystem的驱动无法正常的probe，那它就阻塞了其他驱动的probe。</p>
 <hr />
-<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>四、思路</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>四、思路</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <hr />
 <p>根据上述代码的分析，基本问题也就定位到了，那就是rockchip drm platform的驱动导致内核进入死循环了，而进入死循环的原因是hdf编写的panel_simple_common驱动没有在它之前加载。</p>
 <p>根据上述的推理，我们有如下的方式解决问题：</p>
@@ -804,10 +906,10 @@
 </code></pre></div></td></tr></table></div>
 <p>可以知道display先从host初始化"HDF_DRM_PANEL_SIMPLE"，然后在从devicenode初始化"PANEL_SIMPLE_COMMON"。而这块的顺序我们不是很好控制了。</p>
 <p>如果我们修改整个hdf的初始化流程，可能对hdf框架带来不好的影响，一方面是hdf本身不成熟，另一方面我对hdf理解也不算深刻。提前hdf加载是否带来问题心里也没谱。</p>
-<h3 id="411_dayu200">4.1.1 为什么dayu200的设备是好的<a class="headerlink" href="#411_dayu200" title="Permanent link">#</a></h3>
+<h3 id="411-dayu200">4.1.1 为什么dayu200的设备是好的<a class="headerlink" href="#411-dayu200" title="Permanent link">&para;</a></h3>
 <p>这里我们需要明确的是，rockchip的drm platform驱动会绑定多个vp，在dayu200上，除了dsi还有hdmi设备，即使hdf编写的dsi的panel初始化比较晚，但是hdmi这块完全没有走hdf，所以是不会造成死循环的。</p>
 <p>不会产生死循环，只要-EPROBE_DEFER能等得到驱动完成初始化，那就没问题。</p>
-<h2 id="42_rockchip_drm_platform_driver">4.2 推迟rockchip drm platform driver的加载时间<a class="headerlink" href="#42_rockchip_drm_platform_driver" title="Permanent link">#</a></h2>
+<h2 id="42-rockchip-drm-platform-driver">4.2 推迟rockchip drm platform driver的加载时间<a class="headerlink" href="#42-rockchip-drm-platform-driver" title="Permanent link">&para;</a></h2>
 <p>我们对内核框架代码是十分清楚的，drm platform驱动的推迟只不过是导致系统黑屏时间长而已，那我们可以推迟moduleinit吗？</p>
 <p>结论是不建议</p>
 <p>内核lateinit call是最后的加载<br>
@@ -815,7 +917,7 @@ moduleinit call没办法推迟到比lateinit call更后<br>
 要动hdf的初始化流程<br>
 都是lateinit call，但是hdf要走一段服务逻辑，比驱动要晚。因为我们没办法计算出来hdf到host到device node的加载时间<br>
 根据上述问题，推迟rockchip drm驱动的方法也不可行，主要原因和4.1同理，怕对hdf带来不好的影响。再次吐槽一下，hdf的设计真的不优秀<br></p>
-<h2 id="43_rockchip_drm_platformkthread">4.3 将rockchip drm platform设计为kthread模式<a class="headerlink" href="#43_rockchip_drm_platformkthread" title="Permanent link">#</a></h2>
+<h2 id="43-rockchip-drm-platformkthread">4.3 将rockchip drm platform设计为kthread模式<a class="headerlink" href="#43-rockchip-drm-platformkthread" title="Permanent link">&para;</a></h2>
 <p>既然上面两个方法都不建议处理，我对鸿蒙不熟悉，对内核还不熟悉吗，我们可以对rockchip drm platform driver进行简单改造。让其component match过程放在kthread中，如下</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
@@ -1000,7 +1102,7 @@ moduleinit call没办法推迟到比lateinit call更后<br>
 <p>上面代码比较仓促，这里match_thread应该放驱动私有结构体。</p>
 <p>根据上面的改造，我们可以确保如果panel未准备好，thread会sleep，直到panel准备好之后，thread正常退出。这能够有效的解决死循环的问题</p>
 <hr />
-<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>五、总结</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>五、总结</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <hr />
 <p>根据上述的分析，我们可以通过线程化来解决此问题，在内核中，很多事情都可以线程化，只是取决于驱动的使用场景。从实际意义上来说，将rockchip drm platform驱动线程化没有多大的影响，代码调教的比较好，对实际显示的影响（黑屏时间）几乎不会多大。</p>
 <p>而且，根据文章《Openharmony之rk3568内核显示panel代码梳理》可以知道，单独写panel_simple驱动在hdf的设计上来说实际上是一种偷懒的行为，所以我们不必要较真此方法的实用性。</p>
@@ -1082,7 +1184,7 @@ moduleinit call没办法推迟到比lateinit call更后<br>
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

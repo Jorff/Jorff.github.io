@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linux_wlan_hostapd" class="md-skip">
+        <a href="#linux-wlan-hostapd" class="md-skip">
           Skip to content
         </a>
       
@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,19 +648,19 @@
 
 
 
-<h1 id="linux_wlan_hostapd"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Linux Wlan hostapd框架梳理</span><a class="headerlink" href="#linux_wlan_hostapd" title="Permanent link">#</a></h1>
-<h1 id="_1">官方框架图<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="linux-wlan-hostapd"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Linux Wlan hostapd框架梳理</span><a class="headerlink" href="#linux-wlan-hostapd" title="Permanent link">&para;</a></h1>
+<h1 id="_1">官方框架图<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p><a href="/proj/network/netpic/netpic_20250628_2_1.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_1.png" alt="xx" width="600"/>
 </a></p>
-<h2 id="hostapd">这个框架图展示了hostapd的软件架构和主要组件<a class="headerlink" href="#hostapd" title="Permanent link">#</a></h2>
+<h2 id="hostapd">这个框架图展示了hostapd的软件架构和主要组件<a class="headerlink" href="#hostapd" title="Permanent link">&para;</a></h2>
 <p>简单做个说明：</p>
 <p><a href="/proj/network/netpic/netpic_20250628_2_2.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_2.png" alt="xx" width="600"/>
 </a></p>
-<h2 id="_2">文档获取路径：<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<h2 id="_2">文档获取路径：<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>https://w1.fi/wpa_supplicant/devel/</p>
-<h2 id="_3">从如上可以梳理个简单流程：<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<h2 id="_3">从如上可以梳理个简单流程：<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>驱动事件上报：
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>驱动事件 → driver i/f → 相应状态机处理
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>控制流：
@@ -652,32 +668,32 @@
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>数据流：
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>无线数据包 → driver i/f → IEEE 802.11 MLME → Station table
 </code></pre></div>
-<h1 id="_4">讲个题外内容的框架<a class="headerlink" href="#_4" title="Permanent link">#</a></h1>
+<h1 id="_4">讲个题外内容的框架<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
 <p><a href="/proj/network/netpic/netpic_20250628_2_3.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_3.png" alt="xx" width="600"/>
 </a></p>
-<h1 id="_5">源码获取<a class="headerlink" href="#_5" title="Permanent link">#</a></h1>
+<h1 id="_5">源码获取<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>git://w1.fi/hostap.git
 </code></pre></div>
-<h1 id="_6">安装依赖库<a class="headerlink" href="#_6" title="Permanent link">#</a></h1>
+<h1 id="_6">安装依赖库<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libnl-3-dev<span class="w"> </span>libnl-genl-3-dev
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libssl-dev
 </code></pre></div>
-<h1 id="_7">编译<a class="headerlink" href="#_7" title="Permanent link">#</a></h1>
+<h1 id="_7">编译<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>复制默认配置：cp<span class="w"> </span>defconfig<span class="w"> </span>.config
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>make
 </code></pre></div>
-<h1 id="hostapd_1">备份原hostapd<a class="headerlink" href="#hostapd_1" title="Permanent link">#</a></h1>
+<h1 id="hostapd_1">备份原hostapd<a class="headerlink" href="#hostapd_1" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>cp<span class="w"> </span>/usr/sbin/hostapd<span class="w"> </span>/usr/sbin/hostapd.bak
 </code></pre></div>
-<h1 id="hostapd_2">替换系统hostapd<a class="headerlink" href="#hostapd_2" title="Permanent link">#</a></h1>
+<h1 id="hostapd_2">替换系统hostapd<a class="headerlink" href="#hostapd_2" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sudo<span class="w"> </span>cp<span class="w"> </span>hostapd<span class="w"> </span>/usr/sbin/
 </code></pre></div>
-<h1 id="_8">调整日志级别<a class="headerlink" href="#_8" title="Permanent link">#</a></h1>
+<h1 id="_8">调整日志级别<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h1>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>在<span class="w"> </span>hostapd<span class="w"> </span>配置文件（如<span class="w"> </span>/etc/hostapd/hostapd.conf）中设置
 </code></pre></div>
 等等</p>
-<h1 id="_9">梳理了一下繁琐的函数调用，附带解析<a class="headerlink" href="#_9" title="Permanent link">#</a></h1>
+<h1 id="_9">梳理了一下繁琐的函数调用，附带解析<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">hostapd_global_init</span><span class="p">()</span><span class="c1">//初始化eloop这个全局变量</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">eap_server_register_methods</span><span class="p">()</span><span class="c1">//注册eap server支持的安全模式，并存放在一个链表里面</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">eloop_init</span><span class="p">()</span><span class="c1">//初始化全局变量eloop结构体，初始化 eloop（事件循环），用于处理 socket 事件、定时器、信号等</span>
@@ -751,16 +767,16 @@
 <a id="__codelineno-8-56" name="__codelineno-8-56" href="#__codelineno-8-56"></a><span class="n">eloop_sock_table_dispatch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eloop</span><span class="p">.</span><span class="n">writers</span><span class="p">,</span><span class="w"> </span><span class="n">wfds</span><span class="p">);</span>
 <a id="__codelineno-8-57" name="__codelineno-8-57" href="#__codelineno-8-57"></a><span class="n">eloop_sock_table_dispatch</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eloop</span><span class="p">.</span><span class="n">exceptions</span><span class="p">,</span><span class="w"> </span><span class="n">efds</span><span class="p">);</span>
 </code></pre></div>
-<h1 id="ap">创建AP启动流程<a class="headerlink" href="#ap" title="Permanent link">#</a></h1>
+<h1 id="ap">创建AP启动流程<a class="headerlink" href="#ap" title="Permanent link">&para;</a></h1>
 <p><a href="/proj/network/netpic/netpic_20250628_2_4.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_4.png" alt="xx" width="600"/>
 </a></p>
-<h2 id="_10">详细的代码启动流程及详细备注（包含启动函数）<a class="headerlink" href="#_10" title="Permanent link">#</a></h2>
+<h2 id="_10">详细的代码启动流程及详细备注（包含启动函数）<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p><a href="/proj/network/netpic/netpic_20250628_2_5.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_5.png" alt="xx" width="600"/>
 </a></p>
-<h1 id="_11">重要结构体<a class="headerlink" href="#_11" title="Permanent link">#</a></h1>
-<h2 id="struct_hostapd_data">管理结构体 struct hostapd_data<a class="headerlink" href="#struct_hostapd_data" title="Permanent link">#</a></h2>
+<h1 id="_11">重要结构体<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h1>
+<h2 id="struct-hostapd_data">管理结构体 struct hostapd_data<a class="headerlink" href="#struct-hostapd_data" title="Permanent link">&para;</a></h2>
 <p>单个BSS的全局上下文，每个AP对应一个实例</p>
 <p><a href="/proj/network/netpic/netpic_20250628_2_6.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_6.png" alt="xx" width="600"/>
@@ -773,8 +789,8 @@
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">structsta_info</span><span class="o">*</span><span class="n">sta_list</span><span class="p">;</span><span class="c1">// 已连接客户端列表</span>
 <a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="kt">void</span><span class="o">*</span><span class="n">drv_priv</span><span class="p">;</span><span class="c1">// 驱动私有数据</span>
 </code></pre></div>
-<h1 id="struct_hostapd_iface">管理结构体：struct hostapd_iface<a class="headerlink" href="#struct_hostapd_iface" title="Permanent link">#</a></h1>
-<h2 id="apbss">管理物理无线接口，可能包含多个虚拟AP(BSS)<a class="headerlink" href="#apbss" title="Permanent link">#</a></h2>
+<h1 id="struct-hostapd_iface">管理结构体：struct hostapd_iface<a class="headerlink" href="#struct-hostapd_iface" title="Permanent link">&para;</a></h1>
+<h2 id="apbss">管理物理无线接口，可能包含多个虚拟AP(BSS)<a class="headerlink" href="#apbss" title="Permanent link">&para;</a></h2>
 <p><a href="/proj/network/netpic/netpic_20250628_2_7.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_7.png" alt="xx" width="600"/>
 </a></p>
@@ -784,8 +800,8 @@
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">structhapd_interfaces</span><span class="o">*</span><span class="n">interfaces</span><span class="p">;</span><span class="c1">// 全局接口集合</span>
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">enumhostapd_iface_state</span><span class="w"> </span><span class="n">state</span><span class="p">;</span><span class="c1">// 接口状态</span>
 </code></pre></div>
-<h1 id="struct_hapd_interfaces">管理结构体：struct hapd_interfaces<a class="headerlink" href="#struct_hapd_interfaces" title="Permanent link">#</a></h1>
-<h2 id="hostapd_3">hostapd全局上下文，管理所有物理接口<a class="headerlink" href="#hostapd_3" title="Permanent link">#</a></h2>
+<h1 id="struct-hapd_interfaces">管理结构体：struct hapd_interfaces<a class="headerlink" href="#struct-hapd_interfaces" title="Permanent link">&para;</a></h1>
+<h2 id="hostapd_3">hostapd全局上下文，管理所有物理接口<a class="headerlink" href="#hostapd_3" title="Permanent link">&para;</a></h2>
 <p><a href="/proj/network/netpic/netpic_20250628_2_8.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_8.png" alt="xx" width="600"/>
 </a></p>
@@ -795,8 +811,8 @@
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="kt">char</span><span class="o">*</span><span class="n">config_file</span><span class="p">;</span><span class="c1">// 配置文件路径</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="kt">void</span><span class="o">*</span><span class="n">global_ctrl_priv</span><span class="p">;</span><span class="c1">// 全局控制接口数据</span>
 </code></pre></div>
-<h1 id="struct_hostapd_config">配置结构体：struct hostapd_config<a class="headerlink" href="#struct_hostapd_config" title="Permanent link">#</a></h1>
-<h2 id="_12">存储所有接口级别的配置参数<a class="headerlink" href="#_12" title="Permanent link">#</a></h2>
+<h1 id="struct-hostapd_config">配置结构体：struct hostapd_config<a class="headerlink" href="#struct-hostapd_config" title="Permanent link">&para;</a></h1>
+<h2 id="_12">存储所有接口级别的配置参数<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
 <p><a href="/proj/network/netpic/netpic_20250628_2_9.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_9.png" alt="xx" width="600"/>
 </a></p>
@@ -807,8 +823,8 @@
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="kt">int</span><span class="w"> </span><span class="n">rts_threshold</span><span class="p">;</span><span class="c1">// RTS阈值</span>
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="kt">int</span><span class="w"> </span><span class="n">fragm_threshold</span><span class="p">;</span><span class="c1">// 分片阈值</span>
 </code></pre></div>
-<h1 id="struct_hostapd_bss_config">配置参数结构体：struct hostapd_bss_config<a class="headerlink" href="#struct_hostapd_bss_config" title="Permanent link">#</a></h1>
-<h2 id="bss">单个BSS的配置参数<a class="headerlink" href="#bss" title="Permanent link">#</a></h2>
+<h1 id="struct-hostapd_bss_config">配置参数结构体：struct hostapd_bss_config<a class="headerlink" href="#struct-hostapd_bss_config" title="Permanent link">&para;</a></h1>
+<h2 id="bss">单个BSS的配置参数<a class="headerlink" href="#bss" title="Permanent link">&para;</a></h2>
 <p><a href="/proj/network/netpic/netpic_20250628_2_10.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_10.png" alt="xx" width="600"/>
 </a></p>
@@ -819,17 +835,17 @@
 <a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="kt">int</span><span class="w"> </span><span class="n">wpa</span><span class="p">;</span><span class="c1">// WPA配置标志</span>
 <a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="kt">char</span><span class="o">*</span><span class="n">ctrl_interface</span><span class="p">;</span><span class="c1">// 控制接口路径</span>
 </code></pre></div>
-<h1 id="_13">给个结构体管理图<a class="headerlink" href="#_13" title="Permanent link">#</a></h1>
+<h1 id="_13">给个结构体管理图<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h1>
 <p><a href="/proj/network/netpic/netpic_20250628_2_11.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_11.png" alt="xx" width="600"/>
 </a></p>
-<h2 id="ssid">使用一个简单的使用应用层工具来设置ssid说明流程<a class="headerlink" href="#ssid" title="Permanent link">#</a></h2>
+<h2 id="ssid">使用一个简单的使用应用层工具来设置ssid说明流程<a class="headerlink" href="#ssid" title="Permanent link">&para;</a></h2>
 <p><a href="/proj/network/netpic/netpic_20250628_2_12.png" target="_blank">
   <img src="/proj/network/netpic/netpic_20250628_2_12.png" alt="xx" width="600"/>
 </a></p>
-<h1 id="hostapd_4">hostapd进程是一个内核进程还是应用层进程？<a class="headerlink" href="#hostapd_4" title="Permanent link">#</a></h1>
+<h1 id="hostapd_4">hostapd进程是一个内核进程还是应用层进程？<a class="headerlink" href="#hostapd_4" title="Permanent link">&para;</a></h1>
 <p>hostapd 是一个运行在用户空间（应用层）的守护进程</p>
-<h1 id="_14">为什么感觉内容很少？<a class="headerlink" href="#_14" title="Permanent link">#</a></h1>
+<h1 id="_14">为什么感觉内容很少？<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h1>
 <p>一下学不了所有内容，都是根据模块和具体的需求去分布了解hostapd内容<br>
 所以本篇内容仅仅是以创建ap的方式去跟踪学习</p>
 <div class="admonition note">
@@ -899,7 +915,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

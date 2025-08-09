@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#android_camera2" class="md-skip">
+        <a href="#android-camera2" class="md-skip">
           Skip to content
         </a>
       
@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,17 +648,17 @@
 
 
 
-<h1 id="android_camera2"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">android camera2拍照流程</span><a class="headerlink" href="#android_camera2" title="Permanent link">#</a></h1>
-<h1 id="_1"><font face="黑体" color=#FF4500 size="5">正文</font><a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="android-camera2"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">android camera2拍照流程</span><a class="headerlink" href="#android-camera2" title="Permanent link">&para;</a></h1>
+<h1 id="_1"><font face="黑体" color=#FF4500 size="5">正文</font><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>camera2 API 的加入是从AndroidV5.0(21)开始的，因此我们使用Camera2应该是在Android 5.0(含5.0)之后。同时，对于Android6.0我们需要有动态权限的管理。这两点应该是使用Camera2使用前的最基本认知。Android 5.0对拍照API进行了全新的设计，新增了全新设计的Camera v2 API，这些API不仅大幅提高了Android系统拍照的功能，还能支持RAW照片输出，甚至允许程序调整相机的对焦模式、曝光模式、快门等。下面不做过多介绍了，直接开撸了。</p>
-<h2 id="camera2"><font face="黑体" color=#FF4500 size="4">Camera2包架构示意图</font><a class="headerlink" href="#camera2" title="Permanent link">#</a></h2>
+<h2 id="camera2"><font face="黑体" color=#FF4500 size="4">Camera2包架构示意图</font><a class="headerlink" href="#camera2" title="Permanent link">&para;</a></h2>
 <p>我们先来看看 camera2包架构示意图(不用一下子理解，只需要有个整体印象)：<br></p>
 <!-- ![alt text](./campic/campic_20250614-3-a.png) -->
 
 <p><a href="/proj/cam/campic/campic_20250614-3-a.png" target="_blank">
   <img src="/proj/cam/campic/campic_20250614-3-a.png" alt="xx" width="500"/>
 </a></p>
-<h3 id="camera2_1"><font face="黑体" color=#FF4500 size="3">下面是 camera2包中的主要类：</font><a class="headerlink" href="#camera2_1" title="Permanent link">#</a></h3>
+<h3 id="camera2_1"><font face="黑体" color=#FF4500 size="3">下面是 camera2包中的主要类：</font><a class="headerlink" href="#camera2_1" title="Permanent link">&para;</a></h3>
 <!-- ![alt text](./campic/campic_20250614-3-b.png) -->
 
 <p><a href="/proj/cam/campic/campic_20250614-3-b.png" target="_blank">
@@ -653,7 +669,7 @@
 <p>CameraDevice：代表系统摄像头。该类的功能类似于早期的Camera类。而每个CameraDevice自己会负责创建CameraCaptureSession 以及建立 CaptureRequest。</p>
 <p>CameraCaptureSession：这是一个非常重要的API，当程序需要预览、拍照时，都需要先通过该类的实例创建Session。而且不管预览还是拍照，也都是由该对象的方法进行控制的，其中控制预览的方法为setRepeatingRequest()；控制拍照的方法为capture()。为了监听CameraCaptureSession的创建过程，以及监听CameraCaptureSession的拍照过程，Camera-v2-API为CameraCaptureSession提供了StateCallback、CaptureCallback等内部类。</p>
 <p>CameraRequest和CameraRequest.Builder：当程序调用setRepeatingRequest()方法进行预览时，或调用capture()方法进行拍照时，都需要传入CameraRequest参数。CameraRequest代表了一次捕获请求，用于描述捕获图片的各种参数设置，比如对焦模式、曝光模式……总之，程序需要对照片所做的各种控制，都通过CameraRequest参数进行设置。CameraRequest.Builder则负责生成CameraRequest对象。</p>
-<h3 id="_2"><font face="黑体" color=#FF4500 size="3">相机预览与拍照流程</font><a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h3 id="_2"><font face="黑体" color=#FF4500 size="3">相机预览与拍照流程</font><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <!-- ![alt text](./campic/campic_20250614-3-c.png) -->
 
 <p><a href="/proj/cam/campic/campic_20250616-1-a.png" target="_blank">
@@ -667,7 +683,7 @@
 <p>(5)调用CaptureRequest.Builder的build()方法即可得到CaptureRequest对象，接下来程序可通过CameraCaptureSession的setRepeatingRequest()方法开始预览，或调用capture()方法拍照。相机的预览与拍照流程我们基本了解了。</p>
 <p>(6)预览时，是将mSurfaceHolder.getSurface()作为目标，使用setRepeatingRequest()方法，显示拍照结果时，是将mImageReader.getSurface()作为目标，使用capture()方法。</p>
 <p>然后这里还有一个大招：Google官方Camera2拍照的demo的地址：点击跳转<a href="https://github.com/googlearchive/android-Camera2Basic" target="_blank">android-Camera2Basic</a></p>
-<h1 id="layout"><font face="黑体" color=#FF4500 size="5">首先是我们的layout代码</font><a class="headerlink" href="#layout" title="Permanent link">#</a></h1>
+<h1 id="layout"><font face="黑体" color=#FF4500 size="5">首先是我们的layout代码</font><a class="headerlink" href="#layout" title="Permanent link">&para;</a></h1>
 <p>首先权限不能忘：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uses-permission android:name=”android.permission.CAMERA” /
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>uses-feature android:name=”android.hardware.camera” /
@@ -751,7 +767,7 @@
 <a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="w">    </span><span class="o">&lt;/</span><span class="n">LinearLayout</span><span class="o">&gt;</span>
 <a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="o">&lt;/</span><span class="n">LinearLayout</span><span class="o">&gt;</span>
 </code></pre></div></td></tr></table></div>
-<h1 id="_3"><font face="黑体" color=#FF4500 size="5">下面是我的代码</font><a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
+<h1 id="_3"><font face="黑体" color=#FF4500 size="5">下面是我的代码</font><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">  1</a></span>
 <span class="normal"><a href="#__codelineno-2-2">  2</a></span>
 <span class="normal"><a href="#__codelineno-2-3">  3</a></span>
@@ -1781,7 +1797,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

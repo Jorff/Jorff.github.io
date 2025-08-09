@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,8 +648,8 @@
 
 
 
-<h1 id="awk"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">awk高级用法</span><a class="headerlink" href="#awk" title="Permanent link">#</a></h1>
-<h1 id="1_-">1. 统计分析 - 一键计算数据指标<a class="headerlink" href="#1_-" title="Permanent link">#</a></h1>
+<h1 id="awk"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">awk高级用法</span><a class="headerlink" href="#awk" title="Permanent link">&para;</a></h1>
+<h1 id="1-">1. 统计分析 - 一键计算数据指标<a class="headerlink" href="#1-" title="Permanent link">&para;</a></h1>
 <p>日志分析、数据统计不用写复杂脚本，awk内置了丰富的统计功能：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 统计文件行数、字数、字符数</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>awk<span class="w"> </span><span class="s1">&#39;END{print NR, NF, length}&#39;</span><span class="w"> </span>file.txt
@@ -645,7 +661,7 @@
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>awk<span class="w"> </span><span class="s1">&#39;NR==1{max=min=$2} {if($2&gt;max) max=$2; if($2&lt;min) min=$2} END{print &quot;最大值:&quot;, max, &quot;最小值:&quot;, min}&#39;</span><span class="w"> </span>data.txt
 </code></pre></div>
 <p>【场景举例】分析Web服务器访问日志，统计总请求数、平均响应时间、最大响应时间。</p>
-<h1 id="2_-">2. 条件过滤 - 灵活筛选数据<a class="headerlink" href="#2_-" title="Permanent link">#</a></h1>
+<h1 id="2-">2. 条件过滤 - 灵活筛选数据<a class="headerlink" href="#2-" title="Permanent link">&para;</a></h1>
 <p>比grep更强大的条件过滤，支持数值比较、字符串匹配、正则表达式：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 筛选某列大于指定值的行</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>awk<span class="w"> </span><span class="s1">&#39;$3 &gt; 100&#39;</span><span class="w"> </span>data.txt
@@ -659,7 +675,7 @@
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># 反向匹配（不包含）</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>awk<span class="w"> </span><span class="s1">&#39;$0 !~ /debug|info/&#39;</span><span class="w"> </span>log.txt
 </code></pre></div>
-<h1 id="3_-">3. 字段处理 - 动态操作列数据<a class="headerlink" href="#3_-" title="Permanent link">#</a></h1>
+<h1 id="3-">3. 字段处理 - 动态操作列数据<a class="headerlink" href="#3-" title="Permanent link">&para;</a></h1>
 <p>不只是打印列，还能动态计算、转换、重组数据：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 动态计算新字段</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>awk<span class="w"> </span><span class="s1">&#39;{print $1, $2, $3*$4}&#39;</span><span class="w"> </span>data.txt
@@ -673,7 +689,7 @@
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># 字段数量变化时的处理</span>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>awk<span class="w"> </span><span class="s1">&#39;{for(i=2; i&lt;=NF; i++) sum+=$i; print $1, sum; sum=0}&#39;</span><span class="w"> </span>data.txt
 </code></pre></div>
-<h1 id="4_-">4. 分组统计 - 按类别汇总数据<a class="headerlink" href="#4_-" title="Permanent link">#</a></h1>
+<h1 id="4-">4. 分组统计 - 按类别汇总数据<a class="headerlink" href="#4-" title="Permanent link">&para;</a></h1>
 <p>像SQL的GROUP BY一样，按某个字段分组统计：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 按第一列分组，统计每组的数量</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>awk<span class="w"> </span><span class="s1">&#39;{count[$1]++} END{for(key in count) print key, count[key]}&#39;</span><span class="w"> </span>data.txt
@@ -685,7 +701,7 @@
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>awk<span class="w"> </span><span class="s1">&#39;{sum[$1]+=$2; count[$1]++} END{for(k in sum) print k, sum[k]/count[k]}&#39;</span><span class="w"> </span>data.txt
 </code></pre></div>
 <p>【场景举例】分析销售数据，按地区统计总销量、平均客单价。</p>
-<h1 id="5_-">5. 数据转换 - 格式化输出<a class="headerlink" href="#5_-" title="Permanent link">#</a></h1>
+<h1 id="5-">5. 数据转换 - 格式化输出<a class="headerlink" href="#5-" title="Permanent link">&para;</a></h1>
 <p>将原始数据转换成需要的格式，生成报表或其他格式：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 转换成JSON格式</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>awk<span class="w"> </span><span class="s1">&#39;{printf &quot;{\&quot;name\&quot;:\&quot;%s\&quot;, \&quot;score\&quot;:%d}\n&quot;, $1, $2}&#39;</span><span class="w"> </span>data.txt
@@ -699,7 +715,7 @@
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># 数值格式化（添加千分位逗号）</span>
 <a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>awk<span class="w"> </span><span class="s1">&#39;{printf &quot;%&#39;</span><span class="s2">&quot;&#39;&quot;</span><span class="s1">&#39;d\n&quot;, $1}&#39;</span><span class="w"> </span>numbers.txt
 </code></pre></div>
-<h1 id="6_-">6. 多文件处理 - 关联和对比数据<a class="headerlink" href="#6_-" title="Permanent link">#</a></h1>
+<h1 id="6-">6. 多文件处理 - 关联和对比数据<a class="headerlink" href="#6-" title="Permanent link">&para;</a></h1>
 <p>处理多个文件，实现数据关联、对比、合并：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># 关联两个文件（类似SQL JOIN）</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>awk<span class="w"> </span><span class="s1">&#39;NR==FNR{a[$1]=$2; next} {print $0, a[$1]}&#39;</span><span class="w"> </span>file1.txt<span class="w"> </span>file2.txt
@@ -710,7 +726,7 @@
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># 合并多个文件并添加来源标识</span>
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>awk<span class="w"> </span><span class="s1">&#39;{print FILENAME, $0}&#39;</span><span class="w"> </span>*.txt
 </code></pre></div>
-<h1 id="7_-">7. 时间日期处理 - 日志分析利器<a class="headerlink" href="#7_-" title="Permanent link">#</a></h1>
+<h1 id="7-">7. 时间日期处理 - 日志分析利器<a class="headerlink" href="#7-" title="Permanent link">&para;</a></h1>
 <p>处理带时间戳的日志文件，进行时间范围过滤和统计：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 过滤指定时间范围的日志</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>awk<span class="w"> </span><span class="s1">&#39;$1 &gt;= &quot;2024-01-01&quot; &amp;&amp; $1 &lt;= &quot;2024-01-31&quot;&#39;</span><span class="w"> </span>access.log
@@ -721,7 +737,7 @@
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># 计算时间间隔</span>
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>awk<span class="w"> </span><span class="s1">&#39;NR==1{start=$1} END{print &quot;处理时长:&quot;, $1-start, &quot;秒&quot;}&#39;</span><span class="w"> </span>time.log
 </code></pre></div>
-<h1 id="8_-">8. 高级模式匹配 - 灵活处理复杂文本<a class="headerlink" href="#8_-" title="Permanent link">#</a></h1>
+<h1 id="8-">8. 高级模式匹配 - 灵活处理复杂文本<a class="headerlink" href="#8-" title="Permanent link">&para;</a></h1>
 <p>处理结构化文本、配置文件、多行记录：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 处理多行记录（空行分隔）</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>awk<span class="w"> </span><span class="s1">&#39;BEGIN{RS=&quot;&quot;} {print &quot;记录&quot;, NR&quot;:&quot;, $0}&#39;</span><span class="w"> </span>records.txt
@@ -735,7 +751,7 @@
 <a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="c1"># 跳过注释和空行</span>
 <a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>awk<span class="w"> </span><span class="s1">&#39;!/^#/ &amp;&amp; !/^$/ {print}&#39;</span><span class="w"> </span>config.txt
 </code></pre></div>
-<h1 id="9_-">9. 数据验证 - 检查数据质量<a class="headerlink" href="#9_-" title="Permanent link">#</a></h1>
+<h1 id="9-">9. 数据验证 - 检查数据质量<a class="headerlink" href="#9-" title="Permanent link">&para;</a></h1>
 <p>快速检查数据完整性、格式正确性：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># 检查必填字段</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>awk<span class="w"> </span><span class="s1">&#39;NF &lt; 3 {print &quot;第&quot;NR&quot;行缺少字段:&quot;, $0}&#39;</span><span class="w"> </span>data.txt
@@ -749,7 +765,7 @@
 <a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="c1"># 数据范围验证</span>
 <a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>awk<span class="w"> </span><span class="s1">&#39;$3 &lt; 0 || $3 &gt; 100 {print &quot;异常数据:&quot;, $0}&#39;</span><span class="w"> </span>scores.txt
 </code></pre></div>
-<h1 id="10_-">10. 一键生成报表 - 复杂统计输出<a class="headerlink" href="#10_-" title="Permanent link">#</a></h1>
+<h1 id="10-">10. 一键生成报表 - 复杂统计输出<a class="headerlink" href="#10-" title="Permanent link">&para;</a></h1>
 <p>组合多种功能，生成专业的数据报表：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 生成销售报表</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>awk<span class="w"> </span><span class="s1">&#39;</span>
@@ -773,7 +789,7 @@
 <a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="s1">}</span>
 <a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="s1">&#39;</span><span class="w"> </span>sales.txt
 </code></pre></div>
-<h1 id="_1">结语<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="_1">结语<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>awk的强大之处在于它能用简洁的语法完成复杂的数据处理任务。掌握这些高级用法后，你会发现很多原本需要写脚本才能完成的工作，一行awk命令就能搞定。下次处理数据时，不妨试试这些技巧，说不定能大大提升你的工作效率！</p>
 <div class="admonition note">
 <p class="admonition-title">本文转发链接如下：</p>
@@ -842,7 +858,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

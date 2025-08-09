@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,34 +648,34 @@
 
 
 
-<h1 id="-camx-chi"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">高通影像入门基础-软件影像框架CamX-CHI</span><a class="headerlink" href="#-camx-chi" title="Permanent link">#</a></h1>
-<h1 id="_1">一、综述<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="-camx-chi"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">高通影像入门基础-软件影像框架CamX-CHI</span><a class="headerlink" href="#-camx-chi" title="Permanent link">&para;</a></h1>
+<h1 id="_1">一、综述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>虽然安卓影像厂商千千万，但是影像都对底层的芯片平台有强依赖。</p>
 <p>根据市场占比三方SOC可以大概分为三个阵营，高通、MTK和其他，其他包括了部分自研SOC厂商、ISP厂商等。</p>
 <p>假设你准备进入高通影像开发，你需要掌握哪些基本的影像软件系统知识，本文已经帮你整理好了。</p>
-<h1 id="_2">二、高通影像核心概念<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<h1 id="_2">二、高通影像核心概念<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <p>虽然影像的基础是相同的，但是不同平台都有自己的单元模块，熟悉这些模块的概念和术语有助于理解不同平台的工作逻辑。</p>
 <p>Camx架构中高通开发的相机HAL框架，所以软件的核心概念都是在camX架构内的概念。</p>
-<h2 id="21_usercase">2.1 usercase<a class="headerlink" href="#21_usercase" title="Permanent link">#</a></h2>
+<h2 id="21-usercase">2.1 usercase<a class="headerlink" href="#21-usercase" title="Permanent link">&para;</a></h2>
 <p>Usecase指的是一个功能需求或应用场景，定义了camera需要完成的具体任务或提供的特定功能。</p>
 <p>举例来说比如拍照、录像、人脸识别等都是不同的usecase。</p>
 <p>usecase是顶层的概念，下层可能包含多个pipeline、feature、ISP模块和node。</p>
-<h2 id="22_feature2">2.2 Feature2<a class="headerlink" href="#22_feature2" title="Permanent link">#</a></h2>
+<h2 id="22-feature2">2.2 Feature2<a class="headerlink" href="#22-feature2" title="Permanent link">&para;</a></h2>
 <p>feature2代表相机功能的高级抽象。Feature2更侧重于功能的组合和调度。</p>
 <p>Feature2的作用是负责接收来自相机APP的请求，Feature2的作用是实现更复杂的相机功能比如HDR、夜景等，具体实现是将多个Node组合成一个单元。</p>
-<h2 id="23_session">2.3 session<a class="headerlink" href="#23_session" title="Permanent link">#</a></h2>
+<h2 id="23-session">2.3 session<a class="headerlink" href="#23-session" title="Permanent link">&para;</a></h2>
 <p>session是管理相机使用周期的核心容器，协调多个Pipeline的协同工作，包括处理不同Pipeline间的硬件资源冲突以及同步等问题。</p>
 <p>sension应用的典型场景就是同时支持预览+拍照，从而实现在预览下拍</p>
-<h2 id="24_pipeline">2.4 pipeline<a class="headerlink" href="#24_pipeline" title="Permanent link">#</a></h2>
+<h2 id="24-pipeline">2.4 pipeline<a class="headerlink" href="#24-pipeline" title="Permanent link">&para;</a></h2>
 <p>Pipeline在影像系统中一直是核心概念，代表完整的图像处理流程链，</p>
 <p>字面意思是数据流在camera系统中流通的管道的意思，它定义了图像数据从输入到输出的处理流程。</p>
 <p>Pipeline由一系列节点node组成，每个节点负责执行特定的处理任务，如图像捕获、预处理、编码等。</p>
 <p>pipeline支持实时(RealTime)和离线(Offline)两种执行模式，离线模块较为常应用于客制化。</p>
 <p>高通预定义了几种Pipeline模板，如:Realtime Pipeline低延迟预览，Offline Pipeline后处理任务，和Video Pipeline视频录制。</p>
-<h2 id="25_node">2.5 node<a class="headerlink" href="#25_node" title="Permanent link">#</a></h2>
+<h2 id="25-node">2.5 node<a class="headerlink" href="#25-node" title="Permanent link">&para;</a></h2>
 <p>session是管理相机使用周期的核心容器，协调多个Pipeline的协同工作，包括处理不同Pipeline间的硬件资源冲突以及同步等问题。</p>
 <p>sension应用的典型场景就是同时支持预览+拍照，从而实现在预览下拍</p>
-<h2 id="26_session">2.6 session<a class="headerlink" href="#26_session" title="Permanent link">#</a></h2>
+<h2 id="26-session">2.6 session<a class="headerlink" href="#26-session" title="Permanent link">&para;</a></h2>
 <p>Node代表相机管道中的一个独立处理单元，每个Node完成特定的图像处理任务，这个任务可能是一个硬件模块JPEG编码器，也可能是一个软件处理单元awb算法。</p>
 <p>node特点特性：</p>
 <p>（1）Camx架构允许用户自定义node。</p>
@@ -672,27 +688,27 @@
 <p><a href="/proj/cam/campic/campic_20250705_1_1.png" target="_blank">
   <img src="/proj/cam/campic/campic_20250705_1_1.png" alt="xx" width="500"/>
 </a></p>
-<h2 id="27_imagebuffer">2.7 Imagebuffer<a class="headerlink" href="#27_imagebuffer" title="Permanent link">#</a></h2>
+<h2 id="27-imagebuffer">2.7 Imagebuffer<a class="headerlink" href="#27-imagebuffer" title="Permanent link">&para;</a></h2>
 <p>ImageBuffer用于存储和处理图像数据，是相机管道中数据流动的核心部分。</p>
 <p>ImageBuffer提供了一块内存区域，用于存储从传感器读取的原始图像数据或经过Node处理后的图像数据。</p>
 <p>不同的Node通过ImageBuffer交换数据</p>
-<h2 id="28_drq">2.8 DRQ<a class="headerlink" href="#28_drq" title="Permanent link">#</a></h2>
+<h2 id="28-drq">2.8 DRQ<a class="headerlink" href="#28-drq" title="Permanent link">&para;</a></h2>
 <p>DRQ（Direct Request Queue）负责管理和调度相机管道中的请求，可以存储和排序APP发送到相机硬件的请求。</p>
 <p>DRQ可以帮助提高相机系统的整体性能和响应速度。</p>
-<h2 id="29_log">2.9 日志log<a class="headerlink" href="#29_log" title="Permanent link">#</a></h2>
+<h2 id="29-log">2.9 日志log<a class="headerlink" href="#29-log" title="Permanent link">&para;</a></h2>
 <p>通过高通日志系统Logging确认详细日志</p>
 <p>在日志中如何如何找到目标usecase和pipeline。</p>
 <p>当前usecase:  logcat |grep “usecase selected”</p>
 <p>当前pipeline:  logcat |grep “Selected sensor Mode”</p>
 <p>当前选择的sensormode:  logcat |grep “FindBestSensorMode”</p>
 <p>当前配流情况：  logcat |grep “configure_s 可以查看当前app是申请了2路流，分别是 一路的拍照流和 一路预览流。</p>
-<h1 id="camx">三、影像框架camX<a class="headerlink" href="#camx" title="Permanent link">#</a></h1>
+<h1 id="camx">三、影像框架camX<a class="headerlink" href="#camx" title="Permanent link">&para;</a></h1>
 <p>影像系统的实现是Google、Qcom和手机厂商共同协同完成，</p>
 <p>Google定义了HAL3接口，平台厂商Qcom实现自己的Camera HAL3架构camX，而手机厂商则在camX上进行客制化修改。</p>
 <p>高通和MTK这样的平台厂商，都需要和其合作的企业才可以获取内部详细，使用芯片的手机公司的客制化也是各自的机密。</p>
 <p>我们可以通过学习通用的框架设计和标准接口可以一窥究竟。</p>
 <p>本章结合我开放资料以及自己理解，主要包含框架构成和框架内分层接口两部分构成。</p>
-<h2 id="31_camx-chi">3.1 CamX-CHI<a class="headerlink" href="#31_camx-chi" title="Permanent link">#</a></h2>
+<h2 id="31-camx-chi">3.1 CamX-CHI<a class="headerlink" href="#31-camx-chi" title="Permanent link">&para;</a></h2>
 <p>一个request来业务流程交给camx处理，但会经过chi-cdk进行request定制化重新打包，再交给camx实际去执行或和kernel driver层进行交互，camx部分代码即核心流程管控的代码，而chi-cdk正是手机厂商想要实现自己定制化功能的代码地方。</p>
 <p>Camx的架构入口为Camx包中的camxhal3entry.cpp,</p>
 <p>Camx架构的核心跳转及处理业务的代码目录在vendor/qcom/proprietary/camx/下,编译结果是camera.qcom.so</p>
@@ -709,7 +725,7 @@
 <p>Session: 管理相机会话的生命周期</p>
 <p>驱动程序层包括传感器驱动、ISP驱动等，负责与硬件交互的底层驱动</p>
 <p>CHI(Common Hardware Interface)提供了硬件无关的接口定义以及供应商扩展接口等</p>
-<h2 id="32_aidlhidl">3.2 AIDL/HIDL<a class="headerlink" href="#32_aidlhidl" title="Permanent link">#</a></h2>
+<h2 id="32-aidlhidl">3.2 AIDL/HIDL<a class="headerlink" href="#32-aidlhidl" title="Permanent link">&para;</a></h2>
 <p>在嵌入式Android多媒体框架中，IDL以一种标准化的方式定义硬件服务接口，这些接口可以在不同的系统组件之间被共享和重用。</p>
 <p>HIDL（Hal Interface Definition Language）在 Android 8.0引入，基于Binder的，自定义了序列化器来将HAL方法调用和参数转换为Parcel对象，从而便于binder传输，反序列则相反。</p>
 <p>HIDL代理类在客户端进程中运行，它封装了与Binder通信的细节，使得客户端可以像调用本地方法一样调用远程HAL服务的方法。存根类则在服务端进程中运行，它实现了代理类调用的接口，并将调用转发给实际的HAL实现。</p>
@@ -719,7 +735,7 @@
 <p><a href="/proj/cam/campic/campic_20250705_1_2.png" target="_blank">
   <img src="/proj/cam/campic/campic_20250705_1_2.png" alt="xx" width="500"/>
 </a></p>
-<h2 id="33_hidl_aidl">3.3 HIDL → AIDL迁移<a class="headerlink" href="#33_hidl_aidl" title="Permanent link">#</a></h2>
+<h2 id="33-hidl-aidl">3.3 HIDL → AIDL迁移<a class="headerlink" href="#33-hidl-aidl" title="Permanent link">&para;</a></h2>
 <p>Android 12开始逐步从HIDL迁移到AIDL</p>
 <!-- ![alt text](image-2.png) -->
 <p><a href="/proj/cam/campic/campic_20250705_1_3.png" target="_blank">
@@ -731,9 +747,9 @@
 <p>（3）对我们开发者降低了难度。</p>
 <p>使用AIDL精简之后的层次：</p>
 <p>App → AIDL Interface → Vendor Impl（厂商实现）</p>
-<h1 id="_3">四、关键软件接口举例<a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
+<h1 id="_3">四、关键软件接口举例<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
 <p>关键架构层级接口分为三类：首先是Google定义，然后是高通扩展，最后是厂商的实现。</p>
-<h2 id="41_googleaidl">4.1 google核心AIDL接口<a class="headerlink" href="#41_googleaidl" title="Permanent link">#</a></h2>
+<h2 id="41-googleaidl">4.1 google核心AIDL接口<a class="headerlink" href="#41-googleaidl" title="Permanent link">&para;</a></h2>
 <p>a. ICameraService.aidl</p>
 <p>位于frameworks/av/camera/aidl/android/hardware</p>
 <p>关键方法：</p>
@@ -747,10 +763,10 @@
 <span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">submitRequest</span><span class="p">(</span><span class="n">CaptureRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">boolean</span><span class="w"> </span><span class="n">streaming</span><span class="p">);</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kt">long</span><span class="w"> </span><span class="nf">capture</span><span class="p">(</span><span class="n">ICameraDeviceCallbacks</span><span class="w"> </span><span class="n">callback</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="42_aidl">4.2 高通扩展AIDL<a class="headerlink" href="#42_aidl" title="Permanent link">#</a></h2>
+<h2 id="42-aidl">4.2 高通扩展AIDL<a class="headerlink" href="#42-aidl" title="Permanent link">&para;</a></h2>
 <p>高通扩展的aidl目录：</p>
 <p>vendor/qcom/proprietary/camera/extension/aidl</p>
-<h2 id="43_hidl">4.3 标准HIDL接口<a class="headerlink" href="#43_hidl" title="Permanent link">#</a></h2>
+<h2 id="43-hidl">4.3 标准HIDL接口<a class="headerlink" href="#43-hidl" title="Permanent link">&para;</a></h2>
 <p>a. ICameraProvider@2.4</p>
 <p>关键方法：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
@@ -763,7 +779,7 @@
 <span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">open</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">sp</span><span class="o">&lt;</span><span class="n">ICameraDeviceCallback</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">callback</span><span class="p">,</span><span class="w"> </span><span class="n">open_cb</span><span class="w"> </span><span class="n">_hidl_cb</span><span class="p">);</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">configureStreams</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">StreamConfiguration</span><span class="o">&amp;</span><span class="w"> </span><span class="n">requestedConfiguration</span><span class="p">,</span><span class="w"> </span><span class="n">configureStreams_cb</span><span class="w"> </span><span class="n">_hidl_cb</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="44_camxhidl">4.4 高通CamX特有HIDL<a class="headerlink" href="#44_camxhidl" title="Permanent link">#</a></h2>
+<h2 id="44-camxhidl">4.4 高通CamX特有HIDL<a class="headerlink" href="#44-camxhidl" title="Permanent link">&para;</a></h2>
 <p>a. IQCameraProvider@4.x</p>
 <p>关键方法：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
@@ -774,7 +790,7 @@
 <p>用于相机tuning的方法：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">submitTuningData</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">TuningData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="45_camx-chi">4.5 CamX-CHI厂商接口<a class="headerlink" href="#45_camx-chi" title="Permanent link">#</a></h2>
+<h2 id="45-camx-chi">4.5 CamX-CHI厂商接口<a class="headerlink" href="#45-camx-chi" title="Permanent link">&para;</a></h2>
 <p>头文件：camx/src/core/hal/chi.h</p>
 <p>核心结构体：
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
@@ -867,7 +883,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

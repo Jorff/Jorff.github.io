@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#android_binderipc_aidl" class="md-skip">
+        <a href="#android-binderipc-aidl" class="md-skip">
           Skip to content
         </a>
       
@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,95 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      什么是 IPC？为什么我们需要它？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#android-ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Android 系统中支持的 IPC 机制
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binder 的优势
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aidl" class="md-nav__link">
+    <span class="md-ellipsis">
+      基于 AIDL 的跨进程通信的简单实例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aidl_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      什么是 AIDL？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      服务端
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户端
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,12 +719,12 @@
 
 
 
-<h1 id="android_binderipc_aidl"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">循序渐进 Android Binder（一）：IPC 基本概念和 AIDL 跨进程通信的简单实例</span><a class="headerlink" href="#android_binderipc_aidl" title="Permanent link">#</a></h1>
+<h1 id="android-binderipc-aidl"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">循序渐进 Android Binder（一）：IPC 基本概念和 AIDL 跨进程通信的简单实例</span><a class="headerlink" href="#android-binderipc-aidl" title="Permanent link">&para;</a></h1>
 <p>Binder  给人的第一印象是”捆绑者“，即将两个需要建立关系的事物用某些工具束缚在一起。在 Android 中，Binder  是一种高效的跨进程通信（IPC）机制，它将可以将运行在不同进程中的组件进行绑定，以实现彼此通信和数据共享。Binder 机制在 Android  系统中扮演这至关重要的角色，特别是在管理应用程序和系统服务之间的交互方面。</p>
 <p>在  Android 系统中，Binder 占有举足轻重的地位。而 Binder 机制涉及的东西即多且复杂，对于学习者来说，想要全面理解  Binder  仅靠一两篇文章就融会贯通是不可能的。越复杂的东西，越需要循序渐进，逐步理解，以免迷失了方向。因此，我将通过一系列文章，逐步带领大家进入  Binder 的内容，最终实现对于 Binder 的理解和运用。</p>
 <p>我们知道 Binder 是一个 IPC 工具，那什么是 IPC 呢？我们为什么需要这玩意呢？接下来，我们就从此问题开始，逐步进入 Binder 的世界。</p>
 <hr />
-<h3 id="ipc"><center><table><tr><td bgcolor=#FF4500>什么是 IPC？为什么我们需要它？</td></tr></table></center><a class="headerlink" href="#ipc" title="Permanent link">#</a></h3>
+<h3 id="ipc"><center><table><tr><td bgcolor=#FF4500>什么是 IPC？为什么我们需要它？</td></tr></table></center><a class="headerlink" href="#ipc" title="Permanent link">&para;</a></h3>
 <hr />
 <p>在操作系统中，每个进程都是在一个独立的沙箱环境中的，它拥有自己的内存空间、权限边界、资源管理。为了保证系统稳定性和安全性，进程之间是无法直接访问彼此的数据或代码的。</p>
 <p>但是在实际开发中，我们经常需要不同进程之间进行协作。例如：</p>
@@ -656,7 +743,7 @@
 </ul>
 <p>这么设计的核心原因是：安全性 + 稳定性 + 可控性。如果允许一个普通程序在内核态运行，那么它一旦崩溃，就可能导致整个系统内核崩溃，影响所有进程。所以这是一种“以安全和控制为核心”的设计哲学。</p>
 <hr />
-<h3 id="android_ipc"><center><table><tr><td bgcolor=#FF4500>Android 系统中支持的 IPC 机制</td></tr></table></center><a class="headerlink" href="#android_ipc" title="Permanent link">#</a></h3>
+<h3 id="android-ipc"><center><table><tr><td bgcolor=#FF4500>Android 系统中支持的 IPC 机制</td></tr></table></center><a class="headerlink" href="#android-ipc" title="Permanent link">&para;</a></h3>
 <hr />
 <p>上面已经介绍了 IPC 的基本概念，那 Android 系统支持哪些 IPC 机制呢？</p>
 <p>首先，Android 基于 Linux 内核，因此天然继承了 Linux 提供的各种经典 IPC 机制，这这些机制主要包括：</p>
@@ -670,7 +757,7 @@
 </ul>
 <p>Android  虽然基于 Linux，但并没有直接采用传统的 Linux IPC  机制来构建系统服务框架。原因很简单：这些机制（如管道、消息队列、信号）要么功能太弱，要么难以管理、缺乏安全保障。为了构建一个高性能、可控、安全的跨进程通信模型，Google  选择在内核层扩展了一套独特的机制 —— Binder。</p>
 <hr />
-<h3 id="binder"><center><table><tr><td bgcolor=#FF4500>Binder 的优势</td></tr></table></center><a class="headerlink" href="#binder" title="Permanent link">#</a></h3>
+<h3 id="binder"><center><table><tr><td bgcolor=#FF4500>Binder 的优势</td></tr></table></center><a class="headerlink" href="#binder" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Binder 是 Android 独有的一套进程通信机制，底层由内核模块 binder 实现，用户态通过 Binder 驱动访问。使用它能够像调用本地方法一样，调用另一个进程中的方法。 </p>
 <ul>
@@ -696,10 +783,10 @@
 <p>Binder  的出现，是 Android 构建自身 IPC 世界的重要基石。它不仅替代了 Linux 的传统 IPC  机制，还通过提供高效、安全、可扩展的通信模型，成功支撑起整个 Android 系统服务架构 ——  从最底层的启动服务到最顶层的应用组件通信，Binder 是 Android 系统的“神经网络”。</p>
 <p>上面我们介绍了 IPC 和 Binder 的一些基本概念，接下来，我们就用一个 AIDL 的简单实例，来演示一下 Binder 的基本调用。</p>
 <hr />
-<h3 id="aidl"><center><table><tr><td bgcolor=#FF4500>基于 AIDL 的跨进程通信的简单实例</td></tr></table></center><a class="headerlink" href="#aidl" title="Permanent link">#</a></h3>
+<h3 id="aidl"><center><table><tr><td bgcolor=#FF4500>基于 AIDL 的跨进程通信的简单实例</td></tr></table></center><a class="headerlink" href="#aidl" title="Permanent link">&para;</a></h3>
 <hr />
 <p>Binder   通信采用客户端-服务器（Client/Server）模型，因此即使是一个简单的跨进程通信实例，我们也要写服务端和客户端两个进程代码。在继续写代码之前，我们需要接受一个新的词：AIDL（Android  Interface Definition Language）。</p>
-<h2 id="aidl_1">什么是 AIDL？<a class="headerlink" href="#aidl_1" title="Permanent link">#</a></h2>
+<h2 id="aidl_1">什么是 AIDL？<a class="headerlink" href="#aidl_1" title="Permanent link">&para;</a></h2>
 <p>虽然  Android Binder  提供了强大的进程通信机制，但直接使用它代价极高，开发者需要手动处理方法编号、参数序列化等细节，既麻烦又容易出错。因此 Android 引入了  AIDL 接口描述语言，其目的就是自动生成一套可靠的、类型安全的、跨进程可用的接口通信代码。</p>
 <p>其实，使用 Binder 调用并不是必须要使用 AIDL，但是，当你需要进行 IPC，调用时，AIDL 是最清晰、高效、安全的解决方案。</p>
 <p>一个简单的 AIDL 接口定义就如下：</p>
@@ -715,7 +802,7 @@
 <li>IComputer.Sutb.Proxy：客户端调用</li>
 </ul>
 <p>你只需要在服务端继承 Stub，并在客户端调用 Proxy，就可以像调用本地方法一样进行 IPC 调用。 下面我们就以这个 AIDL 为例，来完成一个简单的 IPC 实例。</p>
-<h2 id="_1">服务端<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<h2 id="_1">服务端<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>首先我们创建一个包名为 lic.swift.binder.server 的程序用于服务端。</p>
 <p>然后添加上面的 IComputer.aidl 接口到代码中，先编译下，以便生成对应的 Java 文件。</p>
 <p>接着创建一个全类名 lic.swift.binder.server.ComputeService 的 Service 作为服务端实现，如下：</p>
@@ -796,7 +883,7 @@
 <a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="nt">&lt;/manifest&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>为了能够让其他进程的应用访问到这个  Service，需要将其 exported 设置为 true。另外在 XML 中还为这个 Service 配置了 permission。其实在  Android 中，Service  本身并不强制要求声明访问权限，但如果你希望控制哪些应用可以访问你的服务，特别是涉及跨进程调用或敏感功能的服务，那么通过 android:permission 是一种标准且推荐的方式。</p>
-<h2 id="_2">客户端<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<h2 id="_2">客户端<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>上面说的 IComputer.aidl 文件，它类似于 HTTP 协议，这个协议在服务端有一个，在客户端当然也需要有一个。因此在客户端的项目中，我们需要先把这个文件复制过来，注意，这里复制时必须要保证 .aidl 文件的包名、类名都相同。</p>
 <p>接下来我们在 Activity 中添加一个按钮，每次点击这个按钮，就调用服务端的 add 方法计算一次加法并返回。</p>
 <p>但为了能够进行远程调用，我们首先要连接到远程服务，以下是在 Activity 中用于连接到远程服务的代码：</p>
@@ -965,7 +1052,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#android_studio" class="md-skip">
+        <a href="#android-studio" class="md-skip">
           Skip to content
         </a>
       
@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,8 +648,8 @@
 
 
 
-<h1 id="android_studio"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">android studio 调试应用程序</span><a class="headerlink" href="#android_studio" title="Permanent link">#</a></h1>
-<h1 id="1java"><font face="黑体" color=#FF4500 size="5">1.java 调试原理</font><a class="headerlink" href="#1java" title="Permanent link">#</a></h1>
+<h1 id="android-studio"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">android studio 调试应用程序</span><a class="headerlink" href="#android-studio" title="Permanent link">&para;</a></h1>
+<h1 id="1java"><font face="黑体" color=#FF4500 size="5">1.java 调试原理</font><a class="headerlink" href="#1java" title="Permanent link">&para;</a></h1>
 <p>java 平台的调试规范 JPDA（Java Platform Debugger Architecture） 由 3 个部分组成</p>
 <p>Java 虚拟机工具接口（JVMTI） : 获取及控制当前虚拟机状态<br>
 Java 调试线协议（JDWP） : 定义 JVMTI 和 JDI 交互的数据格式<br>
@@ -645,7 +661,7 @@ Java 调试接口（JDI） : 提供 Java API 来远程控制被调试虚拟机<b
   <img src="/proj/android/andpic/image-2025-0615-0.png" alt="xx" width="500"/>
 </a></p>
 <p>Android虚拟机虽然和普通java虚拟机存在不少差异，但是它的调试接口同样是基于jdwpP协议的, android 的 dalvik / art 虚拟机内部有一个专门的jdwp线程，Android系统的adbd进程通过socket与各个虚拟机的jdwp线程进行通信，外部调试器通过adb工具与adbd通信进而完成与jdwp的通信(androidstudio、eclipse 等IDE的调试功能和DDMS的监控功能也都是基于JDWP协议实现的), 我们通常所说的 “attach debugger” 指的就是这个意思——连接到指定的需要调试的进程的jdwp线程</p>
-<h1 id="2_android_studio_debug"><font face="黑体" color=#FF4500 size="5">2. Android Studio 开启 debug</font><a class="headerlink" href="#2_android_studio_debug" title="Permanent link">#</a></h1>
+<h1 id="2-android-studio-debug"><font face="黑体" color=#FF4500 size="5">2. Android Studio 开启 debug</font><a class="headerlink" href="#2-android-studio-debug" title="Permanent link">&para;</a></h1>
 <p>Android Studio目前已经成为开发Android的主要工具, 其中集成了 debug 工具用于 android app 的调试</p>
 <p>debug 一个 app 有2种方式:</p>
 <!-- ![alt text](image-1.png) -->
@@ -659,7 +675,7 @@ attach 到已经启动的 app 上进行调试 ： 可以在启动apk之后，直
 <p>无论是那种方式， 请保持app的源码和调试的app一致， 这会使调试过程简单很多， 否则， 会出现行号无法对应。</p>
 <p>当行号不能对应时，下断点的时候都有可能出现问题； 比如你在TestClass的第100行下了一个断点，但是由于行号不对应，有可能真正执行的代码第100行是没有意义的空行或者是在下一个函数里面，这样断点就没有起到应有的作用了。</p>
 <p>若不能确保行号对应，必须使用方法断点 ： 直接在某个函数的入口设置断点，这样即使行号对不上，也能在正确的入口出断下来，这一点非常重要</p>
-<h1 id="3_android_debug"><font face="黑体" color=#FF4500 size="5">3. Android debug面板</font><a class="headerlink" href="#3_android_debug" title="Permanent link">#</a></h1>
+<h1 id="3-android-debug"><font face="黑体" color=#FF4500 size="5">3. Android debug面板</font><a class="headerlink" href="#3-android-debug" title="Permanent link">&para;</a></h1>
 <p>进入调试模式后， android studio 左下方会出现debug 面板</p>
 <!-- ![alt text](image-2.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-2.png" target="_blank">
@@ -673,16 +689,16 @@ attach 到已经启动的 app 上进行调试 ： 可以在启动apk之后，直
 对象变量区<br>
 变量观察区<br>
 线程状态区<br></p>
-<h1 id="4"><font face="黑体" color=#FF4500 size="5">4. 基本的单步调试</font><a class="headerlink" href="#4" title="Permanent link">#</a></h1>
+<h1 id="4"><font face="黑体" color=#FF4500 size="5">4. 基本的单步调试</font><a class="headerlink" href="#4" title="Permanent link">&para;</a></h1>
 <p>以 systemui 为例， quicksettings 的 “更多开关” 的点击事件由 com.android.systemui.qs.tiles.MoreFunctionTile#handleClick() 处理, 接下来就以这一过程为例， 演示简单的单步调试</p>
-<h1 id="41"><font face="黑体" color=#FF4500 size="4">4.1 设置断点</font><a class="headerlink" href="#41" title="Permanent link">#</a></h1>
+<h1 id="41"><font face="黑体" color=#FF4500 size="4">4.1 设置断点</font><a class="headerlink" href="#41" title="Permanent link">&para;</a></h1>
 <p>attach debugger 到 systemui 上后， 在 com.android.systemui.qs.tiles.MoreFunctionTile#handleClick() 中设置断点 (最简单的方式是在源码的行号右侧单击左键即可添加断点)</p>
 <!-- ![alt text](image-3.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-3.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-3.png" alt="xx" width="500"/>
 </a></p>
 <p>点击 quicksetting 上的 “更多开关”, 触发断点， 程序停止执行， 等待调试</p>
-<h1 id="42"><font face="黑体" color=#FF4500 size="4">4.2 断点处观察上下文信息</font><a class="headerlink" href="#42" title="Permanent link">#</a></h1>
+<h1 id="42"><font face="黑体" color=#FF4500 size="4">4.2 断点处观察上下文信息</font><a class="headerlink" href="#42" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](image-4.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-4.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-4.png" alt="xx" width="500"/>
@@ -692,7 +708,7 @@ attach 到已经启动的 app 上进行调试 ： 可以在启动apk之后，直
 调用栈， 示例中的 handleClick() 由 QSTile 类的 handleMessage() 调用<br>
 调用栈切换按钮， 通过上下键可以在调用栈中上下移动， 选择不同的栈帧， 相应的也会打开的对应的源码文件， 点击漏斗按钮可以选择是否隐藏libra中的栈帧（即是否只显示源码中的栈帧）
 断点所处的对象的成员变量的值 (在源码编辑框中， 也会显示局部变量的值)</p>
-<h1 id="43"><font face="黑体" color=#FF4500 size="4">4.3 单步执行程序</font><a class="headerlink" href="#43" title="Permanent link">#</a></h1>
+<h1 id="43"><font face="黑体" color=#FF4500 size="4">4.3 单步执行程序</font><a class="headerlink" href="#43" title="Permanent link">&para;</a></h1>
 <p>如下的7个按钮可以控制单步调试</p>
 <!-- ![alt text](image-5.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-5.png" target="_blank">
@@ -707,8 +723,8 @@ run to cursor ： 继续执行，到光标所在处才停止 (途中遇到断点
 resume program ： 继续执行， 直到遇到下一个断点， 或者程序执行完成<br>
 通过使用单步调试和变量观察区， 可以执行到程序中的不同位置， 查看相应的状态的变化</p>
 <p>在调试过程中可禁用单个或者所有的 断点， 避免重复的删除和添加</p>
-<h1 id="5"><font face="黑体" color=#FF4500 size="5">5. 进阶技巧</font><a class="headerlink" href="#5" title="Permanent link">#</a></h1>
-<h1 id="51"><font face="黑体" color=#FF4500 size="4">5.1 观察变量值</font><a class="headerlink" href="#51" title="Permanent link">#</a></h1>
+<h1 id="5"><font face="黑体" color=#FF4500 size="5">5. 进阶技巧</font><a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
+<h1 id="51"><font face="黑体" color=#FF4500 size="4">5.1 观察变量值</font><a class="headerlink" href="#51" title="Permanent link">&para;</a></h1>
 <p>debug 面板上的 对象变量区 可以查看当前对象的成员变量， 如果某个类或方法中变量太多，在Variables面板里观察的话会很费劲，这时就会需要用到 变量观察区 了， 通过如下的任一方式， 可以把变量添加到变量观察区， 方便观察</p>
 <p>在 对象变量区 选中某个变量， 单击邮件， 选择 “Add To Waches”<br>
 在 变量观察区 点击 “New Watches” 按钮(带加号的那个图标)， 输入变量名称<br></p>
@@ -716,15 +732,15 @@ resume program ： 继续执行， 直到遇到下一个断点， 或者程序�
 <p><a href="/proj/android/andpic/image-2025-0615-6.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-6.png" alt="xx" width="500"/>
 </a></p>
-<h1 id="52"><font face="黑体" color=#FF4500 size="4">5.2 修改变量值</font><a class="headerlink" href="#52" title="Permanent link">#</a></h1>
+<h1 id="52"><font face="黑体" color=#FF4500 size="4">5.2 修改变量值</font><a class="headerlink" href="#52" title="Permanent link">&para;</a></h1>
 <p>调试的过程中， 可以方便的修改某个变量的值， 在 对象变量区， 选中某个变量， 单击右键， 选择 “Set Value”, 即可修改变量的值</p>
-<h1 id="53"><font face="黑体" color=#FF4500 size="4">5.3 表达式求值</font><a class="headerlink" href="#53" title="Permanent link">#</a></h1>
+<h1 id="53"><font face="黑体" color=#FF4500 size="4">5.3 表达式求值</font><a class="headerlink" href="#53" title="Permanent link">&para;</a></h1>
 <p>这是一个强大的功能， 在断点处停止时， 可以嵌入一个交互式解释器，在该解释器中，你可以执行任何你想要执行的表达式进行求值操作</p>
 <!-- ![alt text](image-7.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-7.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-7.png" alt="xx" width="500"/>
 </a></p>
-<h1 id="54"><font face="黑体" color=#FF4500 size="4">5.4 查看线程状态</font><a class="headerlink" href="#54" title="Permanent link">#</a></h1>
+<h1 id="54"><font face="黑体" color=#FF4500 size="4">5.4 查看线程状态</font><a class="headerlink" href="#54" title="Permanent link">&para;</a></h1>
 <p>点击线程 Dump 按钮, 获取所有线程的状态</p>
 <!-- ![alt text](image-8.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-8.png" target="_blank">
@@ -742,10 +758,10 @@ Thread is executing network operation, and is waiting for data to be passed<br>
 Thread is idle<br>
 Event Dispatch Thread that is busy<br>
 Thread is executing disk operation<br></p>
-<h4 id="54_1">5.4 对象标记<br><a class="headerlink" href="#54_1" title="Permanent link">#</a></h4>
+<h4 id="54_1">5.4 对象标记<br><a class="headerlink" href="#54_1" title="Permanent link">&para;</a></h4>
 <p>在调试的过程中，这个方式允许你给class的某个特定的object打标签，以便后面的断点里面可以进行识别这个变量</p>
 <p>在对象变量区选中所需的对象， 右键选择 “Mark Object” 后输入 label， 即可标记对象</p>
-<h1 id="6"><font face="黑体" color=#FF4500 size="5">6. 高级断点技巧</font><a class="headerlink" href="#6" title="Permanent link">#</a></h1>
+<h1 id="6"><font face="黑体" color=#FF4500 size="5">6. 高级断点技巧</font><a class="headerlink" href="#6" title="Permanent link">&para;</a></h1>
 <p>很多地方将断点分类为 ： ”条件断点“ ”日志断点“ ”异常断点“ ”方法断点“ ”变量断点“， 这种分类方式其实并不明确， 例如， 一个断点既可以同时是 ”条件断点“ 和 ”日志断点“</p>
 <p>先来看一看 android studio 中的 断点查看 页面， 左侧按断点的作用对象来分类， 右侧是断点的配置选项, 这些配置并不是孤立的， 可以结合使用以满足不同的需求</p>
 <!-- ![alt text](image-10.png) -->
@@ -756,15 +772,15 @@ Thread is executing disk operation<br></p>
 <p>作用的对象<br>
 触发的条件<br>
 触发后的动作<br></p>
-<h1 id="61"><font face="黑体" color=#FF4500 size="4">6.1 断点作用的对象</font><a class="headerlink" href="#61" title="Permanent link">#</a></h1>
-<h1 id="611"><font face="黑体" color=#FF4500 size="3">6.1.1 行号断点</font><a class="headerlink" href="#611" title="Permanent link">#</a></h1>
+<h1 id="61"><font face="黑体" color=#FF4500 size="4">6.1 断点作用的对象</font><a class="headerlink" href="#61" title="Permanent link">&para;</a></h1>
+<h1 id="611"><font face="黑体" color=#FF4500 size="3">6.1.1 行号断点</font><a class="headerlink" href="#611" title="Permanent link">&para;</a></h1>
 <p>最基础的断点， 在方法体内的任一行上设置的断点即为行号断点， 在 android studio 的源码窗口行号右侧单击左键即可设置行号断点</p>
 <!-- ![alt text](image-11.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-11.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-11.png" alt="xx" width="500"/>
 </a></p>
 <p>使用行号断点时， 源码文件一定要和带调试的文件一致， 否则会出现行号不对应， 调试时实际停下来的位置并不是在源码窗口上指定的位置</p>
-<h1 id="612"><font face="黑体" color=#FF4500 size="3">6.1.2 方法断点</font><a class="headerlink" href="#612" title="Permanent link">#</a></h1>
+<h1 id="612"><font face="黑体" color=#FF4500 size="3">6.1.2 方法断点</font><a class="headerlink" href="#612" title="Permanent link">&para;</a></h1>
 <p>方法断点设置在方法名上， 而不是方法体内， 在 android studio 的源码窗口里方法名所在行的行号右侧单击左键即可设置方法断点</p>
 <p>使用方法断点可以观察方法的参数和返回值</p>
 <!-- ![alt text](image-12.png) -->
@@ -779,7 +795,7 @@ Thread is executing disk operation<br></p>
 </a></p>
 <p>Method entry ： 进入方法触发断点
 Method exit ： 退出方法时触发断点</p>
-<h1 id="613"><font face="黑体" color=#FF4500 size="3">6.1.3 变量断点</font><a class="headerlink" href="#613" title="Permanent link">#</a></h1>
+<h1 id="613"><font face="黑体" color=#FF4500 size="3">6.1.3 变量断点</font><a class="headerlink" href="#613" title="Permanent link">&para;</a></h1>
 <p>在 class 的某个成员变量上设置的断点称为 变量断点</p>
 <!-- ![alt text](image-14.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-14.png" target="_blank">
@@ -790,22 +806,22 @@ Method exit ： 退出方法时触发断点</p>
 <p><a href="/proj/android/andpic/image-2025-0615-15.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-15.png" alt="xx" width="500"/>
 </a></p>
-<h1 id="614"><font face="黑体" color=#FF4500 size="3">6.1.4 异常断点</font><a class="headerlink" href="#614" title="Permanent link">#</a></h1>
+<h1 id="614"><font face="黑体" color=#FF4500 size="3">6.1.4 异常断点</font><a class="headerlink" href="#614" title="Permanent link">&para;</a></h1>
 <p>异常断点是设置在某个异常上的断点， 和上述3种断点不同， 异常断点需要在 断点查看 页面进行设置</p>
 <p>异常断点可以选择在异常被caught时进行通知还是未被caught时通知</p>
 <!-- ![alt text](image-16.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-16.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-16.png" alt="xx" width="500"/>
 </a></p>
-<h1 id="62"><font face="黑体" color=#FF4500 size="4">6.2 断点的触发条件</font><a class="headerlink" href="#62" title="Permanent link">#</a></h1>
+<h1 id="62"><font face="黑体" color=#FF4500 size="4">6.2 断点的触发条件</font><a class="headerlink" href="#62" title="Permanent link">&para;</a></h1>
 <p>断点可以设置不同的触发条件， 以减少不必要的触发</p>
-<h1 id="621"><font face="黑体" color=#FF4500 size="3">6.2.1 条件触发</font><a class="headerlink" href="#621" title="Permanent link">#</a></h1>
+<h1 id="621"><font face="黑体" color=#FF4500 size="3">6.2.1 条件触发</font><a class="headerlink" href="#621" title="Permanent link">&para;</a></h1>
 <p>断点可以设置一个条件，当给定的条件满足时， 才会触发， 否则会略过</p>
 <!-- ![alt text](image-17.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-17.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-17.png" alt="xx" width="500"/>
 </a></p>
-<h1 id="622"><font face="黑体" color=#FF4500 size="3">6.2.2 断点触发的断点</font><a class="headerlink" href="#622" title="Permanent link">#</a></h1>
+<h1 id="622"><font face="黑体" color=#FF4500 size="3">6.2.2 断点触发的断点</font><a class="headerlink" href="#622" title="Permanent link">&para;</a></h1>
 <p>断点触发的断点， 默认是 disable 的状态， 可以指定另一个断点， 只有指定的断点被出触发后， 这一断点才会被 enable，</p>
 <!-- ![alt text](image-18.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-18.png" target="_blank">
@@ -814,33 +830,33 @@ Method exit ： 退出方法时触发断点</p>
 <p>并且还可以选择被enable的时效 :</p>
 <p>disable agin : 变为 enable 后， 被触发一次后又继续变为 disable<br>
 leave enbaled ： 变为 enbale 后， 就一直保持 enbale 状态<br></p>
-<h1 id="623"><font face="黑体" color=#FF4500 size="3">6.2.3 一次性断点</font><a class="headerlink" href="#623" title="Permanent link">#</a></h1>
+<h1 id="623"><font face="黑体" color=#FF4500 size="3">6.2.3 一次性断点</font><a class="headerlink" href="#623" title="Permanent link">&para;</a></h1>
 <p>可以指定断点在被触发一次后就自动移除</p>
 <!-- ![alt text](image-19.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-19.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-19.png" alt="xx" width="200"/>
 </a></p>
-<h1 id="624"><font face="黑体" color=#FF4500 size="3">6.2.4 对象实例过滤</font><a class="headerlink" href="#624" title="Permanent link">#</a></h1>
+<h1 id="624"><font face="黑体" color=#FF4500 size="3">6.2.4 对象实例过滤</font><a class="headerlink" href="#624" title="Permanent link">&para;</a></h1>
 <p>在某个class 中设置的断点， 可以指定 在该 class 的某个 特定对象上 触发 或者 不触发</p>
 <!-- ![alt text](image-20.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-21.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-21.png" alt="xx" width="200"/>
 </a></p>
-<h1 id="625_class"><font face="黑体" color=#FF4500 size="3">6.2.5 class 过滤</font><a class="headerlink" href="#625_class" title="Permanent link">#</a></h1>
+<h1 id="625-class"><font face="黑体" color=#FF4500 size="3">6.2.5 class 过滤</font><a class="headerlink" href="#625-class" title="Permanent link">&para;</a></h1>
 <p>在某个class 中设置的断点， 可以指定 在该 class 的某个 特定子类上 触发 或者 不触发</p>
 <!-- ![alt text](image-21.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-21.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-21.png" alt="xx" width="200"/>
 </a></p>
-<h1 id="626"><font face="黑体" color=#FF4500 size="3">6.2.6 指定次数过滤</font><a class="headerlink" href="#626" title="Permanent link">#</a></h1>
+<h1 id="626"><font face="黑体" color=#FF4500 size="3">6.2.6 指定次数过滤</font><a class="headerlink" href="#626" title="Permanent link">&para;</a></h1>
 <p>可以指定某个断定满足触发条件时， 先略过指定次数， 不触发</p>
 <!-- ![alt text](image-22.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-22.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-22.png" alt="xx" width="200"/>
 </a></p>
-<h1 id="63"><font face="黑体" color=#FF4500 size="4">####6.3 断点触发后的动作</font><a class="headerlink" href="#63" title="Permanent link">#</a></h1>
+<h1 id="63"><font face="黑体" color=#FF4500 size="4">####6.3 断点触发后的动作</font><a class="headerlink" href="#63" title="Permanent link">&para;</a></h1>
 <p>可以定义断点触发和执行不同的动作</p>
-<h1 id="631"><font face="黑体" color=#FF4500 size="3">6.3.1 触发后暂停程序运行</font><a class="headerlink" href="#631" title="Permanent link">#</a></h1>
+<h1 id="631"><font face="黑体" color=#FF4500 size="3">6.3.1 触发后暂停程序运行</font><a class="headerlink" href="#631" title="Permanent link">&para;</a></h1>
 <p>可以选择在断点被触发时， 是否暂停程序的运行</p>
 <!-- ![alt text](image-23.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-23.png" target="_blank">
@@ -850,13 +866,13 @@ leave enbaled ： 变为 enbale 后， 就一直保持 enbale 状态<br></p>
 <p>All : 暂停所有的线程<br>
 Thread ： 只暂停断点所在的线程<br>
 注意， 当选择all时， 断点触发后， UI线程也会被阻塞， 此时不要去操作ui， 否则会触发ANR<br></p>
-<h1 id="632_logconsole"><font face="黑体" color=#FF4500 size="3">6.3.2 触发后记录log到console</font><a class="headerlink" href="#632_logconsole" title="Permanent link">#</a></h1>
+<h1 id="632-logconsole"><font face="黑体" color=#FF4500 size="3">6.3.2 触发后记录log到console</font><a class="headerlink" href="#632-logconsole" title="Permanent link">&para;</a></h1>
 <p>当断点被触发时， 记录 log 信息 到 debug 面板的 console 页面中， 注意不是logcat console</p>
 <!-- ![alt text](image-24.png) -->
 <p><a href="/proj/android/andpic/image-2025-0615-24.png" target="_blank">
   <img src="/proj/android/andpic/image-2025-0615-24.png" alt="xx" width="200"/>
 </a></p>
-<h1 id="633"><font face="黑体" color=#FF4500 size="3">6.3.3 触发后计算表达式的值 （只支持行号断点）</font><a class="headerlink" href="#633" title="Permanent link">#</a></h1>
+<h1 id="633"><font face="黑体" color=#FF4500 size="3">6.3.3 触发后计算表达式的值 （只支持行号断点）</font><a class="headerlink" href="#633" title="Permanent link">&para;</a></h1>
 <p>当断点被触发时， 计算指定的表达式， 并记录 log 信息 到 debug 面板的 console 页面中</p>
 <p>当然也可以在 表达式中使用 Log.x 输出 log 到 logcat</p>
 <!-- ![alt text](image-25.png) -->
@@ -930,7 +946,7 @@ Thread ： 只暂停断点所在的线程<br>
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,125 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#logo" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、logo核心代码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、定位问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-connector" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 找不到正确的connector
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-bridgesubdev" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 bridge下并不是subdev
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 bridge下并不是subdev">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、修改代码
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 寻找正确的bridge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-bridgesub-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 在bridge上注册sub dev
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2 在bridge上注册sub dev">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、日志确认
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drm_mode_type_preferred" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、关于特殊屏幕的DRM_MODE_TYPE_PREFERRED属性
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,10 +749,10 @@
 
 
 
-<h1 id="openharmonylogo"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony开机无法正常显示logo</span><a class="headerlink" href="#openharmonylogo" title="Permanent link">#</a></h1>
+<h1 id="openharmonylogo"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony开机无法正常显示logo</span><a class="headerlink" href="#openharmonylogo" title="Permanent link">&para;</a></h1>
 <p>我们在适配某硬件的时候，发现Openharmony系统开机无法显示logo，遂排查，这里提供解决过程</p>
 <hr />
-<h3 id="logo"><center><table><tr><td bgcolor=#FF4500>一、logo核心代码</td></tr></table></center><a class="headerlink" href="#logo" title="Permanent link">#</a></h3>
+<h3 id="logo"><center><table><tr><td bgcolor=#FF4500>一、logo核心代码</td></tr></table></center><a class="headerlink" href="#logo" title="Permanent link">&para;</a></h3>
 <hr />
 <p>logo无法显示的问题，是内核开机logo驱动可能出错，我们需要找出核心的代码，如下</p>
 <p>drivers/gpu/drm/rockchip/rockchip_drm_logo.c<br>
@@ -643,7 +760,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>rockchip_drm_bind---&gt;rockchip_drm_show_logo----&gt;of_parse_display_resource--→find_sub_dev_by_bridge
 </code></pre></div>
 <hr />
-<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>二、定位问题</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>二、定位问题</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>根据上面代码的梳理，我们可以知道find_sub_dev_by_bridge是可能出现错误的地方，根据原始代码逻辑如下：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
@@ -746,7 +863,7 @@
 </code></pre></div></td></tr></table></div>
 <p>根据分析上面代码的关键，我们可以知道，默认情况下，作为hdmi设备，我们将其作为bridge时，我们只寻找他的下一个remote port，然后再通过rockchip_drm_get_sub_dev拿到sub_dev</p>
 <p>而现有的代码两点不满足</p>
-<h2 id="21_connector">2.1 找不到正确的connector<a class="headerlink" href="#21_connector" title="Permanent link">#</a></h2>
+<h2 id="21-connector">2.1 找不到正确的connector<a class="headerlink" href="#21-connector" title="Permanent link">&para;</a></h2>
 <p>根据《Openharmonyr内核显示panel代码梳理》第一章的概念中解释的，现在鸿蒙的显示架构下，我们是hdmi---&gt;rk628-→panel。所以单独一个for_each_child_of_node是找不到最终的设备,代码如下</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
@@ -779,7 +896,7 @@
 <a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>根据上述的代码，我们可以知道，它可以从port中编译endpoint，然后根据endpoint找到对应的节点np。在实际情况中，它找到的是rk628_hdmirx，这不符合我们的期望。</p>
-<h2 id="22_bridgesubdev">2.2 bridge下并不是subdev<a class="headerlink" href="#22_bridgesubdev" title="Permanent link">#</a></h2>
+<h2 id="22-bridgesubdev">2.2 bridge下并不是subdev<a class="headerlink" href="#22-bridgesubdev" title="Permanent link">&para;</a></h2>
 <p>从rockchip_drm_get_sub_dev的分析我们知道， 我们需要在最后一个bridge的时候，register一个drm sub dev设备，这样才能通过rockchip_drm_get_sub_dev拿到这个设备。代码如下</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">sub_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rockchip_drm_get_sub_dev</span><span class="p">(</span><span class="n">np_connector</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
@@ -832,10 +949,10 @@
 </code></pre></div></td></tr></table></div>
 <p>可以发现，这里没有注册sub dev，所以需要修改</p>
 <hr />
-<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>三、修改代码</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>三、修改代码</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <hr />
 <p>关于上面的解析，我们需要修改两处代码</p>
-<h2 id="31_bridge">3.1 寻找正确的bridge<a class="headerlink" href="#31_bridge" title="Permanent link">#</a></h2>
+<h2 id="31-bridge">3.1 寻找正确的bridge<a class="headerlink" href="#31-bridge" title="Permanent link">&para;</a></h2>
 <p>对于2.1的问题，我们需要借用递归的思路寻找下一个bridge，所以修改代码如下</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
@@ -894,7 +1011,7 @@
 <a id="__codelineno-5-28" name="__codelineno-5-28"></a><span class="w">        </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>此时我们找到的下一个bridge为rk628_hdmirx的时候，还是会继续往下寻找，知道找到最后一个名为panel的节点</p>
-<h2 id="32_bridgesub_dev">3.2 在bridge上注册sub dev<a class="headerlink" href="#32_bridgesub_dev" title="Permanent link">#</a></h2>
+<h2 id="32-bridgesub-dev">3.2 在bridge上注册sub dev<a class="headerlink" href="#32-bridgesub-dev" title="Permanent link">&para;</a></h2>
 <p>根据3.1的递归，我们可以正确的找到rk628_lvds，所以需要在驱动中添加注册drm sub dev，如下</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
@@ -951,7 +1068,7 @@
 <a id="__codelineno-6-27" name="__codelineno-6-27"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <hr />
-<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>四、日志确认</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>四、日志确认</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <hr />
 <p>根据分析代码，我们需要添加日志从而确定问题情况，如下是调试日志</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">printk</span><span class="p">(</span><span class="s">&quot;kylin: %s %d port=%pOF</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">__func__</span><span class="p">,</span><span class="w"> </span><span class="n">__LINE__</span><span class="p">,</span><span class="w"> </span><span class="n">port</span><span class="p">);</span>
@@ -967,7 +1084,7 @@
 </code></pre></div>
 <p>此时我们正确的找到了panel节点，</p>
 <hr />
-<h3 id="drm_mode_type_preferred"><center><table><tr><td bgcolor=#FF4500>五、关于特殊屏幕的DRM_MODE_TYPE_PREFERRED属性</td></tr></table></center><a class="headerlink" href="#drm_mode_type_preferred" title="Permanent link">#</a></h3>
+<h3 id="drm_mode_type_preferred"><center><table><tr><td bgcolor=#FF4500>五、关于特殊屏幕的DRM_MODE_TYPE_PREFERRED属性</td></tr></table></center><a class="headerlink" href="#drm_mode_type_preferred" title="Permanent link">&para;</a></h3>
 <hr />
 <p>我们知道我们的屏幕是panel-simple驱动的，所以我们需要留意get_timings回调如下</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
@@ -1147,7 +1264,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,221 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、概念
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#drmdrm" class="md-nav__link">
+    <span class="md-ellipsis">
+      drm：内核drm显示框架，用于抽象
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paneldrmhdmilvdsedp" class="md-nav__link">
+    <span class="md-ellipsis">
+      panel：屏的意思，在drm内抽象用于表示这是一个屏幕，例如hdmi,lvds,edp等
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridgepciehdmilvdsbridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      bridge：桥的意思，很多总线概念(pcie)都有，桥接显示器的意思，这里hdmi转lvds接的屏，肯定有bridge的概念
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、代码梳理
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-drm_of_find_panel_or_bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 drm_of_find_panel_or_bridge
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-component" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 component
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 设备树
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 设备树">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、逻辑总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-hdmi" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 对于hdmi的驱动：
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-rk628_hdmirx" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 对于rk628_hdmirx的驱动：
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-rk628_post_process" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 对于rk628_post_process的驱动：
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-rk628_lvds" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 对于rk628_lvds驱动：
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-panel_simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 对于panel_simple驱动：
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 对于panel_simple驱动：">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#openharmony" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、Openharmony的做法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、个人建议
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51-drmhdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 基于drm的显示（非hdf）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.1 基于drm的显示（非hdf）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#511-defconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1.1 修改defconfig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#512-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1.2 修改plane图层
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,15 +845,15 @@
 
 
 
-<h1 id="openharmonypanel"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony之内核显示panel代码</span><a class="headerlink" href="#openharmonypanel" title="Permanent link">#</a></h1>
+<h1 id="openharmonypanel"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony之内核显示panel代码</span><a class="headerlink" href="#openharmonypanel" title="Permanent link">&para;</a></h1>
 <p>最近在调试openharmony的显示问题，原因是硬件上是hdmi接的rk628转接，然后再接的lvds显示器，而openharmony实现的显示panel比较简单，直接是dsi panel。所以针对于此，需要将鸿蒙显示panel相关驱动好好梳理出来</p>
 <hr />
-<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>一、概念</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>一、概念</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>针对此场景，我们知道其重点在于drm panel和drm bridge。这里解释一下：</p>
-<h3 id="drmdrm">drm：内核drm显示框架，用于抽象<a class="headerlink" href="#drmdrm" title="Permanent link">#</a></h3>
-<h3 id="paneldrmhdmilvdsedp">panel：屏的意思，在drm内抽象用于表示这是一个屏幕，例如hdmi,lvds,edp等<a class="headerlink" href="#paneldrmhdmilvdsedp" title="Permanent link">#</a></h3>
-<h3 id="bridgepciehdmilvdsbridge">bridge：桥的意思，很多总线概念(pcie)都有，桥接显示器的意思，这里hdmi转lvds接的屏，肯定有bridge的概念<a class="headerlink" href="#bridgepciehdmilvdsbridge" title="Permanent link">#</a></h3>
+<h3 id="drmdrm">drm：内核drm显示框架，用于抽象<a class="headerlink" href="#drmdrm" title="Permanent link">&para;</a></h3>
+<h3 id="paneldrmhdmilvdsedp">panel：屏的意思，在drm内抽象用于表示这是一个屏幕，例如hdmi,lvds,edp等<a class="headerlink" href="#paneldrmhdmilvdsedp" title="Permanent link">&para;</a></h3>
+<h3 id="bridgepciehdmilvdsbridge">bridge：桥的意思，很多总线概念(pcie)都有，桥接显示器的意思，这里hdmi转lvds接的屏，肯定有bridge的概念<a class="headerlink" href="#bridgepciehdmilvdsbridge" title="Permanent link">&para;</a></h3>
 <p>对于rk3568而言，我这里图示如下：</p>
 <!-- ![alt text](image.png) -->
 <p><a href="/proj/harmony/hpic/image_20250712_5_1.png" target="_blank">
@@ -648,9 +861,9 @@
 </a></p>
 <p>对于我们而言，我们需要初始化hdmi驱动，并且把hdmi作为bridge使能，然后找到下一个bridge为rk628，然后在rk628上找到真正的panel。</p>
 <hr />
-<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>二、代码梳理</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>二、代码梳理</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <hr />
-<h2 id="21_drm_of_find_panel_or_bridge">2.1 drm_of_find_panel_or_bridge<a class="headerlink" href="#21_drm_of_find_panel_or_bridge" title="Permanent link">#</a></h2>
+<h2 id="21-drm_of_find_panel_or_bridge">2.1 drm_of_find_panel_or_bridge<a class="headerlink" href="#21-drm_of_find_panel_or_bridge" title="Permanent link">&para;</a></h2>
 <p>对于实现此问题的场景，此函数应该重点讲解，它是内核提供的标准api，用于找到下一个panel或bridge。</p>
 <p>函数的定义如下：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">drm_of_find_panel_or_bridge</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">device</span><span class="w"> </span><span class="o">*</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">endpoint</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_panel</span><span class="w"> </span><span class="o">**</span><span class="n">panel</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">drm_bridge</span><span class="w"> </span><span class="o">**</span><span class="n">bridge</span><span class="p">);</span>
@@ -667,7 +880,7 @@
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>5. 第五个参数是找到的bridge二级指针
 </code></pre></div>
 <p>驱动通过此函数能够从设备树获得到下一个bridge或panel的节点，从而触发component_ops的bind回调</p>
-<h2 id="22_component">2.2 component<a class="headerlink" href="#22_component" title="Permanent link">#</a></h2>
+<h2 id="22-component">2.2 component<a class="headerlink" href="#22-component" title="Permanent link">&para;</a></h2>
 <p>为了把事情说清楚，这里有必要简单介绍一下component，详细的介绍建议阅读代码学习</p>
 <p>component是组件框架，通常存在在比较大的内核框架中实现，component框架分master和component，两者没有明显区别，只是master会按照match来遍历所有组件，如果都注册了就触发bind。而组件是通过返回-517也就是-DPROBE_DEFER来延迟探测。</p>
 <p>这里我们把显示框架"display-subsystem"作为了master，而其他的panel和bridge都以component来注册。示例如下：</p>
@@ -675,7 +888,7 @@
 <span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">component_master_add_with_match</span><span class="p">(</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rockchip_drm_ops</span><span class="p">,</span><span class="w"> </span><span class="n">match</span><span class="p">);</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">component_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pdev</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dw_hdmi_rockchip_ops</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="23">2.3 设备树<a class="headerlink" href="#23" title="Permanent link">#</a></h2>
+<h2 id="23">2.3 设备树<a class="headerlink" href="#23" title="Permanent link">&para;</a></h2>
 <p>对于设备树，我们针对drm_of_find_panel_or_bridge的函数，需要按照实际硬件连接的方式准备port和endpoint，我整理如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>hdmi:
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">   </span>port@1<span class="w"> </span><span class="o">{</span>
@@ -766,22 +979,22 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>hdmi----&gt;hdmirx_in_hdmi----&gt;post_process_in_hdmirx----&gt;lvds_in_post_process----&gt;panel_in_lvds
 </code></pre></div>
 <hr />
-<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>三、逻辑总结</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>三、逻辑总结</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <hr />
 <p>根据上面的代码梳理，我们可以知道了其调用流程，这里总结一下如下：</p>
-<h2 id="31_hdmi">3.1 对于hdmi的驱动：<a class="headerlink" href="#31_hdmi" title="Permanent link">#</a></h2>
+<h2 id="31-hdmi">3.1 对于hdmi的驱动：<a class="headerlink" href="#31-hdmi" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">component_add</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pdev</span><span class="o">-&gt;</span><span class="n">dev</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dw_hdmi_rockchip_ops</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <p>添加了组件，等待调用bind</p>
 <p>dw_hdmi_bind中drm_bridge_attach到drm中，并通过of_drm_find_bridge找下一个bridge，这里下一个设备是hdmirx_in_hdmi</p>
-<h2 id="32_rk628_hdmirx">3.2 对于rk628_hdmirx的驱动：<a class="headerlink" href="#32_rk628_hdmirx" title="Permanent link">#</a></h2>
+<h2 id="32-rk628_hdmirx">3.2 对于rk628_hdmirx的驱动：<a class="headerlink" href="#32-rk628_hdmirx" title="Permanent link">&para;</a></h2>
 <p>drm_bridge_add添加bridge设备，attach执行回调</p>
 <p>在attach中，调用</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">drm_of_find_panel_or_bridge</span><span class="p">(</span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">of_node</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">hdmirx</span><span class="err">→</span><span class="n">bridge</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <p>然后drm_bridge_attach上</p>
 <p>这里1和-1是指的从port1上遍历找endpoint，这里是post_process_in_hdmirx</p>
-<h2 id="33_rk628_post_process">3.3 对于rk628_post_process的驱动：<a class="headerlink" href="#33_rk628_post_process" title="Permanent link">#</a></h2>
+<h2 id="33-rk628_post_process">3.3 对于rk628_post_process的驱动：<a class="headerlink" href="#33-rk628_post_process" title="Permanent link">&para;</a></h2>
 <p>同样的</p>
 <p>drm_bridge_add添加bridge设备，attach执行回调</p>
 <p>在attach中，调用</p>
@@ -789,15 +1002,15 @@
 </code></pre></div></td></tr></table></div>
 <p>然后drm_bridge_attach上</p>
 <p>这里1和-1是指的从port1上遍历找endpoint，这里是lvds_in_post_process</p>
-<h2 id="34_rk628_lvds">3.4 对于rk628_lvds驱动：<a class="headerlink" href="#34_rk628_lvds" title="Permanent link">#</a></h2>
+<h2 id="34-rk628_lvds">3.4 对于rk628_lvds驱动：<a class="headerlink" href="#34-rk628_lvds" title="Permanent link">&para;</a></h2>
 <p>这里直接在probe函数中寻找panel设备</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">drm_of_find_panel_or_bridge</span><span class="p">(</span><span class="n">dev</span><span class="o">-&gt;</span><span class="n">of_node</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">lvds</span><span class="o">-&gt;</span><span class="n">panel</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <p>然后调用drm_bridge_add添加即可。</p>
-<h2 id="35_panel_simple">3.5 对于panel_simple驱动：<a class="headerlink" href="#35_panel_simple" title="Permanent link">#</a></h2>
+<h2 id="35-panel_simple">3.5 对于panel_simple驱动：<a class="headerlink" href="#35-panel_simple" title="Permanent link">&para;</a></h2>
 <p>因为这个panel_simple驱动就是drm panel的驱动，所以它负责初始化panel drm_panel_init，添加panel drm_panel_add</p>
 <hr />
-<h3 id="openharmony"><center><table><tr><td bgcolor=#FF4500>四、Openharmony的做法</td></tr></table></center><a class="headerlink" href="#openharmony" title="Permanent link">#</a></h3>
+<h3 id="openharmony"><center><table><tr><td bgcolor=#FF4500>四、Openharmony的做法</td></tr></table></center><a class="headerlink" href="#openharmony" title="Permanent link">&para;</a></h3>
 <hr />
 <p>根据Openharmony的display的驱动来看，通过ili9881_st_5p5.c驱动直接初始化了dsi的硬件，然后通过hdf_drm_panel.c来进行drm_panel_init和drm_panel_add</p>
 <p>通过代码可以知道，Openharmony没有涉及bridge的概念，所以根据Linux显示panel流程，我们理想中的Openharmony的hdf实现应该是如下：</p>
@@ -808,7 +1021,7 @@
 实现simple_panel驱动，初始化panel设备<br>
 我们可以跳过1，2，3，4四个步骤，我们可以在OpenHarmony上只实现步骤5，让驱动在component的bind的时候能够将drm bridge or panel路径走通。此方法可以参考文章《Openharmony-rk3568 移植panel_simple_common》</p>
 <hr />
-<h3 id="_4"><center><table><tr><td bgcolor=#FF4500>五、个人建议</td></tr></table></center><a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<h3 id="_4"><center><table><tr><td bgcolor=#FF4500>五、个人建议</td></tr></table></center><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <hr />
 <p>根据上面的分析解剖，我们知道，如果想要完全按照hdf的思想来设计hdf驱动，我们针对rk628需要写很多个驱动才能实现hdf的基本功能。</p>
 <p>我们再基于一个原理：</p>
@@ -817,15 +1030,15 @@
 <p>所以hdf_disp的驱动实际上是不完整的，它只实现了panel，bridge甚至都没有实现，所以我的建议是display驱动可以暂时使用linux标准的。</p>
 <p>关于hdf_disp调用drm的参考文章《Openharmony-RK3588-drm_plane设置》</p>
 <p>针对上面的文章《Openharmony-RK3588-drm_plane设置》分析可以知道，hdf的display并不关键，所以可以完全使用linux的实现，方法如下：</p>
-<h2 id="51_drmhdf">5.1 基于drm的显示（非hdf）<a class="headerlink" href="#51_drmhdf" title="Permanent link">#</a></h2>
+<h2 id="51-drmhdf">5.1 基于drm的显示（非hdf）<a class="headerlink" href="#51-drmhdf" title="Permanent link">&para;</a></h2>
 <p>基于Linux的方法修改就简单了，drm的显示我们需要如下操作</p>
-<h3 id="511_defconfig">5.1.1 修改defconfig<a class="headerlink" href="#511_defconfig" title="Permanent link">#</a></h3>
+<h3 id="511-defconfig">5.1.1 修改defconfig<a class="headerlink" href="#511-defconfig" title="Permanent link">&para;</a></h3>
 <p>对于已经编译的内核，我们修改arch/arm64/configs/rockchip_linux_defconfig文件，对于未编译的内核，我们修改kernel/linux/config/linux-5.10/arch/arm64/configs/rk3568_standard_defconfig</p>
 <p>我们在最底下添加如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># CONFIG_DRIVERS_HDF_DISP is not set</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nv">CONFIG_DRM_PANEL_SIMPLE</span><span class="o">=</span>y
 </code></pre></div>
-<h3 id="512_plane">5.1.2 修改plane图层<a class="headerlink" href="#512_plane" title="Permanent link">#</a></h3>
+<h3 id="512-plane">5.1.2 修改plane图层<a class="headerlink" href="#512-plane" title="Permanent link">&para;</a></h3>
 <p>对于设备树，我们参考《Openharmony RK3568图层设置》修改，添加如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">&amp;</span>vp0<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">        </span>rockchip,plane-mask<span class="w"> </span><span class="o">=</span><span class="w"> </span>&lt;<span class="o">(</span><span class="m">1</span><span class="w"> </span><span class="s">&lt;&lt; ROCKCHIP_VOP2_CLUSTER0 | 1 &lt;&lt; ROCKCHIP_VOP2_ESMART0 | 1 &lt;&lt; ROCKCHIP_VOP2_SMART0)&gt;;</span>
@@ -901,7 +1114,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

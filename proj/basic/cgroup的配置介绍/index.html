@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,41 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cgroups" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、cgroups介绍
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,9 +665,9 @@
 
 
 
-<h1 id="cgroup"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">cgroup的配置介绍</span><a class="headerlink" href="#cgroup" title="Permanent link">#</a></h1>
+<h1 id="cgroup"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">cgroup的配置介绍</span><a class="headerlink" href="#cgroup" title="Permanent link">&para;</a></h1>
 <p>在linux中，内核提供了lxc功能，这个功能是实现容器的基础，在容器中，有namespace和cgroups，这里我们先介绍一下cgroups，用于简单了解cgroups。</p>
-<h2 id="cgroups">一、cgroups介绍<a class="headerlink" href="#cgroups" title="Permanent link">#</a></h2>
+<h2 id="cgroups">一、cgroups介绍<a class="headerlink" href="#cgroups" title="Permanent link">&para;</a></h2>
 <p>控制组（cgroups）是Linux内核提供的物理资源隔离机制，用来限制CPU，内存，IO等资源。这里只说V1，不说V2</p>
 <p>Linux中CGROUPS如下所示</p>
 <p><img alt="alt text" src="../bpic/image_20250801_1_1.png" />
@@ -656,7 +689,7 @@
 <li>hugetlb - 为 cgroup 开启对大页内存的支持;</li>
 <li>pid - 限制 cgroup 中的进程数量。</li>
 </ul>
-<h1 id="_1">二、命令演示<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="_1">二、命令演示<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>2.1 查看linux使用的cgroups</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cat<span class="w"> </span>/proc/cgroups
 </code></pre></div>
@@ -666,9 +699,9 @@
 <p>2.3 查看当前cgroups服务占用情况</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>systemd-cgtop
 </code></pre></div>
-<h2 id="_2">三、测试示例<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<h2 id="_2">三、测试示例<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>为了测试验证，这里需要在cpu，内存，io上进行验证</p>
-<h3 id="31_cpu">3.1 限制CPU<a class="headerlink" href="#31_cpu" title="Permanent link">#</a></h3>
+<h3 id="31-cpu">3.1 限制CPU<a class="headerlink" href="#31-cpu" title="Permanent link">&para;</a></h3>
 <p>限制CPU主要两种</p>
 <p>限制核心<br>
 限制使用百分比<br>
@@ -705,7 +738,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>systemd-run<span class="w"> </span>--unit<span class="o">=</span><span class="nb">test</span><span class="w"> </span>--scope<span class="w"> </span>--slice<span class="o">=</span><span class="nb">test</span><span class="w"> </span>/root/test_cpu<span class="w"> </span><span class="p">&amp;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>systemd-run<span class="w"> </span>--unit<span class="o">=</span><span class="nb">test</span><span class="w"> </span>--scope<span class="w"> </span>--slice<span class="o">=</span><span class="nb">test</span><span class="w"> </span>-p<span class="w"> </span><span class="nv">CPUQuota</span><span class="o">=</span><span class="m">20</span>%<span class="w"> </span>/root/test_cpu
 </code></pre></div>
-<h3 id="32">3.2 限制内存<a class="headerlink" href="#32" title="Permanent link">#</a></h3>
+<h3 id="32">3.2 限制内存<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
 <p>测试代码如下：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
@@ -770,7 +803,7 @@
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>memory+swap:<span class="w"> </span>usage<span class="w"> </span>512000kB,<span class="w"> </span>limit<span class="w"> </span>9007199254740988kB,<span class="w"> </span>failcnt<span class="w"> </span><span class="m">0</span>
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Memory<span class="w"> </span>cgroup<span class="w"> </span>out<span class="w"> </span>of<span class="w"> </span>memory:<span class="w"> </span>Killed<span class="w"> </span>process<span class="w"> </span><span class="m">3330</span><span class="w"> </span><span class="o">(</span>test_mem<span class="o">)</span><span class="w"> </span>total-vm:563012kB,<span class="w"> </span>anon-rss:510700kB,<span class="w"> </span>file-rss:14808kB,<span class="w"> </span>shmem-rss:0kB,<span class="w"> </span>UID:0<span class="w"> </span>pgtables:1112kB<span class="w"> </span>oom_score_adj:0
 </code></pre></div>
-<h3 id="33_io">3.3 限制IO<a class="headerlink" href="#33_io" title="Permanent link">#</a></h3>
+<h3 id="33-io">3.3 限制IO<a class="headerlink" href="#33-io" title="Permanent link">&para;</a></h3>
 <p>对于IO，这里演示限制写的速度，如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>mkdir<span class="w"> </span>/sys/fs/cgroup/blkio/test
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;179:0 `expr 1000 &#39;*&#39; 1000`&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>/sys/fs/cgroup/blkio/test/blkio.throttle.write_bps_device
@@ -786,7 +819,7 @@
 <a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>记录了1+0<span class="w"> </span>的写出
 <a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="m">10485760</span><span class="w"> </span>bytes<span class="w"> </span><span class="o">(</span><span class="m">10</span><span class="w"> </span>MB,<span class="w"> </span><span class="m">10</span><span class="w"> </span>MiB<span class="o">)</span><span class="w"> </span>copied,<span class="w"> </span><span class="m">10</span>.4876<span class="w"> </span>s,<span class="w"> </span><span class="m">1000</span><span class="w"> </span>kB/s
 </code></pre></div>
-<h2 id="_3">四、调用分析<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<h2 id="_3">四、调用分析<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>对于上面的示例，主要根据如下分析调用关系</p>
 <ul>
 <li>sysfs</li>
@@ -795,7 +828,7 @@
 <li>memory</li>
 <li>io</li>
 </ul>
-<h3 id="41_sysfs">4.1 sysfs创建<a class="headerlink" href="#41_sysfs" title="Permanent link">#</a></h3>
+<h3 id="41-sysfs">4.1 sysfs创建<a class="headerlink" href="#41-sysfs" title="Permanent link">&para;</a></h3>
 <p>这里从start_kernel如下</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
@@ -823,7 +856,7 @@
 <a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="w">                        </span><span class="n">cgroup_add_file</span>
 <a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="w">                            </span><span class="n">__kernfs_create_file</span><span class="err">（</span><span class="n">创建sysfs文件</span><span class="err">）</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="42_cgroups">4.2 cgroups文件系统结构<a class="headerlink" href="#42_cgroups" title="Permanent link">#</a></h3>
+<h3 id="42-cgroups">4.2 cgroups文件系统结构<a class="headerlink" href="#42-cgroups" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
@@ -870,7 +903,7 @@
 <a id="__codelineno-14-22" name="__codelineno-14-22"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">bind</span><span class="p">)(</span><span class="k">struct</span><span class="w"> </span><span class="nc">cgroup_subsys_state</span><span class="w"> </span><span class="o">*</span><span class="n">root_css</span><span class="p">);</span>
 <a id="__codelineno-14-23" name="__codelineno-14-23"></a><span class="p">};</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="43_sysfs">4.3 sysfs的文件操作结构<a class="headerlink" href="#43_sysfs" title="Permanent link">#</a></h3>
+<h3 id="43-sysfs">4.3 sysfs的文件操作结构<a class="headerlink" href="#43-sysfs" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
@@ -897,7 +930,7 @@
 <a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="w">    </span><span class="p">.</span><span class="n">seq_show</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="n">cgroup_seqfile_show</span><span class="p">,</span>
 <a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="p">};</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="44_cpuset">4.4 cpuset流程<a class="headerlink" href="#44_cpuset" title="Permanent link">#</a></h3>
+<h3 id="44-cpuset">4.4 cpuset流程<a class="headerlink" href="#44-cpuset" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
 <span class="normal"><a href="#__codelineno-16-2">2</a></span>
 <span class="normal"><a href="#__codelineno-16-3">3</a></span>
@@ -911,7 +944,7 @@
 <a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="w">                </span><span class="n">cpumask_and</span>
 </code></pre></div></td></tr></table></div>
 <p>这里cpumask_and是对CPU掩码信息与的函数</p>
-<h3 id="45_cpuset">4.5 cpuset结构体<a class="headerlink" href="#45_cpuset" title="Permanent link">#</a></h3>
+<h3 id="45-cpuset">4.5 cpuset结构体<a class="headerlink" href="#45-cpuset" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
@@ -944,7 +977,7 @@
 <a id="__codelineno-17-15" name="__codelineno-17-15"></a><span class="w">    </span><span class="p">.</span><span class="n">threaded</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span>
 <a id="__codelineno-17-16" name="__codelineno-17-16"></a><span class="p">};</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="46_cpuacct">4.6 cpuacct流程<a class="headerlink" href="#46_cpuacct" title="Permanent link">#</a></h3>
+<h3 id="46-cpuacct">4.6 cpuacct流程<a class="headerlink" href="#46-cpuacct" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-18-3"> 3</a></span>
@@ -970,7 +1003,7 @@
 <a id="__codelineno-18-12" name="__codelineno-18-12"></a><span class="w">                    </span><span class="n">unthrottle_cfs_rq</span>
 </code></pre></div></td></tr></table></div>
 <p>这里unthrottle_cfs_rq 控制CPU带宽（给定周期时间内消耗CPU的时间）的具体函数</p>
-<h3 id="47_cpuacct">4.7 cpuacct结构<a class="headerlink" href="#47_cpuacct" title="Permanent link">#</a></h3>
+<h3 id="47-cpuacct">4.7 cpuacct结构<a class="headerlink" href="#47-cpuacct" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
 <span class="normal"><a href="#__codelineno-19-2">2</a></span>
 <span class="normal"><a href="#__codelineno-19-3">3</a></span>
@@ -983,7 +1016,7 @@
 <a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="w">    </span><span class="p">.</span><span class="n">early_init</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span>
 <a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="p">};</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="48_memory">4.8 memory流程<a class="headerlink" href="#48_memory" title="Permanent link">#</a></h3>
+<h3 id="48-memory">4.8 memory流程<a class="headerlink" href="#48-memory" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
 <span class="normal"><a href="#__codelineno-20-2">2</a></span>
 <span class="normal"><a href="#__codelineno-20-3">3</a></span>
@@ -997,7 +1030,7 @@
 <a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="w">                </span><span class="n">page_counter_set_max</span>
 </code></pre></div></td></tr></table></div>
 <p>这里page_counter_set_max是设置系统允许使用的最大页数</p>
-<h3 id="49_memory_cgroup">4.9 memory cgroup结构<a class="headerlink" href="#49_memory_cgroup" title="Permanent link">#</a></h3>
+<h3 id="49-memory-cgroup">4.9 memory cgroup结构<a class="headerlink" href="#49-memory-cgroup" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-21-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-21-3"> 3</a></span>
@@ -1028,7 +1061,7 @@
 <a id="__codelineno-21-14" name="__codelineno-21-14"></a><span class="w">    </span><span class="p">.</span><span class="n">early_init</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
 <a id="__codelineno-21-15" name="__codelineno-21-15"></a><span class="p">};</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="410_io">4.10 io流程<a class="headerlink" href="#410_io" title="Permanent link">#</a></h3>
+<h3 id="410-io">4.10 io流程<a class="headerlink" href="#410-io" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
@@ -1074,7 +1107,7 @@
 <a id="__codelineno-22-22" name="__codelineno-22-22"></a><span class="w">                            </span><span class="n">tg</span><span class="o">-&gt;</span><span class="n">bps</span><span class="p">[</span><span class="n">rw</span><span class="p">][</span><span class="n">td</span><span class="o">-&gt;</span><span class="n">limit_index</span><span class="p">];</span>
 </code></pre></div></td></tr></table></div>
 <p>这里throtl_grp是用来控制IO参数的结构体，对tg-&gt;bps写值可以控制其bps大小</p>
-<h3 id="411_io_cgroup">4.11 io cgroup 结构<a class="headerlink" href="#411_io_cgroup" title="Permanent link">#</a></h3>
+<h3 id="411-io-cgroup">4.11 io cgroup 结构<a class="headerlink" href="#411-io-cgroup" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-23-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-23-3"> 3</a></span>
@@ -1127,7 +1160,7 @@
 <a id="__codelineno-23-25" name="__codelineno-23-25"></a><span class="p">......</span>
 <a id="__codelineno-23-26" name="__codelineno-23-26"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="_4">五、总结<a class="headerlink" href="#_4" title="Permanent link">#</a></h2>
+<h2 id="_4">五、总结<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>至此，我们能够简单了解了cgroups，cgroups是在linux 容器中的对资源隔离的必要手段。</p>
 <div class="admonition note">
 <p class="admonition-title">本文转发链接如下：</p>
@@ -1196,7 +1229,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

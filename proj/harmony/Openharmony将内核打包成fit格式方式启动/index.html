@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#openharmony_fit" class="md-skip">
+        <a href="#openharmony-fit" class="md-skip">
           Skip to content
         </a>
       
@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,110 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fit" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、什么是fit镜像
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#its" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、its设置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、准备镜像
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-dtb" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 dtb
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Image
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-ramdisk" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 ramdisk
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-resource" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 resource
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 resource">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boot" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、制作boot
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,14 +734,14 @@
 
 
 
-<h1 id="openharmony_fit"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony 将内核打包成fit格式方式启动</span><a class="headerlink" href="#openharmony_fit" title="Permanent link">#</a></h1>
+<h1 id="openharmony-fit"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony 将内核打包成fit格式方式启动</span><a class="headerlink" href="#openharmony-fit" title="Permanent link">&para;</a></h1>
 <p>Openharmony的boot_linux.img 是标准的ext2格式，他需要通过syslinux来标准启动，但是鉴于有些uboot并没有默认打开syslinux，而使用默认的fit格式启动，所以本文介绍将原来的ext2的boot.img转换成fit格式的boot，从而使得系统加载更兼容</p>
 <hr />
-<h3 id="fit"><center><table><tr><td bgcolor=#FF4500>一、什么是fit镜像</td></tr></table></center><a class="headerlink" href="#fit" title="Permanent link">#</a></h3>
+<h3 id="fit"><center><table><tr><td bgcolor=#FF4500>一、什么是fit镜像</td></tr></table></center><a class="headerlink" href="#fit" title="Permanent link">&para;</a></h3>
 <hr />
 <p>关于fit镜像的说明，可以参考文档FIT镜像说明</p>
 <hr />
-<h3 id="its"><center><table><tr><td bgcolor=#FF4500>二、its设置</td></tr></table></center><a class="headerlink" href="#its" title="Permanent link">#</a></h3>
+<h3 id="its"><center><table><tr><td bgcolor=#FF4500>二、its设置</td></tr></table></center><a class="headerlink" href="#its" title="Permanent link">&para;</a></h3>
 <hr />
 <p>为了打包fit格式的boot镜像，我们需要编写its文件，本文给一个示例文件如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/dts-v1/<span class="p">;</span>
@@ -720,7 +822,7 @@
 <a id="__codelineno-0-76" name="__codelineno-0-76" href="#__codelineno-0-76"></a><span class="o">}</span><span class="p">;</span>
 </code></pre></div>
 <hr />
-<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>三、准备镜像</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>三、准备镜像</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>根据上述的its的描述，我们需要如下文件</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># &quot;rk3568-evb1-ddr4-v10-linux.dtb&quot;</span>
@@ -728,28 +830,28 @@
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># &quot;ramdisk.img&quot;</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># &quot;resource.img&quot;</span>
 </code></pre></div>
-<h2 id="31_dtb">3.1 dtb<a class="headerlink" href="#31_dtb" title="Permanent link">#</a></h2>
+<h2 id="31-dtb">3.1 dtb<a class="headerlink" href="#31-dtb" title="Permanent link">&para;</a></h2>
 <p>对于openharmony，我们需要找到的dtb的位置在如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>out/kernel/OBJ/linux-5.10/arch/arm64/boot/dts/rockchip/xxxx.dtb
 </code></pre></div>
 <p>此时我们复制文件即可</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cp<span class="w"> </span>out/kernel/OBJ/linux-5.10/arch/arm64/boot/dts/rockchip/xxxx.dtb<span class="w"> </span>fit/
 </code></pre></div>
-<h2 id="32_image">3.2 Image<a class="headerlink" href="#32_image" title="Permanent link">#</a></h2>
+<h2 id="32-image">3.2 Image<a class="headerlink" href="#32-image" title="Permanent link">&para;</a></h2>
 <p>对于openharmony，我们需要找到的image的位置如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>out/kernel/OBJ/linux-5.10/arch/arm64/boot/Image
 </code></pre></div>
 <p>此时我们复制文件即可</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>cp<span class="w"> </span>out/kernel/OBJ/linux-5.10/arch/arm64/boot/Image<span class="w"> </span>fit/
 </code></pre></div>
-<h2 id="33_ramdisk">3.3 ramdisk<a class="headerlink" href="#33_ramdisk" title="Permanent link">#</a></h2>
+<h2 id="33-ramdisk">3.3 ramdisk<a class="headerlink" href="#33-ramdisk" title="Permanent link">&para;</a></h2>
 <p>对于openharmony，我们需要找到ramdisk的位置如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>out/rk3568/packages/phone/images/ramdisk.img
 </code></pre></div>
 <p>此时我们复制文件即可</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cp<span class="w"> </span>out/rk3568/packages/phone/images/ramdisk.img<span class="w"> </span>fit/
 </code></pre></div>
-<h2 id="34_resource">3.4 resource<a class="headerlink" href="#34_resource" title="Permanent link">#</a></h2>
+<h2 id="34-resource">3.4 resource<a class="headerlink" href="#34-resource" title="Permanent link">&para;</a></h2>
 <p>对于openharmony，我们需要找到resource的位置如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>out/kernel/OBJ/linux-5.10/resource.img
 </code></pre></div>
@@ -757,7 +859,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>cp<span class="w"> </span>out/kernel/OBJ/linux-5.10/resource.img<span class="w"> </span>fit/
 </code></pre></div>
 <hr />
-<h3 id="boot"><center><table><tr><td bgcolor=#FF4500>四、制作boot</td></tr></table></center><a class="headerlink" href="#boot" title="Permanent link">#</a></h3>
+<h3 id="boot"><center><table><tr><td bgcolor=#FF4500>四、制作boot</td></tr></table></center><a class="headerlink" href="#boot" title="Permanent link">&para;</a></h3>
 <hr />
 <p>根据上述操作，我们可以开始通过mkimage制作镜像，先安装mkimage命令</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>apt<span class="w"> </span>install<span class="w"> </span>u-boot-tools
@@ -885,7 +987,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

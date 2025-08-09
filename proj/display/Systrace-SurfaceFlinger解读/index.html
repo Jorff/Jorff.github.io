@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#android_systrace_5_-_surfaceflinger" class="md-skip">
+        <a href="#android-systrace-5-surfaceflinger" class="md-skip">
           Skip to content
         </a>
       
@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,10 +648,10 @@
 
 
 
-<h1 id="android_systrace_5_-_surfaceflinger"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android Systrace 基础知识(5) - SurfaceFlinger 解读</span><a class="headerlink" href="#android_systrace_5_-_surfaceflinger" title="Permanent link">#</a></h1>
+<h1 id="android-systrace-5-surfaceflinger"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android Systrace 基础知识(5) - SurfaceFlinger 解读</span><a class="headerlink" href="#android-systrace-5-surfaceflinger" title="Permanent link">&para;</a></h1>
 <p>本文是 Android Systrace 系列文章的第五篇，主要是对 Android 系统中的 SurfaceFlinger 进行简单介绍，介绍了 SurfaceFlinger 中几个比较重要的线程，包括 Vsync 信号的解读、应用的 Buffer 展示、卡顿判定等，由于 Vsync 这一块在Systrace 基础知识 - Vsync 解读[1] 和 Android 基于 Choreographer 的渲染机制详解[2] 这两篇文章里面已经介绍过，这里就不再做详细的讲解了。</p>
 <p>本系列的目的是通过 Systrace 这个工具，从另外一个角度来看待 Android 系统整体的运行，同时也从另外一个角度来对 Framework 进行学习。也许你看了很多讲 Framework 的文章，但是总是记不住代码，或者不清楚其运行的流程，也许从 Systrace 这个图形化的角度，你可以理解的更深入一些。</p>
-<h1 id="_1">系列文章目录<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="_1">系列文章目录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>Systrace 简介[3] <br>
 Systrace 基础知识 - Systrace 预备知识[4] <br>
 Systrace 基础知识 - Why 60 fps ？[5] <br>
@@ -648,7 +664,7 @@ Systrace 基础知识 - MainThread 和 RenderThread 解读[11] <br>
 Systrace 基础知识 - Binder 和锁竞争解读[12] <br>
 Systrace 基础知识 - Triple Buffer 解读[13] <br>
 Systrace 基础知识 - CPU Info 解读[14] <br></p>
-<h1 id="_2">正文<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<h1 id="_2">正文<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <p>这里直接上官方对于 SurfaceFlinger 流程的定义[15]</p>
 <p>1.大多数应用在屏幕上一次显示三个层：屏幕顶部的状态栏、底部或侧面的导航栏以及应用界面。有些应用会拥有更多或更少的层（例如，默认主屏幕应用有一个单独的壁纸层，而全屏游戏可能会隐藏状态栏）。每个层都可以单独更新。状态栏和导航栏由系统进程渲染，而应用层由应用渲染，两者之间不进行协调。</p>
 <p>2.设备显示会按一定速率刷新，在手机和平板电脑上通常为 60 fps。如果显示内容在刷新期间更新，则会出现撕裂现象；因此，请务必只在周期之间更新内容。在可以安全更新内容时，系统便会收到来自显示设备的信号。由于历史原因，我们将该信号称为 VSYNC 信号。</p>
@@ -669,7 +685,7 @@ Systrace 基础知识 - CPU Info 解读[14] <br></p>
 <li>HWComposer 部分</li>
 </ul>
 <p>这四部分，在 Systrace 中都有可以对应的地方，以时间发生的顺序排序就是 1、2、3、4，下面我们从 Systrace 的这四部分来看整个渲染的流程</p>
-<h2 id="app">App 部分<a class="headerlink" href="#app" title="Permanent link">#</a></h2>
+<h2 id="app">App 部分<a class="headerlink" href="#app" title="Permanent link">&para;</a></h2>
 <p>关于 App 部分，其实在Systrace 基础知识 - MainThread 和 RenderThread 解读[17]这篇文章里面已经说得比较清楚了，不清楚的可以去这篇文章里面看，其主要的流程如下图：</p>
 <!-- ![alt text](image-1.png) -->
 <p><a href="/proj/display/dispic/image_20250802_1_2.png" target="_blank">
@@ -680,13 +696,13 @@ Systrace 基础知识 - CPU Info 解读[14] <br></p>
 <p>1.Vsync 信号的接收和处理<br>
 2.RenderThread 的 dequeueBuffer<br>
 3.RenderThread 的 queueBuffer<br></p>
-<h3 id="vsync">Vsync 信号的接收和处理<a class="headerlink" href="#vsync" title="Permanent link">#</a></h3>
+<h3 id="vsync">Vsync 信号的接收和处理<a class="headerlink" href="#vsync" title="Permanent link">&para;</a></h3>
 <p>关于这部分内容可以查看Android 基于 Choreographer 的渲染机制详解[18] 这篇文章，App 和 SurfaceFlinger 的第一个交互点就是 Vsync 信号的请求和接收，如上图中第一条标识，Vsync-App 信号到达，就是指的是 SurfaceFlinger 的 Vsync-App 信号。应用收到这个信号后，开始一帧的渲染准备</p>
 <!-- ![alt text](image-2.png) -->
 <p><a href="/proj/display/dispic/image_20250802_1_3.png" target="_blank">
   <img src="/proj/display/dispic/image_20250802_1_3.png" alt="xx" width="700"/>
 </a></p>
-<h3 id="renderthread_dequeuebuffer">RenderThread 的 dequeueBuffer<a class="headerlink" href="#renderthread_dequeuebuffer" title="Permanent link">#</a></h3>
+<h3 id="renderthread-dequeuebuffer">RenderThread 的 dequeueBuffer<a class="headerlink" href="#renderthread-dequeuebuffer" title="Permanent link">&para;</a></h3>
 <p>dequeue 有出队的意思，dequeueBuffer 顾名思义，就是从队列中拿出一个 Buffer，这个队列就是 SurfaceFlinger 中的 BufferQueue。如下图，应用开始渲染前，首先需要通过 Binder 调用从 SurfaceFlinger 的 BufferQueue 中获取一个 Buffer，其流程如下：</p>
 <p>「App 端的 Systrace 如下所示」</p>
 <!-- ![alt text](image-3.png) -->
@@ -698,7 +714,7 @@ Systrace 基础知识 - CPU Info 解读[14] <br></p>
 <p><a href="/proj/display/dispic/image_20250802_1_5.png" target="_blank">
   <img src="/proj/display/dispic/image_20250802_1_5.png" alt="xx" width="700"/>
 </a></p>
-<h3 id="renderthread_queuebuffer">RenderThread 的 queueBuffer<a class="headerlink" href="#renderthread_queuebuffer" title="Permanent link">#</a></h3>
+<h3 id="renderthread-queuebuffer">RenderThread 的 queueBuffer<a class="headerlink" href="#renderthread-queuebuffer" title="Permanent link">&para;</a></h3>
 <p>queue 有入队的意思，queueBuffer 顾名思义就是讲 Buffer 放回到 BufferQueue，App 处理完 Buffer 后（写入具体的 drawcall），会把这个 Buffer 通过 eglSwapBuffersWithDamageKHR -&gt; queueBuffer 这个流程，将 Buffer 放回 BufferQueue，其流程如下</p>
 <p>「App 端的 Systrace 如下所示」</p>
 <!-- ![alt text](image-5.png) -->
@@ -715,7 +731,7 @@ Systrace 基础知识 - CPU Info 解读[14] <br></p>
 <p><a href="/proj/display/dispic/image_20250802_1_8.png" target="_blank">
   <img src="/proj/display/dispic/image_20250802_1_8.png" alt="xx" width="700"/>
 </a></p>
-<h2 id="bufferqueue">BufferQueue 部分<a class="headerlink" href="#bufferqueue" title="Permanent link">#</a></h2>
+<h2 id="bufferqueue">BufferQueue 部分<a class="headerlink" href="#bufferqueue" title="Permanent link">&para;</a></h2>
 <p>BufferQueue 部分其实在Systrace 基础知识 - Triple Buffer 解读[19] 这里有讲，如下图，结合上面那张图，每个有显示界面的进程对应一个 BufferQueue，使用方创建并拥有 BufferQueue 数据结构，并且可存在于与其生产方不同的进程中，BufferQueue 工作流程如下：</p>
 <!-- ![alt text](image-8.png) -->
 <p><a href="/proj/display/dispic/image_20250802_1_9.png" target="_blank">
@@ -726,8 +742,8 @@ Systrace 基础知识 - CPU Info 解读[14] <br></p>
 2.queue(生产者发起)：生产者填充缓冲区并通过调用 queueBuffer() 将缓冲区返回到队列。<br>
 3.acquire(消费者发起) ：消费者通过 acquireBuffer() 获取该缓冲区并使用该缓冲区的内容<br>
 4.release(消费者发起) ：当消费者操作完成后，它会通过调用 releaseBuffer() 将该缓冲区返回到队列<br></p>
-<h2 id="surfaceflinger">SurfaceFlinger 部分<a class="headerlink" href="#surfaceflinger" title="Permanent link">#</a></h2>
-<h3 id="_3">工作流程<a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h2 id="surfaceflinger">SurfaceFlinger 部分<a class="headerlink" href="#surfaceflinger" title="Permanent link">&para;</a></h2>
+<h3 id="_3">工作流程<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>从最前面我们知道 SurfaceFlinger 的主要工作就是合成：</p>
 <p>当 VSYNC 信号到达时，SurfaceFlinger 会遍历它的层列表，以寻找新的缓冲区。如果找到新的缓冲区，它会获取该缓冲区；否则，它会继续使用以前获取的缓冲区。SurfaceFlinger 必须始终显示内容，因此它会保留一个缓冲区。如果在某个层上没有提交缓冲区，则该层会被忽略。SurfaceFlinger 在收集可见层的所有缓冲区之后，便会询问 Hardware Composer 应如何进行合成。</p>
 <p>其 Systrace 主线程可用看到其主要是在收到 Vsync 信号后开始工作</p>
@@ -904,7 +920,7 @@ Systrace 基础知识 - CPU Info 解读[14] <br></p>
     postFrame();<br>
     postComposition();<br></p>
 <p>由于显示系统有非常庞大的细节，这里就不一一进行讲解了，如果你的工作在这一部分，那么所有的流程都需要熟悉并掌握，如果只是想熟悉流程，那么不需要太深入，知道 SurfaceFlinger 的主要工作逻辑即可</p>
-<h3 id="_4">掉帧<a class="headerlink" href="#_4" title="Permanent link">#</a></h3>
+<h3 id="_4">掉帧<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p>通常我们通过 Systrace 判断应用是否「掉帧」的时候，一般是直接看 SurfaceFlinger 部分，主要是下面几个步骤</p>
 <p>1.SurfaceFlinger 的主线程在每个 Vsync-SF 的时候是否没有合成？<br>
 2.如果没有合成操作，那么需要看没有合成的原因：
@@ -912,7 +928,7 @@ Systrace 基础知识 - CPU Info 解读[14] <br></p>
     因为 SurfaceFlinger 被其他的工作占用（比如截图、HWC 等）？<br>
 3.如果有合成操作，那么需要看对应的 App 的 可用 Buffer 个数是否正常：如果 App 此时可用 Buffer 为 0，那么看 App 端为何没有及时 queueBuffer（这就一般是应用自身的问题了），因为 SurfaceFlinger 合成操作触发可能是其他的进程有可用的 Buffer</p>
 <p>关于这一部分的 Systrace 怎么看，在 Systrace 基础知识 - Triple Buffer 解读-掉帧检测[20] 部分已经有比较详细的解读，大家可以过去看这一段</p>
-<h2 id="hwcomposer">HWComposer 部分<a class="headerlink" href="#hwcomposer" title="Permanent link">#</a></h2>
+<h2 id="hwcomposer">HWComposer 部分<a class="headerlink" href="#hwcomposer" title="Permanent link">&para;</a></h2>
 <p>关于 HWComposer 的功能部分我们就直接看官方的介绍[21]即可</p>
 <p>1.Hardware Composer HAL (HWC) 用于确定通过可用硬件来合成缓冲区的最有效方法。作为 HAL，其实现是特定于设备的，而且通常由显示设备硬件原始设备制造商 (OEM) 完成。</p>
 <p>2.当您考虑使用叠加平面时，很容易发现这种方法的好处，它会在显示硬件（而不是 GPU）中合成多个缓冲区。例如，假设有一部普通 Android 手机，其屏幕方向为纵向，状态栏在顶部，导航栏在底部，其他区域显示应用内容。每个层的内容都在单独的缓冲区中。您可以使用以下任一方法处理合成（后一种方法可以显著提高效率）：<br>
@@ -937,7 +953,7 @@ Systrace 基础知识 - CPU Info 解读[14] <br></p>
 </a></p>
 <p>不过这其中的细节非常多，这里就不详细说了。至于为什么要提 HWC，因为 HWC 不仅是渲染链路上重要的一环，其性能也会影响整机的性能，Android 中的卡顿丢帧原因概述 - 系统篇[23] 这篇文章里面就有列有 HWC 导致的卡顿问题（性能不足，中断信号慢等问题）</p>
 <p>想了解更多 HWC 的知识，可以参考这篇文章Android P 图形显示系统（一）硬件合成HWC2[24],当然，作者的Android P 图形显示系[25]这个系列大家可以仔细看一下</p>
-<h2 id="_5">参考文章<a class="headerlink" href="#_5" title="Permanent link">#</a></h2>
+<h2 id="_5">参考文章<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <p>Android P 图形显示系统（一）硬件合成HWC2[26]<br>
 Android P 图形显示系统[27]<br>
 SurfaceFlinger 的定义[28]<br>
@@ -1038,7 +1054,7 @@ surfacefliner[29]<br></p>
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

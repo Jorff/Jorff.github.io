@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,12 +648,12 @@
 
 
 
-<h1 id="wifi80211"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">WIFI无线网络之802.11帧</span><a class="headerlink" href="#wifi80211" title="Permanent link">#</a></h1>
-<h1 id="_1">概述<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="wifi80211"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">WIFI无线网络之802.11帧</span><a class="headerlink" href="#wifi80211" title="Permanent link">&para;</a></h1>
+<h1 id="_1">概述<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>在 IEEE 802.11 协议中，Wi-Fi 帧 是无线通信的基本单元，用于传输数据、管理连接、控制介质访问等。<br>
 Wi-Fi帧分为 三大类：管理帧（Management Frame）、控制帧（Control Frame）和数据帧（Data Frame）。<br>
 以下是各类帧的详细分类、功能及常见子类型。<br></p>
-<h2 id="80211">802.11帧的通用结构<a class="headerlink" href="#80211" title="Permanent link">#</a></h2>
+<h2 id="80211">802.11帧的通用结构<a class="headerlink" href="#80211" title="Permanent link">&para;</a></h2>
 <p>所有802.11帧的通用结构如下：</p>
 <table>
 <thead>
@@ -685,8 +701,8 @@ Wi-Fi帧分为 三大类：管理帧（Management Frame）、控制帧（Control
 <p><a href="/proj/wifi/wpic/image_20250706_1_1.png" target="_blank">
   <img src="/proj/wifi/wpic/image_20250706_1_1.png" alt="xx" width="600"/>
 </a></p>
-<h2 id="_2">帧类型分类<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
-<h3 id="1_management_frame">1. 管理帧（Management Frame）<a class="headerlink" href="#1_management_frame" title="Permanent link">#</a></h3>
+<h2 id="_2">帧类型分类<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="1-management-frame">1. 管理帧（Management Frame）<a class="headerlink" href="#1-management-frame" title="Permanent link">&para;</a></h3>
 <p>作用：用于网络发现、连接管理、身份验证、关联、切换等。<br>
 常见子类型：<br></p>
 <p>Beacon（信标帧）：<br></p>
@@ -738,7 +754,7 @@ Wi-Fi帧分为 三大类：管理帧（Management Frame）、控制帧（Control
 <p>管理帧（Wireshark 过滤）示例：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>wlan.fc.type<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span>
 </code></pre></div>
-<h3 id="2_control_frame">2. 控制帧（Control Frame）<a class="headerlink" href="#2_control_frame" title="Permanent link">#</a></h3>
+<h3 id="2-control-frame">2. 控制帧（Control Frame）<a class="headerlink" href="#2-control-frame" title="Permanent link">&para;</a></h3>
 <p>作用：用于介质访问控制（如 RTS/CTS、ACK/NACK）。<br>
  常见子类型：</p>
 <p>RTS（Request to Send）：<br></p>
@@ -764,7 +780,7 @@ Wi-Fi帧分为 三大类：管理帧（Management Frame）、控制帧（Control
 <p>控制帧（Wireshark 过滤）示例：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>wlan.fc.type<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span>
 </code></pre></div>
-<h2 id="3_data_frame">3. 数据帧（Data Frame）<a class="headerlink" href="#3_data_frame" title="Permanent link">#</a></h2>
+<h2 id="3-data-frame">3. 数据帧（Data Frame）<a class="headerlink" href="#3-data-frame" title="Permanent link">&para;</a></h2>
 <p>作用：用于传输用户数据（如 TCP/IP 数据包）。<br>
 常见子类型：<br></p>
 <p>Data：<br></p>
@@ -798,7 +814,7 @@ Wi-Fi帧分为 三大类：管理帧（Management Frame）、控制帧（Control
 <p>数据帧（Wireshark 过滤）示例：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>wlan.fc.type<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span>
 </code></pre></div>
-<h2 id="frame_control">帧控制字段（Frame Control）<a class="headerlink" href="#frame_control" title="Permanent link">#</a></h2>
+<h2 id="frame-control">帧控制字段（Frame Control）<a class="headerlink" href="#frame-control" title="Permanent link">&para;</a></h2>
 <p>Frame Control 字段是 Wi-Fi 帧的关键部分，定义了帧的类型和子类型：</p>
 <table>
 <thead>
@@ -866,7 +882,7 @@ Wi-Fi帧分为 三大类：管理帧（Management Frame）、控制帧（Control
 </tr>
 </tbody>
 </table>
-<h2 id="_3">常见帧的实际应用场景<a class="headerlink" href="#_3" title="Permanent link">#</a></h2>
+<h2 id="_3">常见帧的实际应用场景<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>1.连接过程</p>
 <blockquote>
 <p>Beacon → Probe Request/Response → Authentication → Association Request/Response → Data。<br>
@@ -888,7 +904,7 @@ Wi-Fi帧分为 三大类：管理帧（Management Frame）、控制帧（Control
 用于四次握手（Pairwise Key Handshake）和组密钥更新。<br>
 子类型为 Data，但通过 Protected Frame 标志加密。<br></p>
 </blockquote>
-<h1 id="_4">五、抓包分析工具与命令<a class="headerlink" href="#_4" title="Permanent link">#</a></h1>
+<h1 id="_4">五、抓包分析工具与命令<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
 <p>1.Wireshark</p>
 <p>过滤管理帧：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>wlan.fc.type<span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span>
@@ -910,7 +926,7 @@ Wi-Fi帧分为 三大类：管理帧（Management Frame）、控制帧（Control
 <p>扫描周围 AP 和客户端：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>airodump-ng<span class="w"> </span>mon0
 </code></pre></div>
-<h1 id="_5">常见帧的统计与分析<a class="headerlink" href="#_5" title="Permanent link">#</a></h1>
+<h1 id="_5">常见帧的统计与分析<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -1026,7 +1042,7 @@ Wi-Fi帧分为 三大类：管理帧（Management Frame）、控制帧（Control
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

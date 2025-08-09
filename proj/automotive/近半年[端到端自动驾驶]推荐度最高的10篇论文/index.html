@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,41 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      近半年端到端自动驾驶领域推荐阅读的10篇论文
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,18 +665,18 @@
 
 
 
-<h1 id="10"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">近半年「端到端自动驾驶」推荐度最高的10篇论文</span><a class="headerlink" href="#10" title="Permanent link">#</a></h1>
+<h1 id="10"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">近半年「端到端自动驾驶」推荐度最高的10篇论文</span><a class="headerlink" href="#10" title="Permanent link">&para;</a></h1>
 <hr />
-<h3 id="10_1"><center><table><tr><td bgcolor=#FF4500>近半年端到端自动驾驶领域推荐阅读的10篇论文</td></tr></table></center><a class="headerlink" href="#10_1" title="Permanent link">#</a></h3>
+<h3 id="10_1"><center><table><tr><td bgcolor=#FF4500>近半年端到端自动驾驶领域推荐阅读的10篇论文</td></tr></table></center><a class="headerlink" href="#10_1" title="Permanent link">&para;</a></h3>
 <hr />
-<h1 id="rad_training_an_end-to-end_driving_policy_via_large-scale_3dgs-based_reinforcement_learning"><font face="黑体" color=#FF4500 size="4">RAD: Training an End-to-End Driving Policy via Large-Scale 3DGS-based Reinforcement Learning</font><a class="headerlink" href="#rad_training_an_end-to-end_driving_policy_via_large-scale_3dgs-based_reinforcement_learning" title="Permanent link">#</a></h1>
+<h1 id="rad-training-an-end-to-end-driving-policy-via-large-scale-3dgs-based-reinforcement-learning"><font face="黑体" color=#FF4500 size="4">RAD: Training an End-to-End Driving Policy via Large-Scale 3DGS-based Reinforcement Learning</font><a class="headerlink" href="#rad-training-an-end-to-end-driving-policy-via-large-scale-3dgs-based-reinforcement-learning" title="Permanent link">&para;</a></h1>
 <p>机构：华中科技大学、地平线</p>
 <p>推荐理由：首个基于3DGS的RL框架，用于训练端到端AD策略；也是一种基于强化学习的端到端方案。</p>
 <p>论文内容：</p>
 <p>作者建立了一个基于3DGS的闭环强化学习（RL）训练范式。通过利用3DGS技术，可以构建真实物理世界的真实仿真结果，使AD策略能够广泛探索状态空间，并通过大规模试错学习处理分布外场景。</p>
 <p>作者引入了一个由多样且以前未见过的3DGS环境组成的闭环评估基准。与基于IL的方法相比，RAD在大多数闭环指标中表现更强，尤其是碰撞率降低了3倍。</p>
 <p>项目主页：https://arxiv.org/pdf/2502.13144</p>
-<h1 id="vlm-ad_end-to-end_driving_through_vision-language_model_supervision"><font face="黑体" color=#FF4500 size="4">VLM-AD: End-to-End Driving through Vision-Language Model Supervision</font><a class="headerlink" href="#vlm-ad_end-to-end_driving_through_vision-language_model_supervision" title="Permanent link">#</a></h1>
+<h1 id="vlm-ad-end-to-end-driving-through-vision-language-model-supervision"><font face="黑体" color=#FF4500 size="4">VLM-AD: End-to-End Driving through Vision-Language Model Supervision</font><a class="headerlink" href="#vlm-ad-end-to-end-driving-through-vision-language-model-supervision" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](./adpic/adpic_20250614-1-a.png) -->
 
 <p><a href="/proj/automotive/adpic/adpic_20250614-1-a.png" target="_blank">
@@ -656,7 +689,7 @@
 <p>设计了两种即插即用的辅助任务，通过非结构化的自由文本和结构化动作标签对现有的端到端AD管道进行监督。这些任务实现了VLM知识的有效提炼，引导模型学习更丰富的特征表示以提升规划性能，而无需VLM微调或推理时使用。</p>
 <p>在nuScenes数据集上的广泛实验验证了本文提出方法的有效性，UniAD和VAD的碰撞率分别降低了38.7%和57.4%。</p>
 <p>论文地址：https://arxiv.org/pdf/2412.14446   </p>
-<h1 id="emma_end-to-end_multimodal_model_for_autonomous_driving"><font face="黑体" color=#FF4500 size="4">EMMA: End-to-End Multimodal Model for Autonomous Driving</font><a class="headerlink" href="#emma_end-to-end_multimodal_model_for_autonomous_driving" title="Permanent link">#</a></h1>
+<h1 id="emma-end-to-end-multimodal-model-for-autonomous-driving"><font face="黑体" color=#FF4500 size="4">EMMA: End-to-End Multimodal Model for Autonomous Driving</font><a class="headerlink" href="#emma-end-to-end-multimodal-model-for-autonomous-driving" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](image.png) -->
 
 <p><a href="/proj/automotive/adpic/adpic_20250614-2-a.png" target="_blank">
@@ -668,7 +701,7 @@
 <p>作者提出了一种自动驾驶中的端到端多模态模型；EMMA在端到端运动规划方面展现出强大的性能，在开源基准nuScenes上实现了最先进的性能并且在Waymo Open Motion Dataset（WOMD）上取得了具有竞争力的结果。</p>
 <p>该工作证明了EMMA可以作为自动驾驶领域中的通用模型，为多项驾驶相关的任务联合生成输出结果。特别是，当EMMA与运动规划、目标检测和道路图任务联合训练时，它的性能与单独训练的模型相当甚至有所超越。</p>
 <p>论文地址：https://arxiv.org/pdf/2410.23262</p>
-<h1 id="drivetransformer_unified_transformer_for_scalable_end-to-end_autonomous_driving"><font face="黑体" color=#FF4500 size="4">DriveTransformer: Unified Transformer for Scalable End-to-End Autonomous Driving</font><a class="headerlink" href="#drivetransformer_unified_transformer_for_scalable_end-to-end_autonomous_driving" title="Permanent link">#</a></h1>
+<h1 id="drivetransformer-unified-transformer-for-scalable-end-to-end-autonomous-driving"><font face="黑体" color=#FF4500 size="4">DriveTransformer: Unified Transformer for Scalable End-to-End Autonomous Driving</font><a class="headerlink" href="#drivetransformer-unified-transformer-for-scalable-end-to-end-autonomous-driving" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](image.png) -->
 
 <p><a href="/proj/automotive/adpic/adpic_20250614-3-a.png" target="_blank">
@@ -684,7 +717,7 @@
 <p>论文地址：https://arxiv.org/pdf/2503.07656</p>
 <p>项目主页：https://github.com/Thinklab-SJTU/DriveTransformer/</p>
 <p>论文一作直播分享完整回放：https://www.shenlanxueyuan.com/open/course/266</p>
-<h1 id="transdiffuser_end-to-end_trajectory_generation_with_decorrelated_multi-modal_representation_for_autonomous_driving"><font face="黑体" color=#FF4500 size="4">TransDiffuser: End-to-end Trajectory Generation with Decorrelated Multi-modal Representation for Autonomous Driving</font><a class="headerlink" href="#transdiffuser_end-to-end_trajectory_generation_with_decorrelated_multi-modal_representation_for_autonomous_driving" title="Permanent link">#</a></h1>
+<h1 id="transdiffuser-end-to-end-trajectory-generation-with-decorrelated-multi-modal-representation-for-autonomous-driving"><font face="黑体" color=#FF4500 size="4">TransDiffuser: End-to-end Trajectory Generation with Decorrelated Multi-modal Representation for Autonomous Driving</font><a class="headerlink" href="#transdiffuser-end-to-end-trajectory-generation-with-decorrelated-multi-modal-representation-for-autonomous-driving" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](image.png) -->
 
 <p><a href="/proj/automotive/adpic/adpic_20250614-4-a.png" target="_blank">
@@ -696,7 +729,7 @@
 <p>作者提出了一种编码器-解码器生成轨迹模型TransDiffuser。它首先编码场景感知和自车的运动，然后利用编码信息作为去噪解码器的条件输入来解码多模态多样化的可行轨迹。</p>
 <p>本文模型在NAVSIM基准上实现了最新的PDM得分94.85，而没有任何显式的引导，例如基于锚的轨迹或者预定义的词表。</p>
 <p>论文地址：https://www.arxiv.org/pdf/2505.09315</p>
-<h1 id="distilling_multi-modal_large_language_models_for_autonomous_driving"><font face="黑体" color=#FF4500 size="4">Distilling Multi-modal Large Language Models for Autonomous Driving</font><a class="headerlink" href="#distilling_multi-modal_large_language_models_for_autonomous_driving" title="Permanent link">#</a></h1>
+<h1 id="distilling-multi-modal-large-language-models-for-autonomous-driving"><font face="黑体" color=#FF4500 size="4">Distilling Multi-modal Large Language Models for Autonomous Driving</font><a class="headerlink" href="#distilling-multi-modal-large-language-models-for-autonomous-driving" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](image.png) -->
 
 <p><a href="/proj/automotive/adpic/adpic_20250614-5-a.png" target="_blank">
@@ -709,7 +742,7 @@
 <p>引入时空对齐损失函数，强制规划器学习LLM对连续帧的语义理解（如“左侧车道流量减少”），并提前触发变道决策，在nuScenes数据集上实现37%的轨迹误差下降和80%的碰撞率减少。</p>
 <p>解耦式架构设计采用双路径蒸馏，同时支持动态调整语义权重以适应复杂场景。</p>
 <p>论文地址：https://arxiv.org/pdf/2501.09757</p>
-<h1 id="diffusiondrive_truncated_diffusion_model_for_end-to-end_autonomous_driving"><font face="黑体" color=#FF4500 size="4">DiffusionDrive: Truncated Diffusion Model for End-to-End Autonomous Driving</font><a class="headerlink" href="#diffusiondrive_truncated_diffusion_model_for_end-to-end_autonomous_driving" title="Permanent link">#</a></h1>
+<h1 id="diffusiondrive-truncated-diffusion-model-for-end-to-end-autonomous-driving"><font face="黑体" color=#FF4500 size="4">DiffusionDrive: Truncated Diffusion Model for End-to-End Autonomous Driving</font><a class="headerlink" href="#diffusiondrive-truncated-diffusion-model-for-end-to-end-autonomous-driving" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](image.png) -->
 
 <p><a href="/proj/automotive/adpic/adpic_20250614-6-a.png" target="_blank">
@@ -722,7 +755,7 @@
 <p>与普通扩散策略相比，该模型 DiffusionDrive 将去噪步减少 10 倍，仅需 2 步即可提供卓越的多样性和质量。在面向规划的 NAVSIM 数据集上，借助对齐的 ResNet- 34 主干，DiffusionDrive 无需花哨考虑即可实现 88.1 PDMS，同时在 NVIDIA 4090 上以 45 FPS 的实时速度运行。</p>
 <p>论文地址：https://arxiv.org/abs/2411.15139</p>
 <p>项目主页：https://github.com/hustvl/DiffusionDrive</p>
-<h1 id="hip-ad_hierarchical_and_multi-granularity_planning_with_deformable_attention_for_autonomous_driving_in_a_single_decoder"><font face="黑体" color=#FF4500 size="4">HiP-AD: Hierarchical and Multi-Granularity Planning with Deformable Attention for Autonomous Driving in a Single Decoder</font><a class="headerlink" href="#hip-ad_hierarchical_and_multi-granularity_planning_with_deformable_attention_for_autonomous_driving_in_a_single_decoder" title="Permanent link">#</a></h1>
+<h1 id="hip-ad-hierarchical-and-multi-granularity-planning-with-deformable-attention-for-autonomous-driving-in-a-single-decoder"><font face="黑体" color=#FF4500 size="4">HiP-AD: Hierarchical and Multi-Granularity Planning with Deformable Attention for Autonomous Driving in a Single Decoder</font><a class="headerlink" href="#hip-ad-hierarchical-and-multi-granularity-planning-with-deformable-attention-for-autonomous-driving-in-a-single-decoder" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](image.png) -->
 
 <p><a href="/proj/automotive/adpic/adpic_20250614-7-a.png" target="_blank">
@@ -736,7 +769,7 @@
 <p>同时，HiP-AD 在一个统一的解码器中同时执行感知、预测和规划任务。通过在鸟瞰图（BEV）空间中，规划查询与感知查询的迭代交互，实现了全面的任务融合。</p>
 <p>论文地址：https://arxiv.org/pdf/2503.08612</p>
 <p>项目主页：https://github.com/nullmax-vision/HiP-AD</p>
-<h1 id="generative_planning_with_3d-vision_language_pre-training_for_end-to-end_autonomous_driving"><font face="黑体" color=#FF4500 size="4">Generative Planning with 3D-vision Language Pre-training for End-to-End Autonomous Driving</font><a class="headerlink" href="#generative_planning_with_3d-vision_language_pre-training_for_end-to-end_autonomous_driving" title="Permanent link">#</a></h1>
+<h1 id="generative-planning-with-3d-vision-language-pre-training-for-end-to-end-autonomous-driving"><font face="黑体" color=#FF4500 size="4">Generative Planning with 3D-vision Language Pre-training for End-to-End Autonomous Driving</font><a class="headerlink" href="#generative-planning-with-3d-vision-language-pre-training-for-end-to-end-autonomous-driving" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](image.png) -->
 
 <p><a href="/proj/automotive/adpic/adpic_20250614-8-a.png" target="_blank">
@@ -750,7 +783,7 @@
 <p>并采用轻量化预训练架构（模型参数量仅0.4B），推理速度达188ms/帧，支持实时部署；通过语言指令引导（如“左转优先”），在无地图场景中泛化性能超越纯视觉方法15%。</p>
 <p>论文地址：https://arxiv.org/pdf/2501.08861</p>
 <p>项目主页：https://github.com/ltp1995/GPVL</p>
-<h1 id="end-to-end_autonomous_driving_through_v2x_cooperation"><font face="黑体" color=#FF4500 size="4">End-to-End Autonomous Driving through V2X Cooperation</font><a class="headerlink" href="#end-to-end_autonomous_driving_through_v2x_cooperation" title="Permanent link">#</a></h1>
+<h1 id="end-to-end-autonomous-driving-through-v2x-cooperation"><font face="黑体" color=#FF4500 size="4">End-to-End Autonomous Driving through V2X Cooperation</font><a class="headerlink" href="#end-to-end-autonomous-driving-through-v2x-cooperation" title="Permanent link">&para;</a></h1>
 <!-- ![alt text](image.png) -->
 
 <p><a href="/proj/automotive/adpic/adpic_20250614-9-a.png" target="_blank">
@@ -764,23 +797,23 @@
 <p>论文地址：https://arxiv.org/pdf/2404.00717</p>
 <p>项目主页：https://github.com/AIR-THU/UniV2X</p>
 <hr />
-<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>端到端自动驾驶领域的经典代表作</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>端到端自动驾驶领域的经典代表作</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
-<h1 id="planning-oriented_autonomous_driving"><font face="黑体" color=#FF4500 size="4">Planning-oriented Autonomous Driving</font><a class="headerlink" href="#planning-oriented_autonomous_driving" title="Permanent link">#</a></h1>
+<h1 id="planning-oriented-autonomous-driving"><font face="黑体" color=#FF4500 size="4">Planning-oriented Autonomous Driving</font><a class="headerlink" href="#planning-oriented-autonomous-driving" title="Permanent link">&para;</a></h1>
 <p>机构：上海人工智能实验室、武汉大学及商汤科技联合发表</p>
 <p>奖项：CVPR 2023最佳论文，也是近十年来中国学术机构首次获此殊荣</p>
 <p>推荐理由：作为CVPR 2023最佳论文，UniAD首次将感知（目标检测、车道线识别）、预测（轨迹预测、占据栅格）与规划任务整合到统一的端到端框架中，通过共享特征和显式任务交互提升规划性能，成为后续研究的基准。</p>
 <p>论文内容：作者将感知、预测和规划等任务整合到一个网络中。该框架通过统一的查询接口进行任务间通信与协调，以规划为核心目标，联合优化目标检测、跟踪、制图、运动预测、占用预测和路径规划等任务。</p>
 <p>论文地址：https://arxiv.org/abs/2212.10156</p>
 <p>项目主页：https://github.com/OpenDriveLab/UniAD</p>
-<h1 id="vad_vectorized_scene_representation_for_efficient_autonomous_driving"><font face="黑体" color=#FF4500 size="4">VAD: Vectorized Scene Representation for Efficient Autonomous Driving</font><a class="headerlink" href="#vad_vectorized_scene_representation_for_efficient_autonomous_driving" title="Permanent link">#</a></h1>
+<h1 id="vad-vectorized-scene-representation-for-efficient-autonomous-driving"><font face="黑体" color=#FF4500 size="4">VAD: Vectorized Scene Representation for Efficient Autonomous Driving</font><a class="headerlink" href="#vad-vectorized-scene-representation-for-efficient-autonomous-driving" title="Permanent link">&para;</a></h1>
 <p>机构：华中科技大学、地平线</p>
 <p>奖项： ICCV 2023 </p>
 <p>推荐理由：该论文提出了一种全新的端到端矢量化自动驾驶范式，通过矢量化场景表示显著提升了规划的安全性和效率，同时大幅降低了计算开销，对于自动驾驶系统的实际部署具有重要意义。</p>
 <p>论文内容：论文提出了一种名为 VAD（Vectorized Autonomous Driving）的端到端矢量化自动驾驶范式，将驾驶场景建模为完全矢量化的表示。该方法利用矢量化的代理运动和地图元素作为明确的实例级规划约束，有效提升了规划的安全性。</p>
 <p>论文地址：https://arxiv.org/pdf/2303.12077</p>
 <p>项目主页：https://github.com/hustvl/VAD</p>
-<h1 id="end-to-end_autonomous_driving_challenges_and_frontiers"><font face="黑体" color=#FF4500 size="4">End-to-end Autonomous Driving: Challenges and Frontiers</font><a class="headerlink" href="#end-to-end_autonomous_driving_challenges_and_frontiers" title="Permanent link">#</a></h1>
+<h1 id="end-to-end-autonomous-driving-challenges-and-frontiers"><font face="黑体" color=#FF4500 size="4">End-to-end Autonomous Driving: Challenges and Frontiers</font><a class="headerlink" href="#end-to-end-autonomous-driving-challenges-and-frontiers" title="Permanent link">&para;</a></h1>
 <p>机构：上海人工智能实验室、香港大学、德国图宾根大学等机构发表。</p>
 <p>奖项： IEEE PAMI 2024</p>
 <p>推荐理由：这篇论文系统梳理端到端自动驾驶的挑战，融合多技术并提出新方法，在多个数据集上验证并提升关键指标，是端到端自动驾驶领域的重要参考。</p>
@@ -854,7 +887,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

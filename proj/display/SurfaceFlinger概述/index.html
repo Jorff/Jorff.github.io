@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,9 +648,9 @@
 
 
 
-<h1 id="surfaceflinger"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">SurfaceFlinger概述</span><a class="headerlink" href="#surfaceflinger" title="Permanent link">#</a></h1>
+<h1 id="surfaceflinger"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">SurfaceFlinger概述</span><a class="headerlink" href="#surfaceflinger" title="Permanent link">&para;</a></h1>
 <p>本文基于 AOSP android-15.0.0_r20 版本分析。</p>
-<h1 id="1_surfaceflinger">1. SurfaceFlinger 在显示系统的位置<a class="headerlink" href="#1_surfaceflinger" title="Permanent link">#</a></h1>
+<h1 id="1-surfaceflinger">1. SurfaceFlinger 在显示系统的位置<a class="headerlink" href="#1-surfaceflinger" title="Permanent link">&para;</a></h1>
 <p>SurfaceFlinger 是 Android 图形系统的核心引擎，承担着 合成、同步、资源管理 等核心职责。其性能直接决定系统流畅度与能效，尤其在多窗口、高刷新率等场景下是不可替代的底层基石。开发者需深入理解其机制，以优化显示性能或解决显示异常问题。</p>
 <p>SurfaceFlinger 在整个显示系统中是一个承上启下的角色：</p>
 <!-- ![alt text](./dispic/image_20250706_1_1.png) -->
@@ -642,7 +658,7 @@
   <img src="/proj/display/dispic/image_20250706_1_1.png" alt="xx" width="800"/>
 </a></p>
 <p>显示系统框架</p>
-<h2 id="11">1.1 承上：作为上层应用的消费者<a class="headerlink" href="#11" title="Permanent link">#</a></h2>
+<h2 id="11">1.1 承上：作为上层应用的消费者<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
 <p>管理应用图形数据（Surface 与 BufferQueue）</p>
 <blockquote>
 <p>应用（生产者）：通过 dequeueBuffer 获取空闲缓冲区，绘制完成后通过 queueBuffer 提交到队列<br>
@@ -660,7 +676,7 @@
 <blockquote>
 <p>SurfaceFlinger 通过 Choreographer 向应用分发 VSync 信号，触发应用在下一个刷新周期开始绘制，避免帧率与刷新率失步导致的卡顿或撕裂</p>
 </blockquote>
-<h2 id="12">1.2 启下：作为底层硬件的生产者<a class="headerlink" href="#12" title="Permanent link">#</a></h2>
+<h2 id="12">1.2 启下：作为底层硬件的生产者<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
 <p>图形合成与显示输出</p>
 <blockquote>
 <p>SurfaceFlinger 将所有 Layer（对应 Surface）合成为最终帧，通过两种方式：<br>
@@ -678,7 +694,7 @@
 <p>管理图形缓冲区生命周期（释放/复用），减少内存分配开销。<br>
   支持多屏幕输出（如扩展屏）、动态分辨率切换，通过 HAL 抽象层适配不同显示硬件<br></p>
 </blockquote>
-<h1 id="2_surfaceflinger">2. SurfaceFlinger 的组成<a class="headerlink" href="#2_surfaceflinger" title="Permanent link">#</a></h1>
+<h1 id="2-surfaceflinger">2. SurfaceFlinger 的组成<a class="headerlink" href="#2-surfaceflinger" title="Permanent link">&para;</a></h1>
 <p>功能上可以把 SurfaceFlinger 相关成员划分为 3个部分：</p>
 <blockquote>
 <p>SurfaceFlinger 部分，核心功能，几乎所有的对外接口，最终都会调用到 Surfa1ceFlinger 的成员函数中，是合成过程的总管家<br>
@@ -691,8 +707,8 @@
 <p><a href="/proj/display/dispic/image_20250706_1_2.png" target="_blank">
   <img src="/proj/display/dispic/image_20250706_1_2.png" alt="xx" width="800"/>
 </a></p>
-<h1 id="3_surfaceflinger">3. SurfaceFlinger 的核心功能总结<a class="headerlink" href="#3_surfaceflinger" title="Permanent link">#</a></h1>
-<h2 id="31_composition">3.1 图形合成（Composition）<a class="headerlink" href="#31_composition" title="Permanent link">#</a></h2>
+<h1 id="3-surfaceflinger">3. SurfaceFlinger 的核心功能总结<a class="headerlink" href="#3-surfaceflinger" title="Permanent link">&para;</a></h1>
+<h2 id="31-composition">3.1 图形合成（Composition）<a class="headerlink" href="#31-composition" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>优先使用 HWC 进行硬件合成（如视频播放、相机预览），降低 GPU/CPU 负载<br>
   对不支持硬件合成的图层，回退到 GPU 合成<br>
@@ -704,25 +720,25 @@
 <p><a href="/proj/display/dispic/image_20250706_1_3.png" target="_blank">
   <img src="/proj/display/dispic/image_20250706_1_3.png" alt="xx" width="600"/>
 </a></p>
-<h2 id="32_vsync">3.2 显示同步管理（VSync）<a class="headerlink" href="#32_vsync" title="Permanent link">#</a></h2>
+<h2 id="32-vsync">3.2 显示同步管理（VSync）<a class="headerlink" href="#32-vsync" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>接收显示设备的 VSync 信号，协调应用绘制与屏幕刷新的时序，避免画面撕裂。<br>
   通过 EventThread 线程处理 VSync 事件，触发合成流程<br>
   屏幕刷新率管理<br></p>
 </blockquote>
-<h2 id="33_bufferqueue">3.3 缓冲区管理（BufferQueue）<a class="headerlink" href="#33_bufferqueue" title="Permanent link">#</a></h2>
+<h2 id="33-bufferqueue">3.3 缓冲区管理（BufferQueue）<a class="headerlink" href="#33-bufferqueue" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>应用作为生产者，将图像数据写入后缓冲区（Back Buffer）。<br>
   SurfaceFlinger 作为消费者，读取缓冲区并合成到前缓冲区（Front Buffer）。<br>
   通过 BufferQueue 机制协调生产者（应用）与消费者（SurfaceFlinger）：<br>
   采用双/三缓冲机制，避免绘制过程中的显示闪烁<br></p>
 </blockquote>
-<h2 id="34">3.4 窗口层级与区域裁剪<a class="headerlink" href="#34" title="Permanent link">#</a></h2>
+<h2 id="34">3.4 窗口层级与区域裁剪<a class="headerlink" href="#34" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>管理窗口的 Z-order 序列，计算重叠区域的可见性（如 VisibleRegion、DirtyRegion）。<br>
   动态识别脏区域（DirtyRegion），仅更新变化部分以提升性能<br></p>
 </blockquote>
-<h2 id="35">3.5 显示设备管理<a class="headerlink" href="#35" title="Permanent link">#</a></h2>
+<h2 id="35">3.5 显示设备管理<a class="headerlink" href="#35" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>显示设备的抽象与分类<br>
   显示设备的生命周期管理<br></p>
@@ -731,7 +747,7 @@
 <p>录屏功能
 动态调整不同应用的 RenderRate
 ......(持续发掘中)</p>
-<h1 id="_1">参考资料<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="_1">参考资料<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>SurfaceFlinger01-SurfaceFlinger概述及启动过程
   Native App 与 SurfaceFinger 建立 Binder 通信过程分析
@@ -804,7 +820,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,14 +648,14 @@
 
 
 
-<h1 id="surfaceflinger"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">如何调试 SurfaceFlinger</span><a class="headerlink" href="#surfaceflinger" title="Permanent link">#</a></h1>
+<h1 id="surfaceflinger"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">如何调试 SurfaceFlinger</span><a class="headerlink" href="#surfaceflinger" title="Permanent link">&para;</a></h1>
 <p>工欲善其事，必先利其！SurfaceFlinger 常用的调试手段主要有：<br>
 日志调试<br>
 单步调试<br>
 Perfetto<br>
 dumpsys SurfaceFlinger<br>
 本文主要讲解前两点，第三点在源码分析过程中穿插讲解，第四点在完成 SurfaceFlinger 核心流程与功能梳理后讲解。<br></p>
-<h1 id="1">1. 准备工作<a class="headerlink" href="#1" title="Permanent link">#</a></h1>
+<h1 id="1">1. 准备工作<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
 <p>首先我们需要一份源码并编译出一个 eng 版本，这里我使用的是 aosp android-15.0.0_r20 源码，硬件上使用 pixel6 手机，其它 pixel 手机或者模拟器都类似。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">source</span><span class="w"> </span>build/envsetup.sh
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>lunch<span class="w"> </span>aosp_oriole-bp1a-eng
@@ -654,7 +670,7 @@ dumpsys SurfaceFlinger<br>
 <p><a href="/proj/display/dispic/image_20250706_2_1.png" target="_blank">
   <img src="/proj/display/dispic/image_20250706_2_1.png" alt="xx" width="600"/>
 </a></p>
-<h1 id="2">2. 日志调试<a class="headerlink" href="#2" title="Permanent link">#</a></h1>
+<h1 id="2">2. 日志调试<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <p>这里我们修改 SurfaceFlinger 的主函数 main_surfaceflinger.cpp 来演示打印 Log 和打印调用堆栈：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
@@ -739,7 +755,7 @@ dumpsys SurfaceFlinger<br>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.385<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w">   </span><span class="c1">#06 pc 00000000002c6688  /system/bin/surfaceflinger (main+1272) (BuildId: 5e135e484b98796bac0be1710386a2f2)</span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="m">07</span>-02<span class="w"> </span><span class="m">19</span>:41:32.385<span class="w">   </span><span class="m">556</span><span class="w">   </span><span class="m">556</span><span class="w"> </span>D<span class="w"> </span>ahao-sf<span class="w"> </span>:<span class="w">   </span><span class="c1">#07 pc 0000000000057854  /apex/com.android.runtime/lib64/bionic/libc.so (__libc_init+116) (BuildId: f0cc3fe16b52af6fc8d4e5b18105de09)</span>
 </code></pre></div>
-<h1 id="3_vscode">3. VSCode 图形化调试<a class="headerlink" href="#3_vscode" title="Permanent link">#</a></h1>
+<h1 id="3-vscode">3. VSCode 图形化调试<a class="headerlink" href="#3-vscode" title="Permanent link">&para;</a></h1>
 <p>新开一个终端进入系统源码根目录，执行下面的命令：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">source</span><span class="w"> </span>build/envsetup.sh
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>lunch<span class="w"> </span>aosp_oriole-bp1a-eng
@@ -836,9 +852,9 @@ dumpsys SurfaceFlinger<br>
 <p><a href="/proj/display/dispic/image_20250706_2_8.png" target="_blank">
   <img src="/proj/display/dispic/image_20250706_2_8.png" alt="xx" width="700"/>
 </a></p>
-<h1 id="_1">总结<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="_1">总结<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>写码十分钟，调试一整天！</p>
-<h1 id="_2">参考资料<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<h1 id="_2">参考资料<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <p>Use debuggers</p>
 <div class="admonition note">
 <p class="admonition-title">本文转发链接如下：</p>
@@ -907,7 +923,7 @@ dumpsys SurfaceFlinger<br>
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

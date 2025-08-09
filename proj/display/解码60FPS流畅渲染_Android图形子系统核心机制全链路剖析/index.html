@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,12 +648,12 @@
 
 
 
-<h1 id="android"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android图形子系统核心机制全链路剖析</span><a class="headerlink" href="#android" title="Permanent link">#</a></h1>
-<h1 id="1">①主要的类<a class="headerlink" href="#1" title="Permanent link">#</a></h1>
+<h1 id="android"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android图形子系统核心机制全链路剖析</span><a class="headerlink" href="#android" title="Permanent link">&para;</a></h1>
+<h1 id="1">①主要的类<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
 <p>DecorView、ViewRootImpl、Window、WMS、Surface、SurfaceFlinger、BufferQueue、FrameBuffer</p>
-<h2 id="1_decorview">1. DecorView<a class="headerlink" href="#1_decorview" title="Permanent link">#</a></h2>
+<h2 id="1-decorview">1. DecorView<a class="headerlink" href="#1-decorview" title="Permanent link">&para;</a></h2>
 <p>是 Android 视图系统里的关键组件，在 Activity 界面显示与布局管理方面扮演着重要角色。下面详细介绍其主要作用：</p>
-<h3 id="11">1.1 作为视图树的根节点<a class="headerlink" href="#11" title="Permanent link">#</a></h3>
+<h3 id="11">1.1 作为视图树的根节点<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
 <p>DecorView 是每个 Activity 视图树的顶级视图，继承自 FrameLayout。当 Activity 启动时，系统会创建一个 Window 对象（通常是 PhoneWindow），并为其关联一个 DecorView。所有添加到 Activity 中的视图，最终都会被添加到 DecorView 之下，形成一个完整的视图树。示例如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>DecorView
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├─ 状态栏区域
@@ -648,41 +664,41 @@
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>      ├─ 子视图 2
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>      └─ ...
 </code></pre></div>
-<h3 id="12">1.2 承载系统界面元素<a class="headerlink" href="#12" title="Permanent link">#</a></h3>
+<h3 id="12">1.2 承载系统界面元素<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
 <p>DcorView 会包含一些系统级的界面元素，像状态栏、标题栏（在启用的情况下）。这些元素由系统统一管理，且通常位于用户自定义布局的上方。借助 DecorView，系统能够统一管理这些公共界面元素的显示与交互。</p>
-<h3 id="13_window">1.3 关联 Window 和视图树<a class="headerlink" href="#13_window" title="Permanent link">#</a></h3>
+<h3 id="13-window">1.3 关联 Window 和视图树<a class="headerlink" href="#13-window" title="Permanent link">&para;</a></h3>
 <p>DecorView是Window和视图树之间的桥梁。Window代表屏幕上的一个显示区域，而DecorView则是这个区域内视图的容器。Window的属性（如背景、透明度等）会影响DecorView的显示效果，DecorView也会将用户的交互事件传递给Window进行处理。</p>
-<h3 id="14">1.4 处理输入事件分发<a class="headerlink" href="#14" title="Permanent link">#</a></h3>
+<h3 id="14">1.4 处理输入事件分发<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
 <p>DecorView是输入事件进入视图树的入口。当用户触摸屏幕、按下按键等操作发生时，系统会将事件传递给DecorView，然后由DecorView将事件分发给其下的子视图。在事件分发过程中，DecorView会根据视图的层级和位置，决定哪个子视图应该接收和处理该事件。</p>
-<h3 id="15_viewrootimpl">1.5 配合 ViewRootImpl 工作<a class="headerlink" href="#15_viewrootimpl" title="Permanent link">#</a></h3>
+<h3 id="15-viewrootimpl">1.5 配合 ViewRootImpl 工作<a class="headerlink" href="#15-viewrootimpl" title="Permanent link">&para;</a></h3>
 <p>DecorView 与 ViewRootImpl 紧密协作。ViewRootImpl 负责管理视图的测量、布局和绘制过程，而 DecorView 作为视图树的根节点，会接收 ViewRootImpl 发起的这些操作请求，并将其递归传递给子视图。例如，ViewRootImpl 调用 DecorView 的 measure 方法，DecorView 会依次调用子视图的 measure 方法，从而完成整个视图树的测量。</p>
-<h3 id="_1">小结<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1">小结<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>DecorView 作为 Activity 视图树的根节点，不仅承载系统界面元素，还关联 Window 和视图树，负责输入事件分发，并且与 ViewRootImpl 配合完成视图的测量、布局和绘制工作，在 Android 界面显示和交互中起着关键作用。</p>
-<h2 id="2_viewrootimpl">2. ViewRootImpl<a class="headerlink" href="#2_viewrootimpl" title="Permanent link">#</a></h2>
+<h2 id="2-viewrootimpl">2. ViewRootImpl<a class="headerlink" href="#2-viewrootimpl" title="Permanent link">&para;</a></h2>
 <p>是 Android 视图系统里的核心类，在视图的渲染、事件处理和窗口管理等方面起着关键作用。下面详细介绍其主要作用：</p>
-<h3 id="21">2.1 连接视图树和窗口系统<a class="headerlink" href="#21" title="Permanent link">#</a></h3>
+<h3 id="21">2.1 连接视图树和窗口系统<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
 <p>ViewRootImpl 是视图树和 WindowManagerService（WMS）之间的桥梁。每个 Activity 里的视图树都有一个对应的 ViewRootImpl 实例，它负责与 WMS 进行通信，将视图的状态和请求传递给系统窗口管理服务。</p>
-<h3 id="22">2.2 视图的测量、布局和绘制<a class="headerlink" href="#22" title="Permanent link">#</a></h3>
+<h3 id="22">2.2 视图的测量、布局和绘制<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
 <p>测量（Measure）：ViewRootImpl 会触发视图树的测量过程，调用 View 的 measure 方法，确定每个 View 的尺寸。通过递归调用子 View 的 measure 方法，最终确定整个视图树的大小。</p>
 <p>布局（Layout）：在测量完成后，ViewRootImpl 会调用 View 的 layout 方法，为每个 View 分配在父容器中的位置。同样通过递归调用子 View 的 layout 方法，完成整个视图树的布局。</p>
 <p>绘制（Draw）：布局完成后，ViewRootImpl 会触发视图树的绘制过程，调用 View 的 draw 方法，将视图绘制到 Surface 上。</p>
-<h3 id="23">2.3 处理输入事件<a class="headerlink" href="#23" title="Permanent link">#</a></h3>
+<h3 id="23">2.3 处理输入事件<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
 <p>ViewRootImpl 负责接收来自系统的输入事件（如触摸、按键等），并将这些事件分发给视图树中的相应 View。它会根据事件的坐标和视图的位置，确定哪个 View 应该处理该事件，然后调用相应 View 的事件处理方法。</p>
-<h3 id="24">2.4 管理视图的生命周期<a class="headerlink" href="#24" title="Permanent link">#</a></h3>
+<h3 id="24">2.4 管理视图的生命周期<a class="headerlink" href="#24" title="Permanent link">&para;</a></h3>
 <p>ViewRootImpl 会监听窗口的状态变化，如窗口的显示、隐藏、大小改变等，并根据这些变化触发视图树的重新测量、布局和绘制。例如，当窗口大小改变时，ViewRootImpl 会重新测量和布局视图树，以适应新的窗口尺寸。</p>
-<h3 id="25_ui">2.5 同步 UI 线程和渲染线程<a class="headerlink" href="#25_ui" title="Permanent link">#</a></h3>
+<h3 id="25-ui">2.5 同步 UI 线程和渲染线程<a class="headerlink" href="#25-ui" title="Permanent link">&para;</a></h3>
 <p>ViewRootImpl 会确保 UI 线程的操作与渲染线程的同步。在 Android 中，UI 操作必须在主线程进行，而渲染操作可能在单独的线程中进行。ViewRootImpl 会协调这两个线程的操作，避免出现渲染冲突和界面闪烁的问题。</p>
 <p>ViewRootImpl 是 Android 视图系统的核心组件，负责连接视图树和窗口系统，处理视图的测量、布局、绘制和输入事件，管理视图的生命周期，以及同步 UI 线程和渲染线程。它确保了视图能够正确显示和响应用户操作。</p>
-<h2 id="3_window">3. Window<a class="headerlink" href="#3_window" title="Permanent link">#</a></h2>
+<h2 id="3-window">3. Window<a class="headerlink" href="#3-window" title="Permanent link">&para;</a></h2>
 <p>指的是PhoneWindow，每一个ViewRootImpl都对应了一个Window，ViewRootImpl其实就是负责处理视图本身的一些逻辑事务（绘制，事件等管理）。而Window的作用主要是处理不同层级window之间的关系，便于WMS进行层级管理的一个抽象概念。Window主要有几大类：</p>
 <ul>
 <li>应用窗口：Activity</li>
 <li>子窗口：Dialog</li>
 <li>系统窗口：状态栏/导航栏/悬浮窗/Toast</li>
 </ul>
-<h2 id="4_wms">4. WMS<a class="headerlink" href="#4_wms" title="Permanent link">#</a></h2>
+<h2 id="4-wms">4. WMS<a class="headerlink" href="#4-wms" title="Permanent link">&para;</a></h2>
 <p>是SystemServer进程的一个服务，主要负责管理各层级Window的关系，以及分配Surface用于绘制画面。</p>
-<h2 id="5_surface">5. Surface<a class="headerlink" href="#5_surface" title="Permanent link">#</a></h2>
+<h2 id="5-surface">5. Surface<a class="headerlink" href="#5-surface" title="Permanent link">&para;</a></h2>
 <p>提供画图的API以及画布进行渲染，一个Window对应一个Surface，除了SurfaceView有自己独立的Surface。根据是否开启硬件加速，调用GPU或者CPU进行渲染，将View树转换成一帧画面GraphicBuffer入到BufferQueue当中：</p>
 <p>a.提供绘图接口<br>
     Canvas API：通过 lockCanvas() 获取 Canvas 对象，支持 2D 图形绘制（如线条、文字）。<br>
@@ -694,62 +710,62 @@
 <p>c.生产者-消费者模型<br>
     生产者：应用通过 Surface 绘制内容（填充缓冲区）。<br>
     消费者：SurfaceFlinger 消费缓冲区数据，合成最终帧并送<br></p>
-<h2 id="6_surfaceflinger">6. SurfaceFlinger<a class="headerlink" href="#6_surfaceflinger" title="Permanent link">#</a></h2>
+<h2 id="6-surfaceflinger">6. SurfaceFlinger<a class="headerlink" href="#6-surfaceflinger" title="Permanent link">&para;</a></h2>
 <p>主要是当vsync-sf信号到来时，获取BufferQueue中的GraphicBuffer与各层中的画面根据z-order /大小/位置/透明度等信息进行合并操作</p>
-<h2 id="7_bufferqueue">7. BufferQueue<a class="headerlink" href="#7_bufferqueue" title="Permanent link">#</a></h2>
+<h2 id="7-bufferqueue">7. BufferQueue<a class="headerlink" href="#7-bufferqueue" title="Permanent link">&para;</a></h2>
 <p>用来管理Surface与SurfaceFlingger之间数据GraphicBuffer）的容器，三重缓冲说的就是BufferQueue里面有三个缓冲区对应三个缓冲的帧</p>
-<h2 id="8_framebuffer">8. FrameBuffer<a class="headerlink" href="#8_framebuffer" title="Permanent link">#</a></h2>
+<h2 id="8-framebuffer">8. FrameBuffer<a class="headerlink" href="#8-framebuffer" title="Permanent link">&para;</a></h2>
 <p>这个是SurfaceFlinger将合成好待显示的帧缓存的地方</p>
 <p>显示系统各类协作流程</p>
-<h3 id="1vsync">1、从启动到监听VSync信号：<a class="headerlink" href="#1vsync" title="Permanent link">#</a></h3>
+<h3 id="1vsync">1、从启动到监听VSync信号：<a class="headerlink" href="#1vsync" title="Permanent link">&para;</a></h3>
 <p>ActivityThread执行performLaunchActivity()方法，然后performLaunchActivity方法里调用Activity.attach()方法，attach方法里会调用实例化PhoneWindow对象，然后performLaunchActivity方法里调用Instrumentation类的callActivityOnCreate()方法，callActivityOnCreate会调用Activity类的performCreate()方法，performCreate方法调用Activity的onCreate()方法，onCreate方法中调用setContentView()方法，setContentView方法里调用PhoneWindow的setContentView()方法，PhoneWindow的setContentVIew里面实例化DecorView，PhoneWindow在继续调用LayoutInflator.inflate方法将布局解析到Decorview的视图树中。然后AMS调用ActivityThread的handleResumeActivity()方法，这个方法里面主要做两件事，第一步调用Activity的onResume()方法，然后调用WindowManager.addView(),addView方法最后是调到WindowManagerImpl的addView()再调用到WindowManagerGlobal.addView(),这个方法里面实例化ViewRootImpl并将DecorView通过ViewRootImpl.setView()传递过来，setView方法里面调用自身的requestLayout(),然后方法里调用scheduleTraversals()去Handler里放一个同步屏障，并通过Choreographer去监听VSync信号。</p>
 <!-- ![alt text](./dispic/image_20250801_1_1.png) -->
 <p><a href="/proj/display/dispic/image_20250801_1_1.png" target="_blank">
   <img src="/proj/display/dispic/image_20250801_1_1.png" alt="xx" width="700"/>
 </a></p>
-<h4 id="11_activity">1.1 创建Activity实例，初始化窗口体系<a class="headerlink" href="#11_activity" title="Permanent link">#</a></h4>
+<h4 id="11-activity">1.1 创建Activity实例，初始化窗口体系<a class="headerlink" href="#11-activity" title="Permanent link">&para;</a></h4>
 <!-- ![alt text](image-1.png) -->
 <p><a href="/proj/display/dispic/image_20250801_1_2.png" target="_blank">
   <img src="/proj/display/dispic/image_20250801_1_2.png" alt="xx" width="700"/>
 </a></p>
-<h4 id="12_1">1.2 视图的创建<a class="headerlink" href="#12_1" title="Permanent link">#</a></h4>
+<h4 id="12_1">1.2 视图的创建<a class="headerlink" href="#12_1" title="Permanent link">&para;</a></h4>
 <!-- ![alt text](image-2.png) -->
 <p><a href="/proj/display/dispic/image_20250801_1_3.png" target="_blank">
   <img src="/proj/display/dispic/image_20250801_1_3.png" alt="xx" width="700"/>
 </a></p>
-<h4 id="13_activityresume">1.3 Activity的resume阶段<a class="headerlink" href="#13_activityresume" title="Permanent link">#</a></h4>
+<h4 id="13-activityresume">1.3 Activity的resume阶段<a class="headerlink" href="#13-activityresume" title="Permanent link">&para;</a></h4>
 <!-- ![alt text](image-3.png) -->
 <p><a href="/proj/display/dispic/image_20250801_1_4.png" target="_blank">
   <img src="/proj/display/dispic/image_20250801_1_4.png" alt="xx" width="700"/>
 </a></p>
-<h4 id="14_vsync">1.4 注册VSync信号<a class="headerlink" href="#14_vsync" title="Permanent link">#</a></h4>
+<h4 id="14-vsync">1.4 注册VSync信号<a class="headerlink" href="#14-vsync" title="Permanent link">&para;</a></h4>
 <!-- ![alt text](image-4.png) -->
 <p><a href="/proj/display/dispic/image_20250801_1_5.png" target="_blank">
   <img src="/proj/display/dispic/image_20250801_1_5.png" alt="xx" width="700"/>
 </a></p>
-<h3 id="2vsync">2、VSync信号驱动画面绘制<a class="headerlink" href="#2vsync" title="Permanent link">#</a></h3>
+<h3 id="2vsync">2、VSync信号驱动画面绘制<a class="headerlink" href="#2vsync" title="Permanent link">&para;</a></h3>
 <p>当系统发出一个VSync信号时，Choreographer的内部类FrameDisplayReceiver的onVsync收到回调，然后通过Choreographer的内部类FrameHandler切换到注册时所在的线程处理doframe(),通过注册的ViewRooImpl的内部类TraversalRunnable回调其中的run方法，再调用ViewRootImpl中的doTraversal(),再调到performTraversals()，这个方法主要第一先调用relayoutWindow()来向WMS申请Surface，然后继续执行ViewRootImpl中的performMeasure()、performLayout()、performDraw()进行绘制，最终执行View的onMessure()、onLayout()、onDraw()方法（这里就是常说的渲染阶段，如果开启硬件加速，那么渲染就会交给GPU去处理）。</p>
 <!-- ![alt text](image-5.png) -->
 <p><a href="/proj/display/dispic/image_20250801_1_6.png" target="_blank">
   <img src="/proj/display/dispic/image_20250801_1_6.png" alt="xx" width="700"/>
 </a></p>
-<h3 id="3surfaceflinger">3、SurfaceFlinger执行合并送显操作<a class="headerlink" href="#3surfaceflinger" title="Permanent link">#</a></h3>
+<h3 id="3surfaceflinger">3、SurfaceFlinger执行合并送显操作<a class="headerlink" href="#3surfaceflinger" title="Permanent link">&para;</a></h3>
 <p>这个部分主要分成两个阶段，第一个阶段当应用APP中有一帧绘制完了之后，SurfaceFlinger如何知道开始进行合成？第二个阶段是当SurfaceFlinger收到合成的指令后，如何执行合成的步骤（合成五部曲）？</p>
 <!-- ![alt text](image-6.png) -->
 <p><a href="/proj/display/dispic/image_20250801_1_7.png" target="_blank">
   <img src="/proj/display/dispic/image_20250801_1_7.png" alt="xx" width="700"/>
 </a></p>
-<h4 id="31_surfaceflingergraphicbuffer">3.1 如何通知SurfaceFlinger有待合成的GraphicBuffer？<a class="headerlink" href="#31_surfaceflingergraphicbuffer" title="Permanent link">#</a></h4>
-<h5 id="311_buffer">3.1.1 Buffer提交与通知<a class="headerlink" href="#311_buffer" title="Permanent link">#</a></h5>
+<h4 id="31-surfaceflingergraphicbuffer">3.1 如何通知SurfaceFlinger有待合成的GraphicBuffer？<a class="headerlink" href="#31-surfaceflingergraphicbuffer" title="Permanent link">&para;</a></h4>
+<h5 id="311-buffer">3.1.1 Buffer提交与通知<a class="headerlink" href="#311-buffer" title="Permanent link">&para;</a></h5>
 <p>queueBuffer:应用绘制完成后，通过IGraphicBufferProducer::queueBuffer将GraphicBuffer放入BufferQueue队列，状态变为QUEUED；<br>
 onFrameAvailable:BufferQueue通过FrameAvailableListener跨进程通知SurfaceFlinger有新帧待合成（Binder调用SurfaceFlinger::onFrameAvailable）</p>
-<h5 id="312">3.1.2 合成准备<a class="headerlink" href="#312" title="Permanent link">#</a></h5>
+<h5 id="312">3.1.2 合成准备<a class="headerlink" href="#312" title="Permanent link">&para;</a></h5>
 <p>handleMessageInvalidate:SF在消息循环中监听INVALIDATE事件，调用latchBuffers()锁定新Buffer<br>
 acquireBuffer:从BufferQueue中获取QUEUED状态的Buffer，标记为ACQUIRED（此时应用不可修改该Buffer）</p>
-<h5 id="313_vsync">3.1.3 VSync同步与触发<a class="headerlink" href="#313_vsync" title="Permanent link">#</a></h5>
+<h5 id="313-vsync">3.1.3 VSync同步与触发<a class="headerlink" href="#313-vsync" title="Permanent link">&para;</a></h5>
 <p>onVSyncReceived:硬件VSync信号通过DisplayEventReceiver触发，调用invalidate()插入刷新消息<br>
 handleMessageRefresh:处理Refresh消息，启动合成管线</p>
-<h4 id="32_5">3.2 执行合成（5部曲）<a class="headerlink" href="#32_5" title="Permanent link">#</a></h4>
+<h4 id="32-5">3.2 执行合成（5部曲）<a class="headerlink" href="#32-5" title="Permanent link">&para;</a></h4>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
@@ -786,7 +802,7 @@ handleMessageRefresh:处理Refresh消息，启动合成管线</p>
 <a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="p">}</span><span class="w">    </span>
 </code></pre></div></td></tr></table></div>
-<h5 id="321_precomposition">3.2.1 图层预处理（preComposition）<a class="headerlink" href="#321_precomposition" title="Permanent link">#</a></h5>
+<h5 id="321-precomposition">3.2.1 图层预处理（preComposition）<a class="headerlink" href="#321-precomposition" title="Permanent link">&para;</a></h5>
 <p>核心任务：标记所有待合成的图层（Layer），通知各图层即将        进入合成阶段。</p>
 <p>关键操作：</p>
 <ul>
@@ -833,7 +849,7 @@ handleMessageRefresh:处理Refresh消息，启动合成管线</p>
 <a id="__codelineno-2-18" name="__codelineno-2-18"></a>
 <a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h5 id="322_rebuildlayerstacks">3.2.2 图层堆栈重建（rebuildLayerStacks）<a class="headerlink" href="#322_rebuildlayerstacks" title="Permanent link">#</a></h5>
+<h5 id="322-rebuildlayerstacks">3.2.2 图层堆栈重建（rebuildLayerStacks）<a class="headerlink" href="#322-rebuildlayerstacks" title="Permanent link">&para;</a></h5>
 <p>核心任务：根据窗口层级（Z-order）和可见区域，重新计算图  层的叠加顺序与裁剪区域。</p>
 <p>关键操作：</p>
 <ul>
@@ -875,7 +891,7 @@ handleMessageRefresh:处理Refresh消息，启动合成管线</p>
 <a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="w">        </span><span class="p">}</span>
 <a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="w">    </span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h5 id="323_setuphwcomposer">3.2.3 硬件合成器准备（setUpHWComposer）<a class="headerlink" href="#323_setuphwcomposer" title="Permanent link">#</a></h5>
+<h5 id="323-setuphwcomposer">3.2.3 硬件合成器准备（setUpHWComposer）<a class="headerlink" href="#323-setuphwcomposer" title="Permanent link">&para;</a></h5>
 <p>核心任务：配置硬件合成器（HWC），决策各图层的合成策略 （硬件/GPU合成）。</p>
 <p>关键操作：</p>
 <ul>
@@ -916,7 +932,7 @@ handleMessageRefresh:处理Refresh消息，启动合成管线</p>
 <a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h5 id="324_docomposition">3.2.4 执行合成（doComposition）<a class="headerlink" href="#324_docomposition" title="Permanent link">#</a></h5>
+<h5 id="324-docomposition">3.2.4 执行合成（doComposition）<a class="headerlink" href="#324-docomposition" title="Permanent link">&para;</a></h5>
 <p>核心任务：按合成策略执行实际合成操作，生成最终帧。</p>
 <p>关键操作：</p>
 <ul>
@@ -970,7 +986,7 @@ GPU合成的结果与HWC处理的图层最终合并为单一帧（Framebuffer）
 <a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h5 id="325_postcomposition">3.2.5 合成后处理（postComposition）<a class="headerlink" href="#325_postcomposition" title="Permanent link">#</a></h5>
+<h5 id="325-postcomposition">3.2.5 合成后处理（postComposition）<a class="headerlink" href="#325-postcomposition" title="Permanent link">&para;</a></h5>
 <p>核心任务：提交帧到显示设备，释放资源并同步状态</p>
 <p>关键操作：</p>
 <ul>
@@ -986,7 +1002,7 @@ GPU合成的结果与HWC处理的图层最终合并为单一帧（Framebuffer）
 <li>VSync同步：</li>
 </ul>
 <p>等待下一个VSync信号提交帧，避免撕裂（Tearing）</p>
-<h4 id="4">4、小结<a class="headerlink" href="#4" title="Permanent link">#</a></h4>
+<h4 id="4">4、小结<a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
 <p>Android 图形子系统涉及较多细节且流程较为复杂。概括来说，其核心流程主要包含以下环节：首先通过 DecorView 创建并容纳布局内容，随后由 ViewRootImpl 统一管理 View 内的事件处理（包括触发的绘制操作）。Window 作为抽象对象，定义了不同图层间的逻辑关系。每个 Window 关联一个 Surface，该 Surface 负责实际绘制画面内容。系统通过 BufferQueue 构建了一个 GraphicBuffer 的生产者-消费者模型，连接 Surface（生产者）与 SurfaceFlinger（消费者）。SurfaceFlinger 则负责协调与管理不同图层的合成工作。最终，合成后的帧图像被输出到显示器进行呈现。</p>
 <div class="admonition note">
 <p class="admonition-title">本文转发链接如下：</p>
@@ -1055,7 +1071,7 @@ GPU合成的结果与HWC处理的图层最终合并为单一帧（Framebuffer）
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

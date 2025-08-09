@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#camera_xts" class="md-skip">
+        <a href="#camera-xts" class="md-skip">
           Skip to content
         </a>
       
@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,9 +648,9 @@
 
 
 
-<h1 id="camera_xts"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Camera XTS调试笔记</span><a class="headerlink" href="#camera_xts" title="Permanent link">#</a></h1>
-<h1 id="camera_cts">一、Camera CTS 调试笔记<a class="headerlink" href="#camera_cts" title="Permanent link">#</a></h1>
-<h2 id="11_cts">1.1 CTS兼容包下载<a class="headerlink" href="#11_cts" title="Permanent link">#</a></h2>
+<h1 id="camera-xts"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Camera XTS调试笔记</span><a class="headerlink" href="#camera-xts" title="Permanent link">&para;</a></h1>
+<h1 id="camera-cts">一、Camera CTS 调试笔记<a class="headerlink" href="#camera-cts" title="Permanent link">&para;</a></h1>
+<h2 id="11-cts">1.1 CTS兼容包下载<a class="headerlink" href="#11-cts" title="Permanent link">&para;</a></h2>
 <p>下载对应版本最新的CTS 兼容性测试包，<br>
 注意：<br>
 网页切换成英文下载的工具会比中文的新，比如： 现在英文网页有15 R4 ，中文网页只有15 R3<br></p>
@@ -642,7 +658,7 @@
 https://source.android.google.cn/docs/compatibility/cts/downloads</p>
 <p>CTS Google 官网<br>
 https://source.android.google.cn/docs/compatibility/cts?hl=zh-cn</p>
-<h2 id="12_cts_cts">1.2 进入CTS 兼容性工具包 ，开启CTS测试<a class="headerlink" href="#12_cts_cts" title="Permanent link">#</a></h2>
+<h2 id="12-cts-cts">1.2 进入CTS 兼容性工具包 ，开启CTS测试<a class="headerlink" href="#12-cts-cts" title="Permanent link">&para;</a></h2>
 <ol>
 <li>下载后，打开终端，进入 cts 包 tools目录下<br></li>
 <li>执行./cts-tradefed 进入cts测试<br></li>
@@ -660,18 +676,18 @@ https://source.android.google.cn/docs/compatibility/cts?hl=zh-cn</p>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>cts-console<span class="w"> </span>&gt;<span class="w"> </span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>cts-console<span class="w"> </span>&gt;<span class="w"> </span>
 </code></pre></div>
-<h2 id="13_cts">1.3 常用CTS测试命令<a class="headerlink" href="#13_cts" title="Permanent link">#</a></h2>
-<h3 id="131_adb_devices_id">1.3.1. adb devices 获取当前挂测设备ID<a class="headerlink" href="#131_adb_devices_id" title="Permanent link">#</a></h3>
+<h2 id="13-cts">1.3 常用CTS测试命令<a class="headerlink" href="#13-cts" title="Permanent link">&para;</a></h2>
+<h3 id="131-adb-devices-id">1.3.1. adb devices 获取当前挂测设备ID<a class="headerlink" href="#131-adb-devices-id" title="Permanent link">&para;</a></h3>
 <p>首先通过 adb devices 获取当前挂测设备ID，方便后续添加 -s 挂测多台机器</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>C:<span class="se">\U</span>sers<span class="se">\&gt;</span>adb<span class="w"> </span>devices
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>List<span class="w"> </span>of<span class="w"> </span>devices<span class="w"> </span>attached
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>33b9232239991<span class="w"> </span>device
 </code></pre></div>
-<h3 id="132_cts">1.3.2. 执行整测 CTS 方法<a class="headerlink" href="#132_cts" title="Permanent link">#</a></h3>
+<h3 id="132-cts">1.3.2. 执行整测 CTS 方法<a class="headerlink" href="#132-cts" title="Permanent link">&para;</a></h3>
 <p>全跑整机所有模块（Camera、Audio、USB、指纹等）CTS 测试命令如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="w"> </span>run<span class="w"> </span>cts<span class="w"> </span>--plan<span class="w"> </span>CTS<span class="w">   </span>-s<span class="w">   </span><span class="s2">&quot;devices id”</span>
 </code></pre></div>
-<h3 id="133">1.3.3. 单独跑某个模块<a class="headerlink" href="#133" title="Permanent link">#</a></h3>
+<h3 id="133">1.3.3. 单独跑某个模块<a class="headerlink" href="#133" title="Permanent link">&para;</a></h3>
 <p>单独跑某个模块<br>
 通用命令语法：<br></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>run<span class="w"> </span>cts<span class="w"> </span>-m<span class="w"> </span>module
@@ -680,7 +696,7 @@ https://source.android.google.cn/docs/compatibility/cts?hl=zh-cn</p>
 <p><a href="/proj/cam/campic/campic_20250616-1-a.png" target="_blank">
   <img src="/proj/cam/campic/campic_20250616-1-a.png" alt="xx" width="500"/>
 </a></p>
-<h3 id="134_fail">1.3.4. 单独跑某个测试fail单项<a class="headerlink" href="#134_fail" title="Permanent link">#</a></h3>
+<h3 id="134-fail">1.3.4. 单独跑某个测试fail单项<a class="headerlink" href="#134-fail" title="Permanent link">&para;</a></h3>
 <p>单跑某个单独的测试fail 项<br>
 通用命令语法：<br>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>run<span class="w"> </span>cts<span class="w"> </span>-m<span class="w"> </span>module<span class="w"> </span>-t<span class="w"> </span>测试fail项
@@ -688,7 +704,7 @@ https://source.android.google.cn/docs/compatibility/cts?hl=zh-cn</p>
 <p>比如 Camera CTS android.hardware.camera2.cts.ReprocessCaptureTest#testMixedBurstReprocessing[1] 单项命令：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>run<span class="w"> </span>cts<span class="w"> </span>-m<span class="w">  </span>CtsCameraTestCases<span class="w">  </span>-t<span class="w">  </span>android.hardware.camera2.cts.ReprocessCaptureTest#testMixedBurstReprocessing<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span>
 </code></pre></div>
-<h3 id="135">1.3.5. 单独跑某个类下面的测试项<a class="headerlink" href="#135" title="Permanent link">#</a></h3>
+<h3 id="135">1.3.5. 单独跑某个类下面的测试项<a class="headerlink" href="#135" title="Permanent link">&para;</a></h3>
 <p>单跑某个module下的一个类，这个类会包含其他测试项。<br>
 通用命令语法：
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>run<span class="w"> </span>cts<span class="w"> </span>-m<span class="w"> </span>module<span class="w"> </span>-t<span class="w"> </span>classname
@@ -696,7 +712,7 @@ https://source.android.google.cn/docs/compatibility/cts?hl=zh-cn</p>
 <p>比如我们要跑Camera 的ReprocessCaptureTest 这个类下的所有测试项</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>run<span class="w"> </span>cts<span class="w"> </span>-m<span class="w">  </span>CtsCameraTestCases<span class="w">  </span>-t<span class="w">  </span>android.hardware.camera2.cts.ReprocessCaptureTest
 </code></pre></div>
-<h3 id="136cts_test_apk_cts">1.3.6.通过CTS test apk 测试CTS 测试项<a class="headerlink" href="#136cts_test_apk_cts" title="Permanent link">#</a></h3>
+<h3 id="136cts-test-apk-cts">1.3.6.通过CTS test apk 测试CTS 测试项<a class="headerlink" href="#136cts-test-apk-cts" title="Permanent link">&para;</a></h3>
 <p>有时候我们没有CTS测试环境，那么自己本地调试将是一个不错的手段，以Camera 测试方法举例如下：</p>
 <ol>
 <li>安装 CtsCameraTestCases.apk apk 并授予camera 权限<br>
@@ -716,19 +732,19 @@ https://source.android.google.cn/docs/compatibility/cts?hl=zh-cn</p>
 <p>比如： Camera android.hardware.camera2.cts.ReprocessCaptureTest#testMixedBurstReprocessing[1] 测试项举例：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>adb<span class="w"> </span>shell<span class="w"> </span>am<span class="w"> </span>instrument<span class="w"> </span>-w<span class="w"> </span>-r<span class="w"> </span>-e<span class="w"> </span>newRunListenerMode<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-e<span class="w"> </span>class<span class="w">    </span>android.hardware.camera2.cts.ReprocessCaptureTest#testMixedBurstReprocessing<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w">    </span>android.camera.cts/androidx.test.runner.AndroidJUnitRunner
 </code></pre></div>
-<h3 id="137">1.3.7. 查看已经跑过的记录<a class="headerlink" href="#137" title="Permanent link">#</a></h3>
+<h3 id="137">1.3.7. 查看已经跑过的记录<a class="headerlink" href="#137" title="Permanent link">&para;</a></h3>
 <p>通用命令语法：
 l r
 l r 罗列出之前跑过的记录，包括 Session ID ，pass 项，Fail 项，测试设备ID 等，方便后续retry复测。</p>
-<h3 id="138_fail">1.3.8. 复测之前跑过的fail 项<a class="headerlink" href="#138_fail" title="Permanent link">#</a></h3>
+<h3 id="138-fail">1.3.8. 复测之前跑过的fail 项<a class="headerlink" href="#138-fail" title="Permanent link">&para;</a></h3>
 <p>有时候 CTS经常会因为某些原因导致测试timeout，测试未完成，此时我们又不想重新跑之前测试pass的想，这个时候我们就可以使用retry命令来进行续跑之前的fail项。</p>
 <p>通用命令语法：</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>run<span class="w"> </span>retry<span class="w"> </span>--retry<span class="w"> </span>Session<span class="w"> </span>id
 </code></pre></div>
 其中 Session id 通过 l r命令可以查看</p>
-<h1 id="camera_gsi">二、Camera GSI 调试笔记<a class="headerlink" href="#camera_gsi" title="Permanent link">#</a></h1>
+<h1 id="camera-gsi">二、Camera GSI 调试笔记<a class="headerlink" href="#camera-gsi" title="Permanent link">&para;</a></h1>
 <p>GSI 根据刷不同的Google 镜像有不同的测试项，并且测试命令也不一样</p>
-<h2 id="21_gki-gsi">2.1 GKI-GSI<a class="headerlink" href="#21_gki-gsi" title="Permanent link">#</a></h2>
+<h2 id="21-gki-gsi">2.1 GKI-GSI<a class="headerlink" href="#21-gki-gsi" title="Permanent link">&para;</a></h2>
 <p>GKI-GSI 刷机后刷镜像： Google system.img</p>
 <p>刷Google 镜像方法如下：
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="w">    </span>adb<span class="w"> </span>reboot<span class="w"> </span>bootloader
@@ -740,7 +756,7 @@ l r 罗列出之前跑过的记录，包括 Session ID ，pass 项，Fail 项，
 <a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span>fastboot<span class="w"> </span>-w
 <a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span>fastboot<span class="w"> </span>reboot
 </code></pre></div></p>
-<h2 id="22_gki-gsi">2.2 GKI-GSI 测试指令<a class="headerlink" href="#22_gki-gsi" title="Permanent link">#</a></h2>
+<h2 id="22-gki-gsi">2.2 GKI-GSI 测试指令<a class="headerlink" href="#22-gki-gsi" title="Permanent link">&para;</a></h2>
 <p>GKI-GSI 测试指令跟CTS 类似，也是通过 -m -t 实现的</p>
 <p>camera 模块整测命令
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>run<span class="w"> </span>cts-on-gsi<span class="w"> </span>-m<span class="w"> </span>CtsCameraTestCases<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;deviceid&quot;</span>
@@ -751,7 +767,7 @@ l r 罗列出之前跑过的记录，包括 Session ID ，pass 项，Fail 项，
 <p>比如testMixedBurstReprocessing fail 测试命令如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>run<span class="w"> </span>cts-on-gsi<span class="w"> </span>-m<span class="w"> </span>CtsCameraTestCases<span class="w"> </span>-t<span class="w"> </span>android.hardware.camera2.cts.ReprocessCaptureTest#testMixedBurstReprocessing<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w">      </span>-s<span class="w"> </span><span class="s2">&quot;deviceid&quot;</span>
 </code></pre></div>
-<h2 id="23_oki-gsi">2.3 OKI-GSI<a class="headerlink" href="#23_oki-gsi" title="Permanent link">#</a></h2>
+<h2 id="23-oki-gsi">2.3 OKI-GSI<a class="headerlink" href="#23-oki-gsi" title="Permanent link">&para;</a></h2>
 <p>刷Google bootimage 镜像
 OKI-GSI 刷机后刷镜像： Google boot.img</p>
 <p>刷Googe 镜像 boot.img 方法如下：
@@ -773,8 +789,8 @@ camera 模块全测命令
 <a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>
 <a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>run<span class="w"> </span>cts-validation<span class="w"> </span>-m<span class="w"> </span>CtsCameraTestCases<span class="w"> </span>-t<span class="w"> </span>android.hardware.camera2.cts.ReprocessCaptureTest#testMixedBurstReprocessing<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w">      </span>-s<span class="w"> </span><span class="s2">&quot;deviceid&quot;</span>
 </code></pre></div></p>
-<h1 id="camera_vts">三、Camera VTS 调试笔记<a class="headerlink" href="#camera_vts" title="Permanent link">#</a></h1>
-<h2 id="31_gki-vts">3.1 GKI-VTS<a class="headerlink" href="#31_gki-vts" title="Permanent link">#</a></h2>
+<h1 id="camera-vts">三、Camera VTS 调试笔记<a class="headerlink" href="#camera-vts" title="Permanent link">&para;</a></h1>
+<h2 id="31-gki-vts">3.1 GKI-VTS<a class="headerlink" href="#31-gki-vts" title="Permanent link">&para;</a></h2>
 <p>刷Google System +vendor_boot 镜像</p>
 <p>刷机后刷镜像 system.img vendor_boot-debug.img</p>
 <p>镜像刷机命令如下：
@@ -797,7 +813,7 @@ camera 模块全测命令
 <p>单模块 测试命令
 <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>run<span class="w"> </span>vts<span class="w"> </span>-s<span class="w"> </span>手机序列号<span class="w"> </span>-m<span class="w"> </span>VtsHalCameraProviderV2_4TargetTest<span class="w"> </span>-t<span class="w"> </span>fail模块
 </code></pre></div></p>
-<h2 id="32_oki-vts">3.2 OKI-VTS<a class="headerlink" href="#32_oki-vts" title="Permanent link">#</a></h2>
+<h2 id="32-oki-vts">3.2 OKI-VTS<a class="headerlink" href="#32-oki-vts" title="Permanent link">&para;</a></h2>
 <p>刷Google boot+vendor boot</p>
 <p>刷机后刷Google 镜像 boot-5.10.img vendor_boot-debug.img
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="w">    </span>adb<span class="w"> </span>reboot<span class="w"> </span>bootloader
@@ -819,14 +835,14 @@ camera 模块全测命令
 <p>单模块 测试命令
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>run<span class="w"> </span>run<span class="w"> </span>vts-validation<span class="w"> </span>-m<span class="w"> </span>VtsHalCameraProviderV2_4TargetTest<span class="w"> </span>-t<span class="w"> </span>fail模块<span class="w"> </span>-s<span class="w"> </span>手机序列号
 </code></pre></div></p>
-<h1 id="camera_gts">四、Camera GTS 调试笔记<a class="headerlink" href="#camera_gts" title="Permanent link">#</a></h1>
-<h2 id="41_camera_gts">4.1 camera GTS模块:<a class="headerlink" href="#41_camera_gts" title="Permanent link">#</a></h2>
+<h1 id="camera-gts">四、Camera GTS 调试笔记<a class="headerlink" href="#camera-gts" title="Permanent link">&para;</a></h1>
+<h2 id="41-camera-gts">4.1 camera GTS模块:<a class="headerlink" href="#41-camera-gts" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="w"> </span>run<span class="w"> </span>gts<span class="w"> </span>-m<span class="w">  </span>GtsCameraTestCases<span class="w">    </span>-s<span class="w"> </span>手机序列号
 </code></pre></div>
-<h2 id="42camera_gts_fail">4.2camera GTS 单项 fail 测试命令:<a class="headerlink" href="#42camera_gts_fail" title="Permanent link">#</a></h2>
+<h2 id="42camera-gts-fail">4.2camera GTS 单项 fail 测试命令:<a class="headerlink" href="#42camera-gts-fail" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="w"> </span>run<span class="w"> </span>gts<span class="w"> </span>-m<span class="w">  </span>GtsCameraTestCases<span class="w">  </span>-t<span class="w"> </span>fail模块<span class="w">  </span>-s<span class="w"> </span>手机序列号
 </code></pre></div>
-<h2 id="43_gts_test_apk_gts">4.3 通过GTS test apk 测试GTS 测试项<a class="headerlink" href="#43_gts_test_apk_gts" title="Permanent link">#</a></h2>
+<h2 id="43-gts-test-apk-gts">4.3 通过GTS test apk 测试GTS 测试项<a class="headerlink" href="#43-gts-test-apk-gts" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>adb<span class="w"> </span>shell<span class="w"> </span>am<span class="w"> </span>instrument<span class="w"> </span>-w<span class="w"> </span>-r<span class="w"> </span>-e<span class="w"> </span>newRunListenerMode<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-e<span class="w"> </span>class<span class="w"> </span>GTS测试fail项<span class="w"> </span>com.google.android.camera.gts/androidx.test.runner.AndroidJUnitRunner
 </code></pre></div>
 <p>测试方法举例：</p>
@@ -835,19 +851,19 @@ camera 模块全测命令
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
 <a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>adb<span class="w"> </span>shell<span class="w"> </span>am<span class="w"> </span>instrument<span class="w"> </span>-w<span class="w"> </span>-r<span class="w"> </span>-e<span class="w"> </span>newRunListenerMode<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-e<span class="w"> </span>class<span class="w"> </span>com.google.android.camera.gts.GainmapTest#testEmojiRespectsColorSpace<span class="w"> </span>com.google.android.camera.gts/androidx.test.runner.AndroidJUnitRunner
 </code></pre></div></p>
-<h1 id="cts_verifier">五、CTS Verifier<a class="headerlink" href="#cts_verifier" title="Permanent link">#</a></h1>
+<h1 id="cts-verifier">五、CTS Verifier<a class="headerlink" href="#cts-verifier" title="Permanent link">&para;</a></h1>
 <p>CTS Verifier 是手动测试，需要安装CtsVerifier.apk测试apk，然后参考文档进行人工测试。</p>
-<h2 id="51_ctsverifierapk">5.1 CtsVerifier.apk 安装授权命令如下：<a class="headerlink" href="#51_ctsverifierapk" title="Permanent link">#</a></h2>
+<h2 id="51-ctsverifierapk">5.1 CtsVerifier.apk 安装授权命令如下：<a class="headerlink" href="#51-ctsverifierapk" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>adb<span class="w"> </span>install<span class="w"> </span>-g<span class="w">  </span>CtsVerifier.apk
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>adb<span class="w"> </span>shell<span class="w"> </span>settings<span class="w"> </span>put<span class="w"> </span>global<span class="w"> </span>hidden_api_policy<span class="w"> </span><span class="m">1</span>
 <a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>adb<span class="w"> </span>shell<span class="w"> </span>appops<span class="w"> </span><span class="nb">set</span><span class="w"> </span>com.android.cts.verifier<span class="w"> </span>android:read_device_identifiers<span class="w"> </span>allow
 <a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>adb<span class="w"> </span>shell<span class="w"> </span>appops<span class="w"> </span><span class="nb">set</span><span class="w"> </span>com.android.cts.verifier<span class="w"> </span>MANAGE_EXTERNAL_STORAGE<span class="w"> </span><span class="m">0</span>
 </code></pre></div>
-<h1 id="its">六、ITS 调试笔记<a class="headerlink" href="#its" title="Permanent link">#</a></h1>
-<h2 id="61_google_its">6.1 Google 官方ITS测试 参考文档<a class="headerlink" href="#61_google_its" title="Permanent link">#</a></h2>
+<h1 id="its">六、ITS 调试笔记<a class="headerlink" href="#its" title="Permanent link">&para;</a></h1>
+<h2 id="61-google-its">6.1 Google 官方ITS测试 参考文档<a class="headerlink" href="#61-google-its" title="Permanent link">&para;</a></h2>
 <p>https://source.android.google.cn/docs/compatibility/cts/camera-its-tests</p>
-<h2 id="62">6.2 测试方法<a class="headerlink" href="#62" title="Permanent link">#</a></h2>
-<h3 id="621">6.2.1. 配置灯箱，测试机器，平板等等<a class="headerlink" href="#621" title="Permanent link">#</a></h3>
+<h2 id="62">6.2 测试方法<a class="headerlink" href="#62" title="Permanent link">&para;</a></h2>
+<h3 id="621">6.2.1. 配置灯箱，测试机器，平板等等<a class="headerlink" href="#621" title="Permanent link">&para;</a></h3>
 <p>修改 config.yml 文件，将测试机，以及平板的device id 替换，将测试图片push 到平板中，开启灯箱进行测试。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>TestBeds:
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>  - Name: TEST_BED_TABLET_SCENES
@@ -869,7 +885,7 @@ camera 模块全测命令
 <a id="__codelineno-30-18" name="__codelineno-30-18" href="#__codelineno-30-18"></a>      foldable_device: &quot;False&quot;. # set &quot;True&quot; if testing foldable
 <a id="__codelineno-30-19" name="__codelineno-30-19" href="#__codelineno-30-19"></a>      scene: &lt;scene-name&gt;  # if &lt;scene-name&gt; runs all scenes
 </code></pre></div>
-<h1 id="sensor_fusion">SENSOR_FUSION 配置<a class="headerlink" href="#sensor_fusion" title="Permanent link">#</a></h1>
+<h1 id="sensor_fusion">SENSOR_FUSION 配置<a class="headerlink" href="#sensor_fusion" title="Permanent link">&para;</a></h1>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>Testbeds
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>  - Name: TEST_BED_SENSOR_FUSION
 <a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>    # Test configuration for sensor_fusion/test_sensor_fusion.py
@@ -888,14 +904,14 @@ camera 模块全测命令
 <a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a>      rotator_ch: 1
 <a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a>      camera: 0
 </code></pre></div>
-<h3 id="622_source_source_buildenvsetupsh">6.2.2. source 环境，执行source build/envsetup.sh<a class="headerlink" href="#622_source_source_buildenvsetupsh" title="Permanent link">#</a></h3>
+<h3 id="622-source-source-buildenvsetupsh">6.2.2. source 环境，执行source build/envsetup.sh<a class="headerlink" href="#622-source-source-buildenvsetupsh" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nb">source</span><span class="w"> </span>build/envsetup.sh
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w"> </span>:~/XTS/ITS/14/R3/test/android-cts-verifier-14_r3-linux_x86-arm/android-cts-verifier/CameraITS$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>build/envsetup.sh<span class="w"> </span>
 <a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="nv">CAMERA_ITS_TOP</span><span class="o">=</span>/XTS/ITS/14/R3/test/android-cts-verifier-14_r3-linux_x86-arm/android-cts-verifier/CameraITS
 <a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>*****Please<span class="w"> </span>execute<span class="w"> </span>below<span class="w"> </span>adb<span class="w"> </span><span class="nb">command</span><span class="w"> </span>on<span class="w"> </span>your<span class="w"> </span>dut<span class="w"> </span>before<span class="w"> </span>running<span class="w"> </span>the<span class="w"> </span>tests*****
 <a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>adb<span class="w"> </span>-s<span class="w"> </span>&lt;device_id&gt;<span class="w"> </span>shell<span class="w"> </span>am<span class="w"> </span>compat<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ALLOW_TEST_API_ACCESS<span class="w"> </span>com.android.cts.verifier
 </code></pre></div>
-<h3 id="623_cts_verifier_apk">6.2.3. 安装CTS verifier apk<a class="headerlink" href="#623_cts_verifier_apk" title="Permanent link">#</a></h3>
+<h3 id="623-cts-verifier-apk">6.2.3. 安装CTS verifier apk<a class="headerlink" href="#623-cts-verifier-apk" title="Permanent link">&para;</a></h3>
 <p>安装apk 并按提示执行</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="w"> </span>adb<span class="w"> </span>-s<span class="w"> </span>&lt;device_id&gt;<span class="w"> </span>shell<span class="w"> </span>am<span class="w"> </span>compat<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ALLOW_TEST_API_ACCESS<span class="w"> </span>com.android.cts.verifier
 <a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
@@ -903,7 +919,7 @@ camera 模块全测命令
 <a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w"> </span>:~/XTS/ITS/14/R3/test/android-cts-verifier-14_r3-linux_x86-arm/android-cts-verifier/CameraITS$<span class="w"> </span>adb<span class="w"> </span>-s<span class="w"> </span>33e86118B3240<span class="w"> </span>shell<span class="w"> </span>am<span class="w"> </span>compat<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>ALLOW_TEST_API_ACCESS<span class="w"> </span>com.android.cts.verifier
 <a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>Enabled<span class="w"> </span>change<span class="w"> </span><span class="m">166236554</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>com.android.cts.verifier.
 </code></pre></div>
-<h3 id="624_its">6.2.4. ITS 相机主要测试场景<a class="headerlink" href="#624_its" title="Permanent link">#</a></h3>
+<h3 id="624-its">6.2.4. ITS 相机主要测试场景<a class="headerlink" href="#624-its" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>scene0：拍摄元数据、抖动、陀螺仪、振动
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>scene0 测试不需要具体的场景信息。但是，执行陀螺仪和振动测试时，手机必须静止不动。
 <a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
@@ -916,7 +932,7 @@ camera 模块全测命令
 <a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>scene_extensions：相机扩展
 <a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a>sensor_fusion：相机/陀螺仪时间偏差
 </code></pre></div>
-<h3 id="625">6.2.5. 单场景测试命令<a class="headerlink" href="#625" title="Permanent link">#</a></h3>
+<h3 id="625">6.2.5. 单场景测试命令<a class="headerlink" href="#625" title="Permanent link">&para;</a></h3>
 <p>后摄像头单个场景测试
 比如需要测试后摄 场景0 ，可以执行下面命令</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>python<span class="w"> </span>tools/run_all_tests.py<span class="w"> </span><span class="nv">camera</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="nv">scenes</span><span class="o">=</span><span class="m">0</span>
@@ -930,7 +946,7 @@ camera 模块全测命令
 <a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>INFO:root:PASS<span class="w">  </span>scene0/test_burst_capture.py
 <a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a>...<span class="w"> </span>...
 </code></pre></div>
-<h3 id="626">6.2.6. 多场景测试命令<a class="headerlink" href="#626" title="Permanent link">#</a></h3>
+<h3 id="626">6.2.6. 多场景测试命令<a class="headerlink" href="#626" title="Permanent link">&para;</a></h3>
 <p>后摄像头多场景测试：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>python<span class="w"> </span>tools/run_all_tests.py<span class="w"> </span><span class="nv">camera</span><span class="o">=</span><span class="m">0</span><span class="w"> </span><span class="nv">scenes</span><span class="o">=</span><span class="m">0</span>,1,2,3,4,6
 <a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>
@@ -1010,7 +1026,7 @@ camera 模块全测命令
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

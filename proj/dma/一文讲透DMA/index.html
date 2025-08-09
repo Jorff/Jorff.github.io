@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,14 +648,14 @@
 
 
 
-<h1 id="dma"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">一文讲透DMA</span><a class="headerlink" href="#dma" title="Permanent link">#</a></h1>
+<h1 id="dma"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">一文讲透DMA</span><a class="headerlink" href="#dma" title="Permanent link">&para;</a></h1>
 <p>嵌入式开发中，DMA是个绕不开的话题。今天我们不讲枯燥的配置步骤，毕竟每个处理器、每个外设的DMA实现都不尽相同。我们目标是带大家搞懂DMA的本质、它为什么能让系统更快。</p>
-<h1 id="_1">数据搬运工的烦恼<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="_1">数据搬运工的烦恼<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>想象一下，你在开发一个数据采集系统，比如一个工业监控设备。核心任务是从ADC采集数据，通过SPI存到SD卡，同时通过USB传到上位机，UART还得处理一些命令交互。这种场景在工业控制、物联网设备非常常见。</p>
 <p>在这个系统中，CPU就像个大忙人。每次ADC采集完数据，就会触发中断，CPU得赶紧跑去把数据从ADC的寄存器搬到内存，再从内存搬到SPI接口，存到SD卡，或者通过USB发出去。整个过程，CPU就像个勤勤恳恳的搬运工，每字节数据都要亲手摸一遍。</p>
 <p>问题来了：CPU可是个高智商选手，干这种机械的搬运活儿，简直是大材小用，更别说搬运数据占用了大量CPU时间，留给真正有价值的工作，比如数据分析、算法处理的时间就少了。更烦的是，如果数据量大、传输频繁，CPU可能会忙到连喝口水的时间都没有，系统性能直接拉胯。</p>
 <p>这时候，DMA就登场了。它就像雇了个专职物流小哥，把搬运数据的活儿全包了，让CPU能专心干大事，比如跑算法、优化逻辑。</p>
-<h1 id="dma_1">DMA是什么，怎么理解<a class="headerlink" href="#dma_1" title="Permanent link">#</a></h1>
+<h1 id="dma_1">DMA是什么，怎么理解<a class="headerlink" href="#dma_1" title="Permanent link">&para;</a></h1>
 <p>要理解DMA，我们先抛开技术术语，用个贴近生活的比喻：假设你每天得去干洗店取衣服，拿回家挂进衣柜。活儿不复杂，但每周跑几次，时间久了就烦。你巴不得找个帮手，把这事外包出去。</p>
 <p>有一天，你老板看你忙得焦头烂额，给你配了个智能快递小哥。这个小哥很专精，只能干特定的事儿，比如取干洗衣服。你得先给他详细交代：</p>
 <p>干洗店的地址是什么；<br>
@@ -649,7 +665,7 @@
 取衣服出错如何处理，比如店没开门。<br></p>
 <p>这些信息有些是一次性交代的，比如干洗店地址、衣柜满了的预案；有些是每次取衣服时得更新，比如这次要取几件衣服，什么时候去取。交代完，小哥就自动去干活，干完还发个微信告诉你：衣服到手了，主人可以穿新衣服了！</p>
 <p>这个智能快递小哥，就是DMA的化身。DMA全称是直接内存访问，顾名思义，它让外设和内存之间直接传输数据，不用每次都麻烦处理器。处理器只负责给DMA下命令，比如告诉它数据从哪儿搬到哪儿、搬多少、搬完咋通知。DMA接手后，处理器就可以去干别的了，等DMA干完活儿再通过中断通知处理器：数据搞定，过来验收！</p>
-<h1 id="dma_2">DMA的魅力<a class="headerlink" href="#dma_2" title="Permanent link">#</a></h1>
+<h1 id="dma_2">DMA的魅力<a class="headerlink" href="#dma_2" title="Permanent link">&para;</a></h1>
 <p>回到我们的工业监控系统。正常情况下，ADC采集到数据，处理器得亲自从ADC寄存器读数据，存到内存，再从内存搬到SPI或者USB接口。这过程就像你亲自跑干洗店，费时费力。如果用了DMA，处理器只需要配置一次DMA控制器，比如告诉它：</p>
 <p>从ADC的SPI接口读数据；<br>
 存到内存的某个地址；<br>
@@ -661,11 +677,11 @@
 提升效率：DMA传输数据不依赖处理器，速度更快，尤其在高频、大数据量场景下，效果立竿见影。<br>
 降低延迟：外设不用等处理器有空，直接通过DMA和内存交互，数据传输更及时。<br></p>
 <p>举个例子，假设你在搞一个基于STM32的温湿度监控系统，ADC采样率10kHz，每次采样16位数据。如果全靠CPU搬运，CPU得频繁响应中断，忙得不可开交。用了DMA，处理器只需要配置好DMA通道，数据自动从ADC流到内存，搬完后DMA触发一次中断，通知处理器处理这批数据。CPU轻松了不少，系统实时性也更强。</p>
-<h1 id="dma_3">DMA的代价<a class="headerlink" href="#dma_3" title="Permanent link">#</a></h1>
+<h1 id="dma_3">DMA的代价<a class="headerlink" href="#dma_3" title="Permanent link">&para;</a></h1>
 <p>当然，DMA也不是万能灵药。配置DMA就像给快递小哥交代任务，得事无巨细。比如在STM32上，你需要设置DMA通道、源地址、目标地址、传输方向、数据宽度、触发条件等等。稍微配错一点，数据可能搬到不知名的地方，或者压根没搬，数据都不知道去哪了。</p>
 <p>而且，不同处理器的DMA实现差异很大。比如STM32的DMA控制器功能强大，支持多种触发模式和外设；但有些低端MCU可能只支持简单内存到内存的DMA，甚至压根没有DMA功能。所以，配置DMA前，得老老实实啃芯片手册，搞清楚具体实现细节。</p>
 <p>还有一点，DMA虽然能解放处理器，但它占用系统总线资源。如果DMA和处理器同时访问内存，可能会引发总线竞争，影响性能。所以，实际开发中得合理规划DMA优先级和总线使用，避免搬了芝麻丢了西瓜。</p>
-<h1 id="spidma">实际案例：SPI+DMA的典型应用<a class="headerlink" href="#spidma" title="Permanent link">#</a></h1>
+<h1 id="spidma">实际案例：SPI+DMA的典型应用<a class="headerlink" href="#spidma" title="Permanent link">&para;</a></h1>
 <p>我们以一个常见的场景为例：用SPI从ADC采集数据，存到内存。假设用的是STM32F4系列，开发环境是Keil+HAL库。</p>
 <p>正常流程是这样的：ADC采样完触发中断，处理器从SPI数据寄存器读数据，存到内存，再通过SPI发给SD卡。整个过程，处理器得全程盯着，稍有延迟就可能丢数据。</p>
 <p>用DMA优化后，流程变成这样：</p>
@@ -796,7 +812,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

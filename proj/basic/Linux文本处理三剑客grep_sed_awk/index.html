@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,7 +648,7 @@
 
 
 
-<h1 id="linuxgrepsedawk"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Linux文本处理三剑客（grep/sed/awk）</span><a class="headerlink" href="#linuxgrepsedawk" title="Permanent link">#</a></h1>
+<h1 id="linuxgrepsedawk"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Linux文本处理三剑客（grep/sed/awk）</span><a class="headerlink" href="#linuxgrepsedawk" title="Permanent link">&para;</a></h1>
 <p>从本节开始，和接下来两节，来分别介绍Linux文本处理三剑客工具的使用实例，总体来说，它们的功能和适用场景如下表：</p>
 <table>
 <thead>
@@ -660,9 +676,9 @@
 </tr>
 </tbody>
 </table>
-<h1 id="--grep">文本搜索之王--grep命令的使用实例<a class="headerlink" href="#--grep" title="Permanent link">#</a></h1>
+<h1 id="-grep">文本搜索之王--grep命令的使用实例<a class="headerlink" href="#-grep" title="Permanent link">&para;</a></h1>
 <p>grep（Global Regular Expression Print）用于在文件中搜索匹配特定模式的行，支持正则表达式，是快速定位信息的利器。</p>
-<h2 id="grep">grep命令语法速查表<a class="headerlink" href="#grep" title="Permanent link">#</a></h2>
+<h2 id="grep">grep命令语法速查表<a class="headerlink" href="#grep" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -717,7 +733,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="1">1.搜索匹配字符串<a class="headerlink" href="#1" title="Permanent link">#</a></h2>
+<h2 id="1">1.搜索匹配字符串<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <p>grep命令最基础的用法是在文件中查找特定字符串，新建一个名为customers.txt的文本文件，内容如下（后续示例演示）：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>~<span class="o">]</span><span class="c1"># cat customers.txt</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ID<span class="w">  </span>Name<span class="w">            </span>Email<span class="w">           </span>Phone
@@ -738,7 +754,7 @@
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="m">79</span><span class="w">  </span>Snei<span class="w"> </span>Ali<span class="w">        </span>fei@haopython.com<span class="w">         </span>+8613161582168
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">[</span>root@localhost<span class="w"> </span>~<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="2">2.仅搜索不匹配的字符串<a class="headerlink" href="#2" title="Permanent link">#</a></h2>
+<h2 id="2">2.仅搜索不匹配的字符串<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
 <p>grep命令的-v选项用于从文件中搜索不匹配的字符串。在本例中，使用带有-v选项的grep命令从在第一个示例中创建的“customers.txt”文件中搜索不匹配的字符串。</p>
 <p>下面搜索“customers.txt”文件中不包含字符串“Shadow”的那些行，并打印出来：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>~<span class="o">]</span><span class="c1"># grep -v Shadow customers.txt </span>
@@ -749,14 +765,14 @@
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="m">79</span><span class="w">  </span>Snei<span class="w"> </span>Ali<span class="w">        </span>fei@haopython.com<span class="w">         </span>+8613161582168
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="o">[</span>root@localhost<span class="w"> </span>~<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="3">3.不区分大小写的字符串搜索<a class="headerlink" href="#3" title="Permanent link">#</a></h2>
+<h2 id="3">3.不区分大小写的字符串搜索<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>grep命令默认以区分大小写的方式从文件中搜索字符串。使用grep命令的-i选项可以以不区分大小写的方式从文件中搜索字符串。</p>
 <p>以下带有-i选项的grep命令将搜索“customers.txt”文件中包含字符串“nodles”的那些行。如果文件中存在一行或多行包含该字符串（其中字母可以是大写或小写），那么该行将被打印出来：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>~<span class="o">]</span><span class="c1"># grep -i nodles customers.txt </span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="m">23</span><span class="w">  </span>Nodles<span class="w">          </span>nodles@haopython.com<span class="w">      </span>+8613161582168
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="o">[</span>root@localhost<span class="w"> </span>~<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="4">4.仅搜索整个单词<a class="headerlink" href="#4" title="Permanent link">#</a></h2>
+<h2 id="4">4.仅搜索整个单词<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>grep命令的-w选项用于以区分大小写的方式从文件中搜索整个单词。在本例中，带有-w选项的grep命令被用于从在第一个示例中创建的“customers.txt”文件中搜索整个单词。</p>
 <p>以下grep命令将搜索文本文件中包含字符串“Sn”的那些行。如果文件的任何一行包含字符串“Sn”，那么该行将被打印出来：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>~<span class="o">]</span><span class="c1"># grep Sn customers.txt </span>
@@ -767,7 +783,7 @@
 <a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="m">79</span><span class="w">  </span>Snei<span class="w"> </span>Ali<span class="w">        </span>fei@haopython.com<span class="w">         </span>+8613161582168
 <a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="o">[</span>root@localhost<span class="w"> </span>~<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="5">5.在当前目录中搜索多个文件<a class="headerlink" href="#5" title="Permanent link">#</a></h2>
+<h2 id="5">5.在当前目录中搜索多个文件<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
 <p>grep命令用于在文件中搜索特定内容，并且可以根据搜索字符串或模式在当前目录中搜索多个文件。在本例中，展示了如何使用“*”通配符在当前目录中搜索多个文件，以“customers.txt”文件为例。</p>
 <p>以下grep命令将搜索当前目录中包含单词“test”的文件。当前目录中包含单词“test”的文件名及其包含该单词的行将被打印出来：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep -w test *</span>
@@ -778,7 +794,7 @@
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>test5.txt:This<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span><span class="nb">test</span><span class="w"> </span>file<span class="w"> </span>named<span class="w"> </span>test5
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="6">6.在目录中递归搜索<a class="headerlink" href="#6" title="Permanent link">#</a></h2>
+<h2 id="6">6.在目录中递归搜索<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
 <p>grep命令的-r选项用于在目录中递归搜索特定的字符串或模式。在本例中，展示了如何使用grep命令在当前目录及其子目录中递归搜索包含单词“test”的文件，以“customers.txt”文件为例。</p>
 <p>下面grep命令将递归搜索当前目录及其子目录中包含单词“test”的文件。所有包含单词“test”的文件及其包含该单词的行将被打印出来：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep -r test *</span>
@@ -792,7 +808,7 @@
 <a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>test5.txt:This<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span><span class="nb">test</span><span class="w"> </span>file<span class="w"> </span>named<span class="w"> </span>test5
 <a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="7">7.不使用文件名搜索<a class="headerlink" href="#7" title="Permanent link">#</a></h2>
+<h2 id="7">7.不使用文件名搜索<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
 <p>-h或--no-filename选项与grep命令一起使用，用于在不使用文件名的情况下搜索特定的字符串或模式。如果当前目录中只有一个文件，这个选项非常有用。本例展示了如何使用grep命令在不使用文件名的情况下进行搜索。先查看当前目录和文件内容：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>temp<span class="o">]</span><span class="c1"># ls</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>products.txt
@@ -813,7 +829,7 @@
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>p-1005<span class="w">    </span>Laptop<span class="w"> </span>Table<span class="w">                   </span><span class="m">299</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="o">[</span>root@localhost<span class="w"> </span>temp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="8">8.在输出中添加行号<a class="headerlink" href="#8" title="Permanent link">#</a></h2>
+<h2 id="8">8.在输出中添加行号<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
 <p>grep命令的-n选项用于在搜索结果中打印文件的行号。在本例中，带有-n选项的grep命令被用于显示在第一个示例中创建的“customers.txt”文件的搜索结果，并附带行号。</p>
 <p>比如，用grep命令将搜索并打印包含字符串“ow”的那些行，并附带行号，这样，文件中包含字符串“ow”的行将被打印出来：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep -n &#39;ow&#39; customers.txt </span>
@@ -821,7 +837,7 @@
 <a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="m">5</span>:56<span class="w">  </span>Snow<span class="w"> </span>Zhang<span class="w">      </span>snow@haopython.com<span class="w">        </span>+8613161582168
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="9">9.使用通配符匹配单个字符<a class="headerlink" href="#9" title="Permanent link">#</a></h2>
+<h2 id="9">9.使用通配符匹配单个字符<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
 <p>在正则表达式中，. 通配符用于匹配任意单个字符。当需要搜索的单词部分字符未知时，可用该符号构建匹配模式。以下示例演示如何在 customers.txt 文件中使用此通配符。</p>
 <p>用grep命令将搜索并打印文件中包含 5 个字符且以Sn开头的单词customers.txt行。此处，模式中使用了两个点 （.） 来表示两个单个字符：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep -w &#39;Sn..&#39; customers.txt </span>
@@ -832,7 +848,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep -w &#39;Sn...&#39; customers.txt </span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="10">10.使用通配符匹配零次或多次<a class="headerlink" href="#10" title="Permanent link">#</a></h2>
+<h2 id="10">10.使用通配符匹配零次或多次<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
 <p>在grep命令中，*（星号）通配符用于匹配字符串或模式零次或多次。本例展示了如何在“customers.txt”文件中使用该通配符来匹配任意字符串零次或多次。</p>
 <p>这里先修改一下"customers.txt"文件内容：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># cat customers.txt </span>
@@ -850,14 +866,14 @@
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="m">99</span><span class="w">  </span>yoyou<span class="w">           </span>yoyou@haopython.com<span class="w">       </span>+8613933669999
 <a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1">#</span>
 </code></pre></div>
-<h2 id="11">11.使用通配符匹配一次或多次<a class="headerlink" href="#11" title="Permanent link">#</a></h2>
+<h2 id="11">11.使用通配符匹配一次或多次<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
 <p>在grep命令中，+（加号）通配符用于匹配字符串或模式零次或多次。</p>
 <p>如下：
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>grep<span class="w"> </span>-E<span class="w"> </span><span class="s2">&quot;go+d&quot;</span><span class="w"> </span>file.txt
 </code></pre></div></p>
 <p>匹配：god, good
 不匹配：gd（无 o）</p>
-<h2 id="12">12.使用通配符匹配确切的次数<a class="headerlink" href="#12" title="Permanent link">#</a></h2>
+<h2 id="12">12.使用通配符匹配确切的次数<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
 <p>在模式中使用大括号{}并指定数字n，可以用来在文件中精确匹配某个特定字符串出现的次数。本例展示了如何在“customers.txt”文件中使用带数字的大括号{}来精确匹配模式。</p>
 <p>使用通配符精确匹配指定次数：</p>
 <p>在模式中使用大括号{}并指定数字n，可以用来在文件中精确匹配某个特定字符串出现的次数。本例展示了如何在“customers.txt”文件中使用带数字的大括号{}来精确匹配模式。</p>
@@ -870,7 +886,7 @@
 <a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="m">79</span><span class="w">  </span>Snei<span class="w"> </span>Ali<span class="w">        </span>fei@haopython.com<span class="w">         </span>+8613161582168
 <a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="13">13.在匹配行之后打印特定数量的行<a class="headerlink" href="#13" title="Permanent link">#</a></h2>
+<h2 id="13">13.在匹配行之后打印特定数量的行<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
 <p>grep命令的-A或--after-context选项与数字值一起使用，可以打印文件中匹配字符串或模式之后的特定行数。</p>
 <p>下面grep命令将显示“customers.txt”文件中包含字符串“yoyo”的行，以及匹配行之后的两行。如果文件中没有任何一行与字符串“yoyo”匹配，则不会生成任何输出：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep -i -A 2 &#39;yoyo&#39; customers.txt </span>
@@ -880,7 +896,7 @@
 <a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="m">99</span><span class="w">  </span>yoyou<span class="w">           </span>yoyou@haopython.com<span class="w">       </span>+8613933669999
 <a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1">#</span>
 </code></pre></div>
-<h2 id="14">14.在匹配行之前打印特定数量的行<a class="headerlink" href="#14" title="Permanent link">#</a></h2>
+<h2 id="14">14.在匹配行之前打印特定数量的行<a class="headerlink" href="#14" title="Permanent link">&para;</a></h2>
 <p>带有数值的 -B 或 –before-context 用于打印文件中找到的匹配字符串或模式之前的特定行数。</p>
 <p>以下grep命令将显示包含字符串 'yoyo' 的行和匹配行前的一行。如果文件的任何行都与字符串 'yoyo' 匹配，则不会生成任何输出：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep -i -B 1 &#39;yoyo&#39; customers.txt </span>
@@ -891,7 +907,7 @@
 <a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="m">99</span><span class="w">  </span>yoyou<span class="w">           </span>yoyou@haopython.com<span class="w">       </span>+8613933669999
 <a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="15">15.在匹配行之后和之前打印特定数量的行<a class="headerlink" href="#15" title="Permanent link">#</a></h2>
+<h2 id="15">15.在匹配行之后和之前打印特定数量的行<a class="headerlink" href="#15" title="Permanent link">&para;</a></h2>
 <p>带有数值的 -C 选项用于打印文件中找到的匹配字符串或模式前后的特定行数。</p>
 <p>下面的grep 命令将显示包含字符串 'Zhang' 的行，在匹配行之前一行，在匹配行之后一行。如果文件的任何行都与字符串 'Zhang' 匹配，则不会生成任何输出。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep -i -C 1 &#39;Zhang&#39; customers.txt </span>
@@ -900,7 +916,7 @@
 <a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="m">79</span><span class="w">  </span>Snei<span class="w"> </span>Ali<span class="w">        </span>fei@haopython.com<span class="w">         </span>+8613161582168
 <a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="16">16.使用中括号 [] 匹配特定数字<a class="headerlink" href="#16" title="Permanent link">#</a></h2>
+<h2 id="16">16.使用中括号 [] 匹配特定数字<a class="headerlink" href="#16" title="Permanent link">&para;</a></h2>
 <p>可以在 “grep” 命令的正则表达式模式中使用中括号 [] 来定义特定数字的范围。</p>
 <p>用grep命令将搜索文本文件中包含 3 到 5 范围数字的行，将打印与模式匹配的文件行：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep &#39;[3-5]&#39; customers.txt </span>
@@ -918,7 +934,7 @@
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="m">99</span><span class="w">  </span>yoyou<span class="w">           </span>yoyou@haopython.com<span class="w">       </span>+8613933669999
 <a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="17">17.使用中括号 [] 匹配具有特定字符的模式<a class="headerlink" href="#17" title="Permanent link">#</a></h2>
+<h2 id="17">17.使用中括号 [] 匹配具有特定字符的模式<a class="headerlink" href="#17" title="Permanent link">&para;</a></h2>
 <p>通过中括号[]可以灵活匹配特定字符或字符范围。在正则表达式中，使用中括号可以：</p>
 <p>匹配指定范围内的任意单个字符
 精准匹配括号内列出的特定字符
@@ -942,7 +958,7 @@
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="m">79</span><span class="w">  </span>Snei<span class="w"> </span>Ali<span class="w">        </span>fei@haopython.com<span class="w">         </span>+8613161582168
 <a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="18alnum">18.使用[:alnum:]字符类匹配字母和数字<a class="headerlink" href="#18alnum" title="Permanent link">#</a></h2>
+<h2 id="18alnum">18.使用[:alnum:]字符类匹配字母和数字<a class="headerlink" href="#18alnum" title="Permanent link">&para;</a></h2>
 <p>[:alnum:]是正则表达式中的预定义字符类，用于匹配所有字母（大小写）和数字（0-9），其功能等同于[A-Za-z0-9]。</p>
 <p>下面命令将匹配文件中所有包含连续3个字母或数字字符的行（需配合-E启用扩展正则）：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep -E &#39;[[:alnum:]]{3}&#39; customers.txt</span>
@@ -955,7 +971,7 @@
 <a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="m">99</span><span class="w">  </span>yoyou<span class="w">           </span>yoyou@haopython.com<span class="w">       </span>+8613933669999
 <a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="19alpha">19.使用[:alpha:]字符类匹配纯字母字符<a class="headerlink" href="#19alpha" title="Permanent link">#</a></h2>
+<h2 id="19alpha">19.使用[:alpha:]字符类匹配纯字母字符<a class="headerlink" href="#19alpha" title="Permanent link">&para;</a></h2>
 <p>[:alpha:]是正则表达式中的预定义字符类，专门用于匹配所有字母字符（包括大小写），功能等同于[A-Za-z]。</p>
 <p>以下命令将匹配文件中所有包含连续5个字母字符的行（需配合-E启用扩展正则）：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;[[:alpha:]]{5}&#39;</span><span class="w"> </span>customers.txt
@@ -973,7 +989,7 @@
 <a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>Élève<span class="w">    </span>Intern
 </code></pre></div>
 <p>Bob123因含数字、Dave@因含符号被排除。</p>
-<h2 id="20digit">20.使用[:digit:]字符类匹配纯数字字符<a class="headerlink" href="#20digit" title="Permanent link">#</a></h2>
+<h2 id="20digit">20.使用[:digit:]字符类匹配纯数字字符<a class="headerlink" href="#20digit" title="Permanent link">&para;</a></h2>
 <p>[:digit:]是正则表达式中的预定义字符类，专门用于匹配所有数字字符（0-9），功能等同于[0-9]。</p>
 <p>以下命令将匹配文件中所有包含至少1个数字字符的行（需配合-E启用扩展正则）：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;[[:digit:]]&#39;</span><span class="w"> </span>customers.txt
@@ -991,7 +1007,7 @@
 <a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>测试123
 </code></pre></div>
 仅包含纯文本的行被自动过滤。</p>
-<h2 id="21lower">21.使用[:lower:]字符类匹配小写字母<a class="headerlink" href="#21lower" title="Permanent link">#</a></h2>
+<h2 id="21lower">21.使用[:lower:]字符类匹配小写字母<a class="headerlink" href="#21lower" title="Permanent link">&para;</a></h2>
 <p>[:lower:] 是正则表达式预定义的字符类，专门用于匹配所有小写字母（a-z），功能等同于 [a-z]。</p>
 <p>以下命令将匹配文件中所有包含至少1个小写字母的行（需配合 -E 启用扩展正则）：</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;[[:lower:]]&#39;</span><span class="w"> </span>customers.txt
@@ -1008,7 +1024,7 @@
 <a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>User01<span class="w"> </span>MixedCase
 </code></pre></div>
 <p>仅包含纯大写字母、数字或中文的行被过滤。</p>
-<h2 id="22print">22.使用[:print:]字符类匹配可打印字符<a class="headerlink" href="#22print" title="Permanent link">#</a></h2>
+<h2 id="22print">22.使用[:print:]字符类匹配可打印字符<a class="headerlink" href="#22print" title="Permanent link">&para;</a></h2>
 <p>[:print:] 是正则表达式中的预定义字符类，用于匹配所有可打印字符（包括字母、数字、空格、标点符号等，但不包含控制字符）。</p>
 <p>下面命令将匹配文件中所有包含至少1个可打印字符的行（需配合 -E 启用扩展正则）：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;[[:print:]]&#39;</span><span class="w"> </span>customers.txt
@@ -1023,7 +1039,7 @@
 <a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">   </span>（含制表符的行）
 </code></pre></div>
 控制字符^M所在行被过滤。</p>
-<h2 id="23space">23.使用[:space:]字符类匹配空白字符<a class="headerlink" href="#23space" title="Permanent link">#</a></h2>
+<h2 id="23space">23.使用[:space:]字符类匹配空白字符<a class="headerlink" href="#23space" title="Permanent link">&para;</a></h2>
 <p>[:space:] 是正则表达式预定义的字符类，专门用于匹配所有空白字符（包括空格、制表符\t、换行符\n等）。</p>
 <p>先新建 demo.txt 文件，内容如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>WelcomeToHaopython
@@ -1034,21 +1050,21 @@
 <a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>Welcome<span class="w"> </span>To<span class="w"> </span>Haopython
 <a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="24">24.从行首开始匹配<a class="headerlink" href="#24" title="Permanent link">#</a></h2>
+<h2 id="24">24.从行首开始匹配<a class="headerlink" href="#24" title="Permanent link">&para;</a></h2>
 <p>在正则表达式中，脱字符(^) 用于用于匹配行首的特定字符或字符串。</p>
 <p>以下命令将精确匹配以数字4开头的行：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep &#39;^4&#39; customers.txt</span>
 <a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="m">45</span><span class="w">  </span>yoyo<span class="w">            </span>yoyo@haopython.com<span class="w">        </span>+8613161582168
 <a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="25">25.匹配到行尾<a class="headerlink" href="#25" title="Permanent link">#</a></h2>
+<h2 id="25">25.匹配到行尾<a class="headerlink" href="#25" title="Permanent link">&para;</a></h2>
 <p>在正则表达式中，美元符号($) 用于精确匹配行尾的特定字符或字符串。</p>
 <p>下面的 “grep” 命令将搜索文件中以字符串 '99' 结尾customers.txt行。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep &#39;99$&#39; customers.txt </span>
 <a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="m">99</span><span class="w">  </span>yoyou<span class="w">           </span>yoyou@haopython.com<span class="w">       </span>+8613933669999
 <a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="26concatenation">26.使用正则表达式模式拼接（Concatenation）进行匹配<a class="headerlink" href="#26concatenation" title="Permanent link">#</a></h2>
+<h2 id="26concatenation">26.使用正则表达式模式拼接（Concatenation）进行匹配<a class="headerlink" href="#26concatenation" title="Permanent link">&para;</a></h2>
 <p>在正则表达式中，可以通过<strong>点号(.)</strong>拼接多个模式，实现更灵活的匹配。</p>
 <p>下面用grep命令搜索文件中以字母 N 或 S 开头，中间包含任意字符（. 匹配除换行符外的任意字符），以字母 Y 或 y 结尾的行：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep -e &#39;[NS].*[Yy]&#39; customers.txt </span>
@@ -1058,7 +1074,7 @@
 <a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="m">79</span><span class="w">  </span>Snei<span class="w"> </span>Ali<span class="w">        </span>fei@haopython.com<span class="w">         </span>+8613161582168
 <a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="27">27.交替匹配<a class="headerlink" href="#27" title="Permanent link">#</a></h2>
+<h2 id="27">27.交替匹配<a class="headerlink" href="#27" title="Permanent link">&para;</a></h2>
 <p>grep 支持通过 交替符（|） 实现逻辑"或"匹配，允许在单次搜索中查找多个指定模式。</p>
 <p>下面用 grep 命令将在 customers.txt 文件中搜索字符串 'yoyo' 或 'Snow'。在这里，反斜杠 （\） 与竖线 （|） 一起使用以执行交替任务。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep &#39;yoyo\|Snow&#39; customers.txt </span>
@@ -1067,7 +1083,7 @@
 <a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="m">99</span><span class="w">  </span>yoyou<span class="w">           </span>yoyou@haopython.com<span class="w">       </span>+8613933669999
 <a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="28">28.使用反向引用<a class="headerlink" href="#28" title="Permanent link">#</a></h2>
+<h2 id="28">28.使用反向引用<a class="headerlink" href="#28" title="Permanent link">&para;</a></h2>
 <p>grep 支持通过 反向引用 功能匹配重复出现的模式。该功能通过 ( ) 捕获分组，并用 \1、\2 等引用已匹配的内容。</p>
 <p>下面grep命令将在 customers.txt 文件中搜索 0 到 5 范围内的任何数字。如果找到任何匹配项，它将保留引用，并使用反向引用与文件的其余部分匹配。</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># grep &#39;\([0-5]\)\1&#39; customers.txt</span>
@@ -1075,7 +1091,7 @@
 <a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="m">99</span><span class="w">  </span>yoyou<span class="w">           </span>yoyou@haopython.com<span class="w">       </span>+8613933669999
 <a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="29_ps_grep">29.通过管道组合 ps 与 grep 命令<a class="headerlink" href="#29_ps_grep" title="Permanent link">#</a></h2>
+<h2 id="29-ps-grep">29.通过管道组合 ps 与 grep 命令<a class="headerlink" href="#29-ps-grep" title="Permanent link">&para;</a></h2>
 <p>在 Linux 系统中，ps（process status）命令用于查看运行中的进程状态，而通过管道符 | 将其输出传递给 grep，可以快速过滤目标进程。</p>
 <p>先查看所有运行中的进程：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>~<span class="o">]</span><span class="c1"># ps</span>
@@ -1089,7 +1105,7 @@
 <a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="m">2015368</span><span class="w"> </span>pts/0<span class="w">    </span><span class="m">00</span>:00:00<span class="w"> </span>bash
 <a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="o">[</span>root@localhost<span class="w"> </span>~<span class="o">]</span><span class="c1"># </span>
 </code></pre></div>
-<h2 id="30_grep_awk">30.结合 grep 与 awk 提取特定字段<a class="headerlink" href="#30_grep_awk" title="Permanent link">#</a></h2>
+<h2 id="30-grep-awk">30.结合 grep 与 awk 提取特定字段<a class="headerlink" href="#30-grep-awk" title="Permanent link">&para;</a></h2>
 <p>grep 擅长文本搜索，而 awk 擅长结构化文本处理。通过管道组合二者，可实现「精准搜索+字段提取」的高效操作。</p>
 <p>下面grep命令将在 customers.txt 文件中搜索字符串 'Ali'，并将输出发送到 “awk” 命令，该命令将从匹配的行打印格式化的输出（字段以Tab分隔）：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="o">[</span>root@localhost<span class="w"> </span>myapp<span class="o">]</span><span class="c1"># cat customers.txt </span>
@@ -1171,7 +1187,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

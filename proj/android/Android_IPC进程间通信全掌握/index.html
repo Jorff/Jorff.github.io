@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#android_ipc" class="md-skip">
+        <a href="#android-ipc" class="md-skip">
           Skip to content
         </a>
       
@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,167 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 在独立进程中运行 Service
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 在独立进程中运行 Service">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      实际影响
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-aidlandroid-ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 用 AIDL（Android 接口定义语言）实现 IPC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-intent-ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 用 Intent 实现简单 IPC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 用 Intent 实现简单 IPC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intent" class="md-nav__link">
+    <span class="md-ellipsis">
+      显式 Intent（直接指定目标）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      隐式 Intent（基于动作）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-broadcastreceiver" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 用 BroadcastReceiver 实现 “即发即忘” 通信
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-messenger-ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 用 Messenger 实现 IPC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 用 Messenger 实现 IPC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service 端实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      客户端绑定
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-fileprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 用 FileProvider 安全共享文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-contentprovider" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. ContentProvider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ipc" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结：选择合适的 IPC 方式
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,9 +791,9 @@
 
 
 
-<h1 id="android_ipc"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android IPC 进程间通信全掌握</span><a class="headerlink" href="#android_ipc" title="Permanent link">#</a></h1>
+<h1 id="android-ipc"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android IPC 进程间通信全掌握</span><a class="headerlink" href="#android-ipc" title="Permanent link">&para;</a></h1>
 <p>不同 Android 组件或应用间的有效通信，往往需要精心管理进程间通信（IPC）。本指南深入剖析 Android 的 IPC 机制，涵盖 Service、AIDL、Intent、广播、Messenger 以及 FileProvider 。</p>
-<h2 id="1_service">1. 在独立进程中运行 Service<a class="headerlink" href="#1_service" title="Permanent link">#</a></h2>
+<h2 id="1-service">1. 在独立进程中运行 Service<a class="headerlink" href="#1-service" title="Permanent link">&para;</a></h2>
 <p>默认情况下，所有 Android 组件（Activity、Service 等）都在单个应用进程内运行。不过，你可以在清单文件里指定 android:process 属性，让 Service（或其他组件）在独立的 Linux 进程中运行：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
@@ -648,14 +807,14 @@
 <li>android:process=":remote" 会创建一个专属于你应用的私有进程。</li>
 <li>android:process="com.example.remote" 则会创建一个全局进程，相同签名的多个应用可共享。</li>
 </ul>
-<h3 id="_1">实际影响<a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1">实际影响<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>当 Service 处于不同进程时，其所有生命周期方法（onCreate()、onStartCommand()、onBind() ）会在另一进程的主线程独立运行。这意味着：</p>
 <ul>
 <li>若调用方（客户端）进程终止或崩溃，Service 的独立进程会继续运行，直到被 Android 系统显式停止。</li>
 <li>与该 Service 的通信变为跨进程，必须使用 Android 的 IPC 机制。不能像在同一进程那样直接将其 IBinder 转换为本地接口，因为对象处于不同内存空间。</li>
 </ul>
 <p>android:exported="true" 属性让 Service 能被其他应用访问；设为 false 时，仅能被自身应用访问。</p>
-<h2 id="2_aidlandroid_ipc">2. 用 AIDL（Android 接口定义语言）实现 IPC<a class="headerlink" href="#2_aidlandroid_ipc" title="Permanent link">#</a></h2>
+<h2 id="2-aidlandroid-ipc">2. 用 AIDL（Android 接口定义语言）实现 IPC<a class="headerlink" href="#2-aidlandroid-ipc" title="Permanent link">&para;</a></h2>
 <p>AIDL 是结构化的 IPC 机制，为进程间通信定义清晰、类型安全的接口，支持安全传递基本类型、列表，甚至自定义 Parcelable 对象。</p>
 <p>定义 AIDL 接口</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
@@ -703,9 +862,9 @@
 <a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="p">},</span><span class="w"> </span><span class="n">Context</span><span class="p">.</span><span class="na">BIND_AUTO_CREATE</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 <p>注意：AIDL 方法运行在 Binder 线程池，若有耗时操作，要放到后台线程或协程，保证响应性。</p>
-<h2 id="3_intent_ipc">3. 用 Intent 实现简单 IPC<a class="headerlink" href="#3_intent_ipc" title="Permanent link">#</a></h2>
+<h2 id="3-intent-ipc">3. 用 Intent 实现简单 IPC<a class="headerlink" href="#3-intent-ipc" title="Permanent link">&para;</a></h2>
 <p>Android 应用或组件间交换少量数据，最简单的方式就是用 Intent。</p>
-<h3 id="intent">显式 Intent（直接指定目标）<a class="headerlink" href="#intent" title="Permanent link">#</a></h3>
+<h3 id="intent">显式 Intent（直接指定目标）<a class="headerlink" href="#intent" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
 <span class="normal"><a href="#__codelineno-4-2">2</a></span>
 <span class="normal"><a href="#__codelineno-4-3">3</a></span>
@@ -716,7 +875,7 @@
 <a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="p">}</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">startActivity</span><span class="p">(</span><span class="n">intent</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="intent_1">隐式 Intent（基于动作）<a class="headerlink" href="#intent_1" title="Permanent link">#</a></h3>
+<h3 id="intent_1">隐式 Intent（基于动作）<a class="headerlink" href="#intent_1" title="Permanent link">&para;</a></h3>
 <p>发送方</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
 <span class="normal"><a href="#__codelineno-5-2">2</a></span>
@@ -744,7 +903,7 @@
 <a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="nt">&lt;/activity&gt;</span>
 </code></pre></div></td></tr></table></div>
 <p>Android 会匹配 ACTION_SEND、DEFAULT 类别和 MIME 类型，找到合适的接收组件。</p>
-<h2 id="4_broadcastreceiver">4. 用 BroadcastReceiver 实现 “即发即忘” 通信<a class="headerlink" href="#4_broadcastreceiver" title="Permanent link">#</a></h2>
+<h2 id="4-broadcastreceiver">4. 用 BroadcastReceiver 实现 “即发即忘” 通信<a class="headerlink" href="#4-broadcastreceiver" title="Permanent link">&para;</a></h2>
 <p>广播适合给多个接收者发送简单异步消息。</p>
 <p>发送方示例</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
@@ -777,10 +936,10 @@
 <a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="5_messenger_ipc">5. 用 Messenger 实现 IPC<a class="headerlink" href="#5_messenger_ipc" title="Permanent link">#</a></h2>
+<h2 id="5-messenger-ipc">5. 用 Messenger 实现 IPC<a class="headerlink" href="#5-messenger-ipc" title="Permanent link">&para;</a></h2>
 <p>Messenger 适合用 Handler 和消息队列的简单命令 - 响应场景，比 AIDL 简单，但灵活性稍差。</p>
 <p>何时用 Messenger? 用于直接的单向消息或简单请求 - 响应场景，且无需复杂数据结构。</p>
-<h3 id="service">Service 端实现<a class="headerlink" href="#service" title="Permanent link">#</a></h3>
+<h3 id="service">Service 端实现<a class="headerlink" href="#service" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
 <span class="normal"><a href="#__codelineno-10-2">2</a></span>
 <span class="normal"><a href="#__codelineno-10-3">3</a></span>
@@ -797,7 +956,7 @@
 <a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">    </span><span class="n">override</span><span class="w"> </span><span class="n">fun</span><span class="w"> </span><span class="nf">onBind</span><span class="p">(</span><span class="n">intent</span><span class="p">:</span><span class="w"> </span><span class="n">Intent</span><span class="p">):</span><span class="w"> </span><span class="n">IBinder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">messenger</span><span class="p">.</span><span class="na">binder</span>
 <a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="_2">客户端绑定<a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h3 id="_2">客户端绑定<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
@@ -818,7 +977,7 @@
 <a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="p">}</span>
 <a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="n">bindService</span><span class="p">(</span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">MessengerService</span><span class="p">::</span><span class="kd">class</span><span class="err">.</span><span class="nc">java</span><span class="p">),</span><span class="w"> </span><span class="n">connection</span><span class="p">,</span><span class="w"> </span><span class="n">BIND_AUTO_CREATE</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="6_fileprovider">6. 用 FileProvider 安全共享文件<a class="headerlink" href="#6_fileprovider" title="Permanent link">#</a></h2>
+<h2 id="6-fileprovider">6. 用 FileProvider 安全共享文件<a class="headerlink" href="#6-fileprovider" title="Permanent link">&para;</a></h2>
 <p>受 Android 沙盒限制，需用 FileProvider 通过 content:// URI 安全共享文件。</p>
 <p>为何用 FileProvider</p>
 <ul>
@@ -863,7 +1022,7 @@
 <a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="n">startActivity</span><span class="p">(</span><span class="n">Intent</span><span class="p">.</span><span class="na">createChooser</span><span class="p">(</span><span class="n">intent</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Share image&quot;</span><span class="p">))</span>
 </code></pre></div></td></tr></table></div>
 <p>接收方处理共享文件的清单和 Activity 代码，此处省略。</p>
-<h2 id="7_contentprovider">7. ContentProvider<a class="headerlink" href="#7_contentprovider" title="Permanent link">#</a></h2>
+<h2 id="7-contentprovider">7. ContentProvider<a class="headerlink" href="#7-contentprovider" title="Permanent link">&para;</a></h2>
 <p>用于跨进程 / 应用的结构化数据访问。</p>
 <p>清单文件中声明 Provider</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
@@ -906,7 +1065,7 @@
 <a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="w">    </span><span class="c1">// 读取数据</span>
 <a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="ipc">总结：选择合适的 IPC 方式<a class="headerlink" href="#ipc" title="Permanent link">#</a></h2>
+<h2 id="ipc">总结：选择合适的 IPC 方式<a class="headerlink" href="#ipc" title="Permanent link">&para;</a></h2>
 <p>选 IPC 机制时，要考虑数据量、复杂度，以及通信模式：</p>
 <ul>
 <li>Intent：适合极简数据交换或组件导航。若只是传几个值、启动 Activity/Service，Intent 轻便，无需复杂配置。</li>
@@ -984,7 +1143,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

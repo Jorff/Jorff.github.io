@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,9 +648,9 @@
 
 
 
-<h1 id="android15buildprop"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android15修改Build.prop与内核态绕过设备指纹检测</span><a class="headerlink" href="#android15buildprop" title="Permanent link">#</a></h1>
+<h1 id="android15buildprop"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Android15修改Build.prop与内核态绕过设备指纹检测</span><a class="headerlink" href="#android15buildprop" title="Permanent link">&para;</a></h1>
 <p>在Android 15上深度定制系统（包括修改build.prop和内核级绕过设备指纹检测）需要系统级权限和底层开发能力。请注意：此类操作可能导致设备变砖、安全风险或违反应用服务条款，请确保符合当地法律法规。以下为技术思路：</p>
-<h1 id="buildprop">一、修改 build.prop<a class="headerlink" href="#buildprop" title="Permanent link">#</a></h1>
+<h1 id="buildprop">一、修改 build.prop<a class="headerlink" href="#buildprop" title="Permanent link">&para;</a></h1>
 <p>build.prop 存储系统基础属性，修改可伪装设备信息（如型号、厂商）。</p>
 <p>步骤：
 1.获取Root权限：</p>
@@ -663,7 +679,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>/system/build.prop
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>reboot
 </code></pre></div></p>
-<h1 id="_1">二、内核级绕过设备指纹检测<a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="_1">二、内核级绕过设备指纹检测<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>设备指纹通常采集硬件信息（如CPU序列号、IMEI、MAC地址）。内核级绕过需修改内核驱动或拦截系统调用。</p>
 <p>核心思路：</p>
 <p>1.拦截硬件信息读取路径：</p>
@@ -723,7 +739,7 @@
 <a id="__codelineno-5-25" name="__codelineno-5-25"></a><span class="n">module_init</span><span class="p">(</span><span class="n">module_init</span><span class="p">);</span>
 </code></pre></div></td></tr></table></div>
 <p>3.关键伪造点：</p>
-<h1 id="_2">三、高级绕过策略<a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<h1 id="_2">三、高级绕过策略<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <p>1.内核态Rootkit：
     修改系统调用表（sys_call_table）</p>
 <div class="highlight"><pre><span></span><code>劫持ioctl() 控制硬件驱动返回值
@@ -739,7 +755,7 @@
 <p>3.虚拟设备指纹：</p>
 <p>在/dev/下创建虚拟设备节点</p>
 <p>通过LD_PRELOAD劫持libc的硬件访问函数</p>
-<h1 id="_3">四、编译与部署<a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
+<h1 id="_3">四、编译与部署<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
 <p>1.内核编译：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://android.googlesource.com/kernel/common
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>make<span class="w"> </span>menuconfig<span class="w">  </span><span class="c1"># 启用模块签名</span>
@@ -755,7 +771,7 @@
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>lunch<span class="w"> </span>aosp_arm64-eng
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>make<span class="w"> </span>-j8
 </code></pre></div>
-<h1 id="_4">注意事项<a class="headerlink" href="#_4" title="Permanent link">#</a></h1>
+<h1 id="_4">注意事项<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
 <p>1.风险：</p>
 <div class="highlight"><pre><span></span><code>触发SafetyNet/Play Integrity检测
 
@@ -770,7 +786,7 @@
 
 禁用内核调试（kptr_restrict=2）
 </code></pre></div>
-<h1 id="_5">推荐方案：<a class="headerlink" href="#_5" title="Permanent link">#</a></h1>
+<h1 id="_5">推荐方案：<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h1>
 <p>优先考虑用户态方案（如Magisk模块+LSPosed），仅在必要时修改内核。完整定制需深入理解Linux内核及Android安全模型。</p>
 <div class="admonition note">
 <p class="admonition-title">本文转发链接如下：</p>
@@ -839,7 +855,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,68 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pcie" class="md-nav__link">
+    <span class="md-ellipsis">
+      什么是PCIe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pciepci" class="md-nav__link">
+    <span class="md-ellipsis">
+      PCIe与PCI的异同
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pcie_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      PCIe链路拓扑
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pcie_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      PCIe通信大致过程
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,10 +692,10 @@
 
 
 
-<h1 id="-pcie"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">嵌入式高速串行扩展总线-PCIe</span><a class="headerlink" href="#-pcie" title="Permanent link">#</a></h1>
+<h1 id="-pcie"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">嵌入式高速串行扩展总线-PCIe</span><a class="headerlink" href="#-pcie" title="Permanent link">&para;</a></h1>
 <p>随着半导体、芯片的快速发展，嵌入式平台越来越趋向于廉价、高性能的方向发展，外设接口丰富度和高性能愈来愈突出，那么今天跟大家介绍一下一种高速串行扩展总线-PCIe,相信不久的将来大家会用到此接口。</p>
 <hr />
-<h3 id="pcie"><center><table><tr><td bgcolor=#FF4500>什么是PCIe</td></tr></table></center><a class="headerlink" href="#pcie" title="Permanent link">#</a></h3>
+<h3 id="pcie"><center><table><tr><td bgcolor=#FF4500>什么是PCIe</td></tr></table></center><a class="headerlink" href="#pcie" title="Permanent link">&para;</a></h3>
 <hr />
 <p>PCIe英文名：Peripheral Component Interconnect Express，它是一种高速串行计算机扩展总线标准，旨在取代传统的并行PCI和AGP总线。它提供点对点的连接，高带宽和低延迟，是现代计算机系统中常见的接口，并广泛用于连接各种外部设备，如显卡、网卡、存储设备等。</p>
 <p>比如说你的平台上SD卡不再满足项目需求，考虑挂个固态硬盘，PCIe接口的高带宽和低延迟特性使其成为高性能固态硬盘的理想选择。比如NVMe SSD，NVMe（Non-Volatile Memory Express）是专为PCIe接口设计的高性能固态硬盘协议，直接使用PCIe总线进行数据传输，具有极高的读写速度和低延迟。</p>
@@ -645,14 +705,14 @@
 </a></p>
 <p>上图是TI整理的PCIe接口发展路线，可以了解到PCIe继承与PCI，并且初期的PCIe1.0的每条通道的传输速率为2.5 GT/s（注意单位是:每秒传输2.5亿次信号，GT/s实际上是指每秒内在PCIe总线上发生的数据传输次数）,然后每个时间阶段几乎翻倍的增加，不过目前在嵌入式主流高端系统平台PCIe3.0接口的较多，再往上就是更加数据密集型应用和高性能计算需求的系统了。</p>
 <hr />
-<h3 id="pciepci"><center><table><tr><td bgcolor=#FF4500>PCIe与PCI的异同</td></tr></table></center><a class="headerlink" href="#pciepci" title="Permanent link">#</a></h3>
+<h3 id="pciepci"><center><table><tr><td bgcolor=#FF4500>PCIe与PCI的异同</td></tr></table></center><a class="headerlink" href="#pciepci" title="Permanent link">&para;</a></h3>
 <hr />
 <p>虽然PCI主要用于早期的计算机系统，但是面对PCIe的普及，进行一下对比能够更加突出PCIe的进步与优秀。</p>
 <p>PCI使用并行总线架构，通过多个并行数据线同时传输数据,并且所有连接到同一总线的设备共享总带宽，这会导致带宽瓶颈，尤其是在多设备同时工作的情况下，大家都知道并行通信比较依赖时钟同步，对信号完整性提出了比较严苛的要求，所以PCI基本也就是MB/s的水平，并行通信的物理限制，带宽提升空间有限。</p>
 <p>然而PCIe采用点对点的串行通信方式，通过高频率的串行链路进行数据传输。每个设备都有自己的专用通道，我们称之为Lane,以后接触这个也是接口性能指标，不需要与其他设备共享带宽。数据传输不依赖于全系统的时钟同步，而是通过8b/10b编码和独立时钟恢复技术实现高速传输，比如PCIe 3.0提高到1 GB/s，通过增加通道数（如x1、x4、x8、x16等），可以进一步提高总带宽。</p>
 <p>PCIe支持高级电源管理（如Active State Power Management, ASPM），可以动态调整功耗，提高能效，更重要的是支持热插拔，维护也比较方便。</p>
 <hr />
-<h3 id="pcie_1"><center><table><tr><td bgcolor=#FF4500>PCIe链路拓扑</td></tr></table></center><a class="headerlink" href="#pcie_1" title="Permanent link">#</a></h3>
+<h3 id="pcie_1"><center><table><tr><td bgcolor=#FF4500>PCIe链路拓扑</td></tr></table></center><a class="headerlink" href="#pcie_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>PCIe使用树型拓扑结构，这种结构有助于管理和优化数据流动，并提供灵活的连接选项和高带宽的数据传输能力，一般由根复合体(Root Complex)，中继器（Repeater），终端设备(Endpoint)等类型的PCIe设备组成。</p>
 <!-- ![alt text](image-1.png) -->
@@ -677,7 +737,7 @@
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>交换机允许多个PCIe设备通过单个根复合体连接到主板上的PCIe总线，提供额外的端口和带宽管理功能。它们可以在多个设备之间实现数据的交换和路由，有效地扩展PCIe总线的连接能力和灵活性。
 </code></pre></div>
 <hr />
-<h3 id="pcie_2"><center><table><tr><td bgcolor=#FF4500>PCIe通信大致过程</td></tr></table></center><a class="headerlink" href="#pcie_2" title="Permanent link">#</a></h3>
+<h3 id="pcie_2"><center><table><tr><td bgcolor=#FF4500>PCIe通信大致过程</td></tr></table></center><a class="headerlink" href="#pcie_2" title="Permanent link">&para;</a></h3>
 <hr />
 <p>PCIe协议确实定义了三层结构，分别是物理层、数据链路层和事务层。</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>物理层：
@@ -807,7 +867,7 @@
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

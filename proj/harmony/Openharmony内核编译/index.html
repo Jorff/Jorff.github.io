@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,128 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、原始内核位置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、编译后内核位置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、编译内核
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1、sdk模块编译
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32build_kernelsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2、build_kernel.sh脚本编译
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-make-ohossh" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3、 make-ohos.sh脚本编译
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4、内核分步骤编译
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4、内核分步骤编译">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#341-hdf_hcs_hexo" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.1 hdf_hcs_hex.o重编译
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#342-pahole" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.2 缺少包pahole工具
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#345" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.5 编译有不匹配的残留文件
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,10 +752,10 @@
 
 
 
-<h1 id="openharmony"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony 内核编译</span><a class="headerlink" href="#openharmony" title="Permanent link">#</a></h1>
+<h1 id="openharmony"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">Openharmony 内核编译</span><a class="headerlink" href="#openharmony" title="Permanent link">&para;</a></h1>
 <p>开发Openharmony的设备开发第一步就是移植内核，本文基于openharmony的sdk角度介绍openharmony的内核编译方式和单独编译内核的命令</p>
 <hr />
-<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>一、原始内核位置</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">#</a></h3>
+<h3 id="_1"><center><table><tr><td bgcolor=#FF4500>一、原始内核位置</td></tr></table></center><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <hr />
 <p>这里内核有两个位置，一个是内核原始源码位置，这是oh标准内核，位置为/kernel/linux/linux-5.10/</p>
 <p>在这个内核上，会添加如下几个依赖仓库的改动如下</p>
@@ -665,15 +785,15 @@
 ├── README.md<br>
 └── README_zh.md<br></p>
 <hr />
-<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>二、编译后内核位置</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">#</a></h3>
+<h3 id="_2"><center><table><tr><td bgcolor=#FF4500>二、编译后内核位置</td></tr></table></center><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <hr />
 <p>编译后的内核位置为/out/kernel/src_tmp/linux-5.10/， 编译后内核的中间文件位置为/out/kernel/OBJ/linux-5.10/</p>
 <p>此时代码是已经合入补丁和相关oh特性功能的代码。</p>
 <hr />
-<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>三、编译内核</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">#</a></h3>
+<h3 id="_3"><center><table><tr><td bgcolor=#FF4500>三、编译内核</td></tr></table></center><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <hr />
 <p>编译内核可以分为最外层sdk模块编译，内核源码build_kernel.sh脚本编译（合并前），内核源码make-ohos.sh脚本编译（合并后），和内核分步骤编译，可以按需自行编译</p>
-<h2 id="31sdk">3.1、sdk模块编译<a class="headerlink" href="#31sdk" title="Permanent link">#</a></h2>
+<h2 id="31sdk">3.1、sdk模块编译<a class="headerlink" href="#31sdk" title="Permanent link">&para;</a></h2>
 <p>对于内核而言，sdk模块编译目前默认不支持，但sdk外层编译有必要解释一下，所以编译内核的最外层sdk编译命令如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./build.sh<span class="w"> </span>--product-name<span class="w"> </span>rk3568<span class="w"> </span>--ccache
 </code></pre></div>
@@ -708,7 +828,7 @@ group("updater_image")<br>
 <p>如果使用hb命令，可以如下编译内核</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>hb<span class="w"> </span>build<span class="w"> </span>-T<span class="w"> </span>kernel
 </code></pre></div>
-<h2 id="32build_kernelsh">3.2、build_kernel.sh脚本编译<a class="headerlink" href="#32build_kernelsh" title="Permanent link">#</a></h2>
+<h2 id="32build_kernelsh">3.2、build_kernel.sh脚本编译<a class="headerlink" href="#32build_kernelsh" title="Permanent link">&para;</a></h2>
 <p>build_kernel.sh作为内核单模块BUILD.gn拉起的脚本，我们可以主动调用它来单独编译内核，但是前提是代码是全编过一次的，也就是out/rk3568目录存在。编译命令如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/../../device/board/hihope/rk3568/kernel/build_kernel.sh<span class="w"> </span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/../../kernel/linux/linux-5.10<span class="w"> </span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/../../out/rk3568/packages/phone/images<span class="w"> </span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/../../device/board/hihope/rk3568<span class="w"> </span>vendor/hihope/rk3568<span class="w"> </span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>/../../<span class="w"> </span>rockchip<span class="w"> </span>rk3568<span class="w"> </span>hihope<span class="w"> </span>root<span class="w"> </span>default<span class="w"> </span>disable_lto_O0<span class="w"> </span>enable_ramdisk
 </code></pre></div>
@@ -728,7 +848,7 @@ $10=default # KERNEL_PROD变量<br>
 $11=disable_lto_O0 # ENABLE_LTO_O0变量<br>
 $12=enable_ramdisk # 判断是否生成ramdisk<br>
 此命令如果是第一次运行，会自动打patch和复制oh特性驱动代码。如果不是第一次运行，则跳过不应用补丁，直接开始编译。此命令会主动拷贝文件到out/rk3568/packages/phone/images目录。</p>
-<h2 id="33_make-ohossh">3.3、 make-ohos.sh脚本编译<a class="headerlink" href="#33_make-ohossh" title="Permanent link">#</a></h2>
+<h2 id="33-make-ohossh">3.3、 make-ohos.sh脚本编译<a class="headerlink" href="#33-make-ohossh" title="Permanent link">&para;</a></h2>
 <p>根据对build_kernel.sh的解析，为了在代码目录out/kernel/src_tmp/linux-5.10直接编译，可以直接如下命令编译</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">KBUILD_OUTPUT</span><span class="o">=</span>../../OBJ/linux-5.10<span class="w"> </span><span class="nv">PRODUCT_PATH</span><span class="o">=</span>vendor/hihope/rk3568<span class="w"> </span><span class="nv">DEVICE_COMPANY</span><span class="o">=</span>rockchip<span class="w"> </span><span class="nv">DEVICE_NAME</span><span class="o">=</span>rk3568<span class="w"> </span><span class="nv">PRODUCT_COMPANY</span><span class="o">=</span>hihope<span class="w"> </span><span class="nv">GPUDRIVER</span><span class="o">=</span>mali<span class="w"> </span>./make-ohos.sh<span class="w"> </span>TB-RK3568X0<span class="w"> </span>enable_ramdisk
 </code></pre></div>
@@ -739,7 +859,7 @@ GPUDRIVER: 指定显卡驱动，瑞芯微支持mali和panfrost两种驱动<br>
 TB-RK3568X0：指定开发板类型，当前oh的sdk只支持TB-RK3568X0和TB-RK3568X10两款开发板，两个开发板对应的设备树不一样而已，其他没区别<br>
 enable_ramdisk：指定生成ramdisk镜像<br>
 通过上述命令可以在源码目录生成boot_linux目录和boot_linux.img，注意，此时的boot_linux.img不会主动复制到out/rk3568/packages/phone/images目录。<br></p>
-<h2 id="34">3.4、内核分步骤编译<a class="headerlink" href="#34" title="Permanent link">#</a></h2>
+<h2 id="34">3.4、内核分步骤编译<a class="headerlink" href="#34" title="Permanent link">&para;</a></h2>
 <p>内核编译分三个步骤</p>
 <p>编译defconfig<br>
 编译ko模块<br>
@@ -759,21 +879,21 @@ enable_ramdisk：指定生成ramdisk镜像<br>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>./make-boot.sh<span class="w"> </span>../../../
 </code></pre></div>
 <p>此时boot_linux.img文件存放在/rk3568/packages/phone/images/内</p>
-<h3 id="341_hdf_hcs_hexo">3.4.1 hdf_hcs_hex.o重编译<a class="headerlink" href="#341_hdf_hcs_hexo" title="Permanent link">#</a></h3>
+<h3 id="341-hdf_hcs_hexo">3.4.1 hdf_hcs_hex.o重编译<a class="headerlink" href="#341-hdf_hcs_hexo" title="Permanent link">&para;</a></h3>
 <p>默认的hdf_test在单编译的时候会报错如下：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>ld.lld:<span class="w"> </span>error:<span class="w"> </span>drivers/built-in.a<span class="o">(</span>../../../vendor/hihope/rk3568/hdf_config/khdf/hdf_test/hdf_hcs_hex.o<span class="o">)</span>:<span class="w"> </span>Invalid<span class="w"> </span>value<span class="w"> </span><span class="o">(</span>Producer:<span class="w"> </span><span class="s1">&#39;LLVM15.0.4&#39;</span><span class="w"> </span>Reader:<span class="w"> </span><span class="s1">&#39;LLVM 12.0.1&#39;</span><span class="o">)</span>
 </code></pre></div>
 <p>上述日志说明hdf_hcs_hex.o和当前单编的llvm版本不一样，所以删除.o即可，如下操作</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>../../../kernel/vendor/hihope/rk3568/hdf_config/khdf/hdf_test/
 </code></pre></div>
-<h3 id="342_pahole">3.4.2 缺少包pahole工具<a class="headerlink" href="#342_pahole" title="Permanent link">#</a></h3>
+<h3 id="342-pahole">3.4.2 缺少包pahole工具<a class="headerlink" href="#342-pahole" title="Permanent link">&para;</a></h3>
 <p>缺少工具是因为缺少包导致，错误信息如下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>BTF:<span class="w"> </span>.tmp_vmlinux.btf:<span class="w"> </span>pahole<span class="w"> </span><span class="o">(</span>pahole<span class="o">)</span><span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>available
 </code></pre></div>
 <p>安装dwarves包即可</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>apt<span class="w"> </span>install<span class="w"> </span>dwarves
 </code></pre></div>
-<h2 id="345">3.4.5 编译有不匹配的残留文件<a class="headerlink" href="#345" title="Permanent link">#</a></h2>
+<h2 id="345">3.4.5 编译有不匹配的残留文件<a class="headerlink" href="#345" title="Permanent link">&para;</a></h2>
 <p>如果编译环境出问题，如下命令清理一下</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nv">KBUILD_OUTPUT</span><span class="o">=</span>../../OBJ/linux-5.10<span class="w"> </span>make<span class="w"> </span><span class="nv">LLVM</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">LLVM_IAS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">CROSS_COMPILE</span><span class="o">=</span>aarch64-linux-gnu-<span class="w"> </span><span class="nv">ARCH</span><span class="o">=</span>arm64<span class="w"> </span><span class="nv">PRODUCT_PATH</span><span class="o">=</span>vendor/hihope/rk3568<span class="w"> </span><span class="nv">DEVICE_COMPANY</span><span class="o">=</span>rockchip<span class="w"> </span>mrproper
 </code></pre></div>
@@ -847,7 +967,7 @@ enable_ramdisk：指定生成ramdisk镜像<br>
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

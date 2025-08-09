@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gdb_android" class="md-skip">
+        <a href="#gdb-android" class="md-skip">
           Skip to content
         </a>
       
@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,24 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,8 +648,8 @@
 
 
 
-<h1 id="gdb_android"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">gdb 远程调试在android上的应用</span><a class="headerlink" href="#gdb_android" title="Permanent link">#</a></h1>
-<h1 id="1_gdb"><font face="黑体" color=#FF4500 size="4">1. gdb 远程调试</font><a class="headerlink" href="#1_gdb" title="Permanent link">#</a></h1>
+<h1 id="gdb-android"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">gdb 远程调试在android上的应用</span><a class="headerlink" href="#gdb-android" title="Permanent link">&para;</a></h1>
+<h1 id="1-gdb"><font face="黑体" color=#FF4500 size="4">1. gdb 远程调试</font><a class="headerlink" href="#1-gdb" title="Permanent link">&para;</a></h1>
 <p>如果要调试运行于一个不能运行GDB的机器上的程序时，使用远程调试就很有帮助了。例如，可以用远程调试操作系统内核，或者在小型的，没有足够的操作系统能力来支持运行完全功能的调试器的系统里调试, gdbd的远程调试采用gdb+gdbserver的远程调试方法：gdbserver在目标板中运行，而gdb则在主机上运行(主机上的gdb是特殊版本， 可在主机上运行， 但是针对目标平台编译， )</p>
 <p>GDB可以配置特殊串口和TCP/IP接口来支持远程调试特殊的调试目标。另外，GDB还有通用串口协议（特指GDB，不是指任何特殊目标系统），如果你可以用它实现远程代理–远程代理的代码运行于远程系统，用来和GDB通讯</p>
 <p>Android 上通常都自带了gdbserver的源码并且编译出可执行文件，需要注意的是， 64位系统上一般带有2个版本: gdbserver, gdbserver64, 需要跟据要调试的程式选用正确的版本</p>
@@ -649,7 +665,7 @@
 </code></pre></div>
 例如 target remote /dev/ttyb target remote tcp::5039 target remote udp::5039</p>
 <p>gdb和gdbserver需使用相同的方式， 通常都是使用TCP的方式， 在使用KGDB调试内核时， 会用到串行线 在使用串行口的时候， 还需要设置波特率， 流控等</p>
-<h1 id="2"><font face="黑体" color=#FF4500 size="4">2. 设置端口转发</font><a class="headerlink" href="#2" title="Permanent link">#</a></h1>
+<h1 id="2"><font face="黑体" color=#FF4500 size="4">2. 设置端口转发</font><a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
 <p>gdb的远程调试支持 tcp/串行口等通信方式，android上通常并不方便使用串行线，android设备和PC之间使用usb来连接， 因此， 可以要使用adb 的端口转发功能在PC和android设备之间通过adb来转发端口数据，通过tcp来连接gdbserver，adb转发tcp端口的cmd如下：</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w">  </span>adb<span class="w"> </span>forward<span class="w"> </span>tcp:pc-port<span class="w"> </span>tcp:android-port
 </code></pre></div>
@@ -665,7 +681,7 @@
 <p>例如， 要在android设备上， gdbserver监听tcp端口5555， 在pc上gdb使用tcp端口4444与其通信</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>adb<span class="w"> </span>forward<span class="w"> </span>tcp:4444<span class="w"> </span>tcp:5555
 </code></pre></div>
-<h1 id="3_adbserver"><font face="黑体" color=#FF4500 size="4">3. 启动adbserver</font><a class="headerlink" href="#3_adbserver" title="Permanent link">#</a></h1>
+<h1 id="3-adbserver"><font face="黑体" color=#FF4500 size="4">3. 启动adbserver</font><a class="headerlink" href="#3-adbserver" title="Permanent link">&para;</a></h1>
 <p>在 android 设备上， gdbserver的usage如下</p>
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Usage:<span class="w">  </span>gdbserver<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMM<span class="w"> </span>PROG<span class="w"> </span><span class="o">[</span>ARGS<span class="w"> </span>...<span class="o">]</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>gdbserver<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>--attach<span class="w"> </span>COMM<span class="w"> </span>PID
@@ -682,7 +698,7 @@
 <p>可以看到如下输出</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>Listening<span class="w"> </span>on<span class="w"> </span>port<span class="w"> </span><span class="m">5555</span>
 </code></pre></div>
-<h1 id="4_pcgdb"><font face="黑体" color=#FF4500 size="4">4. 在pc端启动gdb</font><a class="headerlink" href="#4_pcgdb" title="Permanent link">#</a></h1>
+<h1 id="4-pcgdb"><font face="黑体" color=#FF4500 size="4">4. 在pc端启动gdb</font><a class="headerlink" href="#4-pcgdb" title="Permanent link">&para;</a></h1>
 <p>以MSM8916平台为例， 附带的gdb路径为</p>
 <p>prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/aarch64-linux-android-gdb<br>
 usage为<br></p>
@@ -733,12 +749,12 @@ set solib-search-path ： 设定动态库的搜索路径， 对于没有放置�
 <p>在使用 “gdb cmd” 方式指定执行程序时， 后跟参数<br>
 在启动gdb后， 使用“set args”来指定参数<br>
 另外， Android上提供了gdbclient来简化设置， 只需要启动gdbserver， 在pc端执行“source, lunch”后， 设置好端口转发(gdbclient默认使用5039号端口)， 然后执行“gdbclient test”即可</p>
-<h1 id="5_gdb_cmd"><font face="黑体" color=#FF4500 size="4">5. GDB cmd</font><a class="headerlink" href="#5_gdb_cmd" title="Permanent link">#</a></h1>
-<h2 id="51_gdb"><font face="黑体" color=#FF4500 size="3">5.1 获取gdb的帮助信息</font><a class="headerlink" href="#51_gdb" title="Permanent link">#</a></h2>
+<h1 id="5-gdb-cmd"><font face="黑体" color=#FF4500 size="4">5. GDB cmd</font><a class="headerlink" href="#5-gdb-cmd" title="Permanent link">&para;</a></h1>
+<h2 id="51-gdb"><font face="黑体" color=#FF4500 size="3">5.1 获取gdb的帮助信息</font><a class="headerlink" href="#51-gdb" title="Permanent link">&para;</a></h2>
 <p>help 命令列出所有的cmd， 然后使用“help cmd”可以列出各cmd的详细帮助信息， 例如 “help breakpoint” 即可列出“breakpoint” 的详细帮助信息</p>
-<h2 id="52_show"><font face="黑体" color=#FF4500 size="3">5.2 show</font><a class="headerlink" href="#52_show" title="Permanent link">#</a></h2>
+<h2 id="52-show"><font face="黑体" color=#FF4500 size="3">5.2 show</font><a class="headerlink" href="#52-show" title="Permanent link">&para;</a></h2>
 <p>用来获取GDB本身设置相关的一些信息</p>
-<h2 id="53"><font face="黑体" color=#FF4500 size="3">5.3 查看被调试程序的相关信息</font><a class="headerlink" href="#53" title="Permanent link">#</a></h2>
+<h2 id="53"><font face="黑体" color=#FF4500 size="3">5.3 查看被调试程序的相关信息</font><a class="headerlink" href="#53" title="Permanent link">&para;</a></h2>
 <p>用来获取和被调试的应用程序相关的信息, 常用的有<br></p>
 <p>info address : 查看符号的地址， 例如 “info address main” 可产看main()的地址<br>
 info all-registers : 打印所有整数寄存器的内容<br>
@@ -763,7 +779,7 @@ info starget ： 显示调试的程序的信息<br>
 info threads ： 列出所有的线程<br>
 info vtbl ： 显示c++的虚函数表<br>
 info watchpoints ： 显示所有的watchpoints<br></p>
-<h2 id="54"><font face="黑体" color=#FF4500 size="3">5.4 设置断点</font><a class="headerlink" href="#54" title="Permanent link">#</a></h2>
+<h2 id="54"><font face="黑体" color=#FF4500 size="3">5.4 设置断点</font><a class="headerlink" href="#54" title="Permanent link">&para;</a></h2>
 <p>可以使用如下的方式指定断点的位置</p>
 <p>break function ： 在某个函数的入口处设置断点， 例如 “break main”<br>
 break +offset ： 在当前位置的向下offset行处设置断点， 例如 “break +10”<br>
@@ -815,14 +831,14 @@ end
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>commands<span class="w"> </span><span class="o">[</span>bnum<span class="o">]</span>
 <a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>end
 </code></pre></div>
-<h2 id="55"><font face="黑体" color=#FF4500 size="3">5.5 设置观察点</font><a class="headerlink" href="#55" title="Permanent link">#</a></h2>
+<h2 id="55"><font face="黑体" color=#FF4500 size="3">5.5 设置观察点</font><a class="headerlink" href="#55" title="Permanent link">&para;</a></h2>
 <p>在某个表达式的值发生变化的时候停止运行，达到‘监视’该表达式的目的</p>
 <p>表达式可以是一个符号， 若添加“-l”选项， 则watch表达式所指的地址</p>
 <p>watch expr : 设置写watchpoint，当应用程序写expr,修改其值时，程序停止运行<br>
 rwatch expr: 设置读watchpoint，当应用程序读表达式expr时，程序停止运行<br>
 awatch expr: 设置读写watchpoint, 当应用程序读或者写表达式expr时，程序都会停止运行<br>
 watchpoint和breakpoint共用一套ID空间， 使用相同的语法来 enable/disable/delete<br></p>
-<h2 id="56"><font face="黑体" color=#FF4500 size="3">5.6 设置异常点</font><a class="headerlink" href="#56" title="Permanent link">#</a></h2>
+<h2 id="56"><font face="黑体" color=#FF4500 size="3">5.6 设置异常点</font><a class="headerlink" href="#56" title="Permanent link">&para;</a></h2>
 <p>catchpoints的作用是让程序在发生某种事件的时候停止运行，比如C++中发生异常事件，加载动态库事件</p>
 <p>catch event : 当事件发生时， 程序停止运行<br>
 支持的event有：<br></p>
@@ -837,10 +853,10 @@ unload:卸载动态库<br>
 unloadlibname: 卸载名为libname的动态库<br>
 syscall [args]:调用系统调用，args可以指定系统调用号，或者系统名称<br>
 catchpoints同watchpoint一样， 使用相同的语法来 enable/disable/delete<br></p>
-<h2 id="57"><font face="黑体" color=#FF4500 size="3">5.7 附加到进程上</font><a class="headerlink" href="#57" title="Permanent link">#</a></h2>
+<h2 id="57"><font face="黑体" color=#FF4500 size="3">5.7 附加到进程上</font><a class="headerlink" href="#57" title="Permanent link">&para;</a></h2>
 <p>attach pid ： 附着到一个已经运行的进程上， 进行调试
 detach ： 取消attach</p>
-<h2 id="58"><font face="黑体" color=#FF4500 size="3">5.8 多线程相关</font><a class="headerlink" href="#58" title="Permanent link">#</a></h2>
+<h2 id="58"><font face="黑体" color=#FF4500 size="3">5.8 多线程相关</font><a class="headerlink" href="#58" title="Permanent link">&para;</a></h2>
 <p>在多线程程序时， 需要用到thread相关命令</p>
 <p>thread tid ： 切换当前线程到由tid指定的线程<br>
 info threads：查看GDB当前调试的程序的各个线程的相关信息<br>
@@ -850,22 +866,22 @@ thread apply &lt; threadno all &gt; args：对指定（或所有）的线程执�
 set scheduler-locking off : 不锁定任何线程，也就是所有线程都执行，这是默认值<br>
 set scheduler-locking on : 有当前被调试的线程会执行<br>
 set scheduler-locking step，在单步的时候，除了next过一个函数的情况以外，只有当前线程会执行<br></p>
-<h2 id="59"><font face="黑体" color=#FF4500 size="3">5.9 多进程相关</font><a class="headerlink" href="#59" title="Permanent link">#</a></h2>
+<h2 id="59"><font face="黑体" color=#FF4500 size="3">5.9 多进程相关</font><a class="headerlink" href="#59" title="Permanent link">&para;</a></h2>
 <p>默认在fork/vfork之后，GDB仍然调试父进程，与子进程不相关</p>
 <p>set follow-fork-mode mode ： mode为”parent”时，与缺省情况一样；mode为”child”时，fork/vfork之后，GDB进入子进程调试，与父进程不再相关<br>
 show follow-fork-mode：查看当前GDB多进程跟踪模式的设置<br></p>
-<h2 id="510"><font face="黑体" color=#FF4500 size="3">5.10 单步执行</font><a class="headerlink" href="#510" title="Permanent link">#</a></h2>
+<h2 id="510"><font face="黑体" color=#FF4500 size="3">5.10 单步执行</font><a class="headerlink" href="#510" title="Permanent link">&para;</a></h2>
 <p>step count : 如果没有指定count, 则继续执行程序，直到到达与当前源文件不同的源文件中时停止；如果指定了count,则重复行上面的过程count次<br>
 stepi count :如果没有指定count, 继续执行下一条机器指令，然后停止；如果指定了count，则重复上面的过程count次<br>
 step比较常见的应用场景：在函数func被调用的某行代码处设置断点，等程序在断点处停下来后，可以用step命令进入该函数的实现中，但前提是该函数编译的时候把调试信息也编译进去了，负责step会跳过该函数</p>
 <p>next [count]:如果没有指定count, 单步执行下一行程序；如果指定了count，单步执行接下来的count行程序<br>
 nexti [count]:如果没有指定count, 单步执行下一条指令；如果指定了count,单步执行接下来的count条执行<br>
 stepi和nexti的区别：nexti在执行某机器指令时，如果该指令是函数调用，那么程序执行直到该函数调用结束时才停止， 而stepi则会进入被调用的函数的内部</p>
-<h2 id="511"><font face="黑体" color=#FF4500 size="3">5.11 继续执行程序**</font><a class="headerlink" href="#511" title="Permanent link">#</a></h2>
+<h2 id="511"><font face="黑体" color=#FF4500 size="3">5.11 继续执行程序**</font><a class="headerlink" href="#511" title="Permanent link">&para;</a></h2>
 <p>continue [count] : 唤醒程序，继续运行，至到遇到下一个断点，或者程序结束。如果指定count，那么程序在接下来的运行中，count次断点<br>
 finish : 继续执行程序，直到当前被调用的函数结束，如果该函数有返回值，把返回值也打印到控制台<br>
 return [expression] : 中止当前函数的调用，如果指定了expression，把expresson值当做当前函数的返回值；如果没有，直接结束当前函数调用</p>
-<h2 id="512"><font face="黑体" color=#FF4500 size="3">5.12 信号的处理</font><a class="headerlink" href="#512" title="Permanent link">#</a></h2>
+<h2 id="512"><font face="黑体" color=#FF4500 size="3">5.12 信号的处理</font><a class="headerlink" href="#512" title="Permanent link">&para;</a></h2>
 <p>info signals ： 打印所有的信号相关的信息，以及GDB缺省的处理方式<br>
 info handle ： 同上<br>
 handle signal keywords : 设置GDB对具体某个信号的处理方式。signal可以为信号整数值，也可以为SIGSEGV这样的符号keywords的取值如下<br>
@@ -878,7 +894,7 @@ ignore ：ignore与nopass同义<br>
 noignore ： noignore与pass同义<br>
 可以在gdb中向被调试的程序发送信号<br></p>
 <p>signal signal: 向程序发送信号signal,signal可以是信号的符号或数字形式，如果signal=0，那么程序将会继续运行，程序不会收到任何信号</p>
-<h2 id="513"><font face="黑体" color=#FF4500 size="3">5.13 查看调用栈</font><a class="headerlink" href="#513" title="Permanent link">#</a></h2>
+<h2 id="513"><font face="黑体" color=#FF4500 size="3">5.13 查看调用栈</font><a class="headerlink" href="#513" title="Permanent link">&para;</a></h2>
 <p>backtrace ： 查看调用栈信息<br>
 backtrace n ： 查看调用栈信息, 只显示栈顶n帧<br>
 backtrace -n ： 查看调用栈信息, 只显示栈底部n帧<br>
@@ -923,18 +939,18 @@ info frameaddr ：<br>
 当前桢中局部变量的地址<br>
 PC（program counter）<br>
 当前桢中存储的寄存器<br></p>
-<h2 id="514"><font face="黑体" color=#FF4500 size="3">5.14 被调试的程序源码目录</font><a class="headerlink" href="#514" title="Permanent link">#</a></h2>
+<h2 id="514"><font face="黑体" color=#FF4500 size="3">5.14 被调试的程序源码目录</font><a class="headerlink" href="#514" title="Permanent link">&para;</a></h2>
 <p>directory dirname : 设置当前调试的程序的源代码目录为dirname<br>
 directory : 将当前调试的程序的源代码目录清空<br>
 show directories : 打印当前调试的程序的源代码目录<br></p>
-<h2 id="515"><font face="黑体" color=#FF4500 size="3">5.15 查看程序的源码</font><a class="headerlink" href="#515" title="Permanent link">#</a></h2>
+<h2 id="515"><font face="黑体" color=#FF4500 size="3">5.15 查看程序的源码</font><a class="headerlink" href="#515" title="Permanent link">&para;</a></h2>
 <p>list linenum: 打印当前文件中第linenum行周围的源代码<br>
 list function: 打印function函数周围的源代码<br>
 list : 在上一次使用list命令的基础上，再多打印一些源代码<br>
 list -: 打印和上一次使用list命令一样的源代码<br>
 set listsizecount: 设置list命令显示源代码的行数<br>
 show listsize : 查看list命令显示<br></p>
-<h2 id="516"><font face="黑体" color=#FF4500 size="3">5.16 查看变量</font><a class="headerlink" href="#516" title="Permanent link">#</a></h2>
+<h2 id="516"><font face="黑体" color=#FF4500 size="3">5.16 查看变量</font><a class="headerlink" href="#516" title="Permanent link">&para;</a></h2>
 <p>print expr: 打印表达式expr的值<br>
 print /f expr:以f指定的格式打印表达式expr的值<br>
 print : 打印上一次打印的表达式的值<br>
@@ -963,7 +979,7 @@ function::varable : 指定函数中的变量<br>
 {type}address: 把address指定的内存解释为type类型（类似于强制转型，更加强）例如“ p /x {short}0x7fffffffdfcc”<br>
 查看变量的类型</p>
 <p>whatis var</p>
-<h2 id="517"><font face="黑体" color=#FF4500 size="3">5.17 打印内存</font><a class="headerlink" href="#517" title="Permanent link">#</a></h2>
+<h2 id="517"><font face="黑体" color=#FF4500 size="3">5.17 打印内存</font><a class="headerlink" href="#517" title="Permanent link">&para;</a></h2>
 <p>使用命令 “x”</p>
 <p>x /nfu addr</p>
 <p>n为次数， f为打印格式同printf， 但是还新增“i”用于打印机器指令， u为单位的大小,b-byte，h-halfwords（2字节），w-words（4字节），g-Giant words（8字节）</p>
@@ -978,7 +994,7 @@ function::varable : 指定函数中的变量<br>
 <a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="o">=</span>&gt;<span class="w"> </span>0x40064c<span class="w"> </span>&lt;main+119&gt;:<span class="w"> </span>mov<span class="w">    </span>0x2009ee<span class="o">(</span>%rip<span class="o">)</span>,%eax<span class="w">        </span><span class="c1"># 0x601040 &lt;count.2653&gt;</span>
 </code></pre></div>
 <p>很多时候“print” 和 “x”都能完成相同的工作， “print”使用更为友好，能够直接打印变量的值和类型， 直接打印指针和字符串, 而“x”则更为强大</p>
-<h2 id="518"><font face="黑体" color=#FF4500 size="3">5.18 自动显示</font><a class="headerlink" href="#518" title="Permanent link">#</a></h2>
+<h2 id="518"><font face="黑体" color=#FF4500 size="3">5.18 自动显示</font><a class="headerlink" href="#518" title="Permanent link">&para;</a></h2>
 <p>“display“命令可以在程序停止时， 自动打印变量或者内存值</p>
 <p>display /f expr|addr：以f为格式(具体格式同print)，打印expr或者addr<br>
 undisplaydnums ： 删除第dnums个display点<br>
@@ -986,7 +1002,7 @@ delete display dnums：同上<br>
 disable displaydnums：禁用第dnums个display点<br>
 enable displaydnums：启用第dnums个display点<br>
 info display：查看所有的display点<br></p>
-<h2 id="519"><font face="黑体" color=#FF4500 size="3">5.19 打印选项</font><a class="headerlink" href="#519" title="Permanent link">#</a></h2>
+<h2 id="519"><font face="黑体" color=#FF4500 size="3">5.19 打印选项</font><a class="headerlink" href="#519" title="Permanent link">&para;</a></h2>
 <p>gdb中有一些打印选项， 可以使用 “set print xxx [on | off]” 来打开或者关闭， 使用“show print xxx”来查看</p>
 <p>array：以一种比较好看的方式打印数组，缺省是关闭的<br>
 elementsnum-of-elements：设置GDB打印数据时显示元素的个数，缺省为200，设为0表示不限制(unlimited)<br>
@@ -995,18 +1011,18 @@ pretty：设置GDB打印结构的时候，每行一个成员，并且有相应�
 object：设置GDB打印多态类型的时候，打印实际的类型，缺省为关闭<br>
 static-members：设置GDB打印结构的时候，是否打印static成员，缺省是打开的<br>
 vtbl：以漂亮的方式打印C++的虚函数表，缺省是关闭的<br></p>
-<h2 id="520"><font face="黑体" color=#FF4500 size="3">5.20 修改变量的值</font><a class="headerlink" href="#520" title="Permanent link">#</a></h2>
+<h2 id="520"><font face="黑体" color=#FF4500 size="3">5.20 修改变量的值</font><a class="headerlink" href="#520" title="Permanent link">&para;</a></h2>
 <p>有两种方式</p>
 <p>printv=value:　修改变量值的同时，把修改后的值显示出来<br>
 set [var]v=value:　修改变量值，需要注意如果变量名与GDB中某个set命令中的关键字一样的话，前面加上var关键字<br></p>
-<h4 id="520_gdb">5.20 在gdb中调用被调试程序的函数<br><a class="headerlink" href="#520_gdb" title="Permanent link">#</a></h4>
+<h4 id="520-gdb">5.20 在gdb中调用被调试程序的函数<br><a class="headerlink" href="#520-gdb" title="Permanent link">&para;</a></h4>
 <p>call exp</p>
 <p>例如， 被调试的文件中有函数</p>
 <p>int add(int a, int b)<br>
 则在gdb中可以调用add<br></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>call<span class="w"> </span>add<span class="o">(</span><span class="m">1</span>,<span class="w"> </span><span class="m">5</span><span class="o">)</span>
 </code></pre></div>
-<h4 id="521">5.21 被调试的程序的启动参数<a class="headerlink" href="#521" title="Permanent link">#</a></h4>
+<h4 id="521">5.21 被调试的程序的启动参数<a class="headerlink" href="#521" title="Permanent link">&para;</a></h4>
 <p>可以在启动gdb时使用“–argss选项”指定参数， 例如</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>$<span class="w"> </span>gdb<span class="w"> </span>--args<span class="w"> </span>./test<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span>
 </code></pre></div>
@@ -1017,7 +1033,7 @@ set [var]v=value:　修改变量值，需要注意如果变量名与GDB中某个
 <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>show<span class="w"> </span>args
 <a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>Argument<span class="w"> </span>list<span class="w"> </span>to<span class="w"> </span>give<span class="w"> </span>program<span class="w"> </span>being<span class="w"> </span>debugged<span class="w"> </span>when<span class="w"> </span>it<span class="w"> </span>is<span class="w"> </span>started<span class="w"> </span>is<span class="w"> </span><span class="s2">&quot;1 2 3 4 5&quot;</span>.
 </code></pre></div>
-<h2 id="521_1"><font face="黑体" color=#FF4500 size="3">5.21改变程序的执行</font><a class="headerlink" href="#521_1" title="Permanent link">#</a></h2>
+<h2 id="521_1"><font face="黑体" color=#FF4500 size="3">5.21改变程序的执行</font><a class="headerlink" href="#521_1" title="Permanent link">&para;</a></h2>
 <p>如果认为在程序中发现了错误，也许你想知道，纠正当前的错误是否能让剩余的运算得到正确的结果， 使用GDB的执行中改变的功能，通过实践就可以找到答案</p>
 <p>可以改变条件变量来改变程序的执行路径， 使用“print”或者set命令来完成</p>
 <p>可以通过修改函数的返回值来改变程序的执行流程，使用 “return” 命令 可以让函数立即以指定的返回值来返回</p>
@@ -1094,7 +1110,7 @@ jump location ： 跳转到指定的地址<br>
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>

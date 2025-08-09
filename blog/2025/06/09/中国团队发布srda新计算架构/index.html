@@ -300,9 +300,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -629,6 +627,26 @@
               </div>
             
             
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
   <div class="md-content md-content--post" data-md-component="content">
@@ -684,17 +702,6 @@
             
           </nav>
           
-            
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-</nav>
-          
         </div>
       </div>
     </div>
@@ -722,7 +729,7 @@
 <p>与此同时，DeepSeek 于半个月前发表论文《Insights into DeepSeek-V3: Scaling Challenges and Reflections on Hardware for AI Architectures》，从用户视角梳理了当前大模型训练与推理中所面临的 AI 硬件瓶颈，以及对未来 AI 硬件的构想建议。</p>
 <p>DeepSeek 从用户角度的不少构想与玉盘 SRDA 在做的事不谋而合，包括 IO 融合、3D 堆叠 DRAM 等，而玉盘进一步提出了更完整的架构设计，或正式拉开下一代大模型专用计算架构的序幕。</p>
 <p>软硬两头的交汇或暗示业界已逐渐形成共识，即当前算力已不再是瓶颈，瓶颈在于绝大多数算力浪费在了数据搬运及读写上（互联和内存等 I/O 问题）。SRDA 相关思路是否将在不久的未来颠覆 GPGPU 目前在 AI 场景的垄断地位？</p>
-<h1 id="gpgpu"><font face="黑体" color=#FF4500 size="5">当前类 GPGPU 计算架构的困境</font><a class="headerlink" href="#gpgpu" title="Permanent link">#</a></h1>
+<h1 id="gpgpu"><font face="黑体" color=#FF4500 size="5">当前类 GPGPU 计算架构的困境</font><a class="headerlink" href="#gpgpu" title="Permanent link">&para;</a></h1>
 <p>硬件架构层面的创新比较少见，人们通常认为国产算力的问题在于制程或封装技术，这种理解源于默认 GPGPU 架构是 AI 大模型的最优架构（GPGPU 架构强依赖先进制程及先进封装）。白皮书认为，GPGPU 是非常优秀的计算架构，但为保证通用性，不会完全针对大模型训练及推理的诸多需求，就像用瑞士军刀切牛排——不是刀不快，而是工具缺乏针对性。</p>
 <p>在深入 SRDA 架构细节前，白皮书回顾了目前开发者们普遍面临的难题：</p>
 <p>内存与互联带宽不足：H100 每秒可计算 1000 万亿次，但其共享内存架构 + 低内存带宽仅够“喂饱”不足一半的硬件算力，如同几台车抢一个车位。</p>
@@ -731,7 +738,7 @@
 <p>功耗过大：以 H100 为例，单卡 700 瓦的 GPU 集群，超三分之一的电量用于数据“搬家”而非计算。</p>
 <p>正如 GPGPU 曾广泛用于矿机市场，而后由专用的矿卡芯片替代，站在在今天这个时点，大模型技术需求逐步清晰及收敛，Transformer 等主流架构也已经有明确的市场需求，也给了新的 AI 专用架构机会。</p>
 <p>目前多数针对 AI 场景的专用架构（DSA，Domain Specific Architecture）多是在 2023 年大模型爆发前或 2024 年大模型技术收敛前设计的，对大模型的特定需求缺乏充分考虑，很多并没有摆脱 GPGPU SIMT 架构线程间抢占资源、多级共享 Cache、用计算单元处理通讯任务等设计，因此也有和 GPGPU 相似的问题：算力利用率低、依赖先进制程等，依靠后天的软件做算力优化，进而陷入烧钱复刻 CUDA、堆制程等怪圈。</p>
-<h1 id="ai"><font face="黑体" color=#FF4500 size="5">下一代 AI 大模型算力芯片的关键要素</font><a class="headerlink" href="#ai" title="Permanent link">#</a></h1>
+<h1 id="ai"><font face="黑体" color=#FF4500 size="5">下一代 AI 大模型算力芯片的关键要素</font><a class="headerlink" href="#ai" title="Permanent link">&para;</a></h1>
 <p>白皮书认为下一代 AI 计算架构应具备以下一系列关键特征：</p>
 <p>基于 3D 堆叠创新的内存系统设计与超高带宽</p>
 <p>一体化融合网络</p>
@@ -739,9 +746,9 @@
 <p>先进的低精度计算支持</p>
 <p>计算与通信的深度协同与优化</p>
 <p>高度灵活的模型映射与可重构性</p>
-<h1 id="srda_3d_io"><font face="黑体" color=#FF4500 size="5">SRDA：系统级数据流 +3D 堆叠内存 +I/O 融合 + 极简可重构</font><a class="headerlink" href="#srda_3d_io" title="Permanent link">#</a></h1>
+<h1 id="srda-3d-io"><font face="黑体" color=#FF4500 size="5">SRDA：系统级数据流 +3D 堆叠内存 +I/O 融合 + 极简可重构</font><a class="headerlink" href="#srda-3d-io" title="Permanent link">&para;</a></h1>
 <p>与类 GPGPU 架构“控制流”为核心的思想不同，SRDA 架构的设计哲学是将“数据流”置于核心，从数据 I/O 切入，实现从 AI 芯片到 AI 数据中心系统的整体优化。</p>
-<h1 id="_1"><font face="黑体" color=#FF4500 size="3">数据中心系统级数据流：让计算跟着数据跑</font><a class="headerlink" href="#_1" title="Permanent link">#</a></h1>
+<h1 id="_1"><font face="黑体" color=#FF4500 size="3">数据中心系统级数据流：让计算跟着数据跑</font><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <p>AI 计算，尤其是深度神经网络的训练与推理，本质是大规模、并行化的数据在计算节点间依照特定计算图（Computational Graph）进行流动和转换的过程。传统"控制流"架构（Control-Flow Architecture）下，指令的顺序执行和复杂的内存层级访问常常成为性能瓶颈，导致计算单元空转，以及不必要的数据搬运。</p>
 <p>SRDA 架构则将“数据流”（Data-Flow）作为第一性原理，通过硬件设计直接映射 AI 计算图中的数据依赖关系。中间数据在经过优化的、可定制的计算路径上，于计算单元之间点到点直接传输，大幅减少了对内存的依赖和访问次数。这种设计理念从根本上减少了数据移动的距离和频率——当前计算系统中主要的性能和能耗瓶颈之一。</p>
 <!-- ![alt text](./picture/image-2025-06-09-a.png) -->
@@ -749,7 +756,7 @@
   <img src="/blog/2025/picture/image-2025-06-09-a.png" alt="xx" width="500"/>
 </a></p>
 <p>SRDA 还通过 I/O 融合等技术创新，将这种数据流思想不仅应用于芯片，还应用于节点乃至整个集群，实现了系统级的数据流计算范式。</p>
-<h1 id="_2"><font face="黑体" color=#FF4500 size="3">内存架构革命：给每个计算单元配“独享车位”</font><a class="headerlink" href="#_2" title="Permanent link">#</a></h1>
+<h1 id="_2"><font face="黑体" color=#FF4500 size="3">内存架构革命：给每个计算单元配“独享车位”</font><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h1>
 <p>为彻底攻克内存瓶颈，SRDA 修改整个内存架构，在计算芯片上直接分布式地集成超高带宽、大容量 3D-DRAM 内存，实现内存带宽的极致提升。</p>
 <!-- ![alt text](image.png) -->
 <p><a href="/blog/2025/picture/image-2025-06-09-b.png" target="_blank">
@@ -757,19 +764,19 @@
 </a></p>
 <p>其核心思路的突破在于“计算单元内存私有化”：每个计算核心拥有专属的内存区域，数据访问在本地完成，彻底消除了共享总线和内存竞争导致的拥塞 。这与 GPGPU 架构依赖共享内存、多计算核心并发访问易产生拥塞的模式形成鲜明对比 。</p>
 <p><font color= #DC143C)>颗粒层面，3D-DRAM 本身可实现远超 HBM 的超高带宽，相关技术上国内也一直领先于海外，是内存方面国产方案弯道超车的好思路，SRDA 架构能充分发挥 3D-DRAM 优势，“SRDA+3D-DRAM”或许有望替代“GPGPU+HBM”成为新的 AI 存算王炸组合。</font><br></p>
-<h1 id="_3"><font face="黑体" color=#FF4500 size="3">融合互联网络：单层统一，简化集群复杂度</font><a class="headerlink" href="#_3" title="Permanent link">#</a></h1>
+<h1 id="_3"><font face="黑体" color=#FF4500 size="3">融合互联网络：单层统一，简化集群复杂度</font><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
 <p>针对传统两层网络的痛点，<font color= #DC143C)>SRDA 将节点内高速互联（Scale-up）和节点间通信网络（Scale-out）融合成统一的单层网络</font><br>，显著简化网络拓扑，降低协议转换和管理开销，并能有效减少后端网络端口数量，从而降低部署成本和复杂度。</p>
 <p>玉盘将其独有的 I/O 融合互联技术称为 QLink，大有直接超越 NVLink 的意味。</p>
 <!-- ![alt text](image.png) -->
 <p><a href="/blog/2025/picture/image-2025-06-09-c.png" target="_blank">
   <img src="/blog/2025/picture/image-2025-06-09-c.png" alt="xx" width="500"/>
 </a></p>
-<h1 id="_4"><font face="黑体" color=#FF4500 size="3">极简可重构：适度灵活，高效开发</font><a class="headerlink" href="#_4" title="Permanent link">#</a></h1>
+<h1 id="_4"><font face="黑体" color=#FF4500 size="3">极简可重构：适度灵活，高效开发</font><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h1>
 <p>可重构性：
 AI 模型仍在发展（Transformer, MoE, Mamba, DiT, ViT 等），SRDA 允许用户根据模型调整数据流路径、计算单元功能和内存模式，适应未来模型变化。</p>
 <p>为 AI 而生 (AI-DSA)：
 SRDA 可重构，但不追求绝对通用（会导致软件栈如 CUDA 般复杂），其剥离通用处理器冗余，聚焦 AI 核心运算，且底层基于开源 RISC-V 指令集，提供简化指令，并降低算子开发难度。</p>
-<h1 id="srda"><font face="黑体" color=#FF4500 size="5">SRDA 为开发者带来的核心价值</font><a class="headerlink" href="#srda" title="Permanent link">#</a></h1>
+<h1 id="srda"><font face="黑体" color=#FF4500 size="5">SRDA 为开发者带来的核心价值</font><a class="headerlink" href="#srda" title="Permanent link">&para;</a></h1>
 <p>SRDA 架构旨在为 AI Infra 和 LLM 开发者带来：</p>
 <p>更高有效性能：通过基于 3D-DRAM 的分布式内存解决内存瓶颈，通过融合网络优化通信，通过数据流设计减少搬运，显著提升端到端算力利用率 。</p>
 <p>更低成本：提升单卡 / 单节点效率，降低功耗，简化网络和软件栈，从而优化总体拥有成本（TCO）。</p>
@@ -887,7 +894,7 @@ SRDA 可重构，但不追求绝对通用（会导致软件栈如 CUDA 般复杂
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../../../assets/javascripts/bundle.c8b220af.min.js"></script>

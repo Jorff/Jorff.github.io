@@ -294,9 +294,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="滴尔" class="md-nav__button md-logo" aria-label="滴尔" data-md-component="logo">
       
@@ -623,6 +621,170 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-surfaceflinger" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. SurfaceFlinger 进程在开机时启动
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-surfacefligner" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. SurfaceFligner 主函数实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. SurfaceFligner 主函数实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-1-binder" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 关注点1，初始化 Binder 驱动
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-2-surfaceflinger" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 关注点 2，初始化 SurfaceFlinger 对象
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-3surfaceflinger-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 关注点3，SurfaceFlinger init
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 关注点3，SurfaceFlinger init">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#231-renderengine" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.1 RenderEngine 的初始化与作用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-hwcomposer" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.2 HWComposer 的初始化与作用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233-displaydevice" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.3 DisplayDevice 初始化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#234-mscheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3.4 mScheduler 初始化
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-4-binder" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 关注点4，注册 Binder 服务
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 关注点5，启动显示服务
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.6 关注点6，进入事件循环
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考资料
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -632,9 +794,9 @@
 
 
 
-<h1 id="surfaceflinger"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">深入理解 SurfaceFlinger ——  启动与初始化</span><a class="headerlink" href="#surfaceflinger" title="Permanent link">#</a></h1>
+<h1 id="surfaceflinger"><span style="font-family: '黑体'; color: #FF4500; font-size: 1em;">深入理解 SurfaceFlinger ——  启动与初始化</span><a class="headerlink" href="#surfaceflinger" title="Permanent link">&para;</a></h1>
 <p>本文基于 AOSP android-15.0.0_r20 版本源码和 pixel6 手机分析。</p>
-<h2 id="1_surfaceflinger">1. SurfaceFlinger 进程在开机时启动<a class="headerlink" href="#1_surfaceflinger" title="Permanent link">#</a></h2>
+<h2 id="1-surfaceflinger">1. SurfaceFlinger 进程在开机时启动<a class="headerlink" href="#1-surfaceflinger" title="Permanent link">&para;</a></h2>
 <p>开机时，init 进程启动后，会解析 system/core/rootdir/init.rc 文件，在 init.rc 文件中，会启动 core class 服务：</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>on<span class="w"> </span>boot
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span>class_start<span class="w"> </span>core
@@ -650,7 +812,7 @@
 </code></pre></div>
 <p>surfaceflinger 是 core class 的，也就是说，surfaceflinger 进程会在开机的 boot 阶段启动。</p>
 <p>surfaceflinger 进程对应的可执行文件是 /system/bin/surfaceflinger，可执行文件对应的源码是 frameworks/native/services/surfaceflinger/main_surfaceflinger.cpp。对应的 Android.bp 是 /frameworks/native/services/surfaceflinger/Android.bp：</p>
-<h2 id="2_surfacefligner">2. SurfaceFligner 主函数实现<a class="headerlink" href="#2_surfacefligner" title="Permanent link">#</a></h2>
+<h2 id="2-surfacefligner">2. SurfaceFligner 主函数实现<a class="headerlink" href="#2-surfacefligner" title="Permanent link">&para;</a></h2>
 <p>源文件中主函数的实现如下：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">  1</a></span>
 <span class="normal"><a href="#__codelineno-2-2">  2</a></span>
@@ -897,7 +1059,7 @@
 <a id="__codelineno-2-122" name="__codelineno-2-122"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>代码中做了较为详细的注释，我们主要分析标注了关注点的 6 个地方.</p>
-<h3 id="21_1_binder">2.1 关注点1，初始化 Binder 驱动<a class="headerlink" href="#21_1_binder" title="Permanent link">#</a></h3>
+<h3 id="21-1-binder">2.1 关注点1，初始化 Binder 驱动<a class="headerlink" href="#21-1-binder" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
 <span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="w">    </span><span class="n">sp</span><span class="o">&lt;</span><span class="n">ProcessState</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ps</span><span class="p">(</span><span class="n">ProcessState</span><span class="o">::</span><span class="n">self</span><span class="p">());</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">    </span><span class="n">ps</span><span class="o">-&gt;</span><span class="n">startThreadPool</span><span class="p">();</span>
@@ -907,7 +1069,7 @@
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>ps-&gt;startThreadPool() 开启线程池
 </code></pre></div>
 <p>支持 Binder 功能的进程都会有这个代码。</p>
-<h3 id="22_2_surfaceflinger">2.2 关注点 2，初始化 SurfaceFlinger 对象<a class="headerlink" href="#22_2_surfaceflinger" title="Permanent link">#</a></h3>
+<h3 id="22-2-surfaceflinger">2.2 关注点 2，初始化 SurfaceFlinger 对象<a class="headerlink" href="#22-2-surfaceflinger" title="Permanent link">&para;</a></h3>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">sp</span><span class="o">&lt;</span><span class="n">SurfaceFlinger</span><span class="o">&gt;</span><span class="w"> </span><span class="n">flinger</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">surfaceflinger</span><span class="o">::</span><span class="n">createSurfaceFlinger</span><span class="p">();</span>
 </code></pre></div></td></tr></table></div>
 <p>createSurfaceFlinger 函数的实现如下：</p>
@@ -970,7 +1132,7 @@
 <a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">    </span><span class="n">hal</span><span class="o">::</span><span class="n">Vsync</span><span class="o">::</span><span class="n">DISABLE</span><span class="p">);</span>
 <a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h2 id="23_3surfaceflinger_init">2.3 关注点3，SurfaceFlinger init<a class="headerlink" href="#23_3surfaceflinger_init" title="Permanent link">#</a></h2>
+<h2 id="23-3surfaceflinger-init">2.3 关注点3，SurfaceFlinger init<a class="headerlink" href="#23-3surfaceflinger-init" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="w">    </span><span class="n">flinger</span><span class="o">-&gt;</span><span class="n">init</span><span class="p">();</span>
 </code></pre></div></td></tr></table></div>
 <p>这里调用 init 函数初始化 SurfaceFlinger，具体实现如下：</p>
@@ -1274,7 +1436,7 @@
   <img src="/proj/display/dispic/dispic_20250727_1_1.png" alt="xx" width="700"/>
 </a></p>
 <p>这两个核心成员均在 SurfaceFlinger::init 函数中初始化。CompositionEngine 持有和管理两者，主要充当了 SurfaceFlinger 与 RenderEngine &amp; HWComposer 之间的桥梁。</p>
-<h3 id="231_renderengine">2.3.1 RenderEngine 的初始化与作用<a class="headerlink" href="#231_renderengine" title="Permanent link">#</a></h3>
+<h3 id="231-renderengine">2.3.1 RenderEngine 的初始化与作用<a class="headerlink" href="#231-renderengine" title="Permanent link">&para;</a></h3>
 <p>RenderEngine::create 构建了一个 RenderEngine 对象。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
@@ -1422,7 +1584,7 @@
 <a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="w">    </span><span class="n">isProtected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">outputState</span><span class="p">.</span><span class="n">isProtected</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">supportsProtectedContent</span><span class="p">;</span>
 <a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="232_hwcomposer">2.3.2 HWComposer 的初始化与作用<a class="headerlink" href="#232_hwcomposer" title="Permanent link">#</a></h3>
+<h3 id="232-hwcomposer">2.3.2 HWComposer 的初始化与作用<a class="headerlink" href="#232-hwcomposer" title="Permanent link">&para;</a></h3>
 <p>HWComposer 初始化过程：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
 <span class="normal"><a href="#__codelineno-18-2">2</a></span>
@@ -1467,9 +1629,9 @@ getFactory().createHWComposer(mHwcServiceName) 构建一个 HWComposer 对象，
 <a id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="w">    </span><span class="c1">//......</span>
 <a id="__codelineno-19-10" name="__codelineno-19-10"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<h3 id="233_displaydevice">2.3.3 DisplayDevice 初始化<a class="headerlink" href="#233_displaydevice" title="Permanent link">#</a></h3>
+<h3 id="233-displaydevice">2.3.3 DisplayDevice 初始化<a class="headerlink" href="#233-displaydevice" title="Permanent link">&para;</a></h3>
 <p>这里会初始化 DisplayDevice 对象，该对象用于指代一个显示设备。这部分内容比较多，也非常重要，我们会在显示设备初始化一节详细分析.</p>
-<h3 id="234_mscheduler">2.3.4 mScheduler 初始化<a class="headerlink" href="#234_mscheduler" title="Permanent link">#</a></h3>
+<h3 id="234-mscheduler">2.3.4 mScheduler 初始化<a class="headerlink" href="#234-mscheduler" title="Permanent link">&para;</a></h3>
 <p>mScheduler 是 SurfaceFlinger 类中的一个重要成员，它是 scheduler::Scheduler 类型的智能指针。</p>
 <p>mScheduler 在 SurfaceFlinger::initScheduler 函数中完成初始化：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
@@ -1674,7 +1836,7 @@ vrrDisplayIdle ：处理可变刷新率显示空闲状态
 <a id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>小结：mScheduler 是 SurfaceFlinger 的核心组件，负责消息循环、VSYNC 信号管理、帧调度和显示模式管理等关键功能。它通过实现 ISchedulerCallback 接口与 SurfaceFlinger 进行交互，确保图形渲染和显示的正确时序。在 SurfaceFlinger 的启动过程中， mScheduler-&gt;run() 作为主循环被调用，成为整个系统的心脏</p>
-<h2 id="24_4_binder">2.4 关注点4，注册 Binder 服务<a class="headerlink" href="#24_4_binder" title="Permanent link">#</a></h2>
+<h2 id="24-4-binder">2.4 关注点4，注册 Binder 服务<a class="headerlink" href="#24-4-binder" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-28-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-28-3"> 3</a></span>
@@ -1872,7 +2034,7 @@ gui::BpSurfaceComposer：binder 代理端对象
 </code></pre></div>
 <p>该服务提供了大量的函数供客户端调用。</p>
 <p>对应的有一个客户端类 SurfaceComposerClient，该类主要用于简化 App、SystemServer 与 SurfaceFlinger 之间的 Binder 的跨进程调用。</p>
-<h2 id="25_5">2.5 关注点5，启动显示服务<a class="headerlink" href="#25_5" title="Permanent link">#</a></h2>
+<h2 id="25-5">2.5 关注点5，启动显示服务<a class="headerlink" href="#25-5" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="n">startDisplayService</span><span class="p">();</span>
 </code></pre></div></td></tr></table></div>
 <p>对应的实现是：</p>
@@ -1980,7 +2142,7 @@ gui::BpSurfaceComposer：binder 代理端对象
 <a id="__codelineno-34-13" name="__codelineno-34-13"></a><span class="p">};</span>
 </code></pre></div></td></tr></table></div>
 <p>当有显示器热插拔事件的时候就会回调 onHotplug 函数。调用 requestNextVsync 函数后，下一个 Vysnc 信号到来的时候就会回调到 onVsync 函数。</p>
-<h2 id="26_6">2.6 关注点6，进入事件循环<a class="headerlink" href="#26_6" title="Permanent link">#</a></h2>
+<h2 id="26-6">2.6 关注点6，进入事件循环<a class="headerlink" href="#26-6" title="Permanent link">&para;</a></h2>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="n">flinger</span><span class="o">-&gt;</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 <p>run 函数的实现如下：</p>
@@ -2074,9 +2236,9 @@ gui::BpSurfaceComposer：binder 代理端对象
 <a id="__codelineno-37-38" name="__codelineno-37-38"></a><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <p>这里的 MessageQueue 对 Looper 进行了简单的包装，实际这里就是一个 Native Looper。</p>
-<h2 id="_1">总结<a class="headerlink" href="#_1" title="Permanent link">#</a></h2>
+<h2 id="_1">总结<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>SurfaceFlinger 的启动和初始化过程涉及多个关键组件的创建和配置，包括 CompositionEngine、RenderEngine、HWComposer 和 Scheduler 等。通过高优先级的线程调度和精心设计的架构，SurfaceFlinger 能够高效地管理显示系统，确保 Android 设备的流畅显示体验。</p>
-<h2 id="_2">参考资料<a class="headerlink" href="#_2" title="Permanent link">#</a></h2>
+<h2 id="_2">参考资料<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Android P 图形显示系统（四） Android VirtualDisplay解析</li>
 <li>SurfaceFlinger01-SurfaceFlinger概述及启动过程</li>
@@ -2150,7 +2312,7 @@ gui::BpSurfaceComposer：binder 代理端对象
       <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "toc.integrate", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.indexes", "navigation.expand", "navigation.footer", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
